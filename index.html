@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Dharmapala Shield - A Buddhist Cyberpunk Tower Defense Game">
+    <title>🛡️ Dharmapala Shield</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/ui-screens.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/loading.css">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="assets/loading-bg.jpg" as="image">
+    
+    <!-- PWA Support -->
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Prevent zoom on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <style>
+        /* Loading screen styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-content {
+            text-align: center;
+            color: #e94560;
+        }
+        
+        .loading-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        .loading-subtitle {
+            font-size: 1.2rem;
+            color: #f5f5f5;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(233, 69, 96, 0.2);
+            border-top: 4px solid #e94560;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        .loading-progress {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .loading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #e94560, #f47068);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .loading-text {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #f5f5f5;
+            opacity: 0.7;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Game container */
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+        
+        #game-canvas {
+            display: block;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            cursor: crosshair;
+        }
+        
+        /* UI Overlay */
+        #ui-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .ui-element {
+            pointer-events: auto;
+        }
+        
+        /* Mobile controls */
+        #mobile-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            gap: 10px;
+            z-index: 200;
+        }
+        
+        @media (max-width: 768px) {
+            #mobile-controls {
+                display: flex;
+            }
+        }
+        
+        .mobile-btn {
+            padding: 15px 20px;
+            background: rgba(233, 69, 96, 0.8);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-btn:active {
+            transform: scale(0.95);
+            background: rgba(233, 69, 96, 1);
+        }
+        
+        /* Error screen */
+        #error-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1a2e;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            color: #e94560;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .error-content {
+            max-width: 500px;
+        }
+        
+        .error-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .error-message {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
+        .error-reload {
+            padding: 12px 24px;
+            background: #e94560;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .error-reload:hover {
+            background: #f47068;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-title">🛡️ Dharmapala Shield</div>
+            <div class="loading-subtitle">A Buddhist Cyberpunk Tower Defense Game</div>
+            <div class="loading-spinner"></div>
+            <div class="loading-progress">
+                <div class="loading-progress-bar" id="loading-progress-bar"></div>
+            </div>
+            <div class="loading-text" id="loading-text">Initializing systems...</div>
+        </div>
+    </div>
+    
+    <!-- Error Screen -->
+    <div id="error-screen">
+        <div class="error-content">
+            <div class="error-title">⚠️ Error</div>
+            <div class="error-message" id="error-message">Something went wrong while loading the game.</div>
+            <button class="error-reload" onclick="location.reload()">Reload Game</button>
+        </div>
+    </div>
+    
+    <!-- Game Container -->
+    <div id="game-container" style="display: none;">
+        <canvas id="game-canvas"></canvas>
+        
+        <!-- UI Overlay -->
+        <div id="ui-overlay">
+            <!-- Game UI will be dynamically added here -->
+        </div>
+        
+        <!-- Mobile Controls -->
+        <div id="mobile-controls">
+            <button class="mobile-btn" id="mobile-pause">⏸️</button>
+            <button class="mobile-btn" id="mobile-menu">📋</button>
+            <button class="mobile-btn" id="mobile-next-wave">⚡</button>
+        </div>
+    </div>
+    
+    <!-- Game Scripts -->
+    <script type="module">
+        // Import and initialize the game
+        import { Game } from './js/main.js';
+        
+        // Global error handler
+        window.addEventListener('error', (event) => {
+            console.error('Global error:', event.error);
+            showError(event.error?.message || 'An unknown error occurred');
+        });
+        
+        // Show error screen
+        function showError(message) {
+            document.getElementById('error-message').textContent = message;
+            document.getElementById('error-screen').style.display = 'flex';
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('game-container').style.display = 'none';
+        }
+        
+        // Update loading progress
+        function updateLoadingProgress(progress, text) {
+            const progressBar = document.getElementById('loading-progress-bar');
+            const loadingText = document.getElementById('loading-text');
+            
+            progressBar.style.width = `${progress}%`;
+            loadingText.textContent = text;
+        }
+        
+        // Initialize game when DOM is loaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                updateLoadingProgress(10, 'Loading game assets...');
+                
+                // Create game instance
+                const game = new Game();
+                
+                updateLoadingProgress(30, 'Initializing game systems...');
+                
+                // Initialize game
+                await game.init();
+                
+                updateLoadingProgress(60, 'Setting up UI...');
+                
+                // Setup UI
+                game.setupUI();
+                
+                updateLoadingProgress(80, 'Loading game content...');
+                
+                // Load game content
+                await game.loadContent();
+                
+                updateLoadingProgress(100, 'Starting game...');
+                
+                // Hide loading screen and show game
+                setTimeout(() => {
+                    const loadingScreen = document.getElementById('loading-screen');
+                    loadingScreen.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                        document.getElementById('game-container').style.display = 'block';
+                        
+                        // Start game loop
+                        game.start();
+                        
+                    }, 500);
+                }, 500);
+                
+            } catch (error) {
+                console.error('Failed to initialize game:', error);
+                showError(error.message || 'Failed to initialize game');
+            }
+        });
+        
+        // Handle visibility change (pause game when tab is not visible)
+        document.addEventListener('visibilitychange', () => {
+            if (window.game) {
+                if (document.hidden) {
+                    window.game.pause();
+                } else {
+                    window.game.resume();
+                }
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.game) {
+                window.game.handleResize();
+            }
+        });
+        
+        // Prevent context menu on mobile
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+        
+        // Prevent pull-to-refresh on mobile
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>
