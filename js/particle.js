@@ -1,5 +1,6 @@
 // Particle system for visual effects
-import { CONFIG, UTILS } from './config.js';
+import { CONFIG } from './config.js';
+import { Utils } from './utils.js';
 
 export class Particle {
     constructor(x, y, options = {}) {
@@ -120,15 +121,15 @@ export class ParticleSystem {
     createExplosion(x, y, color, count = 20) {
         for (let i = 0; i < count; i++) {
             const angle = (Math.PI * 2 * i) / count;
-            const speed = UTILS.random(50, 200);
-            const size = UTILS.random(2, 6);
-            
+            const speed = Utils.randomRange(50, 200);
+            const size = Utils.randomRange(2, 6);
+
             this.createParticle(x, y, {
                 vx: Math.cos(angle) * speed,
                 vy: Math.sin(angle) * speed,
                 color,
                 size,
-                life: UTILS.random(500, 1500),
+                life: Utils.randomRange(500, 1500),
                 gravity: 100,
                 friction: 0.95
             });
@@ -137,16 +138,16 @@ export class ParticleSystem {
     
     createDamageParticles(x, y, color, count = 10) {
         for (let i = 0; i < count; i++) {
-            const angle = UTILS.random(0, Math.PI * 2);
-            const speed = UTILS.random(20, 100);
-            const size = UTILS.random(1, 3);
-            
+            const angle = Utils.randomRange(0, Math.PI * 2);
+            const speed = Utils.randomRange(20, 100);
+            const size = Utils.randomRange(1, 3);
+
             this.createParticle(x, y, {
                 vx: Math.cos(angle) * speed,
                 vy: Math.sin(angle) * speed,
                 color,
                 size,
-                life: UTILS.random(200, 800),
+                life: Utils.randomRange(200, 800),
                 gravity: 50,
                 friction: 0.9
             });
@@ -155,16 +156,16 @@ export class ParticleSystem {
     
     createHitParticles(x, y, color, count = 5) {
         for (let i = 0; i < count; i++) {
-            const angle = UTILS.random(0, Math.PI * 2);
-            const speed = UTILS.random(10, 50);
-            const size = UTILS.random(1, 2);
-            
+            const angle = Utils.randomRange(0, Math.PI * 2);
+            const speed = Utils.randomRange(10, 50);
+            const size = Utils.randomRange(1, 2);
+
             this.createParticle(x, y, {
                 vx: Math.cos(angle) * speed,
                 vy: Math.sin(angle) * speed,
                 color,
                 size,
-                life: UTILS.random(100, 400),
+                life: Utils.randomRange(100, 400),
                 gravity: 20,
                 friction: 0.85
             });
@@ -193,16 +194,16 @@ export class ParticleSystem {
     createUpgradeEffect(x, y, color) {
         // Create upgrade particles
         for (let i = 0; i < 20; i++) {
-            const angle = UTILS.random(0, Math.PI * 2);
-            const speed = UTILS.random(30, 100);
-            const size = UTILS.random(2, 4);
-            
+            const angle = Utils.randomRange(0, Math.PI * 2);
+            const speed = Utils.randomRange(30, 100);
+            const size = Utils.randomRange(2, 4);
+
             this.createParticle(x, y, {
                 vx: Math.cos(angle) * speed,
                 vy: Math.sin(angle) * speed - 50, // Upward bias
                 color,
                 size,
-                life: UTILS.random(800, 2000),
+                life: Utils.randomRange(800, 2000),
                 gravity: 100,
                 friction: 0.95
             });
@@ -231,16 +232,16 @@ export class ParticleSystem {
     createTeleportEffect(x, y, color) {
         // Create teleport particles
         for (let i = 0; i < 25; i++) {
-            const angle = UTILS.random(0, Math.PI * 2);
-            const speed = UTILS.random(50, 150);
-            const size = UTILS.random(1, 3);
-            
+            const angle = Utils.randomRange(0, Math.PI * 2);
+            const speed = Utils.randomRange(50, 150);
+            const size = Utils.randomRange(1, 3);
+
             this.createParticle(x, y, {
                 vx: Math.cos(angle) * speed,
                 vy: Math.sin(angle) * speed,
                 color,
                 size,
-                life: UTILS.random(300, 900),
+                life: Utils.randomRange(300, 900),
                 gravity: 0,
                 friction: 0.85,
                 fade: true,
@@ -251,9 +252,9 @@ export class ParticleSystem {
     
     createErraticParticle(x, y, color) {
         // Create erratic movement particles
-        const angle = UTILS.random(0, Math.PI * 2);
-        const speed = UTILS.random(20, 60);
-        
+        const angle = Utils.randomRange(0, Math.PI * 2);
+        const speed = Utils.randomRange(20, 60);
+
         this.createParticle(x, y, {
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed,
@@ -262,21 +263,21 @@ export class ParticleSystem {
             life: 400,
             gravity: 0,
             friction: 0.8,
-            rotationSpeed: UTILS.random(-5, 5)
+            rotationSpeed: Utils.randomRange(-5, 5)
         });
     }
     
     createQuantumParticle(x, y, color) {
         // Create quantum particles
-        const angle = UTILS.random(0, Math.PI * 2);
-        const speed = UTILS.random(30, 80);
-        
+        const angle = Utils.randomRange(0, Math.PI * 2);
+        const speed = Utils.randomRange(30, 80);
+
         this.createParticle(x, y, {
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed,
             color,
-            size: UTILS.random(1, 4),
-            life: UTILS.random(500, 1200),
+            size: Utils.randomRange(1, 4),
+            life: Utils.randomRange(500, 1200),
             gravity: 0,
             friction: 0.9,
             fade: true
@@ -285,9 +286,9 @@ export class ParticleSystem {
     
     createStealthParticle(x, y, color) {
         // Create stealth particles
-        const angle = UTILS.random(0, Math.PI * 2);
-        const speed = UTILS.random(10, 30);
-        
+        const angle = Utils.randomRange(0, Math.PI * 2);
+        const speed = Utils.randomRange(10, 30);
+
         this.createParticle(x, y, {
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed,
@@ -302,15 +303,15 @@ export class ParticleSystem {
     
     createCorruptParticle(x, y, color) {
         // Create corruption particles
-        const angle = UTILS.random(0, Math.PI * 2);
-        const speed = UTILS.random(15, 40);
-        
+        const angle = Utils.randomRange(0, Math.PI * 2);
+        const speed = Utils.randomRange(15, 40);
+
         this.createParticle(x, y, {
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed,
             color,
-            size: UTILS.random(2, 5),
-            life: UTILS.random(800, 2000),
+            size: Utils.randomRange(2, 5),
+            life: Utils.randomRange(800, 2000),
             gravity: 20,
             friction: 0.85,
             fade: true
@@ -319,9 +320,9 @@ export class ParticleSystem {
     
     createSlowParticle(x, y, color) {
         // Create slow effect particles
-        const angle = UTILS.random(0, Math.PI * 2);
-        const speed = UTILS.random(5, 20);
-        
+        const angle = Utils.randomRange(0, Math.PI * 2);
+        const speed = Utils.randomRange(5, 20);
+
         this.createParticle(x, y, {
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed,
