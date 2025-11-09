@@ -1,5 +1,5 @@
 // Input manager for handling keyboard, mouse, and touch input
-import { CONFIG, UTILS } from './config.js';
+import { CONFIG } from './config.js';
 
 export class InputManager {
     constructor(game) {

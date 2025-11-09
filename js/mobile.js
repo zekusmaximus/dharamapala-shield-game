@@ -1,11 +1,12 @@
 // Mobile manager for handling mobile-specific functionality
-import { CONFIG, UTILS } from './config.js';
+import { CONFIG } from './config.js';
+import { Utils } from './utils.js';
 
 export class MobileManager {
     constructor(game) {
         this.game = game;
-        this.isMobile = UTILS.isMobile();
-        this.isTouch = UTILS.isTouch();
+        this.isMobile = Utils.isMobile();
+        this.isTouch = Utils.isTouchDevice();
         this.orientation = 'portrait';
         this.deviceInfo = this.getDeviceInfo();
         

@@ -1,5 +1,5 @@
 // Path generator for creating enemy paths
-import { CONFIG, UTILS } from './config.js';
+import { CONFIG } from './config.js';
 
 export class PathGenerator {
     constructor(game) {
