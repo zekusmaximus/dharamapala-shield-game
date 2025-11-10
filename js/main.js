@@ -237,38 +237,38 @@ export class Game {
     render() {
         // Clear canvas
         Utils.clearCanvas(this.ctx, this.width, this.height);
-        
-        // Don't render game if in menu
-        if (this.state === CONFIG.GAME_STATES.MENU || 
+
+        // Render screen overlay first (for menu/pause screens)
+        if (this.screenManager) {
+            this.screenManager.render(this.ctx);
+        }
+
+        // Don't render game if in menu or loading
+        if (this.state === CONFIG.GAME_STATES.MENU ||
             this.state === CONFIG.GAME_STATES.LOADING) {
             return;
         }
-        
+
         // Render level
         if (this.level) {
             this.level.render(this.ctx);
         }
-        
+
         // Render defenses
         this.renderDefenses();
-        
+
         // Render enemies
         this.renderEnemies();
-        
+
         // Render projectiles
         this.renderProjectiles();
-        
+
         // Render particles
         this.renderParticles();
-        
+
         // Render UI overlay
         if (this.uiManager) {
             this.uiManager.render(this.ctx);
-        }
-        
-        // Render screen overlay
-        if (this.screenManager) {
-            this.screenManager.render(this.ctx);
         }
     }
     
