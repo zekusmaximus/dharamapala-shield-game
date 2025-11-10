@@ -14,16 +14,15 @@ export class ScreenManager {
     
     setup() {
         console.log('Setting up screen manager...');
-        
+
         // Initialize screens
         this.initializeScreens();
-        
+
         // Setup screen transitions
         this.setupTransitions();
-        
-        // Show initial screen
-        this.showScreen('main_menu');
-        
+
+        // Don't show screen yet - let start() handle it
+
         console.log('Screen manager setup complete');
     }
     
@@ -264,18 +263,23 @@ export class ScreenManager {
     
     render(ctx) {
         if (!this.currentScreen) return;
-        
-        // Render screen background if overlay
+
+        // Render screen background
         if (this.currentScreen.overlay) {
+            // Overlay screens (pause, etc.) get semi-transparent background
             ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
             ctx.fillRect(0, 0, this.game.width, this.game.height);
+        } else {
+            // Full-screen menus get solid background
+            ctx.fillStyle = '#0f3460';
+            ctx.fillRect(0, 0, this.game.width, this.game.height);
         }
-        
+
         // Render screen content
         if (this.currentScreen.render) {
             this.currentScreen.render(ctx);
         }
-        
+
         // Render buttons
         this.renderButtons(ctx);
     }
