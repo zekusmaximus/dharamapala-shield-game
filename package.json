@@ -11,7 +11,7 @@
     "db:generate": "npx prisma generate",
     "db:migrate": "npx prisma migrate dev",
     "db:reset": "npx prisma migrate reset",
-    "game": "npx http-server -p 8000 -o"
+    "game": "npx http-server . -p 8000 -o"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
