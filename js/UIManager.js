@@ -590,16 +590,22 @@ export class UIManager {
             pointer-events: auto;
         `;
         element.textContent = message;
-        
-        // Add to container
+
+        // Add to container (check if it exists first)
         const container = document.getElementById('notifications-container');
+        if (!container) {
+            // UI not set up yet, skip notification
+            console.log('Notification skipped (UI not ready):', message);
+            return;
+        }
+
         container.appendChild(element);
-        
+
         // Animate in
         setTimeout(() => {
             element.style.transform = 'translateX(0)';
         }, 10);
-        
+
         notification.element = element;
         this.notifications.push(notification);
         
