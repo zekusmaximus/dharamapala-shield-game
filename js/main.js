@@ -1,5 +1,5 @@
 // Main game class - coordinates all game systems
-import { CONFIG } from './config.js';
+import { CONFIG, updateConfigForMobile } from './config.js';
 import { Utils } from './utils.js';
 import { GameSystemManager } from './GameSystemManager.js';
 import { ScreenManager } from './ScreenManager.js';
@@ -97,10 +97,7 @@ export class Game {
             
             // Initialize input handlers
             this.setupInputHandlers();
-            
-            // Load saved game if exists
-            this.loadGame();
-            
+
             console.log('Game initialized successfully');
             
         } catch (error) {
@@ -121,7 +118,10 @@ export class Game {
             
             // Setup mobile controls
             this.setupMobileControls();
-            
+
+            // Load saved game if exists (after UI is set up)
+            this.loadGame();
+
             console.log('UI setup complete');
             
         } catch (error) {
@@ -633,7 +633,7 @@ export class Game {
     
     handleResize() {
         // Update config for new screen size
-        CONFIG.updateConfigForMobile();
+        updateConfigForMobile();
         
         // Update canvas size
         this.width = CONFIG.CANVAS_WIDTH;
