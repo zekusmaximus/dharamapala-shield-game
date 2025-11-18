@@ -33,6 +33,7 @@ export class Game {
         this.lives = CONFIG.INITIAL_LIVES;
         this.wave = 0;
         this.score = 0;
+        this.enemiesKilled = 0;
         
         // Game systems
         this.systems = null;
@@ -386,6 +387,8 @@ export class Game {
     }
     
     onEnemyKilled(enemy) {
+        // Increment enemies killed counter
+        this.enemiesKilled++;
         // Add resources
         this.addResources(enemy.reward);
         
@@ -556,6 +559,7 @@ export class Game {
         this.lives = CONFIG.INITIAL_LIVES;
         this.wave = 0;
         this.score = 0;
+        this.enemiesKilled = 0;
         this.enemies = [];
         this.projectiles = [];
         this.particles = [];
@@ -597,14 +601,25 @@ export class Game {
             this.score = saveData.score;
             
             // Load defenses
-            if (saveData.defenses) {
-                for (const defenseData of saveData.defenses) {
-                    // TODO: Restore defenses from save data
-                }
+            if (saveData.defenses && Array.isArray(saveData.defenses)) {
+                import('./defense.js').then(({ Defense }) => {
+                    for (const defenseData of saveData.defenses) {
+                        const defense = new Defense(
+                            this,
+                            defenseData.x,
+                            defenseData.y,
+                            defenseData.type
+                        );
+                        defense.loadSaveData(defenseData);
+                        this.defenses.push(defense);
+                    }
+                    console.log(`Loaded ${saveData.defenses.length} defenses from save`);
+                });
             }
             
             console.log('Game loaded from save');
         }
+    }
     }
     
     startAutoSave() {

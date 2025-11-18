@@ -220,6 +220,7 @@ export const CONFIG = {
     
     // Save settings
     AUTO_SAVE_INTERVAL: 30000, // 30 seconds
+    MAX_WAVES: 20,
     MAX_SAVE_SLOTS: 3,
     
     // UI settings
