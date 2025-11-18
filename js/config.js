@@ -6,8 +6,8 @@ export const CONFIG = {
     GRID_SIZE: window.innerWidth > 768 ? 40 : 30,
     
     // Game balance
-    INITIAL_DHARMA: 100,
-    INITIAL_BANDWIDTH: 50,
+    INITIAL_DHARMA: 80,
+    INITIAL_BANDWIDTH: 40,
     INITIAL_ANONYMITY: 75,
     INITIAL_LIVES: 20,
     
@@ -21,7 +21,7 @@ export const CONFIG = {
             name: 'Firewall Fortress',
             description: 'Basic blocking defense with prayer flag flair',
             icon: '🛡️',
-            cost: { dharma: 25, bandwidth: 0, anonymity: 0 },
+            cost: { dharma: 30, bandwidth: 0, anonymity: 0 },
             damage: 15,
             range: 200,
             fireRate: 1000,

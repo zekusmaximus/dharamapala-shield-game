@@ -74,7 +74,7 @@ export class UIManager {
         // Defense selection panel
         this.elements.set('defense_panel', {
             type: 'defense_panel',
-            x: this.game.width - 320,
+            x: Math.max(10, this.game.width - 320),
             y: 10,
             width: 310,
             height: 400,
@@ -84,7 +84,7 @@ export class UIManager {
         // Wave timer
         this.elements.set('wave_timer', {
             type: 'wave_timer',
-            x: this.game.width / 2 - 100,
+            x: Math.max(10, this.game.width / 2 - 100),
             y: 20,
             width: 200,
             height: 60,
@@ -94,7 +94,7 @@ export class UIManager {
         // Game controls
         this.elements.set('controls', {
             type: 'controls',
-            x: this.game.width - 320,
+            x: Math.max(10, this.game.width - 320),
             y: this.game.height - 100,
             width: 310,
             height: 90,
