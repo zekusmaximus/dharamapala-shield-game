@@ -620,8 +620,7 @@ export class Game {
             console.log('Game loaded from save');
         }
     }
-    }
-    
+
     startAutoSave() {
         setInterval(() => {
             if (this.state === CONFIG.GAME_STATES.PLAYING) {
