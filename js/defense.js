@@ -595,15 +595,15 @@ export class Defense {
     
     upgrade() {
         if (!this.canUpgrade()) return;
-        
+
         this.level++;
-        this.damage = Math.floor(this.config.damage * (1 + this.level * 0.2));
-        this.range = this.config.range * (1 + this.level * 0.1);
-        this.fireRate = Math.max(200, this.config.fireRate * (1 - this.level * 0.1));
-        
+        this.damage = Math.floor(this.config.damage * (1 + this.level * 0.25));
+        this.range = this.config.range * (1 + this.level * 0.12);
+        this.fireRate = Math.max(150, this.config.fireRate * (1 - this.level * 0.12));
+
         // Create upgrade effect
         this.createUpgradeEffect();
-        
+
         // Add experience
         this.addExperience(50);
     }
@@ -930,8 +930,8 @@ export class Defense {
         this.debuffs = new Map(saveData.debuffs || []);
         
         // Update stats based on level
-        this.damage = Math.floor(this.config.damage * (1 + this.level * 0.2));
-        this.range = this.config.range * (1 + this.level * 0.1);
-        this.fireRate = Math.max(200, this.config.fireRate * (1 - this.level * 0.1));
+        this.damage = Math.floor(this.config.damage * (1 + this.level * 0.25));
+        this.range = this.config.range * (1 + this.level * 0.12);
+        this.fireRate = Math.max(150, this.config.fireRate * (1 - this.level * 0.12));
     }
 }

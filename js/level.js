@@ -101,22 +101,22 @@ export class Level {
             } else {
                 // Regular wave
                 const enemyTypes = Object.keys(CONFIG.ENEMY_TYPES);
-                const difficulty = Math.min(i / 8, 1.5); // 0.125 to 1.5 difficulty - more aggressive scaling
-                
+                const difficulty = Math.min(i / 10, 1.2); // 0.1 to 1.2 difficulty - more balanced scaling
+
                 // Generate enemies based on wave number
                 for (let j = 0; j < enemyTypes.length; j++) {
                     const enemyType = enemyTypes[j];
-                    const baseCount = Math.floor(2 + i * 0.6); // More enemies in later waves
-                    const variance = Math.floor(i * 0.3);
+                    const baseCount = Math.floor(2 + i * 0.5); // Moderate enemy count increase
+                    const variance = Math.floor(i * 0.25);
                     const count = baseCount + Math.floor(Math.random() * variance);
-                    
+
                     // Higher waves have more difficult enemies
                     if (j <= Math.floor(difficulty * enemyTypes.length)) {
                         config.enemies.push({
                             type: enemyType,
                             count: Math.max(1, count),
                             delay: this.enemySpawnDelay,
-                            health: 1 + difficulty * 0.5
+                            health: 1 + difficulty * 0.35
                         });
                     }
                 }
