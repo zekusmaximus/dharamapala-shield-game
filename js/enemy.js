@@ -17,6 +17,7 @@ export class Enemy {
         this.baseSpeed = this.config.speed;
         this.damage = 1; // Damage to player lives
         this.reward = { ...this.config.reward };
+        this.radius = this.config.size;  // Collision radius
         
         // Movement properties
         this.pathIndex = 0;

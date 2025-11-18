@@ -89,7 +89,7 @@ export class Level {
                     type: bossType,
                     count: 1,
                     delay: 2000,
-                    health: 1 + (i - 5) * 0.2 // Boss gets stronger
+                    health: 1 + (i - 5) * 0.35 // Boss gets significantly stronger
                 });
                 
                 // Add some regular enemies with boss
@@ -101,12 +101,12 @@ export class Level {
             } else {
                 // Regular wave
                 const enemyTypes = Object.keys(CONFIG.ENEMY_TYPES);
-                const difficulty = i / 10; // 0.1 to 1.0 difficulty
+                const difficulty = Math.min(i / 8, 1.5); // 0.125 to 1.5 difficulty - more aggressive scaling
                 
                 // Generate enemies based on wave number
                 for (let j = 0; j < enemyTypes.length; j++) {
                     const enemyType = enemyTypes[j];
-                    const baseCount = Math.floor(3 + i * 0.5);
+                    const baseCount = Math.floor(2 + i * 0.6); // More enemies in later waves
                     const variance = Math.floor(i * 0.3);
                     const count = baseCount + Math.floor(Math.random() * variance);
                     
@@ -282,8 +282,8 @@ export class Level {
         this.waveInProgress = false;
         
         // Give wave completion bonus
-        const baseBonus = 50;
-        const waveBonus = this.currentWave * 10;
+        const baseBonus = 40;  // Balanced starting bonus
+        const waveBonus = this.currentWave * 12;  // Better scaling rewards
         const totalBonus = baseBonus + waveBonus;
         
         this.game.resources.dharma += totalBonus;

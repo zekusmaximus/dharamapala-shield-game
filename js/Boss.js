@@ -21,6 +21,7 @@ export class Boss extends Enemy {
         this.currentPhase = 1;
         this.phaseHealthThreshold = this.maxHealth / this.phases;
         this.size = this.bossConfig.size;
+        this.radius = this.size;  // Collision radius for boss
         
         // Special abilities
         this.specialAbilityCooldown = 0;
