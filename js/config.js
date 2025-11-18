@@ -6,9 +6,9 @@ export const CONFIG = {
     GRID_SIZE: window.innerWidth > 768 ? 40 : 30,
     
     // Game balance
-    INITIAL_DHARMA: 80,
-    INITIAL_BANDWIDTH: 40,
-    INITIAL_ANONYMITY: 75,
+    INITIAL_DHARMA: 150,
+    INITIAL_BANDWIDTH: 60,
+    INITIAL_ANONYMITY: 100,
     INITIAL_LIVES: 20,
     
     // Wave settings
@@ -22,11 +22,11 @@ export const CONFIG = {
             description: 'Basic blocking defense with prayer flag flair',
             icon: '🛡️',
             cost: { dharma: 30, bandwidth: 0, anonymity: 0 },
-            damage: 15,
+            damage: 20,
             range: 200,
-            fireRate: 1000,
+            fireRate: 500,
             color: '#e94560',
-            projectileSpeed: 5,
+            projectileSpeed: 6,
             special: 'basic'
         },
         encryption: {
@@ -34,11 +34,11 @@ export const CONFIG = {
             description: 'Scrambles data packets with rotating ciphers',
             icon: '🔐',
             cost: { dharma: 50, bandwidth: 20, anonymity: 10 },
-            damage: 25,
+            damage: 35,
             range: 180,
-            fireRate: 1500,
+            fireRate: 700,
             color: '#0f3460',
-            projectileSpeed: 4,
+            projectileSpeed: 5,
             special: 'encrypt'
         },
         decoy: {
@@ -58,9 +58,9 @@ export const CONFIG = {
             description: 'Reflects hostile traffic back to its source',
             icon: '🔁',
             cost: { dharma: 75, bandwidth: 40, anonymity: 20 },
-            damage: 40,
+            damage: 55,
             range: 250,
-            fireRate: 2000,
+            fireRate: 900,
             color: '#53d8fb',
             projectileSpeed: 8,
             special: 'reflect'
@@ -70,11 +70,11 @@ export const CONFIG = {
             description: 'Cloaks friendly network activity',
             icon: '🕶️',
             cost: { dharma: 60, bandwidth: 30, anonymity: 40 },
-            damage: 20,
+            damage: 28,
             range: 300,
-            fireRate: 1200,
+            fireRate: 600,
             color: '#8b5cf6',
-            projectileSpeed: 6,
+            projectileSpeed: 7,
             special: 'cloak'
         },
         distributor: {
@@ -82,11 +82,11 @@ export const CONFIG = {
             description: 'Speeds up delivery and resource flow',
             icon: '📡',
             cost: { dharma: 100, bandwidth: 60, anonymity: 30 },
-            damage: 30,
+            damage: 42,
             range: 350,
-            fireRate: 800,
+            fireRate: 400,
             color: '#10b981',
-            projectileSpeed: 7,
+            projectileSpeed: 8,
             special: 'boost'
         }
     },
