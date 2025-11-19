@@ -4,17 +4,17 @@ export const CONFIG = {
     CANVAS_WIDTH: window.innerWidth > 768 ? 1200 : window.innerWidth,
     CANVAS_HEIGHT: window.innerWidth > 768 ? 800 : window.innerHeight * 0.6,
     GRID_SIZE: window.innerWidth > 768 ? 40 : 30,
-    
+
     // Game balance
     INITIAL_DHARMA: 150,
     INITIAL_BANDWIDTH: 60,
     INITIAL_ANONYMITY: 100,
     INITIAL_LIVES: 20,
-    
+
     // Wave settings
     WAVE_DELAY: 5000, // 5 seconds between waves
     ENEMY_SPAWN_DELAY: 1000, // 1 second between enemy spawns
-    
+
     // Defense types
     DEFENSE_TYPES: {
         firewall: {
@@ -26,7 +26,7 @@ export const CONFIG = {
             range: 200,
             fireRate: 500,
             color: '#e94560',
-            projectileSpeed: 6,
+            projectileSpeed: 18,
             special: 'basic'
         },
         encryption: {
@@ -38,7 +38,7 @@ export const CONFIG = {
             range: 180,
             fireRate: 700,
             color: '#0f3460',
-            projectileSpeed: 5,
+            projectileSpeed: 15,
             special: 'encrypt'
         },
         decoy: {
@@ -62,7 +62,7 @@ export const CONFIG = {
             range: 250,
             fireRate: 900,
             color: '#53d8fb',
-            projectileSpeed: 8,
+            projectileSpeed: 24,
             special: 'reflect'
         },
         anonymity: {
@@ -74,7 +74,7 @@ export const CONFIG = {
             range: 300,
             fireRate: 600,
             color: '#8b5cf6',
-            projectileSpeed: 7,
+            projectileSpeed: 21,
             special: 'cloak'
         },
         distributor: {
@@ -86,11 +86,11 @@ export const CONFIG = {
             range: 350,
             fireRate: 400,
             color: '#10b981',
-            projectileSpeed: 8,
+            projectileSpeed: 24,
             special: 'boost'
         }
     },
-    
+
     // Enemy types
     ENEMY_TYPES: {
         scriptKiddie: {
@@ -160,7 +160,7 @@ export const CONFIG = {
             special: 'corrupt'
         }
     },
-    
+
     // Boss types
     BOSS_TYPES: {
         raidTeam: {
@@ -188,7 +188,7 @@ export const CONFIG = {
             special: 'shield'
         }
     },
-    
+
     // Achievement categories
     ACHIEVEMENT_CATEGORIES: {
         combat: 'Combat Mastery',
@@ -197,37 +197,37 @@ export const CONFIG = {
         progression: 'Game Progression',
         special: 'Special Accomplishments'
     },
-    
+
     // Visual settings
     PARTICLE_COUNT: 50,
     TRAIL_LENGTH: 10,
     GLOW_INTENSITY: 0.8,
-    
+
     // Performance settings
     MAX_PROJECTILES: 100,
     MAX_ENEMIES: 50,
     MAX_PARTICLES: 200,
-    
+
     // Mobile settings
     TOUCH_THRESHOLD: 10,
     DOUBLE_TAP_DELAY: 300,
     LONG_PRESS_DELAY: 500,
-    
+
     // Audio settings
     MASTER_VOLUME: 0.7,
     SFX_VOLUME: 0.8,
     MUSIC_VOLUME: 0.5,
-    
+
     // Save settings
     AUTO_SAVE_INTERVAL: 30000, // 30 seconds
     MAX_WAVES: 20,
     MAX_SAVE_SLOTS: 3,
-    
+
     // UI settings
     NOTIFICATION_DURATION: 3000,
     TOAST_DURATION: 2000,
     ANIMATION_DURATION: 300,
-    
+
     // Game states
     GAME_STATES: {
         MENU: 'menu',
@@ -237,7 +237,7 @@ export const CONFIG = {
         VICTORY: 'victory',
         LOADING: 'loading'
     },
-    
+
     // Screen types
     SCREEN_TYPES: {
         MAIN_MENU: 'main_menu',
