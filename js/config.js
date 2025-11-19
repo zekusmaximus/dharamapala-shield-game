@@ -22,11 +22,11 @@ export const CONFIG = {
             description: 'Basic blocking defense with prayer flag flair',
             icon: '🛡️',
             cost: { dharma: 30, bandwidth: 0, anonymity: 0 },
-            damage: 20,
+            damage: 40, // Doubled from 20
             range: 200,
-            fireRate: 500,
+            fireRate: 1000, // Slower (was 500)
             color: '#e94560',
-            projectileSpeed: 18,
+            projectileSpeed: 30, // Fast (was 18)
             special: 'basic'
         },
         encryption: {
@@ -34,11 +34,11 @@ export const CONFIG = {
             description: 'Scrambles data packets with rotating ciphers',
             icon: '🔐',
             cost: { dharma: 50, bandwidth: 20, anonymity: 10 },
-            damage: 35,
+            damage: 70, // Doubled from 35
             range: 180,
-            fireRate: 700,
+            fireRate: 1500, // Slower (was 700)
             color: '#0f3460',
-            projectileSpeed: 15,
+            projectileSpeed: 25, // Fast (was 15)
             special: 'encrypt'
         },
         decoy: {
@@ -58,11 +58,11 @@ export const CONFIG = {
             description: 'Reflects hostile traffic back to its source',
             icon: '🔁',
             cost: { dharma: 75, bandwidth: 40, anonymity: 20 },
-            damage: 55,
+            damage: 80, // Increased from 55
             range: 250,
-            fireRate: 900,
+            fireRate: 2000, // Slower (was 900)
             color: '#53d8fb',
-            projectileSpeed: 24,
+            projectileSpeed: 35, // Fast (was 24)
             special: 'reflect'
         },
         anonymity: {
@@ -70,11 +70,11 @@ export const CONFIG = {
             description: 'Cloaks friendly network activity',
             icon: '🕶️',
             cost: { dharma: 60, bandwidth: 30, anonymity: 40 },
-            damage: 28,
+            damage: 50, // Increased from 28
             range: 300,
-            fireRate: 600,
+            fireRate: 1200, // Slower (was 600)
             color: '#8b5cf6',
-            projectileSpeed: 21,
+            projectileSpeed: 32, // Fast (was 21)
             special: 'cloak'
         },
         distributor: {
@@ -82,11 +82,11 @@ export const CONFIG = {
             description: 'Speeds up delivery and resource flow',
             icon: '📡',
             cost: { dharma: 100, bandwidth: 60, anonymity: 30 },
-            damage: 42,
+            damage: 60, // Increased from 42
             range: 350,
-            fireRate: 400,
+            fireRate: 800, // Slower (was 400)
             color: '#10b981',
-            projectileSpeed: 24,
+            projectileSpeed: 35, // Fast (was 24)
             special: 'boost'
         }
     },
@@ -97,8 +97,8 @@ export const CONFIG = {
             name: 'Script Kiddie',
             description: 'Fast, erratic movement patterns',
             icon: '👾',
-            health: 20,
-            speed: 80,
+            health: 30, // Increased from 20
+            speed: 90, // Faster (was 80)
             reward: { dharma: 5, bandwidth: 2, anonymity: 1 },
             color: '#ff6b6b',
             size: 15,
@@ -108,8 +108,8 @@ export const CONFIG = {
             name: 'Federal Agent',
             description: 'Persistent, speeds up near defenses',
             icon: '🕵️',
-            health: 40,
-            speed: 60,
+            health: 60, // Increased from 40
+            speed: 70, // Faster (was 60)
             reward: { dharma: 10, bandwidth: 5, anonymity: 3 },
             color: '#4ecdc4',
             size: 18,
@@ -119,8 +119,8 @@ export const CONFIG = {
             name: 'Corporate Saboteur',
             description: 'Stealth capabilities, periodically invisible',
             icon: '💼',
-            health: 35,
-            speed: 70,
+            health: 50, // Increased from 35
+            speed: 80, // Faster (was 70)
             reward: { dharma: 15, bandwidth: 8, anonymity: 5 },
             color: '#95e77e',
             size: 16,
@@ -130,8 +130,8 @@ export const CONFIG = {
             name: 'AI Surveillance',
             description: 'Adaptive scanning, learns from defense patterns',
             icon: '🤖',
-            health: 60,
-            speed: 50,
+            health: 90, // Increased from 60
+            speed: 60, // Faster (was 50)
             reward: { dharma: 20, bandwidth: 12, anonymity: 8 },
             color: '#ffe66d',
             size: 20,
@@ -141,8 +141,8 @@ export const CONFIG = {
             name: 'Quantum Hacker',
             description: 'Phase-shifting and teleportation abilities',
             icon: '⚛️',
-            health: 80,
-            speed: 90,
+            health: 120, // Increased from 80
+            speed: 100, // Faster (was 90)
             reward: { dharma: 30, bandwidth: 20, anonymity: 15 },
             color: '#a8e6cf',
             size: 22,
@@ -152,8 +152,8 @@ export const CONFIG = {
             name: 'Corrupted Monk',
             description: 'Healing aura, corrupts nearby defenses',
             icon: '👹',
-            health: 100,
-            speed: 40,
+            health: 150, // Increased from 100
+            speed: 50, // Faster (was 40)
             reward: { dharma: 50, bandwidth: 30, anonymity: 25 },
             color: '#ff8b94',
             size: 25,

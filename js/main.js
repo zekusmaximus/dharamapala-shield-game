@@ -803,25 +803,6 @@ export class Game {
         // Handle screen/menu clicks (menu, pause, settings, etc.)
         if (this.state === CONFIG.GAME_STATES.MENU ||
             this.state === CONFIG.GAME_STATES.PAUSED ||
-            this.screenManager.currentScreen) {
-            this.screenManager.handleClick(x, y);
-            return;
         }
-
-        // Handle UI clicks first (for defense selection)
-        if (this.uiManager) {
-            this.uiManager.handleClick(x, y);
-        }
-
-        // Handle defense placement during gameplay
-        if (this.state === CONFIG.GAME_STATES.PLAYING) {
-            this.defenseManager.handleClick(x, y);
-        }
-    }
-
-    checkGameOver() {
-        if (this.lives <= 0 && !this.isGameOver) {
-            this.gameOver();
-        }
-    }
+}
 }
