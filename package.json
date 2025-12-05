@@ -11,7 +11,12 @@
     "db:generate": "npx prisma generate",
     "db:migrate": "npx prisma migrate dev",
     "db:reset": "npx prisma migrate reset",
-    "game": "npx http-server . -p 8000 -o"
+    "game": "npx http-server . -p 8000 -o",
+    "sim:normal": "node tools/sim/run.ts Normal --seed=1337 --waves=1-20",
+    "sim:hard": "node tools/sim/run.ts Hard --seed=1337 --waves=1-20",
+    "sim:easy": "node tools/sim/run.ts Easy --seed=1337 --waves=1-20",
+    "tune": "node tools/tune/balance_tuner.ts",
+    "test:balance": "echo 'Balance tests not yet implemented'"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

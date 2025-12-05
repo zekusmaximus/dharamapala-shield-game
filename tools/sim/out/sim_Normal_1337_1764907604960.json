@@ -1,0 +1,109 @@
+{
+  "difficulty": "Normal",
+  "seed": 1337,
+  "result": "VICTORY",
+  "wavesCompleted": 5,
+  "totalLeaks": 0,
+  "totalKills": 48,
+  "finalLives": 20,
+  "finalResources": {
+    "dharma": 681,
+    "bandwidth": 117,
+    "anonymity": 132
+  },
+  "towersBuilt": 4,
+  "averageDPS": 66.37799043062196,
+  "waveResults": [
+    {
+      "wave": 1,
+      "leaks": 0,
+      "kills": 7,
+      "resources": {
+        "dharma": 184,
+        "bandwidth": 74,
+        "anonymity": 107
+      },
+      "lives": 20,
+      "towerCount": 2,
+      "totalDPS": 52.83018867924528
+    },
+    {
+      "wave": 2,
+      "leaks": 0,
+      "kills": 16,
+      "resources": {
+        "dharma": 257,
+        "bandwidth": 72,
+        "anonymity": 106
+      },
+      "lives": 20,
+      "towerCount": 3,
+      "totalDPS": 60.13824884792627
+    },
+    {
+      "wave": 3,
+      "leaks": 0,
+      "kills": 26,
+      "resources": {
+        "dharma": 367,
+        "bandwidth": 101,
+        "anonymity": 122
+      },
+      "lives": 20,
+      "towerCount": 3,
+      "totalDPS": 63.651898734177216
+    },
+    {
+      "wave": 4,
+      "leaks": 0,
+      "kills": 36,
+      "resources": {
+        "dharma": 554,
+        "bandwidth": 133,
+        "anonymity": 140
+      },
+      "lives": 20,
+      "towerCount": 3,
+      "totalDPS": 70.05035971223019
+    },
+    {
+      "wave": 5,
+      "leaks": 0,
+      "kills": 48,
+      "resources": {
+        "dharma": 681,
+        "bandwidth": 117,
+        "anonymity": 132
+      },
+      "lives": 20,
+      "towerCount": 4,
+      "totalDPS": 66.37799043062196
+    }
+  ],
+  "towerBreakdown": [
+    {
+      "type": "firewall",
+      "level": 2,
+      "kills": 30,
+      "damageDealt": 2331.899999999998
+    },
+    {
+      "type": "firewall",
+      "level": 1,
+      "kills": 9,
+      "damageDealt": 560.5
+    },
+    {
+      "type": "encryption",
+      "level": 1,
+      "kills": 13,
+      "damageDealt": 1109.5
+    },
+    {
+      "type": "mirror",
+      "level": 1,
+      "kills": 1,
+      "damageDealt": 160
+    }
+  ]
+}
