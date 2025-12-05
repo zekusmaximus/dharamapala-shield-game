@@ -1,5 +1,5 @@
 // Main game class - coordinates all game systems
-import { CONFIG, updateConfigForMobile } from './config.js';
+import { CONFIG, updateConfigForMobile, loadBalanceConfig } from './config.js';
 import { Utils } from './utils.js';
 import { GameSystemManager } from './GameSystemManager.js';
 import { ScreenManager } from './ScreenManager.js';
@@ -25,7 +25,7 @@ export class Game {
             this.isGameOver = false;
             this.isVictory = false;
 
-            // Game data
+            // Game data - will be updated after balance loads
             this.resources = {
                 dharma: CONFIG.INITIAL_DHARMA,
                 bandwidth: CONFIG.INITIAL_BANDWIDTH,
@@ -125,6 +125,18 @@ export class Game {
     async loadContent() {
         try {
             console.log('Loading game content...');
+
+            // Load balance configuration first
+            console.log('Loading balance configuration...');
+            await loadBalanceConfig();
+            
+            // Update resources with loaded values
+            this.resources = {
+                dharma: CONFIG.INITIAL_DHARMA,
+                bandwidth: CONFIG.INITIAL_BANDWIDTH,
+                anonymity: CONFIG.INITIAL_ANONYMITY
+            };
+            this.lives = CONFIG.INITIAL_LIVES;
 
             // Load audio
             await this.audioManager.loadAudio();

@@ -1,12 +1,15 @@
 // Game configuration and constants
+import { balanceLoader } from './balance/loader.js';
+
+// Initialize with default values - will be updated from balance.json
 export const CONFIG = {
     // Canvas settings
     CANVAS_WIDTH: window.innerWidth > 768 ? 1200 : window.innerWidth,
     CANVAS_HEIGHT: window.innerWidth > 768 ? 800 : window.innerHeight * 0.6,
     GRID_SIZE: window.innerWidth > 768 ? 40 : 30,
 
-    // Game balance
-    INITIAL_DHARMA: 150,
+    // Game balance - loaded from balance.json
+    INITIAL_DHARMA: 130,
     INITIAL_BANDWIDTH: 60,
     INITIAL_ANONYMITY: 100,
     INITIAL_LIVES: 20,
@@ -261,6 +264,40 @@ export function updateConfigForMobile() {
         CONFIG.MAX_PROJECTILES = 50;
     }
 }
+
+// Load balance configuration from balance.json
+export async function loadBalanceConfig() {
+    try {
+        const balance = await balanceLoader.load();
+        const legacyConfig = balanceLoader.toLegacyConfig();
+        
+        if (legacyConfig) {
+            // Update CONFIG with values from balance.json
+            CONFIG.INITIAL_DHARMA = legacyConfig.INITIAL_DHARMA;
+            CONFIG.INITIAL_BANDWIDTH = legacyConfig.INITIAL_BANDWIDTH;
+            CONFIG.INITIAL_ANONYMITY = legacyConfig.INITIAL_ANONYMITY;
+            CONFIG.INITIAL_LIVES = legacyConfig.INITIAL_LIVES;
+            CONFIG.WAVE_DELAY = legacyConfig.WAVE_DELAY;
+            CONFIG.ENEMY_SPAWN_DELAY = legacyConfig.ENEMY_SPAWN_DELAY;
+            CONFIG.MAX_WAVES = legacyConfig.MAX_WAVES;
+            
+            // Update tower/enemy/boss types
+            CONFIG.DEFENSE_TYPES = legacyConfig.DEFENSE_TYPES;
+            CONFIG.ENEMY_TYPES = legacyConfig.ENEMY_TYPES;
+            CONFIG.BOSS_TYPES = legacyConfig.BOSS_TYPES;
+            
+            console.log('Balance configuration applied to CONFIG');
+        }
+        
+        return balance;
+    } catch (error) {
+        console.error('Failed to load balance configuration:', error);
+        return null;
+    }
+}
+
+// Export balance loader for direct access
+export { balanceLoader };
 
 // Update config on window resize
 window.addEventListener('resize', updateConfigForMobile);

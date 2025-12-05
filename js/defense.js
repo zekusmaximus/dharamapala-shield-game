@@ -1,5 +1,5 @@
 // Defense class - represents a single defense tower
-import { CONFIG } from './config.js';
+import { CONFIG, balanceLoader } from './config.js';
 import { Utils } from './utils.js';
 import { Projectile } from './Projectile.js';
 
@@ -585,7 +585,8 @@ export class Defense {
     
     getUpgradeCost() {
         const baseCost = this.config.cost.dharma;
-        const multiplier = Math.pow(1.5, this.level);
+        const upgradeConfig = balanceLoader.balance?.upgrades || { costMultiplierPerLevel: 1.95 };
+        const multiplier = Math.pow(upgradeConfig.costMultiplierPerLevel, this.level);
         return {
             dharma: Math.floor(baseCost * multiplier),
             bandwidth: Math.floor(this.config.cost.bandwidth * multiplier * 0.5),
@@ -596,10 +597,20 @@ export class Defense {
     upgrade() {
         if (!this.canUpgrade()) return;
 
+        const upgradeConfig = balanceLoader.balance?.upgrades || {
+            damagePerLevel: 0.35,
+            rangePerLevel: 0.15,
+            fireRatePerLevel: 0.12
+        };
+
         this.level++;
-        this.damage = Math.floor(this.config.damage * (1 + this.level * 0.25));
-        this.range = this.config.range * (1 + this.level * 0.12);
-        this.fireRate = Math.max(150, this.config.fireRate * (1 - this.level * 0.12));
+        this.damage = Math.floor(this.config.damage * (1 + (this.level - 1) * upgradeConfig.damagePerLevel));
+        this.range = this.config.range * (1 + (this.level - 1) * upgradeConfig.rangePerLevel);
+        
+        // Fire rate improvement (rate increases, so cooldown decreases)
+        const baseRatePerSec = 1000 / this.config.fireRate;
+        const newRatePerSec = baseRatePerSec * (1 + (this.level - 1) * upgradeConfig.fireRatePerLevel);
+        this.fireRate = Math.max(150, 1000 / newRatePerSec);
 
         // Create upgrade effect
         this.createUpgradeEffect();
