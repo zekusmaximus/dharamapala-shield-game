@@ -269,7 +269,7 @@ async function main() {
     console.log('\n\n=== TUNING COMPLETE ===');
     console.log('\nTop 10 Configurations:');
     report.top10.forEach((config, i) => {
-        console.log(`${i + 1}. ${config.label} - Win: ${(config.winRate * 100).toFixed(1)}%, Leaks: ${config.avgLeaks.toFixed(1)}, Fitness: ${config.fitness.toFixed(2)}`);
+        console.log(`${i + 1}. ${config.label} - Win: ${(config.winRate * 100).toFixed(1)}%, Leaks: ${config.avgLeaks.toFixed(1)}, Fitness: ${config.fitness.fitness.toFixed(2)}`);
     });
 
     // Save results
