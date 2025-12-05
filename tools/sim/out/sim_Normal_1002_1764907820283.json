@@ -1,0 +1,148 @@
+{
+  "difficulty": "Normal",
+  "seed": 1002,
+  "result": "DEFEAT",
+  "wavesCompleted": 8,
+  "totalLeaks": 20,
+  "totalKills": 82,
+  "finalLives": 0,
+  "finalResources": {
+    "dharma": 712.5699999999999,
+    "bandwidth": 303,
+    "anonymity": 251
+  },
+  "towersBuilt": 4,
+  "averageDPS": 57.58014366341713,
+  "waveResults": [
+    {
+      "wave": 1,
+      "leaks": 1,
+      "kills": 7,
+      "resources": {
+        "dharma": 143,
+        "bandwidth": 74,
+        "anonymity": 107
+      },
+      "lives": 19,
+      "towerCount": 2,
+      "totalDPS": 28.20754716981132
+    },
+    {
+      "wave": 2,
+      "leaks": 1,
+      "kills": 16,
+      "resources": {
+        "dharma": 199,
+        "bandwidth": 72,
+        "anonymity": 106
+      },
+      "lives": 19,
+      "towerCount": 3,
+      "totalDPS": 43.40298507462687
+    },
+    {
+      "wave": 3,
+      "leaks": 4,
+      "kills": 24,
+      "resources": {
+        "dharma": 260,
+        "bandwidth": 92,
+        "anonymity": 118
+      },
+      "lives": 16,
+      "towerCount": 3,
+      "totalDPS": 43.274545454545446
+    },
+    {
+      "wave": 4,
+      "leaks": 9,
+      "kills": 30,
+      "resources": {
+        "dharma": 382,
+        "bandwidth": 106,
+        "anonymity": 126
+      },
+      "lives": 11,
+      "towerCount": 3,
+      "totalDPS": 42.13052362707535
+    },
+    {
+      "wave": 5,
+      "leaks": 10,
+      "kills": 42,
+      "resources": {
+        "dharma": 477,
+        "bandwidth": 90,
+        "anonymity": 118
+      },
+      "lives": 10,
+      "towerCount": 4,
+      "totalDPS": 40.53440405748097
+    },
+    {
+      "wave": 6,
+      "leaks": 10,
+      "kills": 51,
+      "resources": {
+        "dharma": 557.7,
+        "bandwidth": 135,
+        "anonymity": 148
+      },
+      "lives": 10,
+      "towerCount": 4,
+      "totalDPS": 45.57767923133776
+    },
+    {
+      "wave": 7,
+      "leaks": 16,
+      "kills": 64,
+      "resources": {
+        "dharma": 505.87,
+        "bandwidth": 180,
+        "anonymity": 174
+      },
+      "lives": 4,
+      "towerCount": 4,
+      "totalDPS": 49.56068268015172
+    },
+    {
+      "wave": 8,
+      "leaks": 16,
+      "kills": 73,
+      "resources": {
+        "dharma": 723.87,
+        "bandwidth": 249,
+        "anonymity": 216
+      },
+      "lives": 4,
+      "towerCount": 4,
+      "totalDPS": 53.8977894124491
+    }
+  ],
+  "towerBreakdown": [
+    {
+      "type": "firewall",
+      "level": 4,
+      "kills": 33,
+      "damageDealt": 4751.019999999998
+    },
+    {
+      "type": "firewall",
+      "level": 3,
+      "kills": 13,
+      "damageDealt": 2498.150000000001
+    },
+    {
+      "type": "encryption",
+      "level": 1,
+      "kills": 23,
+      "damageDealt": 2584.2000000000007
+    },
+    {
+      "type": "mirror",
+      "level": 1,
+      "kills": 16,
+      "damageDealt": 1389
+    }
+  ]
+}
