@@ -608,9 +608,10 @@ export class Defense {
         this.range = this.config.range * (1 + (this.level - 1) * upgradeConfig.rangePerLevel);
         
         // Fire rate improvement (rate increases, so cooldown decreases)
+        const MIN_FIRE_RATE_MS = 150; // Minimum cooldown in milliseconds
         const baseRatePerSec = 1000 / this.config.fireRate;
         const newRatePerSec = baseRatePerSec * (1 + (this.level - 1) * upgradeConfig.fireRatePerLevel);
-        this.fireRate = Math.max(150, 1000 / newRatePerSec);
+        this.fireRate = Math.max(MIN_FIRE_RATE_MS, 1000 / newRatePerSec);
 
         // Create upgrade effect
         this.createUpgradeEffect();

@@ -297,8 +297,8 @@ class TowerDefenseSimulator {
     }
 
     isWaveComplete() {
-        return this.enemies.every(e => e.isDead || e.reachedEnd || e.spawnDelay > 0) &&
-               this.enemies.filter(e => !e.isDead && !e.reachedEnd).length === 0;
+        // Check if all enemies are dead, reached end, or not yet spawned
+        return this.enemies.every(e => e.isDead || e.reachedEnd || e.spawnDelay > 0);
     }
 
     completeWave() {

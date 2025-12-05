@@ -1,5 +1,5 @@
 // Level system - handles level progression and wave management
-import { CONFIG } from './config.js';
+import { CONFIG, balanceLoader } from './config.js';
 import { Utils } from './utils.js';
 import { Enemy } from './enemy.js';
 import { Boss } from './Boss.js';
@@ -18,8 +18,8 @@ export class Level {
         this.path = [];
         this.pathWidth = 40;
         
-        // Wave configurations
-        this.waveConfigs = this.generateWaveConfigs();
+        // Wave configurations - will be loaded from balance.json
+        this.waveConfigs = [];
         
         // Level properties
         this.gridWidth = Math.floor(this.game.width / CONFIG.GRID_SIZE);
@@ -32,10 +32,43 @@ export class Level {
     async load() {
         console.log('Loading level...');
         
-        // Load level assets if needed
-        // For now, we'll use procedurally generated content
+        // Load wave configurations from balance.json
+        if (balanceLoader.balance && balanceLoader.balance.waves) {
+            this.waveConfigs = this.convertBalanceWaves(balanceLoader.balance.waves);
+            this.maxWaves = balanceLoader.balance.waves.length;
+            console.log(`Loaded ${this.maxWaves} wave configurations from balance.json`);
+        } else {
+            // Fallback to generated waves if balance.json not loaded
+            this.waveConfigs = this.generateWaveConfigs();
+            console.warn('Using generated wave configs (balance.json not loaded)');
+        }
         
         console.log('Level loaded successfully');
+    }
+    
+    // Convert balance.json wave format to internal format
+    convertBalanceWaves(balanceWaves) {
+        return balanceWaves.map(waveData => {
+            const config = {
+                wave: waveData.wave,
+                enemies: [],
+                delayBetweenWaves: CONFIG.WAVE_DELAY,
+                bossWave: waveData.enemies.some(e => 
+                    balanceLoader.balance.bosses && balanceLoader.balance.bosses[e.id]
+                )
+            };
+            
+            for (const enemyGroup of waveData.enemies) {
+                config.enemies.push({
+                    type: enemyGroup.id,
+                    count: enemyGroup.count,
+                    delay: enemyGroup.interval || CONFIG.ENEMY_SPAWN_DELAY,
+                    health: enemyGroup.hpMult || 1.0
+                });
+            }
+            
+            return config;
+        });
     }
     
     update(deltaTime) {
@@ -281,10 +314,18 @@ export class Level {
     completeWave() {
         this.waveInProgress = false;
         
-        // Give wave completion bonus
-        const baseBonus = 40;  // Balanced starting bonus
-        const waveBonus = this.currentWave * 12;  // Better scaling rewards
-        const totalBonus = baseBonus + waveBonus;
+        // Give wave completion bonus from balance config
+        const economy = balanceLoader.balance?.economy || {
+            waveClearBonus: 40,
+            waveClearBonusPerWave: 10
+        };
+        
+        const waveConfig = balanceLoader.balance?.waves?.[this.currentWave - 1];
+        const rewardBonus = waveConfig?.rewardBonus || 0;
+        
+        const baseBonus = economy.waveClearBonus;
+        const waveBonus = this.currentWave * economy.waveClearBonusPerWave;
+        const totalBonus = baseBonus + waveBonus + rewardBonus;
         
         this.game.resources.dharma += totalBonus;
         this.game.resources.bandwidth += Math.floor(totalBonus * 0.5);
