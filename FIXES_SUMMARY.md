@@ -146,12 +146,8 @@ All critical game systems have been verified as fully implemented:
 ## 🚀 HOW TO PLAY
 
 ```bash
-# Option 1: Direct HTML (Recommended for testing)
-python3 -m http.server 8000
-# Navigate to http://localhost:8000
-
-# Option 2: npm  
-npm run game
+npm start
+# Navigate to http://localhost:3000
 ```
 
 **Controls:**

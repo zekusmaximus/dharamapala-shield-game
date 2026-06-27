@@ -18,22 +18,26 @@ Defend the digital realm with ancient wisdom and cutting-edge technology. Place 
 
 ### Prerequisites
 
-- Modern web browser with ES6+ support
-- Canvas API support
+- Node.js 22 or newer
+- Modern web browser with ES modules and Canvas API support
 - Local storage enabled
 - Touch events (for mobile play)
 
 ### Installation
 
-1. **Open the Game**
-   - Open `index.html` in your web browser
-   - Or serve with a local web server:
-     ```bash
-     python -m http.server 8000
-     # Navigate to http://localhost:8000
-     ```
+1. **Install and start**
 
-2. **Start Playing**
+   ```bash
+   npm install
+   npm start
+   ```
+
+2. **Open the game**
+
+   Navigate to [http://localhost:3000](http://localhost:3000). The actual game is
+   served at `/`; there is no separate framework or backend application.
+
+3. **Start Playing**
    - Click "New Game" to begin your meditation journey
    - Place defenses by clicking/tapping on the game field
    - Survive waves of digital corruption
@@ -85,7 +89,9 @@ Defend the digital realm with ancient wisdom and cutting-edge technology. Place 
 
 ## 🏗️ Architecture
 
-The game follows a modular architecture designed for maintainability and extensibility:
+Dharmapala Shield is a client-only application. Game state, rendering, saves, audio,
+and balance loading all run in the browser. The Node scripts only build and serve
+static files; there is no database, WebSocket server, or application backend.
 
 ### Core Systems
 
@@ -135,7 +141,19 @@ dharmapala-shield/
 ├── README.md              # This documentation
 ├── js/                    # JavaScript game logic
 ├── css/                   # Stylesheets and theming
-└── assets/                # Game assets (images, sounds)
+├── design/                # Runtime balance configuration
+├── scripts/               # Static build and server scripts
+├── tools/                 # Balance simulator and tuner
+└── dist/                  # Generated production site (not committed)
+```
+
+### Commands
+
+```bash
+npm run build       # Create the production site in dist/
+npm run dev         # Build and serve the game at http://localhost:3000
+npm start           # Production-equivalent static build and server
+npm run sim:normal  # Run the deterministic balance simulator
 ```
 
 ### Code Style
@@ -146,14 +164,11 @@ dharmapala-shield/
 - **Performance-First**: Object pooling, efficient rendering
 - **Mobile-Friendly**: Touch controls, responsive design
 
-## 🧪 Testing
+## 🧪 Validation
 
-The game includes comprehensive testing covering:
-
-- **Unit Tests**: Individual component functionality
-- **Integration Tests**: System interactions and workflows  
-- **Performance Tests**: Optimization and memory usage
-- **UI Tests**: Accessibility and visual regression
+`npm run build` verifies that the complete client application can be assembled into
+`dist/`. The balance simulator can be run with the `sim:easy`, `sim:normal`, and
+`sim:hard` scripts. Automated browser and unit tests are not yet included.
 
 ## 📱 Mobile Support
 
