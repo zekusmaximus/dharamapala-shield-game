@@ -9,11 +9,12 @@ import {
 } from '../core/world.js';
 
 export class CanvasRenderer {
-  constructor(canvas, camera, balance) {
+  constructor(canvas, camera, balance, spriteAssets = null) {
     this.canvas = canvas;
     this.context = canvas.getContext('2d');
     this.camera = camera;
     this.balance = balance;
+    this.spriteAssets = spriteAssets;
     this.placementPosition = null;
     this.tutorialBuildHighlight = false;
     this.camera.resize();
@@ -22,6 +23,8 @@ export class CanvasRenderer {
   render(session) {
     const context = this.context;
     this.camera.prepareScreen(context);
+    context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = 'high';
     context.clearRect(0, 0, this.camera.cssWidth, this.camera.cssHeight);
     context.fillStyle = '#070b18';
     context.fillRect(0, 0, this.camera.cssWidth, this.camera.cssHeight);
@@ -112,19 +115,26 @@ export class CanvasRenderer {
         context.fill();
         context.stroke();
       }
-      context.fillStyle = definition.color;
-      context.strokeStyle = selected ? '#ffffff' : '#090d18';
-      context.lineWidth = selected ? 4 : 2;
-      context.beginPath();
-      if (defense.type === 'firewall') {
-        context.rect(defense.x - 18, defense.y - 18, 36, 36);
-      } else if (defense.type === 'encryption') {
-        this.polygon(context, defense.x, defense.y, 20, 6);
+      const sprite = this.spriteAssets?.get(defense.type);
+      if (sprite) {
+        const indicatorRadius = Math.max(
+          defense.radius + 4,
+          Math.min(sprite.definition.display.width, sprite.definition.display.height) /
+            2 -
+            2
+        );
+        context.strokeStyle = selected ? '#ffffff' : 'rgba(9, 13, 24, 0.9)';
+        context.lineWidth = selected ? 4 : 2;
+        context.beginPath();
+        context.arc(defense.x, defense.y, indicatorRadius, 0, Math.PI * 2);
+        context.stroke();
+        const drawn = this.drawEntitySprite(context, sprite, defense.x, defense.y);
+        if (!drawn) {
+          this.drawDefenseFallback(context, defense, definition, selected);
+        }
       } else {
-        this.polygon(context, defense.x, defense.y, 21, 3);
+        this.drawDefenseFallback(context, defense, definition, selected);
       }
-      context.fill();
-      context.stroke();
       if (defense.disabledUntilMs > session.state.gameTimeMs) {
         context.strokeStyle = '#ffe66d';
         context.lineWidth = 4;
@@ -147,21 +157,51 @@ export class CanvasRenderer {
         context.arc(enemy.x, enemy.y, enemy.radius + 7, 0, Math.PI * 2);
         context.stroke();
       }
-      context.fillStyle = definition.color;
-      context.strokeStyle = enemy.kind === 'boss' ? '#ffe66d' : '#080b12';
-      context.lineWidth = enemy.kind === 'boss' ? 4 : 2;
-      context.beginPath();
-      context.arc(enemy.x, enemy.y, enemy.radius, 0, Math.PI * 2);
-      context.fill();
-      context.stroke();
+      const sprite = this.spriteAssets?.get(enemy.type);
+      if (sprite) {
+        const drawn = this.drawEntitySprite(context, sprite, enemy.x, enemy.y);
+        if (!drawn) {
+          this.drawEnemyFallback(context, enemy, definition);
+        } else if (enemy.kind === 'boss') {
+          context.strokeStyle = '#ffe66d';
+          context.lineWidth = 4;
+          context.beginPath();
+          context.arc(
+            enemy.x,
+            enemy.y,
+            Math.max(
+              enemy.radius,
+              Math.min(
+                sprite.definition.display.width,
+                sprite.definition.display.height
+              ) /
+                2 +
+                2
+            ),
+            0,
+            Math.PI * 2
+          );
+          context.stroke();
+        }
+      } else {
+        this.drawEnemyFallback(context, enemy, definition);
+      }
 
       const width = Math.max(26, enemy.radius * 2.2);
+      const spriteTop = sprite
+        ? enemy.y -
+          sprite.definition.display.height * sprite.definition.anchor.y
+        : Infinity;
+      const barY = Math.min(
+        enemy.y - enemy.radius - 11,
+        spriteTop - 6
+      );
       context.fillStyle = '#090d18';
-      context.fillRect(enemy.x - width / 2, enemy.y - enemy.radius - 11, width, 5);
+      context.fillRect(enemy.x - width / 2, barY, width, 5);
       context.fillStyle = enemy.health / enemy.maxHealth > 0.35 ? '#53e6a8' : '#ff6b6b';
       context.fillRect(
         enemy.x - width / 2,
-        enemy.y - enemy.radius - 11,
+        barY,
         width * Math.max(0, enemy.health / enemy.maxHealth),
         5
       );
@@ -213,12 +253,73 @@ export class CanvasRenderer {
     context.arc(position.x, position.y, 22, 0, Math.PI * 2);
     context.fill();
     context.stroke();
+    const sprite = this.spriteAssets?.get(session.state.selectedTowerType);
+    if (sprite) {
+      this.drawEntitySprite(context, sprite, position.x, position.y, 0.62);
+    }
     context.strokeStyle = valid
       ? 'rgba(83, 216, 251, 0.35)'
       : 'rgba(255, 107, 107, 0.25)';
     context.lineWidth = 1;
     context.beginPath();
     context.arc(position.x, position.y, stats.range, 0, Math.PI * 2);
+    context.stroke();
+  }
+
+  drawEntitySprite(context, sprite, x, y, alpha = 1) {
+    if (!sprite?.image || !sprite.definition) {
+      return false;
+    }
+    const { source, display, anchor } = sprite.definition;
+    const left = x - display.width * anchor.x;
+    const top = y - display.height * anchor.y;
+    context.save();
+    context.globalAlpha *= alpha;
+    context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = 'high';
+    try {
+      context.drawImage(
+        sprite.image,
+        source.x,
+        source.y,
+        source.width,
+        source.height,
+        left,
+        top,
+        display.width,
+        display.height
+      );
+    } catch {
+      context.restore();
+      return false;
+    }
+    context.restore();
+    return true;
+  }
+
+  drawDefenseFallback(context, defense, definition, selected) {
+    context.fillStyle = definition?.color || '#53d8fb';
+    context.strokeStyle = selected ? '#ffffff' : '#090d18';
+    context.lineWidth = selected ? 4 : 2;
+    context.beginPath();
+    if (defense.type === 'firewall') {
+      context.rect(defense.x - 18, defense.y - 18, 36, 36);
+    } else if (defense.type === 'encryption') {
+      this.polygon(context, defense.x, defense.y, 20, 6);
+    } else {
+      this.polygon(context, defense.x, defense.y, 21, 3);
+    }
+    context.fill();
+    context.stroke();
+  }
+
+  drawEnemyFallback(context, enemy, definition) {
+    context.fillStyle = definition?.color || '#ff6b6b';
+    context.strokeStyle = enemy.kind === 'boss' ? '#ffe66d' : '#080b12';
+    context.lineWidth = enemy.kind === 'boss' ? 4 : 2;
+    context.beginPath();
+    context.arc(enemy.x, enemy.y, enemy.radius, 0, Math.PI * 2);
+    context.fill();
     context.stroke();
   }
 

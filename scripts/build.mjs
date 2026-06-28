@@ -12,7 +12,7 @@ const files = [
   'design/balance.json'
 ];
 
-const directories = ['css', 'js'];
+const directories = ['assets', 'css', 'js'];
 
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(outputRoot, { recursive: true });

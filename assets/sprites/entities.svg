@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2816" height="256" viewBox="0 0 2816 256">
+  <title>Dharmapala Shield entity sprite sheet</title>
+  <desc>Eleven transparent 256 pixel frames for the active towers, enemies, and bosses.</desc>
+  <defs>
+    <linearGradient id="red-metal" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ff7185"/>
+      <stop offset="1" stop-color="#b91f46"/>
+    </linearGradient>
+    <linearGradient id="blue-metal" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#53d8fb"/>
+      <stop offset="1" stop-color="#173f84"/>
+    </linearGradient>
+    <linearGradient id="green-metal" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#75f2c1"/>
+      <stop offset="1" stop-color="#087b63"/>
+    </linearGradient>
+    <linearGradient id="purple-metal" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e4b7ff"/>
+      <stop offset="1" stop-color="#7041b6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- firewall -->
+  <g transform="translate(0 0)">
+    <path d="M45 207h166l-13 25H58Z" fill="#050914" opacity=".8"/>
+    <path d="M64 92h128v118H64Z" fill="url(#red-metal)" stroke="#ff9cab" stroke-width="7"/>
+    <path d="M58 59h35v42H58Zm52 0h36v42h-36Zm53 0h35v42h-35Z" fill="#d52d54" stroke="#ff9cab" stroke-width="7"/>
+    <path d="M87 122h82v88H87Z" fill="#0c1830" stroke="#67142c" stroke-width="7"/>
+    <path d="m128 131 28 12v21c0 19-11 33-28 42-17-9-28-23-28-42v-21Z" fill="#16213e" stroke="#53d8fb" stroke-width="7"/>
+    <path d="M128 143v49c10-7 16-16 16-28v-13Z" fill="#53d8fb"/>
+    <path d="M74 113h108" stroke="#ffced5" stroke-width="5"/>
+  </g>
+
+  <!-- encryption -->
+  <g transform="translate(256 0)">
+    <path d="M43 211h170l-14 22H57Z" fill="#050914" opacity=".8"/>
+    <path d="m128 38 75 61-22 116H75L53 99Z" fill="url(#blue-metal)" stroke="#82e8ff" stroke-width="7"/>
+    <path d="M76 96h104v112H76Z" fill="#101d3b" stroke="#25599e" stroke-width="7"/>
+    <path d="M92 98V78c0-24 16-41 36-41s36 17 36 41v20" fill="none" stroke="#d5f8ff" stroke-width="12"/>
+    <rect x="98" y="112" width="60" height="67" rx="12" fill="#0a1226" stroke="#53d8fb" stroke-width="7"/>
+    <circle cx="128" cy="140" r="10" fill="#ffe66d"/>
+    <path d="M128 149v18" stroke="#ffe66d" stroke-width="9" stroke-linecap="round"/>
+    <path d="M87 194h82" stroke="#53d8fb" stroke-width="6"/>
+  </g>
+
+  <!-- distributor -->
+  <g transform="translate(512 0)">
+    <path d="M42 213h172l-15 21H57Z" fill="#050914" opacity=".8"/>
+    <path d="m128 38 10 76h-20Z" fill="#b9ffe4" stroke="#10b981" stroke-width="5"/>
+    <circle cx="128" cy="38" r="13" fill="#e9fff7" stroke="#75f2c1" stroke-width="6"/>
+    <path d="M72 61c20 17 31 39 33 65 27-4 48-18 65-43-30-15-63-22-98-22Z" fill="url(#green-metal)" stroke="#9affd9" stroke-width="7"/>
+    <path d="M103 126 84 177m51-68 30 68" stroke="#75f2c1" stroke-width="10" stroke-linecap="round"/>
+    <path d="M63 178h130v36H63Z" fill="#087b63" stroke="#75f2c1" stroke-width="7"/>
+    <path d="M82 178c7-20 22-31 46-31s39 11 46 31" fill="#0c493f" stroke="#75f2c1" stroke-width="7"/>
+    <circle cx="128" cy="181" r="14" fill="#ffe66d" stroke="#ecfff8" stroke-width="5"/>
+    <path d="M54 45c-15 17-20 35-15 55m177-55c15 17 20 35 15 55" fill="none" stroke="#53d8fb" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- scriptKiddie -->
+  <g transform="translate(768 0)">
+    <path d="M67 219h122l-13 18H80Z" fill="#050914" opacity=".75"/>
+    <path d="M75 109c0-47 21-76 53-76s53 29 53 76l-16 100H91Z" fill="#b91f46" stroke="#ff7185" stroke-width="8"/>
+    <path d="M91 105c5-35 18-54 37-54s32 19 37 54l-18 32h-38Z" fill="#07101d" stroke="#ff9cab" stroke-width="6"/>
+    <path d="M111 103h12m10 0h12" stroke="#53d8fb" stroke-width="8" stroke-linecap="round"/>
+    <path d="m93 148-32 38m102-38 32 38" stroke="#ff7185" stroke-width="13" stroke-linecap="round"/>
+    <rect x="94" y="146" width="68" height="46" rx="5" fill="#101d3b" stroke="#53d8fb" stroke-width="6"/>
+    <path d="m119 166 9 8 9-8" fill="none" stroke="#ffe66d" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- federalAgent -->
+  <g transform="translate(1024 0)">
+    <path d="M59 219h138l-13 18H72Z" fill="#050914" opacity=".75"/>
+    <path d="M80 118c5-47 21-74 48-74s43 27 48 74l-12 93H92Z" fill="#164c55" stroke="#4ecdc4" stroke-width="8"/>
+    <path d="M86 73h84l-24-36H99Z" fill="#0a1825" stroke="#4ecdc4" stroke-width="7"/>
+    <path d="M61 77h134" stroke="#9dfff8" stroke-width="10" stroke-linecap="round"/>
+    <path d="M95 92h66l-9 46h-48Z" fill="#07101d" stroke="#2f7c7b" stroke-width="6"/>
+    <path d="M107 111h42" stroke="#53d8fb" stroke-width="8" stroke-linecap="round"/>
+    <path d="M128 144v67m-44-50h88" stroke="#9dfff8" stroke-width="7"/>
+    <path d="m128 159 15 13-15 28-15-28Z" fill="#ffe66d" stroke="#f5f8ff" stroke-width="4"/>
+  </g>
+
+  <!-- corporateSaboteur -->
+  <g transform="translate(1280 0)">
+    <path d="M59 220h138l-13 17H72Z" fill="#050914" opacity=".75"/>
+    <path d="M76 116c3-51 21-81 52-81s49 30 52 81l-18 97H94Z" fill="#246c4b" stroke="#95e77e" stroke-width="8"/>
+    <path d="m91 99 37-52 37 52-19 42h-36Z" fill="#07101d" stroke="#95e77e" stroke-width="7"/>
+    <path d="m107 108 16 5m26-5-16 5" stroke="#ff6b6b" stroke-width="7" stroke-linecap="round"/>
+    <rect x="62" y="155" width="77" height="51" rx="7" fill="#0d1b2c" stroke="#baff9f" stroke-width="7"/>
+    <path d="M86 155v-13h29v13" fill="none" stroke="#baff9f" stroke-width="7"/>
+    <path d="m160 145 32 54m-12-64 19 11-28 17Z" fill="#d9ffe0" stroke="#95e77e" stroke-width="5" stroke-linejoin="round"/>
+  </g>
+
+  <!-- aiSurveillance -->
+  <g transform="translate(1536 0)">
+    <path d="M54 216h148l-14 20H68Z" fill="#050914" opacity=".7"/>
+    <path d="M43 116 80 91h96l37 25-22 25-26-14H91l-26 14Z" fill="#8d7624" stroke="#ffe66d" stroke-width="8"/>
+    <path d="M76 83c10-31 27-47 52-47s42 16 52 47l-17 82H93Z" fill="#2a2d33" stroke="#ffe66d" stroke-width="8"/>
+    <circle cx="128" cy="105" r="39" fill="#08101e" stroke="#fff5a6" stroke-width="7"/>
+    <circle cx="128" cy="105" r="23" fill="#53d8fb" stroke="#eaffff" stroke-width="6"/>
+    <circle cx="128" cy="105" r="9" fill="#08101e"/>
+    <path d="M97 164h62l15 39H82Z" fill="#8d7624" stroke="#ffe66d" stroke-width="7"/>
+    <path d="M128 164v39m-24-19h48" stroke="#fff5a6" stroke-width="6"/>
+  </g>
+
+  <!-- quantumHacker -->
+  <g transform="translate(1792 0)">
+    <path d="M54 220h148l-14 17H68Z" fill="#050914" opacity=".7"/>
+    <path d="M73 116c3-53 22-83 55-83s52 30 55 83l-17 98H90Z" fill="#286d6a" stroke="#a8e6cf" stroke-width="8"/>
+    <path d="m91 102 37-57 37 57-18 39h-38Z" fill="#07101d" stroke="#d9fff0" stroke-width="7"/>
+    <circle cx="128" cy="111" r="10" fill="#ffe66d"/>
+    <ellipse cx="128" cy="111" rx="49" ry="19" fill="none" stroke="#53d8fb" stroke-width="5"/>
+    <ellipse cx="128" cy="111" rx="49" ry="19" fill="none" stroke="#a8e6cf" stroke-width="5" transform="rotate(60 128 111)"/>
+    <ellipse cx="128" cy="111" rx="49" ry="19" fill="none" stroke="#c77dff" stroke-width="5" transform="rotate(120 128 111)"/>
+    <path d="M78 158h21m-29 17h18m83-17h21m-12 17h18M108 198h40" stroke="#53d8fb" stroke-width="7" stroke-linecap="round"/>
+  </g>
+
+  <!-- corruptedMonk -->
+  <g transform="translate(2048 0)">
+    <path d="M48 220h160l-14 18H62Z" fill="#050914" opacity=".75"/>
+    <path d="M69 119c4-55 24-86 59-86s55 31 59 86l-19 98H88Z" fill="#85233f" stroke="#ff8b94" stroke-width="8"/>
+    <path d="m91 45-28-22 8 47m94-25 28-22-8 47" fill="#ff6b6b" stroke="#ffb2b9" stroke-width="7" stroke-linejoin="round"/>
+    <path d="m87 101 41-57 41 57-19 52h-44Z" fill="#160b18" stroke="#ff8b94" stroke-width="7"/>
+    <path d="m105 107 16 7m30-7-16 7" stroke="#ffe66d" stroke-width="8" stroke-linecap="round"/>
+    <path d="m112 135 16 10 16-10" fill="none" stroke="#ff6b6b" stroke-width="7" stroke-linecap="round"/>
+    <path d="M128 159v58m-42-35h84" stroke="#ffbdc4" stroke-width="7"/>
+    <circle cx="128" cy="180" r="15" fill="#07101d" stroke="#53d8fb" stroke-width="6"/>
+  </g>
+
+  <!-- raidTeam -->
+  <g transform="translate(2304 0)">
+    <path d="M31 219h194l-15 20H46Z" fill="#050914" opacity=".8"/>
+    <path d="m128 23 82 45v89l-82 73-82-73V68Z" fill="#48251f" stroke="#ff6b35" stroke-width="9"/>
+    <path d="M75 104c3-34 16-54 37-54s34 20 37 54l-12 64H87Z" fill="#111b2c" stroke="#ff9b66" stroke-width="7"/>
+    <path d="M107 104c3-40 18-64 42-64s39 24 42 64l-13 76h-58Z" fill="#1c2235" stroke="#ff6b35" stroke-width="8"/>
+    <path d="M87 111h50m-25 13v44m9-56h57m-29 14v54" stroke="#ffe66d" stroke-width="7"/>
+    <path d="M53 84c-15 17-20 35-14 56m178-56c15 17 20 35 14 56" fill="none" stroke="#53d8fb" stroke-width="7" stroke-linecap="round"/>
+    <path d="m128 181 22 12-22 24-22-24Z" fill="#ff6b35" stroke="#fff0c4" stroke-width="5"/>
+  </g>
+
+  <!-- megaCorpTitan -->
+  <g transform="translate(2560 0)">
+    <path d="M25 220h206l-16 20H41Z" fill="#050914" opacity=".85"/>
+    <path d="M50 79 128 20l78 59-15 137H65Z" fill="url(#purple-metal)" stroke="#e4b7ff" stroke-width="9"/>
+    <path d="M78 75h100v137H78Z" fill="#17132d" stroke="#9b6add" stroke-width="7"/>
+    <path d="M92 91h28v28H92Zm44 0h28v28h-28Zm-44 43h28v28H92Zm44 0h28v28h-28Z" fill="#53d8fb" stroke="#d5f8ff" stroke-width="5"/>
+    <path d="M111 176h34v36h-34Z" fill="#070b18" stroke="#ffe66d" stroke-width="6"/>
+    <path d="m50 79-25 47 33 31m148-78 25 47-33 31" fill="#7041b6" stroke="#e4b7ff" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M102 49h52" stroke="#ffe66d" stroke-width="8" stroke-linecap="round"/>
+    <path d="M39 54c-18 21-25 45-20 71m198-71c18 21 25 45 20 71" fill="none" stroke="#53d8fb" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -23,6 +23,90 @@ test('loads the real game without console errors and keeps wave 1 idle', async (
   expect(errors).toEqual([]);
 });
 
+test('loads the sprite sheet and maps every active rendered entity', async ({
+  page
+}) => {
+  const errors = [];
+  page.on('console', (message) => {
+    if (message.type() === 'error') {
+      errors.push(message.text());
+    }
+  });
+  page.on('pageerror', (error) => errors.push(error.message));
+  await openFresh(page);
+  const inventory = await page.evaluate(() => {
+    const assets = gameApplication.renderer.spriteAssets;
+    const ids = [
+      ...Object.keys(gameApplication.balance.towers),
+      ...Object.keys(gameApplication.balance.enemies),
+      ...Object.keys(gameApplication.balance.bosses)
+    ];
+    return {
+      summary: assets.summary(),
+      sprites: ids.map((id) => {
+        const sprite = assets.get(id);
+        return {
+          id,
+          mapped: Boolean(sprite),
+          naturalWidth: sprite?.image.naturalWidth || 0,
+          naturalHeight: sprite?.image.naturalHeight || 0
+        };
+      })
+    };
+  });
+  expect(inventory.summary).toEqual({
+    total: 1,
+    ready: 1,
+    failed: 0,
+    loading: 0
+  });
+  expect(inventory.sprites).toHaveLength(11);
+  expect(inventory.sprites.every((sprite) => sprite.mapped)).toBe(true);
+  expect(inventory.sprites.every((sprite) => sprite.naturalWidth === 2816)).toBe(
+    true
+  );
+  expect(inventory.sprites.every((sprite) => sprite.naturalHeight === 256)).toBe(
+    true
+  );
+  expect(errors).toEqual([]);
+});
+
+test('keeps the sprite canvas sharp at device scale factor 2', async ({
+  browser
+}) => {
+  const page = await browser.newPage({
+    viewport: { width: 844, height: 390 },
+    deviceScaleFactor: 2
+  });
+  const errors = [];
+  page.on('console', (message) => {
+    if (message.type() === 'error') {
+      errors.push(message.text());
+    }
+  });
+  page.on('pageerror', (error) => errors.push(error.message));
+  await openFresh(page, { width: 844, height: 390 });
+  await enterBuildPhase(page);
+  const dimensions = await page.evaluate(() => {
+    const canvas = gameApplication.camera.canvas;
+    const rect = canvas.getBoundingClientRect();
+    return {
+      dpr: gameApplication.camera.dpr,
+      cssWidth: rect.width,
+      cssHeight: rect.height,
+      backingWidth: canvas.width,
+      backingHeight: canvas.height,
+      sprites: gameApplication.renderer.spriteAssets.summary()
+    };
+  });
+  expect(dimensions.dpr).toBe(2);
+  expect(dimensions.backingWidth).toBe(Math.round(dimensions.cssWidth * 2));
+  expect(dimensions.backingHeight).toBe(Math.round(dimensions.cssHeight * 2));
+  expect(dimensions.sprites.ready).toBe(1);
+  expect(errors).toEqual([]);
+  await page.close();
+});
+
 test('places, selects, upgrades, sells, and restores a tower save', async ({
   page
 }) => {

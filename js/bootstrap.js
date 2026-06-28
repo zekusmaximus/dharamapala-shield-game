@@ -4,10 +4,11 @@ import { BrowserSaveRepository } from './platform/BrowserSaveRepository.js';
 import { InputController } from './platform/InputController.js';
 import { Camera } from './render/Camera.js';
 import { CanvasRenderer } from './render/CanvasRenderer.js';
+import { SpriteAssetLoader } from './render/SpriteAssetLoader.js';
 import { GameUI } from './ui/GameUI.js';
 
 class GameApplication {
-  constructor(balance) {
+  constructor(balance, spriteAssets) {
     this.balance = balance;
     this.repository = new BrowserSaveRepository();
     this.session = new GameSession(balance, {
@@ -16,7 +17,7 @@ class GameApplication {
     });
     const canvas = document.getElementById('game-canvas');
     this.camera = new Camera(canvas);
-    this.renderer = new CanvasRenderer(canvas, this.camera, balance);
+    this.renderer = new CanvasRenderer(canvas, this.camera, balance, spriteAssets);
     this.lastFrameAt = performance.now();
     this.lastWaveSaveAtMs = 0;
     this.unsubscribe = null;
@@ -170,7 +171,9 @@ async function bootstrap() {
     throw new Error(`Balance data failed to load (${response.status}).`);
   }
   const balance = validateBalance(await response.json());
-  const app = new GameApplication(balance);
+  const spriteAssets = new SpriteAssetLoader();
+  await spriteAssets.loadAll();
+  const app = new GameApplication(balance, spriteAssets);
   globalThis.gameApplication = app;
   app.start();
 }
