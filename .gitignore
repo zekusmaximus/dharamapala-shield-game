@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+/test-results
+/playwright-report
 
 # next.js
 /.next/
@@ -52,3 +54,4 @@ server.log
 # Balance tuning temporary files
 tools/sim/temp_balance.json
 tools/tune/temp_balance.json
+tools/sim/out/

@@ -3,16 +3,27 @@
   "version": "1.0.0",
   "description": "A client-only Buddhist cyberpunk tower defense game.",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "npm run build && node scripts/serve.mjs",
     "start": "npm run build && node scripts/serve.mjs",
-    "sim:normal": "node tools/sim/run.ts Normal --seed=1337 --waves=1-20",
-    "sim:hard": "node tools/sim/run.ts Hard --seed=1337 --waves=1-20",
-    "sim:easy": "node tools/sim/run.ts Easy --seed=1337 --waves=1-20",
-    "tune": "node tools/tune/balance_tuner.ts"
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "node --test \"tests/unit/*.test.js\"",
+    "test:integration": "node --test \"tests/integration/*.test.js\"",
+    "test:sim": "node --test \"tests/sim/*.test.js\"",
+    "test:e2e": "playwright test --project=e2e",
+    "test:a11y": "playwright test --project=a11y",
+    "sim:normal": "node tools/sim/run.mjs Normal --seed=1337 --waves=1-20",
+    "sim:hard": "node tools/sim/run.mjs Hard --seed=1337 --waves=1-20",
+    "sim:easy": "node tools/sim/run.mjs Easy --seed=1337 --waves=1-20",
+    "tune": "node tools/tune/balance_tuner.mjs"
   },
   "engines": {
     "node": ">=22"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.53.1"
   }
 }

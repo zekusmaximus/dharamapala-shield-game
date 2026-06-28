@@ -1,366 +1,216 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="Dharmapala Shield - A Buddhist Cyberpunk Tower Defense Game">
-    <title>🛡️ Dharmapala Shield</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    
-    <!-- Stylesheets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Dharmapala Shield — a deterministic Buddhist cyberpunk tower-defense game."
+    >
+    <meta name="theme-color" content="#0b1020">
+    <title>Dharmapala Shield</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/ui-screens.css">
-    <link rel="stylesheet" href="css/mobile.css">
-    <link rel="stylesheet" href="css/loading.css">
+  </head>
+  <body>
+    <div id="loading-screen" class="loading-screen" role="status" aria-live="polite">
+      <div class="loading-mark" aria-hidden="true">◈</div>
+      <p>Initializing the shield…</p>
+    </div>
 
-    <!-- PWA Support -->
-    <meta name="theme-color" content="#1a1a2e">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    <!-- Prevent zoom on mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <style>
-        /* Loading screen styles */
-        #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease-out;
-        }
-        
-        .loading-content {
-            text-align: center;
-            color: #e94560;
-        }
-        
-        .loading-title {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
-            animation: pulse 2s infinite;
-        }
-        
-        .loading-subtitle {
-            font-size: 1.2rem;
-            color: #f5f5f5;
-            margin-bottom: 2rem;
-            opacity: 0.8;
-        }
-        
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(233, 69, 96, 0.2);
-            border-top: 4px solid #e94560;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-        
-        .loading-progress {
-            width: 300px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-        
-        .loading-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #e94560, #f47068);
-            width: 0%;
-            transition: width 0.3s ease;
-            border-radius: 2px;
-        }
-        
-        .loading-text {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #f5f5f5;
-            opacity: 0.7;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Game container */
-        #game-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background: #0a0a0a;
-        }
-        
-        #game-canvas {
-            display: block;
-            margin: 0 auto;
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
-            cursor: crosshair;
-        }
-        
-        /* UI Overlay */
-        #ui-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 100;
-        }
-        
-        .ui-element {
-            pointer-events: auto;
-        }
-        
-        /* Mobile controls */
-        #mobile-controls {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: none;
-            gap: 10px;
-            z-index: 200;
-        }
-        
-        @media (max-width: 768px) {
-            #mobile-controls {
-                display: flex;
-            }
-        }
-        
-        .mobile-btn {
-            padding: 15px 20px;
-            background: rgba(233, 69, 96, 0.8);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            touch-action: manipulation;
-            user-select: none;
-            -webkit-user-select: none;
-            transition: all 0.2s ease;
-        }
-        
-        .mobile-btn:active {
-            transform: scale(0.95);
-            background: rgba(233, 69, 96, 1);
-        }
-        
-        /* Error screen */
-        #error-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #1a1a2e;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            color: #e94560;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .error-content {
-            max-width: 500px;
-        }
-        
-        .error-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .error-message {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.8;
-        }
-        
-        .error-reload {
-            padding: 12px 24px;
-            background: #e94560;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-        
-        .error-reload:hover {
-            background: #f47068;
-        }
-    </style>
-</head>
-<body>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="loading-content">
-            <div class="loading-title">🛡️ Dharmapala Shield</div>
-            <div class="loading-subtitle">A Buddhist Cyberpunk Tower Defense Game</div>
-            <div class="loading-spinner"></div>
-            <div class="loading-progress">
-                <div class="loading-progress-bar" id="loading-progress-bar"></div>
+    <div id="app" class="app-shell" hidden>
+      <header class="app-header">
+        <a class="brand" href="#" id="brand-home" aria-label="Dharmapala Shield home">
+          <span aria-hidden="true">◈</span>
+          <span>Dharmapala Shield</span>
+        </a>
+
+        <dl id="hud" class="hud" aria-label="Game status">
+          <div><dt>Dharma</dt><dd id="dharma-value">0</dd></div>
+          <div><dt>Bandwidth</dt><dd id="bandwidth-value">0</dd></div>
+          <div><dt>Anonymity</dt><dd id="anonymity-value">0</dd></div>
+          <div><dt>Lives</dt><dd id="lives-value">0</dd></div>
+          <div><dt>Wave</dt><dd id="wave-value">1 / 20</dd></div>
+        </dl>
+
+        <div class="header-actions">
+          <button id="pause-button" type="button" aria-label="Pause game">Pause</button>
+          <button id="settings-button" type="button">Settings</button>
+        </div>
+      </header>
+
+      <main>
+        <section id="menu-screen" class="menu-screen" aria-labelledby="menu-title">
+          <div class="menu-card">
+            <p class="eyebrow">A deterministic tower defense</p>
+            <h1 id="menu-title">Protect the quiet endpoint.</h1>
+            <p>
+              Build a small, deliberate network of damage, control, and support
+              towers. Begin each wave when your defenses are ready.
+            </p>
+            <label for="difficulty-select">Difficulty</label>
+            <select id="difficulty-select">
+              <option>Easy</option>
+              <option selected>Normal</option>
+              <option>Hard</option>
+            </select>
+            <div class="menu-actions">
+              <button id="new-game-button" class="primary" type="button">New game</button>
+              <button id="continue-button" type="button">Continue</button>
             </div>
-            <div class="loading-text" id="loading-text">Initializing systems...</div>
+            <p id="continue-help" class="subtle">No local save found.</p>
+          </div>
+        </section>
+
+        <div id="game-layout" class="game-layout" hidden>
+          <section class="battlefield-panel" aria-labelledby="battlefield-title">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow" id="phase-label">Build phase</p>
+                <h1 id="battlefield-title">The network path</h1>
+              </div>
+              <div id="wave-progress" class="wave-progress" aria-label="Wave progress">
+                <span id="wave-progress-label">Ready</span>
+                <progress id="wave-progress-bar" max="1" value="0">0%</progress>
+              </div>
+            </div>
+            <div class="canvas-frame">
+              <canvas
+                id="game-canvas"
+                tabindex="0"
+                aria-label="Battlefield. Use arrow keys to move the build cursor and Enter to place the selected tower."
+                aria-describedby="battlefield-description"
+              ></canvas>
+            </div>
+            <p id="battlefield-description" class="sr-only">
+              No enemies are active. The protected endpoint has 20 lives.
+            </p>
+          </section>
+
+          <aside class="build-panel" aria-label="Build controls">
+            <section aria-labelledby="tower-palette-title">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Build</p>
+                  <h2 id="tower-palette-title">Tower palette</h2>
+                </div>
+              </div>
+              <div id="tower-palette" class="tower-palette"></div>
+            </section>
+
+            <section id="wave-preview-section" class="wave-preview" aria-labelledby="wave-preview-title">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Incoming</p>
+                  <h2 id="wave-preview-title">Wave preview</h2>
+                </div>
+                <strong id="boss-warning" class="boss-warning" hidden>Boss</strong>
+              </div>
+              <ul id="wave-preview-list"></ul>
+            </section>
+
+            <section id="tower-inspector" class="tower-inspector" aria-labelledby="inspector-title" hidden>
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Selected tower</p>
+                  <h2 id="inspector-title">Tower details</h2>
+                </div>
+              </div>
+              <div id="inspector-content"></div>
+              <div class="inspector-actions">
+                <button id="upgrade-button" class="primary" type="button">Upgrade</button>
+                <button id="sell-button" class="danger" type="button">Sell</button>
+              </div>
+            </section>
+
+            <div class="wave-actions">
+              <button id="start-wave-button" class="primary start-wave" type="button">
+                Start wave
+              </button>
+              <p id="save-state" class="subtle">Local save ready.</p>
+            </div>
+          </aside>
         </div>
+      </main>
+
+      <footer>
+        <span>Canvas: battlefield only</span>
+        <span>Keyboard: arrows + Enter to build, Escape to clear selection</span>
+      </footer>
     </div>
-    
-    <!-- Error Screen -->
-    <div id="error-screen">
-        <div class="error-content">
-            <div class="error-title">⚠️ Error</div>
-            <div class="error-message" id="error-message">Something went wrong while loading the game.</div>
-            <button class="error-reload" onclick="location.reload()">Reload Game</button>
+
+    <dialog id="tutorial-dialog" aria-labelledby="tutorial-title">
+      <div class="dialog-content">
+        <p class="eyebrow" id="tutorial-progress">Tutorial 1 of 4</p>
+        <h2 id="tutorial-title">Protect the endpoint</h2>
+        <div id="tutorial-copy"></div>
+        <div class="dialog-actions">
+          <button id="skip-tutorial-button" type="button">Skip tutorial</button>
+          <button id="tutorial-next-button" class="primary" type="button">Next</button>
         </div>
-    </div>
-    
-    <!-- Game Container -->
-    <div id="game-container" style="display: none;">
-        <canvas id="game-canvas"></canvas>
-        
-        <!-- UI Overlay -->
-        <div id="ui-overlay">
-            <!-- Game UI will be dynamically added here -->
+      </div>
+    </dialog>
+
+    <dialog id="pause-dialog" aria-labelledby="pause-title">
+      <div class="dialog-content">
+        <p class="eyebrow">Simulation frozen</p>
+        <h2 id="pause-title">Paused</h2>
+        <p>Game time, spawning, cooldowns, movement, and combat are stopped.</p>
+        <div class="dialog-actions vertical">
+          <button id="resume-button" class="primary" type="button">Resume</button>
+          <button id="save-button" type="button">Save now</button>
+          <button id="restart-button" type="button">Restart run</button>
+          <button id="menu-button" type="button">Return to menu</button>
         </div>
-        
-        <!-- Mobile Controls -->
-        <div id="mobile-controls">
-            <button class="mobile-btn" id="mobile-pause">⏸️</button>
-            <button class="mobile-btn" id="mobile-menu">📋</button>
-            <button class="mobile-btn" id="mobile-next-wave">⚡</button>
+      </div>
+    </dialog>
+
+    <dialog id="settings-dialog" aria-labelledby="settings-title">
+      <div class="dialog-content">
+        <p class="eyebrow">Preferences</p>
+        <h2 id="settings-title">Settings</h2>
+        <label class="check-row">
+          <input id="range-toggle" type="checkbox" checked>
+          Show support auras and selected tower range
+        </label>
+        <label class="check-row">
+          <input id="motion-toggle" type="checkbox">
+          Reduce presentation motion
+        </label>
+        <div class="dialog-actions">
+          <button id="replay-tutorial-button" type="button">Replay tutorial</button>
+          <button id="close-settings-button" class="primary" type="button">Done</button>
         </div>
-    </div>
-    
-    <!-- Game Scripts -->
-    <script type="module">
-        // Import and initialize the game
-        import { Game } from './js/main.js';
-        
-        // Global error handler
-        window.addEventListener('error', (event) => {
-            console.error('Global error:', event.error);
-            showError(event.error?.message || 'An unknown error occurred');
-        });
-        
-        // Show error screen
-        function showError(message) {
-            document.getElementById('error-message').textContent = message;
-            document.getElementById('error-screen').style.display = 'flex';
-            document.getElementById('loading-screen').style.display = 'none';
-            document.getElementById('game-container').style.display = 'none';
-        }
-        
-        // Update loading progress
-        function updateLoadingProgress(progress, text) {
-            const progressBar = document.getElementById('loading-progress-bar');
-            const loadingText = document.getElementById('loading-text');
-            
-            progressBar.style.width = `${progress}%`;
-            loadingText.textContent = text;
-        }
-        
-        // Initialize game when DOM is loaded
-        document.addEventListener('DOMContentLoaded', async () => {
-            try {
-                updateLoadingProgress(10, 'Loading game assets...');
-                
-                // Create game instance
-                const game = new Game();
-                
-                updateLoadingProgress(30, 'Initializing game systems...');
-                
-                // Initialize game
-                await game.init();
-                
-                updateLoadingProgress(60, 'Setting up UI...');
-                
-                // Setup UI
-                game.setupUI();
-                
-                updateLoadingProgress(80, 'Loading game content...');
-                
-                // Load game content
-                await game.loadContent();
-                
-                updateLoadingProgress(100, 'Starting game...');
-                
-                // Hide loading screen and show game
-                setTimeout(() => {
-                    const loadingScreen = document.getElementById('loading-screen');
-                    loadingScreen.style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                        document.getElementById('game-container').style.display = 'block';
-                        
-                        // Start game loop
-                        game.start();
-                        
-                    }, 500);
-                }, 500);
-                
-            } catch (error) {
-                console.error('Failed to initialize game:', error);
-                showError(error.message || 'Failed to initialize game');
-            }
-        });
-        
-        // Handle visibility change (pause game when tab is not visible)
-        document.addEventListener('visibilitychange', () => {
-            if (window.game) {
-                if (document.hidden) {
-                    window.game.pause();
-                } else {
-                    window.game.resume();
-                }
-            }
-        });
-        
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            if (window.game) {
-                window.game.handleResize();
-            }
-        });
-        
-        // Prevent context menu on mobile
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-        });
-        
-        // Prevent pull-to-refresh on mobile
-        document.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-    </script>
-</body>
+      </div>
+    </dialog>
+
+    <dialog id="sell-dialog" aria-labelledby="sell-title">
+      <div class="dialog-content">
+        <h2 id="sell-title">Sell this tower?</h2>
+        <p id="sell-copy">The tower will be removed and 70% of its invested cost returned.</p>
+        <div class="dialog-actions">
+          <button id="cancel-sell-button" type="button">Cancel</button>
+          <button id="confirm-sell-button" class="danger" type="button">Confirm sale</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="terminal-dialog" aria-labelledby="terminal-title">
+      <div class="dialog-content terminal-content">
+        <p class="eyebrow" id="terminal-eyebrow">Run complete</p>
+        <h2 id="terminal-title">Victory</h2>
+        <div id="terminal-summary"></div>
+        <div class="dialog-actions">
+          <button id="terminal-restart-button" class="primary" type="button">Play again</button>
+          <button id="terminal-menu-button" type="button">Main menu</button>
+        </div>
+      </div>
+    </dialog>
+
+    <div id="polite-status" class="sr-only" role="status" aria-live="polite"></div>
+    <div id="alert-status" class="sr-only" role="alert" aria-live="assertive"></div>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script type="module" src="js/bootstrap.js"></script>
+  </body>
 </html>

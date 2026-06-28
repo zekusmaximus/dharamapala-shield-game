@@ -3,7 +3,7 @@
   "towers": {
     "firewall": {
       "name": "Firewall Fortress",
-      "description": "Basic blocking defense with prayer flag flair",
+      "description": "Reliable single-target damage that prioritizes threats closest to the endpoint.",
       "icon": "🛡️",
       "cost": {
         "dharma": 30,
@@ -23,19 +23,20 @@
         "slowDuration": 0
       },
       "special": "basic",
+      "damageType": "physical",
       "color": "#e94560"
     },
     "encryption": {
       "name": "Encryption Monastery",
-      "description": "Scrambles data packets with rotating ciphers",
+      "description": "Controls attackers with deterministic slow and vulnerability effects.",
       "icon": "🔐",
       "cost": {
         "dharma": 50,
         "bandwidth": 20,
         "anonymity": 10
       },
-      "baseDamage": 56,
-      "ratePerSec": 0.667,
+      "baseDamage": 22,
+      "ratePerSec": 0.8,
       "projectileSpeed": 24,
       "range": 180,
       "aoeRadius": 0,
@@ -44,103 +45,37 @@
       "status": {
         "burnDps": 0,
         "slowPct": 0.2,
-        "slowDuration": 1000
+        "slowDuration": 1800,
+        "vulnerabilityPct": 0.12,
+        "vulnerabilityDuration": 1800
       },
       "special": "encrypt",
+      "damageType": "shock",
       "color": "#0f3460"
-    },
-    "decoy": {
-      "name": "Decoy Temple",
-      "description": "False targets that misdirect attackers",
-      "icon": "🎯",
-      "cost": {
-        "dharma": 30,
-        "bandwidth": 15,
-        "anonymity": 5
-      },
-      "baseDamage": 0,
-      "ratePerSec": 0,
-      "projectileSpeed": 0,
-      "range": 150,
-      "aoeRadius": 0,
-      "critChance": 0,
-      "critMult": 1.0,
-      "status": {
-        "burnDps": 0,
-        "slowPct": 0,
-        "slowDuration": 0
-      },
-      "special": "decoy",
-      "color": "#f47068"
-    },
-    "mirror": {
-      "name": "Mirror Server",
-      "description": "Reflects hostile traffic back to its source",
-      "icon": "🔁",
-      "cost": {
-        "dharma": 75,
-        "bandwidth": 40,
-        "anonymity": 20
-      },
-      "baseDamage": 65,
-      "ratePerSec": 0.5,
-      "projectileSpeed": 32,
-      "range": 250,
-      "aoeRadius": 0,
-      "critChance": 0.15,
-      "critMult": 2.0,
-      "status": {
-        "burnDps": 0,
-        "slowPct": 0,
-        "slowDuration": 0
-      },
-      "special": "reflect",
-      "color": "#53d8fb"
-    },
-    "anonymity": {
-      "name": "Anonymity Shroud",
-      "description": "Cloaks friendly network activity",
-      "icon": "🕶️",
-      "cost": {
-        "dharma": 60,
-        "bandwidth": 30,
-        "anonymity": 40
-      },
-      "baseDamage": 39,
-      "ratePerSec": 0.833,
-      "projectileSpeed": 30,
-      "range": 300,
-      "aoeRadius": 0,
-      "critChance": 0,
-      "critMult": 1.0,
-      "status": {
-        "burnDps": 0,
-        "slowPct": 0,
-        "slowDuration": 0
-      },
-      "special": "cloak",
-      "color": "#8b5cf6"
     },
     "distributor": {
       "name": "Dharma Distributor",
-      "description": "Speeds up delivery and resource flow",
+      "description": "Boosts nearby tower fire rate and adds a capped wave-clear resource bonus.",
       "icon": "📡",
       "cost": {
         "dharma": 100,
         "bandwidth": 60,
         "anonymity": 30
       },
-      "baseDamage": 48,
-      "ratePerSec": 1.25,
-      "projectileSpeed": 34,
-      "range": 350,
-      "aoeRadius": 40,
+      "baseDamage": 0,
+      "ratePerSec": 0,
+      "projectileSpeed": 0,
+      "range": 210,
+      "aoeRadius": 0,
       "critChance": 0,
       "critMult": 1.0,
       "status": {
         "burnDps": 0,
         "slowPct": 0,
         "slowDuration": 0
+      },
+      "support": {
+        "fireRatePct": 0.12
       },
       "special": "boost",
       "color": "#10b981"
@@ -149,7 +84,7 @@
   "enemies": {
     "scriptKiddie": {
       "name": "Script Kiddie",
-      "description": "Fast, erratic movement patterns",
+      "description": "Fast and lightly protected; punish gaps in path coverage.",
       "icon": "👾",
       "baseHP": 60,
       "armor": 0,
@@ -170,7 +105,7 @@
     },
     "federalAgent": {
       "name": "Federal Agent",
-      "description": "Persistent, speeds up near defenses",
+      "description": "Armored and resistant to physical damage.",
       "icon": "🕵️",
       "baseHP": 110,
       "armor": 5,
@@ -191,7 +126,7 @@
     },
     "corporateSaboteur": {
       "name": "Corporate Saboteur",
-      "description": "Stealth capabilities, periodically invisible",
+      "description": "Quick attacker with strong fire resistance.",
       "icon": "💼",
       "baseHP": 95,
       "armor": 0,
@@ -212,7 +147,7 @@
     },
     "aiSurveillance": {
       "name": "AI Surveillance",
-      "description": "Adaptive scanning, learns from defense patterns",
+      "description": "Slow, heavily armored, and resistant to shock damage.",
       "icon": "🤖",
       "baseHP": 160,
       "armor": 10,
@@ -233,7 +168,7 @@
     },
     "quantumHacker": {
       "name": "Quantum Hacker",
-      "description": "Phase-shifting and teleportation abilities",
+      "description": "Very fast with broad damage resistance.",
       "icon": "⚛️",
       "baseHP": 215,
       "armor": 0,
@@ -254,7 +189,7 @@
     },
     "corruptedMonk": {
       "name": "Corrupted Monk",
-      "description": "Healing aura, corrupts nearby defenses",
+      "description": "Slow, highly armored, and resistant to fire.",
       "icon": "👹",
       "baseHP": 270,
       "armor": 15,
@@ -299,7 +234,7 @@
     },
     "megaCorpTitan": {
       "name": "MegaCorp Titan",
-      "description": "Shield regeneration and market manipulation",
+      "description": "Regenerates a protective shield after avoiding damage.",
       "icon": "🏢",
       "baseHP": 950,
       "armor": 30,
@@ -499,7 +434,11 @@
     "waveClearBonus": 40,
     "waveClearBonusPerWave": 10,
     "interestPct": 0,
-    "initialLives": 20
+    "initialLives": 20,
+    "sellRefundPct": 0.7,
+    "distributorWaveBonus": 6,
+    "distributorWaveBonusCap": 30,
+    "distributorAuraCap": 0.35
   },
   "difficulty": {
     "Easy": {
@@ -536,5 +475,24 @@
     "targetTTKLate": 5.0,
     "waveDelayMs": 5000,
     "enemySpawnDelayMs": 1000
+  },
+  "migration": {
+    "deferredTowerRefunds": {
+      "decoy": {
+        "dharma": 30,
+        "bandwidth": 15,
+        "anonymity": 5
+      },
+      "mirror": {
+        "dharma": 75,
+        "bandwidth": 40,
+        "anonymity": 20
+      },
+      "anonymity": {
+        "dharma": 60,
+        "bandwidth": 30,
+        "anonymity": 40
+      }
+    }
   }
 }
