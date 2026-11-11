@@ -53,6 +53,12 @@ suites used `CI=1`, started their own server and read the freshly built `dist/`.
 | `node tools/review/baseline.mjs` | JSON byte-identical to the corrected M1.4 `baseline.json` (SHA-256 `63f3f0133cfa2b0c926493f1d6c7d737e93ec2df52524d39d62fff5a12034bbc`) |
 | `git diff --check` | Pass |
 
+The [PR #19 CI run](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43075287910)
+on `3746648` passed the `validate` job on Ubuntu with Node 22. Checkout, locked
+dependency installation, Chromium with system dependencies, fresh build, and
+unit, integration, simulation, end-to-end and accessibility steps all completed
+successfully. Failure artifact upload was skipped because no browser check failed.
+
 Focused tests compare displayed values with shared combat and economy rules,
 including status duration, chain, EMP expiry, aura and income caps, investment,
 and refund. Browser tests exercise normal pointer actions and real Tab, arrow,

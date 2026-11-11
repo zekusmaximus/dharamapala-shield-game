@@ -199,7 +199,9 @@ support pointer and keyboard inspection while build commands remain locked.
 A detached clean checkout at `61c4b0a` passed the documented install, Chromium,
 build, 70 unit, 18 integration, 2 simulation, 51 end-to-end and 8 accessibility
 checks. The four-policy diagnostic JSON is byte-identical to the M1.4 corrected
-baseline; balance `1.0.0`, save format and combat values are unchanged.
+baseline. The [PR #19 CI run](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43075287910)
+passed the same suites on an Ubuntu runner with Node 22. Balance `1.0.0`, save
+format and combat values are unchanged.
 [Verification details and limits](design/reviews/2026-11-11-m2.1/README.md)
 distinguish Chromium emulation and axe from physical-device and screen-reader
 testing. M2 remains partial; M2.2–M2.6 are open.
