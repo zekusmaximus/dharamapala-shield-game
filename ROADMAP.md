@@ -25,7 +25,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | Milestone | Priority | Status | Depends on | Completion evidence |
 | --- | --- | --- | --- | --- |
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
-| M1 · Make every run trustworthy | P0, plus related P1 fixes | Partial: M1.1–M1.4 complete | M0 | Mobile controls, dialogs, saves/preferences, and combat invariants pass regression checks; CI remains |
+| M1 · Make every run trustworthy | P0, plus related P1 fixes | Partial: M1.1–M1.4 complete; M1.5 local gate passed, PR CI pending | M0 | Mobile controls, dialogs, saves/preferences, and combat invariants pass regression checks; CI verification pending |
 | M2 · Make decisions readable and measurable | P1 | Partial: review diagnostics only | M1 | Accurate combat information, actionable wave reports, reproducible strategy comparisons |
 | M3 · Prove an engaging five-wave game | P1 | Planned | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
@@ -66,7 +66,8 @@ challenge. P2 adds replay value and release polish after the core works.
 
 ## M1 · Make every run trustworthy
 
-**Status: Partial — M1.1–M1.4 complete; M1.5 planned.** This comes before
+**Status: Partial — M1.1–M1.4 complete; M1.5 clean-checkout validation passed,
+PR CI pending.** This comes before
 balance changes. Findings R01–R07 and R10 in the review describe the baseline
 failures. Work in small, independently
 reviewable changes, each with a regression for the behavior it fixes.
@@ -133,6 +134,15 @@ Build, 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility
 checks pass. [New evidence and policy diagnostics](design/reviews/2026-11-11-m1.4/README.md)
 record changed scripted outcomes and browser-emulation limits. M1 remains partial
 until M1.5 is complete; M2 combat feedback is still separate.
+
+**M1.5 validation in progress (2026-11-11):** On a fresh worktree at `15f85e4`
+with no `node_modules/` or `dist/`, installed locked dependencies and Chromium,
+built current output, then passed 63 unit, 18 integration, 2 simulation, 43
+end-to-end and 7 accessibility tests. Browser suites used `CI=1` so Playwright
+started its own server. CI now repeats that pipeline on pull requests with Node
+22 and retains failure traces, screenshots and an HTML report. The pull request's
+CI run is still pending; [M1.5 evidence](design/reviews/2026-11-11-m1.5/README.md)
+records local scope and limits. M1 remains partial until the PR CI gate passes.
 
 Do not change reward values to compensate for a combat bug. Re-run the policy
 baseline after these fixes so subsequent tuning starts from the corrected rules.

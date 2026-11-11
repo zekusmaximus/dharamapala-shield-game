@@ -87,7 +87,7 @@ From a clean checkout with Node.js 22 or newer, run:
 
 ```bash
 npm ci
-npx playwright install --with-deps chromium
+npx playwright install chromium
 npm run build
 npm run test:unit
 npm run test:integration
@@ -106,12 +106,11 @@ canvas. These checks do not establish physical-device, screen-reader, full-campa
 combat or human playtest results; see the roadmap and milestone evidence.
 
 The CI workflow runs this sequence on Ubuntu for every pull request and on
-`main` pushes. The build removes and recreates `dist/` before either browser
-suite; browser tests start their own server in CI. Failed Playwright tests keep
-traces and screenshots in `test-results/`, and CI also writes an HTML report.
-The workflow uploads those artifacts for 14 days when a job fails. On systems
-that already have Chromium's system libraries, `npx playwright install chromium`
-is sufficient for local browser installation.
+`main` pushes, installing Chromium's system libraries with Playwright's
+`--with-deps` option. The build removes and recreates `dist/` before either
+browser suite; browser tests start their own server in CI. Failed Playwright
+tests keep traces and screenshots in `test-results/`, and CI also writes an
+HTML report. The workflow uploads those artifacts for 14 days when a job fails.
 
 Useful simulation commands:
 
