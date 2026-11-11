@@ -53,8 +53,17 @@ test('tutorial, settings, pause, sale and terminal dialogs have no serious acces
   await scan();
   await page.keyboard.press('Escape');
   for (const phase of ['GAME_OVER', 'VICTORY']) {
-    await page.evaluate((phase) => gameApplication.session.enterTerminal(phase), phase);
+    await page.evaluate((phase) => { const s=gameApplication.session; if(phase==='GAME_OVER') s.state.lives=0; else { s.state.waveNumber=s.state.maxWaves; s.state.statistics.wavesCompleted=s.state.maxWaves; } s.enterTerminal(phase); }, phase);
     await scan();
     await page.locator('#terminal-restart-button').click();
   }
+});
+
+test('save recovery controls have no serious accessibility violations', async ({page}) => {
+  await openFresh(page);
+  await page.evaluate(()=>localStorage.setItem('dharmapala-shield/save/v2','broken'));
+  await page.reload();
+  await expect(page.getByRole('region',{name:'Local save recovery'})).toBeVisible();
+  const results=await new AxeBuilder({page}).analyze();
+  expect(results.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);
 });

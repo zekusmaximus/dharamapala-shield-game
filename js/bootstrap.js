@@ -15,6 +15,9 @@ class GameApplication {
       tutorialCompleted: false,
       phase: PHASES.LOADING
     });
+    // Probe once before a fresh run can overwrite an unreadable payload.
+    if (this.repository.hasSave()) this.repository.load(balance);
+    Object.assign(this.session.state.settings, this.repository.preferences());
     const canvas = document.getElementById('game-canvas');
     this.camera = new Camera(canvas);
     this.renderer = new CanvasRenderer(canvas, this.camera, balance, spriteAssets);
@@ -86,6 +89,7 @@ class GameApplication {
   continueGame() {
     const result = this.repository.load(this.balance);
     if (!result.ok) {
+      this.ui.update(this.session);
       this.ui.announce(
         `${result.error} The original payload was preserved for recovery.`,
         true
@@ -114,13 +118,22 @@ class GameApplication {
       this.ui.onSessionEvent(event, this.session);
       this.ui.update(this.session);
       const saveEvents = new Set([
+        'new-game', 'restarted', 'wave-started', 'resumed',
         'tutorial-completed',
         'defense-placed',
         'defense-upgraded',
         'defense-sold',
-        'paused',
-        'wave-completed'
+        'paused'
       ]);
+      if (['settings-updated', 'tutorial-completed'].includes(event.type)) {
+        const result = this.repository.savePreferences(this.session.state.settings);
+        if (!result.ok) this.ui.announce(`Preferences could not be saved: ${result.error}`, true);
+      }
+      if (['new-game', 'restarted'].includes(event.type)) this.lastWaveSaveAtMs = 0;
+      if (['victory', 'game-over', 'wave-completed'].includes(event.type)) {
+        // Capture the finished tick, rather than a partially processed combat loop.
+        queueMicrotask(() => this.save());
+      }
       if (saveEvents.has(event.type)) {
         this.save();
       }
@@ -142,7 +155,7 @@ class GameApplication {
   }
 
   save(message = 'Saved locally.') {
-    if ([PHASES.MENU, PHASES.TUTORIAL].includes(this.session.state.phase)) {
+    if ([PHASES.MENU, PHASES.LOADING].includes(this.session.state.phase)) {
       return { ok: false };
     }
     const result = this.repository.save(this.session);

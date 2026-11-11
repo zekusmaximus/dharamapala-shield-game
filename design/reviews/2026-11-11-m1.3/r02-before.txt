@@ -1,0 +1,7 @@
+missingBandwidth accepted
+negativeLives accepted
+wave999 accepted
+levelZero accepted
+bogusSchedule accepted
+next tick: Unknown enemy type: bogus
+Source firedPhases after restored boss phases: [ 1, 2 ]

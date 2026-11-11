@@ -106,7 +106,8 @@ function mechanics() {
 
   const saved = newSession('Normal', 5);
   saved.startWave();
-  saved.spawnEnemy({ enemyType: 'raidTeam', hpMultiplier: 1 });
+  // Advance the real runtime so counters and cursor form a valid save candidate.
+  saved.step(1000 / 60);
   const snapshot = saved.toSnapshot();
   const restored = GameSession.fromSnapshot(balance, snapshot);
   const restoredBoss = [...restored.state.enemies.values()][0];
