@@ -17,6 +17,7 @@
     "sim:normal": "node tools/sim/run.mjs Normal --seed=1337 --waves=1-20",
     "sim:hard": "node tools/sim/run.mjs Hard --seed=1337 --waves=1-20",
     "sim:easy": "node tools/sim/run.mjs Easy --seed=1337 --waves=1-20",
+    "balance:report": "node tools/balance/report.mjs",
     "tune": "node tools/tune/balance_tuner.mjs"
   },
   "engines": {
