@@ -219,7 +219,9 @@ diagnostics are byte-identical to the corrected M1.4 baseline. Balance `1.0.0`,
 combat values and save format are unchanged.
 [Evidence and limits](design/reviews/2026-11-11-m2.2/README.md) distinguish
 Chromium emulation/axe from physical-device and screen-reader testing.
-M2 remains partial; M2.3–M2.6 are open.
+The [PR #20 CI run](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43077946553)
+passed the same suites on Ubuntu with Node 22. M2 remains partial; M2.3–M2.6
+are open.
 
 **Acceptance gate:** a tester can identify an enemy's threat, compare a new tower
 with an upgrade, see a boss action coming, and use the wave report to explain a

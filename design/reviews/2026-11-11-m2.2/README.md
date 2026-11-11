@@ -96,3 +96,12 @@ one disabled tower, and boss repositioning on the path for an unobstructed view;
 Titan has half its shield. Portrait text scrolls in the build content while the
 battlefield and wave control retain their reserved space. Captures were visually
 inspected; they are not physical-device readability validation.
+
+## Hosted CI
+
+[PR #20 CI run](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43077946553)
+at `4589441` passed the Ubuntu/Node 22 validate job: locked install,
+Chromium with system libraries, fresh build, all 74 unit, 18 integration,
+2 simulation, 57 end-to-end and 9 accessibility checks. Failure-artifact upload
+was skipped because the checks passed. This is separate from the local Node 24
+clean-checkout result above.
