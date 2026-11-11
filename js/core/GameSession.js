@@ -1,3 +1,4 @@
+import { createReports, resourceEntry, finishReport, towerEntry } from './rules/reports.js';
 import {
   ACTIVE_TOWER_TYPES,
   ENEMY_OUTCOMES,
@@ -148,6 +149,7 @@ export class GameSession {
         reducedMotion: false,
         showRanges: true
       },
+      reports: createReports(),
       lastWaveResult: null,
       finalStatistics: null
     };
@@ -231,7 +233,7 @@ export class GameSession {
       scheduled: events.length,
       startedAtMs: this.state.gameTimeMs
     };
-    this.state.lastWaveResult = null;
+    for (const tower of this.state.defenses.values()) towerEntry(this, tower);
     this.state.phase = PHASES.WAVE;
     this.clock.reset();
     this.emitState('wave-started');
@@ -335,6 +337,7 @@ export class GameSession {
       return this.fail('CANNOT_AFFORD');
     }
     this.state.resources = subtractCost(this.state.resources, cost);
+    resourceEntry(this, 'spent', cost);
     const defense = createDefense(type, position, this.ids.next('defense'));
     this.state.defenses.set(defense.id, defense);
     this.state.selectedDefenseId = defense.id;
@@ -373,6 +376,7 @@ export class GameSession {
       return this.fail('CANNOT_AFFORD', { cost });
     }
     this.state.resources = subtractCost(this.state.resources, cost);
+    resourceEntry(this, 'spent', cost);
     defense.level += 1;
     this.emitState('defense-upgraded');
     return commandResult(true, 'DEFENSE_UPGRADED', {
@@ -395,6 +399,7 @@ export class GameSession {
       defense.level
     );
     this.state.resources = addResources(this.state.resources, refund);
+    resourceEntry(this, 'refunds', refund);
     this.state.defenses.delete(id);
     if (this.state.selectedDefenseId === id) {
       this.state.selectedDefenseId = null;
@@ -491,6 +496,7 @@ export class GameSession {
         this.state.difficulty
       );
       this.state.resources = addResources(this.state.resources, reward);
+      resourceEntry(this, 'bounty', reward);
       this.state.score += enemy.kind === 'boss' ? 1000 : 100;
       this.state.statistics.kills += 1;
       this.state.wave.killed += 1;
@@ -505,11 +511,14 @@ export class GameSession {
         definition,
         this.state.difficulty
       );
+      this.state.reports.active.leaks.push({ type: enemy.type, damage,
+        lastCovered: this.state.reports.active.coverage[enemy.id] ?? null });
       this.state.lives = Math.max(0, this.state.lives - damage);
       this.state.statistics.leaks += 1;
       this.state.wave.leaked += 1;
       resolutionEvent = { type: 'enemy-leaked', payload: { enemyId, damage } };
     }
+    delete this.state.reports.active.coverage[enemyId];
     this.state.enemies.delete(enemyId);
 
     // Publish a complete resolution. A synchronous listener may enter a terminal
@@ -542,6 +551,11 @@ export class GameSession {
       distributors
     );
     this.state.resources = addResources(this.state.resources, reward);
+    this.state.reports.active.passiveDharma = reward.dharma - getWaveReward(
+      this.balance, getWaveDefinition(this.balance, completedWave), completedWave, 0
+    ).dharma;
+    resourceEntry(this, 'clear', reward);
+    finishReport(this, 'cleared');
     this.state.lastWaveResult = {
       waveNumber: completedWave,
       killed: this.state.wave.killed,
@@ -569,6 +583,7 @@ export class GameSession {
     if (!TERMINAL_PHASES.has(phase) || TERMINAL_PHASES.has(this.state.phase)) {
       return false;
     }
+    if (phase === PHASES.GAME_OVER) finishReport(this, 'defeat');
     this.scheduler.clear();
     this.generation = this.scheduler.generation;
     this.clock.reset();
@@ -582,6 +597,11 @@ export class GameSession {
     };
     this.emitState(phase === PHASES.VICTORY ? 'victory' : 'game-over');
     return true;
+  }
+
+  dismissReport(waveNumber) {
+    this.state.reports.pending = this.state.reports.pending.filter(r => r.waveNumber !== waveNumber);
+    this.emitState('report-dismissed');
   }
 
   getReadModel() {
@@ -687,6 +707,7 @@ export class GameSession {
     });
     session.state = {
       ...snapshot.state,
+      reports: snapshot.state.reports ?? createReports(true),
       resources: { ...snapshot.state.resources },
       statistics: { ...snapshot.state.statistics },
       wave: { ...snapshot.state.wave },

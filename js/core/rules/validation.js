@@ -1,3 +1,4 @@
+import { validateReports } from './reports.js';
 import { ACTIVE_TOWER_TYPES, PHASES, TERMINAL_PHASES } from '../commands.js';
 import { isInsideWorld, isNearPath, snapToBuildGrid, pointAtPathDistance, PATH_METRICS } from '../world.js';
 import { getTowerStats } from './towers.js';
@@ -136,6 +137,7 @@ export function validateSnapshot(snapshot, balance) {
   assert([...orders].every(order => order < schedule.events.length), 'Noncontiguous schedule order');
   assert(number(r.clock?.accumulatorMs, -1e-8, 1000/60+1e-8) && integer(r.randomState, 1, 0xffffffff), 'Invalid runtime clock/random');
   if (!waveActive && !terminal) assert(s.enemies.length === 0 && s.projectiles.length === 0, 'Entities outside combat');
+  validateReports(s.reports, balance);
   if (s.lastWaveResult !== null) { const result = s.lastWaveResult; assert(integer(result.waveNumber, 1, s.maxWaves) && integer(result.killed) && integer(result.leaked), 'Invalid wave result'); resources(result.reward); }
   if (terminal) {
     stats(s.finalStatistics); fields(s.finalStatistics, ['score', 'lives', 'waveNumber']);

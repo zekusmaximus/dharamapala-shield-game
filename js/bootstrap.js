@@ -126,7 +126,7 @@ class GameApplication {
       this.ui.update(this.session);
       const saveEvents = new Set([
         'new-game', 'restarted', 'wave-started', 'resumed',
-        'tutorial-completed',
+        'tutorial-completed', 'report-dismissed',
         'defense-placed',
         'defense-upgraded',
         'defense-sold',

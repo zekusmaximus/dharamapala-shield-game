@@ -1,3 +1,4 @@
+import { sampleCoverage } from '../core/rules/reports.js';
 import { RAID_EMP } from '../core/rules/combat.js';
 import { PATH_METRICS, pointAtPathDistance } from '../core/world.js';
 import { PHASES } from '../core/commands.js';
@@ -28,6 +29,7 @@ export class EnemySystem {
         );
       }
 
+      sampleCoverage(session, enemy);
       const speedMultiplier = 1 - Math.max(0, Math.min(0.8, enemy.slowPct));
       enemy.pathDistance += enemy.speed * speedMultiplier * (deltaMs / 1000);
       const position = pointAtPathDistance(enemy.pathDistance);

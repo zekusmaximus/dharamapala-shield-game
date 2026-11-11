@@ -48,3 +48,15 @@ export async function combatFixture(page, wave = 5) {
     app.ui.update(s);
   }, wave);
 }
+
+// Accelerated production wave, not a fixture that awards kills or clears directly.
+export async function reportFixture(page, defeat = false) {
+  await page.evaluate((defeat) => {
+    const s = gameApplication.session;
+    s.tick = () => {}; // disable RAF while synchronous fixed steps advance combat
+    if (defeat) s.state.lives = 1;
+    s.startWave();
+    for (let i = 0; i < 30000 && s.state.phase === 'WAVE'; i++) s.step(1000 / 60);
+    gameApplication.ui.update(s);
+  }, defeat);
+}

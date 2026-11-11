@@ -1,3 +1,4 @@
+import { towerEntry } from '../core/rules/reports.js';
 import {
   applyVulnerability,
   circlesIntersect,
@@ -161,8 +162,11 @@ export class CombatSystem {
       definition,
       projectile.damageType
     );
+    let shieldDamage = 0;
+    const healthBefore = enemy.health;
     if (enemy.shield > 0) {
       const absorbed = Math.min(enemy.shield, damage);
+      shieldDamage = absorbed;
       enemy.shield -= absorbed;
       damage -= absorbed;
     }
@@ -176,6 +180,11 @@ export class CombatSystem {
     const source = session.state.defenses.get(projectile.sourceId);
     if (source) {
       source.totalDamage += damage;
+      const entry = towerEntry(session, source);
+      entry.health += Math.min(Math.max(0, healthBefore), damage);
+      entry.shield += shieldDamage;
+      entry.slowHits += Number(projectile.slowDurationMs > 0 && projectile.slowPct > 0);
+      entry.vulnerabilityHits += Number(projectile.vulnerabilityDurationMs > 0 && projectile.vulnerabilityPct > 0);
     }
 
     if (projectile.slowDurationMs > 0) {
@@ -198,6 +207,7 @@ export class CombatSystem {
     if (enemy.health <= 0) {
       if (source) {
         source.kills += 1;
+        towerEntry(session, source).kills += 1;
       }
       session.resolveEnemy(enemy.id, 'KILLED');
       if (session.state.phase !== PHASES.WAVE) {
