@@ -61,6 +61,15 @@ export class GameUI {
   }
 
   bind() {
+    for (const [button, panel] of [
+      ['close-preview-button', this.elements.preview],
+      ['close-inspector-button', this.elements.inspector]
+    ]) {
+      byId(button).addEventListener('click', () => {
+        panel.open = false;
+        panel.querySelector('summary').focus();
+      });
+    }
     byId('new-game-button').addEventListener('click', () =>
       this.commands.newGame(byId('difficulty-select').value)
     );
@@ -117,6 +126,7 @@ export class GameUI {
       const id = this.commands.session().state.selectedDefenseId;
       this.closeDialog(this.elements.sellDialog);
       this.commands.session().sellDefense(id);
+      byId('game-canvas').focus();
     });
     this.elements.settings.addEventListener('click', () => this.openSettings());
     byId('close-settings-button').addEventListener('click', () =>
@@ -215,6 +225,9 @@ export class GameUI {
   }
 
   onSessionEvent(event, session) {
+    if (['defense-placed', 'defense-selected'].includes(event.type)) {
+      this.elements.inspector.open = true;
+    }
     if (
       event.type === 'defense-placed' &&
       this.tutorialActive &&
@@ -325,10 +338,10 @@ export class GameUI {
   renderInspector(model) {
     const tower = model.selectedTower;
     this.elements.inspector.hidden = !tower;
-    const mobilePortrait = matchMedia(
-      '(max-width: 1023px) and (orientation: portrait)'
-    ).matches;
-    this.elements.preview.hidden = Boolean(tower && mobilePortrait);
+    if (tower?.id !== this.lastInspectedTowerId) {
+      this.elements.inspector.open = Boolean(tower);
+      this.lastInspectedTowerId = tower?.id;
+    }
     if (!tower) {
       return;
     }

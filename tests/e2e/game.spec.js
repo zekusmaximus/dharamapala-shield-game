@@ -194,7 +194,9 @@ test('keyboard-only build flow can place a tower and start a wave', async ({
 
 for (const viewport of [
   { name: 'desktop', width: 1280, height: 720 },
+  { name: 'small portrait', width: 360, height: 640 },
   { name: 'portrait', width: 390, height: 844 },
+  { name: 'small landscape', width: 640, height: 360 },
   { name: 'landscape', width: 844, height: 390 }
 ]) {
   test(`${viewport.name} layout keeps battlefield and primary controls in the viewport`, async ({
@@ -258,4 +260,162 @@ test('zoom is not disabled and interactive elements have accessible names', asyn
       buttons.filter((button) => !button.textContent.trim()).map((button) => button.id)
   );
   expect(unnamed).toEqual([]);
+});
+
+test('portrait preview does not intercept palette selection', async ({ page }) => {
+  await openFresh(page, { width: 360, height: 640 });
+  await enterBuildPhase(page);
+  await page.locator('[data-tower-type="firewall"]').click({ timeout: 2000 });
+  await clickWorld(page, 210, 210);
+  expect(await page.evaluate(() => gameApplication.session.state.defenses.size)).toBe(1);
+  await page.getByRole('button', { name: 'Start wave 1' }).click({ timeout: 2000 });
+  await expect(page.locator('#phase-label')).toHaveText('Wave active');
+});
+
+// These fixtures choose real production preview data; gameplay actions below
+// always travel through the DOM and the normal input controller.
+async function largestPreview(page) {
+  return page.evaluate(() => {
+    const { session, ui } = gameApplication;
+    let largest = { wave: 1, count: 0 };
+    for (let wave = 1; wave <= session.balance.waves.length; wave++) {
+      session.state.waveNumber = wave;
+      const count = session.getReadModel().preview.enemies.length;
+      if (count >= largest.count) largest = { wave, count };
+    }
+    session.state.waveNumber = largest.wave;
+    ui.update(session);
+    return largest;
+  });
+}
+
+async function activateWorld(page, method, x, y) {
+  await expect.poll(() => page.evaluate(() => {
+    const { camera } = gameApplication;
+    return Math.abs(camera.cssWidth - camera.canvas.getBoundingClientRect().width);
+  })).toBeLessThan(1);
+  const point = await page.evaluate(({ x, y }) => {
+    const { camera } = gameApplication;
+    const rect = camera.canvas.getBoundingClientRect();
+    return { x: rect.left + camera.offsetX + x * camera.scale,
+      y: rect.top + camera.offsetY + y * camera.scale };
+  }, { x, y });
+  if (method === 'tap') await page.touchscreen.tap(point.x, point.y);
+  else await page.mouse.click(point.x, point.y);
+}
+
+const controlViewports = [
+  { width: 360, height: 640 }, { width: 390, height: 844 },
+  { width: 640, height: 360 }, { width: 844, height: 390 },
+  { width: 1280, height: 720 }
+];
+for (const viewport of controlViewports) {
+  for (const method of ['click', 'tap']) {
+    test(`${viewport.width}x${viewport.height} ${method}: open panels allow building and waves`, async ({ browser }, testInfo) => {
+      const context = await browser.newContext({ viewport, hasTouch: true });
+      const page = await context.newPage();
+      await openFresh(page, viewport);
+      await enterBuildPhase(page);
+      const largest = await largestPreview(page);
+      expect(largest.count).toBeGreaterThan(1);
+      await expect(page.locator('#wave-preview-list li')).toHaveCount(largest.count);
+      const act = async (locator) => locator[method]();
+      // Leave the largest preview expanded while selecting every tower role.
+      for (const type of ['distributor', 'encryption', 'firewall']) {
+        await act(page.locator(`[data-tower-type="${type}"]`));
+        await expect(page.locator(`[data-tower-type="${type}"]`)).toHaveAttribute('aria-pressed', 'true');
+      }
+      await activateWorld(page, method, 210, 210);
+      await expect(page.getByRole('button', { name: /Upgrade/ })).toBeVisible();
+      // Palette remains usable with inspector open, and canvas accepts another build.
+      await act(page.locator('[data-tower-type="firewall"]'));
+      await activateWorld(page, method, 270, 210);
+      expect(await page.evaluate(() => gameApplication.session.state.defenses.size)).toBe(2);
+      await activateWorld(page, method, 210, 210);
+      await act(page.getByRole('button', { name: /Upgrade/ }));
+      expect(await page.evaluate(() => [...gameApplication.session.state.defenses.values()][0].level)).toBe(2);
+      await act(page.getByRole('button', { name: 'Hide tower details' }));
+      await expect(page.locator('#inspector-title')).toBeFocused();
+      await expect(page.locator('#tower-inspector')).not.toHaveAttribute('open');
+      // Reselect the same tower to reopen details, then sell it normally.
+      await activateWorld(page, method, 210, 210);
+      await act(page.getByRole('button', { name: /Sell ·/ }));
+      await act(page.getByRole('button', { name: 'Confirm sale' }));
+      expect(await page.evaluate(() => gameApplication.session.state.defenses.size)).toBe(1);
+      await expect(page.locator('#game-canvas')).toBeFocused();
+      await act(page.getByRole('button', { name: 'Hide wave preview' }));
+      await expect(page.locator('#wave-preview-title')).toBeFocused();
+      await act(page.locator('#wave-preview-title'));
+      await activateWorld(page, method, 210, 210);
+      // Both panels are expanded, and the inspector has real tower content.
+      await expect(page.locator('#tower-inspector')).toHaveAttribute('open', '');
+      await expect(page.locator('#wave-preview-section')).toHaveAttribute('open', '');
+      const start = page.getByRole('button', { name: `Start wave ${largest.wave}` });
+      await expect(start).toBeInViewport({ ratio: 1 });
+      await page.screenshot({ path: testInfo.outputPath('open-panels.png') });
+      await testInfo.attach('open-panels', { path: testInfo.outputPath('open-panels.png'), contentType: 'image/png' });
+      await act(page.getByRole('button', { name: `Start wave ${largest.wave}` }));
+      await expect(page.locator('#phase-label')).toHaveText('Wave active');
+      await context.close();
+    });
+  }
+}
+
+for (const portrait of controlViewports.slice(0, 2)) {
+  test(`touch rotation from ${portrait.width}x${portrait.height} preserves open panel access`, async ({ browser }) => {
+    const context = await browser.newContext({ viewport: portrait, hasTouch: true });
+    const page = await context.newPage();
+    await openFresh(page, portrait);
+    await enterBuildPhase(page);
+    await largestPreview(page);
+    await activateWorld(page, 'tap', 210, 210);
+    for (const viewport of [{ width: portrait.height, height: portrait.width }, portrait]) {
+      await page.setViewportSize(viewport);
+      if (viewport.width > viewport.height) {
+        await page.getByRole('button', { name: /Upgrade/ }).tap();
+      } else {
+        await page.getByRole('button', { name: /Sell ·/ }).tap();
+        await page.getByRole('button', { name: 'Cancel', exact: true }).tap();
+      }
+      await page.locator('[data-tower-type="firewall"]').tap();
+      await activateWorld(page, 'tap', 210, 210);
+      await expect(page.locator('#tower-inspector')).toHaveAttribute('open', '');
+    }
+    await page.getByRole('button', { name: /Start wave/ }).tap();
+    await expect(page.locator('#phase-label')).toHaveText('Wave active');
+    await context.close();
+  });
+}
+
+async function tabTo(page, locator, backwards = false) {
+  for (let count = 0; count < 40; count++) {
+    if (await locator.evaluate((element) => element === document.activeElement)) return;
+    await page.keyboard.press(backwards ? 'Shift+Tab' : 'Tab');
+  }
+  throw new Error(`Control not reachable by Tab: ${locator}`);
+}
+
+test('portrait disclosures and building work with real Tab navigation', async ({ page }) => {
+  await openFresh(page, { width: 360, height: 640 });
+  await tabTo(page, page.getByRole('button', { name: 'New game' }));
+  await page.keyboard.press('Enter');
+  await tabTo(page, page.getByRole('button', { name: 'Skip tutorial' }));
+  await page.keyboard.press('Enter');
+  await tabTo(page, page.locator('#wave-preview-title'), true);
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#wave-preview-section')).not.toHaveAttribute('open');
+  await page.keyboard.press('Enter');
+  await tabTo(page, page.locator('[data-tower-type="firewall"]'), true);
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#game-canvas')).toBeFocused();
+  await page.keyboard.press('Enter');
+  await tabTo(page, page.getByRole('button', { name: /Upgrade/ }));
+  await page.keyboard.press('Enter');
+  await tabTo(page, page.getByRole('button', { name: 'Hide tower details' }));
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#inspector-title')).toBeFocused();
+  await page.keyboard.press('Enter');
+  await tabTo(page, page.getByRole('button', { name: 'Start wave 1' }));
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#phase-label')).toHaveText('Wave active');
 });
