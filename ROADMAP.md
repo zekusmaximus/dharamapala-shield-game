@@ -26,7 +26,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | --- | --- | --- | --- | --- |
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
-| M2 · Make decisions readable and measurable | P1 | Partial: M2.1–M2.4 complete; M2.5–M2.6 open | M1 | M2.3 clean checkout passes 74 unit, 25 integration, 2 simulation, 63 browser and 10 accessibility checks; M2.4 adds seven-policy production-combat comparisons; later M2 work remains |
+| M2 · Make decisions readable and measurable | P1 | Partial: M2.1–M2.5 complete; M2.6 open | M1 | M2.5 clean checkout passes 76 unit, 31 integration, 7 simulation, 69 browser and 10 accessibility checks; M2.4 seven-policy default-speed results remain unchanged; M2.6 remains |
 | M3 · Prove an engaging five-wave game | P1 | Planned | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
@@ -155,8 +155,9 @@ finish a run without blocked controls, stale transitions, or contradictory state
 
 ## M2 · Make decisions readable and measurable
 
-**Status: Partial.** M2.1 tower/enemy inspection, M2.2 combat feedback, M2.3 wave reports and M2.4 balance reporting are complete.
-Pacing controls and iteration safety below remain planned. M1
+**Status: Partial.** M2.1 tower/enemy inspection, M2.2 combat feedback, M2.3 wave reports,
+M2.4 balance reporting and M2.5 wave speed are complete. M2.6 iteration safety
+remains planned. M1
 establishes trust; this milestone gives the player and developer enough
 information to improve the game. Findings R07, R08, R10–R12.
 
@@ -180,7 +181,7 @@ information to improve the game. Findings R07, R08, R10–R12.
   time, resource surpluses, spending and contribution. Distinguish deterministic
   repeats from independent scenarios. Rename or document `tune` as a reporter
   until it actually searches values.
-- [ ] **M2.5 · Improve pacing controls.** Add 1×/2× wave speed through fixed clock
+- [x] **M2.5 · Improve pacing controls.** Add 1×/2× wave speed through fixed clock
   advancement, with pause and save/continue equivalence. Keep wave starts deliberate.
   Make any later fast-forward/auto-start option explicit and opt-in.
 - [ ] **M2.6 · Make iteration safe.** Validate used content fields and move tunable
@@ -256,8 +257,25 @@ reporter without a parameter search. Corrected M1.4 diagnostics remain
 byte-identical. Balance `1.0.0`, values, production gameplay/UI and saves are
 unchanged. A clean checkout and PR #22 CI pass 74 unit, 25 integration, 7 simulation,
 63 end-to-end and 10 accessibility checks; regenerated evidence is byte-identical.
-M2 remains partial;
-M2.5/M2.6 and human difficulty/playtest gates remain open.
+At M2.4, M2.5/M2.6 and human difficulty/playtest gates remained open.
+
+**M2.5 complete (2026-11-11):** From latest main `c035940` (PR #22), added
+labelled, keyboard-operable 1×/2× controls beside Start Wave and in Pause and
+in-run Settings. The selected run speed multiplies clamped real-frame time before
+the existing 60 Hz combat steps; fractional simulated time survives switching,
+pause and save/Continue. Building and dialogs remain idle, wave starts remain
+deliberate, terminal states stop, and restart/new run returns to 1×. Existing
+valid v2 saves default to 1×; the new optional field leaves preferences, balance
+`1.0.0`, save schema and combat values unchanged. Production wave-5/15 comparisons
+cover spawning, projectiles, status expiry, Raid Team phases, Titan shield,
+resources and full reports at equal simulated time; switching and a restored
+mid-phase save continue identically. Natural defeat and final-wave victory
+fixtures stop further advancement. A clean checkout at `9b52bd2` passed locked
+install, Chromium, fresh build, 76 unit, 31 integration, 7 simulation, 69
+browser and 10 accessibility checks. Corrected M1.4 diagnostics and regenerated
+M2.4 default-speed report/summary are byte-identical. [M2.5 evidence and
+limits](design/reviews/2026-11-11-m2.5/README.md) distinguish scenario setup and
+automated Chromium from human/device validation. M2 remains partial; M2.6 is open.
 
 **Acceptance gate:** a tester can identify an enemy's threat, compare a new tower
 with an upgrade, see a boss action coming, and use the wave report to explain a
