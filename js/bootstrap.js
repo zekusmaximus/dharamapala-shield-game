@@ -142,6 +142,7 @@ class GameApplication {
 
   bindPlatform() {
     window.addEventListener('resize', () => this.camera.resize());
+    new ResizeObserver(() => this.camera.resize()).observe(this.camera.canvas);
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden) {
         this.lastFrameAt = performance.now();
