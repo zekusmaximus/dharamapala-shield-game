@@ -9,8 +9,9 @@ headless simulation, and tests.
 See the [current roadmap](ROADMAP.md) for priorities, milestone status, and
 completion gates, and the [2026-11-11 code review](design/CODE_REVIEW_2026-11-11.md)
 for evidence and known issues. M1.1–M1.4 now cover portrait controls, dialog
-cancellation, save integrity and combat correctness. M1.5 CI is next; broader
-combat feedback and the five-wave design milestone follow in the roadmap.
+cancellation, save integrity and combat correctness. M1.5 automates their
+validation in CI; broader combat feedback and the five-wave design milestone
+follow in the roadmap.
 
 The earlier [implementation plan](implementation.md) remains an architecture
 reference; it is not the current backlog. The
@@ -82,7 +83,11 @@ export/reset recovery flow. See [deferred tower concepts](design/FUTURE_TOWERS.m
 
 ## Validation
 
+From a clean checkout with Node.js 22 or newer, run:
+
 ```bash
+npm ci
+npx playwright install --with-deps chromium
 npm run build
 npm run test:unit
 npm run test:integration
@@ -100,8 +105,13 @@ build, dialogs and recovery controls for serious/critical findings, excluding
 canvas. These checks do not establish physical-device, screen-reader, full-campaign
 combat or human playtest results; see the roadmap and milestone evidence.
 
-Install Chromium with `npx playwright install chromium` before running browser
-checks, and build first so the tests exercise current files in `dist/`.
+The CI workflow runs this sequence on Ubuntu for every pull request and on
+`main` pushes. The build removes and recreates `dist/` before either browser
+suite; browser tests start their own server in CI. Failed Playwright tests keep
+traces and screenshots in `test-results/`, and CI also writes an HTML report.
+The workflow uploads those artifacts for 14 days when a job fails. On systems
+that already have Chromium's system libraries, `npx playwright install chromium`
+is sufficient for local browser installation.
 
 Useful simulation commands:
 
