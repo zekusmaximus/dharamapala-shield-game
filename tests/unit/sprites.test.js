@@ -62,6 +62,18 @@ function createRenderer(context, spriteAssets) {
   return new CanvasRenderer(canvas, camera, balance, spriteAssets);
 }
 
+test('wave keyboard inspection cursor is drawn at its world position', () => {
+  const calls = [];
+  const context = {
+    setLineDash: (pattern) => calls.push(['dash', pattern]),
+    strokeRect: (...args) => calls.push(['rect', ...args])
+  };
+  const renderer = createRenderer(context);
+  renderer.inspectionPosition = { x: 270, y: 210 };
+  renderer.drawPlacement(context, { state: { phase: 'WAVE', defenses: new Map() } });
+  assert.deepEqual(calls.find(([name]) => name === 'rect'), ['rect', 245, 185, 50, 50]);
+});
+
 test('catalog covers every active tower, enemy, and boss exactly once', () => {
   const activeIds = [
     ...Object.keys(balance.towers),

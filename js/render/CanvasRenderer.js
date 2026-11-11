@@ -16,6 +16,7 @@ export class CanvasRenderer {
     this.balance = balance;
     this.spriteAssets = spriteAssets;
     this.placementPosition = null;
+    this.inspectionPosition = null;
     this.tutorialBuildHighlight = false;
     this.camera.resize();
   }
@@ -230,6 +231,21 @@ export class CanvasRenderer {
         54
       );
       context.setLineDash([]);
+    }
+    if (session.state.phase === 'WAVE') {
+      if (this.inspectionPosition) {
+        context.strokeStyle = '#ffe66d';
+        context.lineWidth = 3;
+        context.setLineDash([5, 3]);
+        context.strokeRect(
+          this.inspectionPosition.x - 25,
+          this.inspectionPosition.y - 25,
+          50,
+          50
+        );
+        context.setLineDash([]);
+      }
+      return;
     }
     if (!this.placementPosition || session.state.phase !== 'BUILDING') {
       return;

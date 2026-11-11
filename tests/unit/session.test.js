@@ -86,3 +86,26 @@ test('placement, upgrades, and selling use one authoritative defense Map', () =>
   assert.equal(session.sellDefense(defense.id).ok, true);
   assert.equal(session.state.defenses.size, 0);
 });
+
+test('wave inspection can select a tower without opening build commands', () => {
+  const session = buildingSession();
+  assert.equal(session.placeDefense('firewall', { x: 210, y: 210 }).ok, true);
+  const defense = [...session.state.defenses.values()][0];
+  session.startWave();
+  const resources = { ...session.state.resources };
+  const level = defense.level;
+  assert.equal(session.selectDefense(null).ok, true);
+  assert.equal(session.selectDefense(defense.id).ok, true);
+  assert.equal(session.state.selectedDefenseId, defense.id);
+  for (const result of [
+    session.placeDefense('firewall', { x: 330, y: 210 }),
+    session.upgradeDefense(defense.id),
+    session.sellDefense(defense.id),
+    session.selectTowerType('encryption')
+  ]) {
+    assert.equal(result.code, 'INVALID_PHASE');
+  }
+  assert.deepEqual(session.state.resources, resources);
+  assert.equal(session.state.defenses.get(defense.id).level, level);
+  assert.equal(session.state.defenses.size, 1);
+});

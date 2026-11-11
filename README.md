@@ -8,10 +8,9 @@ headless simulation, and tests.
 
 See the [current roadmap](ROADMAP.md) for priorities, milestone status, and
 completion gates, and the [2026-11-11 code review](design/CODE_REVIEW_2026-11-11.md)
-for evidence and known issues. M1.1–M1.4 now cover portrait controls, dialog
-cancellation, save integrity and combat correctness. M1.5 automates their
-validation in CI; broader combat feedback and the five-wave design milestone
-follow in the roadmap.
+for evidence and known issues. M1 is complete. M2.1 adds rule-derived tower and
+enemy inspection; combat feedback, wave reports, and the five-wave design
+milestone remain in the roadmap.
 
 The earlier [implementation plan](implementation.md) remains an architecture
 reference; it is not the current backlog. The
@@ -42,11 +41,18 @@ The active tower roster is deliberately small:
   wave-clear bonus counts installed Distributors even if EMP is active when a
   wave ends. The aura resumes at the exact disable expiry time.
 
-Select a placed tower during building to see current/next stats, upgrade it through
-five levels, or sell it for 70% of the total invested resources.
+Use a tower's **Info** button to compare an unplaced tower's first two levels,
+even when it is unaffordable or a wave is active. Select a placed tower to compare
+its current and next level, active support benefit, total investment, and refund.
+During building, it can be upgraded through five levels or sold for 70% of the
+total invested resources. The wave roster opens enemy armor, active damage
+resistances, implemented abilities, and counter hints. During waves, towers and
+live enemies can be inspected on the battlefield, while building, upgrades, and
+selling remain locked.
 
-Pointer and touch input work on the battlefield. For keyboard placement, focus the
-canvas, move the build cursor with the arrow keys, and press Enter or Space.
+Pointer and touch input work on the battlefield. For keyboard placement or wave
+inspection, focus the canvas, move the cursor with the arrow keys, and press
+Enter or Space. The wave roster and tower Info buttons are also reachable by Tab.
 
 ## Architecture
 

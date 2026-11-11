@@ -346,7 +346,7 @@ export class GameSession {
   }
 
   selectDefense(id) {
-    if (![PHASES.BUILDING, PHASES.PAUSED].includes(this.state.phase)) {
+    if (![PHASES.BUILDING, PHASES.WAVE, PHASES.PAUSED].includes(this.state.phase)) {
       return this.fail('INVALID_PHASE');
     }
     if (id !== null && !this.state.defenses.has(id)) {

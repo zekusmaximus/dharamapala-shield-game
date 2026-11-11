@@ -42,8 +42,7 @@ export function getWavePreview(balance, waveNumber) {
         id: group.id,
         name: enemy.name,
         icon: enemy.icon,
-        count: group.count,
-        ability: enemy.description
+        count: group.count
       };
     })
   };

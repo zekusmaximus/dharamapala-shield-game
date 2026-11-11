@@ -2,17 +2,26 @@ import { PHASES } from '../core/commands.js';
 import { TUTORIAL_BUILD_POSITION, WORLD } from '../core/world.js';
 
 export class InputController {
-  constructor({ canvas, camera, renderer, getSession, announce }) {
+  constructor({ canvas, camera, renderer, getSession, announce, inspectEnemy }) {
     this.canvas = canvas;
     this.camera = camera;
     this.renderer = renderer;
     this.getSession = getSession;
     this.announce = announce;
+    this.inspectEnemy = inspectEnemy;
     this.keyboardCursor = { ...TUTORIAL_BUILD_POSITION };
     this.bind();
   }
 
   bind() {
+    this.canvas.addEventListener('focus', () => {
+      if (this.getSession().state.phase === PHASES.WAVE) {
+        this.renderer.inspectionPosition = { ...this.keyboardCursor };
+      }
+    });
+    this.canvas.addEventListener('blur', () => {
+      this.renderer.inspectionPosition = null;
+    });
     this.canvas.addEventListener('pointermove', (event) => {
       this.renderer.placementPosition = this.camera.screenToWorld(
         event.clientX,
@@ -23,6 +32,7 @@ export class InputController {
       this.renderer.placementPosition = null;
     });
     this.canvas.addEventListener('click', (event) => {
+      this.renderer.inspectionPosition = null;
       this.activate(
         this.camera.screenToWorld(event.clientX, event.clientY)
       );
@@ -45,9 +55,13 @@ export class InputController {
           Math.min(WORLD.height, this.keyboardCursor.y + movement[1])
         );
         this.renderer.placementPosition = { ...this.keyboardCursor };
-        this.announce(
-          `Build cursor column ${Math.round(this.keyboardCursor.x / WORLD.gridSize)}, row ${Math.round(this.keyboardCursor.y / WORLD.gridSize)}.`
-        );
+        if (this.getSession().state.phase === PHASES.WAVE) {
+          this.renderer.inspectionPosition = { ...this.keyboardCursor };
+        }
+        const label = this.getSession().state.phase === PHASES.WAVE
+          ? 'Inspection cursor'
+          : 'Build cursor';
+        this.announce(`${label} column ${Math.round(this.keyboardCursor.x / WORLD.gridSize)}, row ${Math.round(this.keyboardCursor.y / WORLD.gridSize)}.`);
       }
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
@@ -55,18 +69,31 @@ export class InputController {
       }
       if (event.key === 'Escape') {
         this.getSession().selectDefense(null);
+        this.inspectEnemy(null);
       }
     });
   }
 
   activate(position) {
     const session = this.getSession();
-    if (session.state.phase !== PHASES.BUILDING) {
+    if (![PHASES.BUILDING, PHASES.WAVE].includes(session.state.phase)) {
       return;
     }
     const selected = [...session.state.defenses.values()].find(
       (defense) => Math.hypot(defense.x - position.x, defense.y - position.y) <= 28
     );
+    if (session.state.phase === PHASES.WAVE) {
+      const enemy = [...session.state.enemies.values()].find(
+        (candidate) => !candidate.resolution &&
+          Math.hypot(candidate.x - position.x, candidate.y - position.y) <= candidate.radius + 14
+      );
+      if (enemy) {
+        this.inspectEnemy(enemy.type);
+        return;
+      }
+      if (selected) session.selectDefense(selected.id);
+      return;
+    }
     const result = selected
       ? session.selectDefense(selected.id)
       : session.placeDefense(session.state.selectedTowerType, position);
