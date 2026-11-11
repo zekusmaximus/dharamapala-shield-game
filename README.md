@@ -8,9 +8,9 @@ headless simulation, and tests.
 
 See the [current roadmap](ROADMAP.md) for priorities, milestone status, and
 completion gates, and the [2026-11-11 code review](design/CODE_REVIEW_2026-11-11.md)
-for evidence and known issues. M1 is complete. M2.1–M2.4 provide inspection, combat feedback, persistent wave reports and a
-reproducible balance report. M2 remains partial; pacing controls and later design
-work remain in the roadmap.
+for evidence and known issues. M1 is complete. M2.1–M2.5 provide inspection,
+combat feedback, persistent wave reports, a reproducible balance report and
+wave-speed controls. M2 remains partial; M2.6 iteration safety remains open.
 
 The earlier [implementation plan](implementation.md) remains an architecture
 reference; it is not the current backlog. The
@@ -30,6 +30,24 @@ Open <http://localhost:3000>.
 New games enter a guided build phase. Place towers on clear grid cells, inspect the
 incoming composition, then activate **Start Wave**. Nothing spawns during building
 or pause.
+
+The **Wave speed** buttons beside Start Wave select **1×** or **2×**. They are also
+available in the Pause and in-run Settings dialogs. A new run starts at 1×. The
+selection can be made while building, but combat still waits for Start Wave. It
+persists through wave clears, pause and settings, and applies when combat resumes.
+Opening Settings during a wave pauses it. Pause, settings, building and terminal
+screens do not advance combat time. Terminal screens lock the controls; restarting
+or starting a new run resets to 1×. Menu Settings do not select a run speed.
+
+Both speeds use the same 60 Hz combat step. At 2× the clock credits twice as much
+simulated time per real frame; it never changes a spawn interval, projectile step
+or combat value. A real frame is capped at 250 ms before speed is applied, so a
+long frame credits at most 250 ms at 1× or 500 ms at 2×. Fractional simulated
+time remains in the clock when speed changes or play pauses, and is saved with
+the run. Continue restores the chosen speed and fraction; older valid v2 saves
+default to 1×. Returning to the menu saves the departing run. A hidden tab
+pauses instead of catching up unseen combat when it becomes visible again.
+Wave speed is run state, separate from persistent presentation preferences.
 
 The active tower roster is deliberately small:
 
@@ -104,7 +122,7 @@ npm run test:a11y
 
 The suites cover phase transitions, fixed scheduling, combat and income rules,
 terminal state agreement, Titan shield recovery, Raid Team EMP support, save
-validation and continued combat after restore. Browser checks exercise actual
+validation, continued combat after restore and 1×/2× wave equivalence. Browser checks exercise actual
 pointer, emulated touch and keyboard flows across desktop, portrait and landscape
 sizes, M2.1 tower and enemy inspection, and local persistence. Axe checks menu,
 build, wave inspector, dialogs and recovery controls for serious/critical findings,

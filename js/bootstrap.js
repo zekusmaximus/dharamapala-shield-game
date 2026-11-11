@@ -115,6 +115,9 @@ class GameApplication {
     this.unsubscribe?.();
     this.session = session;
     this.bindSession();
+    // A restored clock contains simulated fractional time, but the browser
+    // gap spent loading must not count as a new combat frame.
+    this.lastFrameAt = performance.now();
     this.lastWaveSaveAtMs = session.state.gameTimeMs;
     this.ui.update(session);
     this.camera.resize();
@@ -129,7 +132,7 @@ class GameApplication {
         'tutorial-completed', 'report-dismissed',
         'defense-placed',
         'defense-upgraded',
-        'defense-sold',
+        'defense-sold', 'wave-speed-updated',
         'paused'
       ]);
       if (['settings-updated', 'tutorial-completed'].includes(event.type)) {
@@ -137,6 +140,9 @@ class GameApplication {
         if (!result.ok) this.ui.announce(`Preferences could not be saved: ${result.error}`, true);
       }
       if (['new-game', 'restarted'].includes(event.type)) this.lastWaveSaveAtMs = 0;
+      if (['wave-started', 'resumed'].includes(event.type)) {
+        this.lastFrameAt = performance.now();
+      }
       if (['victory', 'game-over', 'wave-completed'].includes(event.type)) {
         // Capture the finished tick, rather than a partially processed combat loop.
         queueMicrotask(() => this.save());

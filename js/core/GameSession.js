@@ -131,6 +131,7 @@ export class GameSession {
       phase,
       resumePhase: null,
       gameTimeMs: 0,
+      waveSpeed: 1,
       waveNumber: 1,
       maxWaves: this.balance.waves.length,
       lives: this.balance.economy.initialLives,
@@ -216,6 +217,19 @@ export class GameSession {
     this.state.settings[name] = Boolean(value);
     this.emitState('settings-updated');
     return commandResult(true, 'SETTING_UPDATED', { name });
+  }
+
+  setWaveSpeed(speed) {
+    if (speed !== 1 && speed !== 2) {
+      return this.fail('INVALID_WAVE_SPEED');
+    }
+    if (![PHASES.BUILDING, PHASES.WAVE, PHASES.PAUSED].includes(this.state.phase)) {
+      return this.fail('INVALID_PHASE');
+    }
+    if (this.state.waveSpeed === speed) return commandResult(true, 'WAVE_SPEED_UNCHANGED');
+    this.state.waveSpeed = speed;
+    this.emitState('wave-speed-updated');
+    return commandResult(true, 'WAVE_SPEED_UPDATED', { speed });
   }
 
   startWave() {
@@ -412,7 +426,7 @@ export class GameSession {
     if (this.state.phase !== PHASES.WAVE) {
       return { steps: 0, alpha: 0 };
     }
-    return this.clock.advance(realDeltaMs, (deltaMs) => this.step(deltaMs));
+    return this.clock.advance(realDeltaMs, (deltaMs) => this.step(deltaMs), this.state.waveSpeed);
   }
 
   step(deltaMs) {
@@ -637,6 +651,7 @@ export class GameSession {
       phase: this.state.phase,
       resumePhase: this.state.resumePhase,
       waveNumber: this.state.waveNumber,
+      waveSpeed: this.state.waveSpeed,
       maxWaves: this.state.maxWaves,
       lives: this.state.lives,
       score: this.state.score,
@@ -707,6 +722,7 @@ export class GameSession {
     });
     session.state = {
       ...snapshot.state,
+      waveSpeed: snapshot.state.waveSpeed ?? 1,
       reports: snapshot.state.reports ?? createReports(true),
       resources: { ...snapshot.state.resources },
       statistics: { ...snapshot.state.statistics },

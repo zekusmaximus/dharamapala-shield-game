@@ -169,6 +169,12 @@ export class GameUI {
         this.tutorialActive = false;
       }
     });
+    for (const button of document.querySelectorAll('[data-wave-speed]')) {
+      button.addEventListener('click', () => {
+        const result = this.commands.session().setWaveSpeed(Number(button.dataset.waveSpeed));
+        if (!result.ok) this.announce('Wave speed is unavailable here.', true);
+      });
+    }
     this.elements.pause.addEventListener('click', () =>
       this.commands.session().pause()
     );
@@ -297,6 +303,17 @@ export class GameUI {
     this.elements.pause.disabled = ![PHASES.BUILDING, PHASES.WAVE].includes(
       model.phase
     );
+    for (const group of document.querySelectorAll('[data-wave-speed-context]')) {
+      const context = group.dataset.waveSpeedContext;
+      group.hidden = context === 'settings' && inMenu;
+      const enabled = context === 'game'
+        ? [PHASES.BUILDING, PHASES.WAVE].includes(model.phase)
+        : model.phase === PHASES.PAUSED;
+      for (const button of group.querySelectorAll('[data-wave-speed]')) {
+        button.disabled = !enabled;
+        button.setAttribute('aria-pressed', String(Number(button.dataset.waveSpeed) === model.waveSpeed));
+      }
+    }
 
     this.renderReports(session);
     this.renderCombatFeedback(session, model);

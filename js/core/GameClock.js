@@ -5,12 +5,18 @@ export class GameClock {
     this.accumulatorMs = 0;
   }
 
-  advance(realDeltaMs, step) {
+  advance(realDeltaMs, step, speed = 1) {
+    if (speed !== 1 && speed !== 2) {
+      throw new RangeError('Wave speed must be 1× or 2×');
+    }
     const finiteDelta = Number.isFinite(realDeltaMs) ? realDeltaMs : 0;
-    this.accumulatorMs += Math.max(0, Math.min(finiteDelta, this.maxFrameMs));
+    // Clamp wall time first. The accumulator is always simulated time, so a
+    // speed change leaves already earned fractional time untouched.
+    this.accumulatorMs += Math.max(0, Math.min(finiteDelta, this.maxFrameMs)) * speed;
     let steps = 0;
-    while (this.accumulatorMs + Number.EPSILON >= this.stepMs) {
-      this.accumulatorMs -= this.stepMs;
+    while (this.accumulatorMs + 1e-9 >= this.stepMs) {
+      // Bound floating-point cancellation at exact step boundaries.
+      this.accumulatorMs = Math.max(0, this.accumulatorMs - this.stepMs);
       steps += 1;
       if (step(this.stepMs) === false) {
         this.reset();
