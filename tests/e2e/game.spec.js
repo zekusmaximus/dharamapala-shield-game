@@ -273,7 +273,7 @@ test('terminal dialogs block play and expose final results', async ({ page }) =>
   await enterBuildPhase(page);
   await page.evaluate(() => gameApplication.session.enterTerminal('GAME_OVER'));
   await expect(page.getByRole('dialog', { name: 'Game over' })).toBeVisible();
-  await expect(page.getByText(/defeated, 0 leaked/)).toBeVisible();
+  await expect(page.locator('#terminal-summary')).toContainText(/defeated, 0 leaked/);
 });
 
 test('same-tick game over persists matching live and final results', async ({ page }) => {

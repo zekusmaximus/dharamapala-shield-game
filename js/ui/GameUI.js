@@ -347,7 +347,7 @@ export class GameUI {
     if (event.type === 'wave-completed') {
       const result = session.state.lastWaveResult;
       this.toast(
-        `Wave ${result.waveNumber} held: ${result.killed} defeated, ${result.leaked} leaked. Wave report available until dismissed.`
+        `Wave ${result.waveNumber} held: ${result.killed} defeated, ${result.leaked} leaked.`
       );
     }
     if (event.type === 'enemy-leaked') {
