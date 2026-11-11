@@ -32,3 +32,29 @@ for (const viewport of [
     ).toEqual([]);
   });
 }
+
+test('tutorial, settings, pause, sale and terminal dialogs have no serious accessibility violations', async ({ page }) => {
+  const scan = async () => {
+    const results = await new AxeBuilder({ page }).exclude('canvas').analyze();
+    expect(results.violations.filter((v) => ['serious', 'critical'].includes(v.impact))).toEqual([]);
+  };
+  await openFresh(page);
+  await page.locator('#new-game-button').click();
+  await scan();
+  await page.keyboard.press('Escape');
+  await page.locator('#settings-button').click();
+  await scan();
+  await page.keyboard.press('Escape');
+  await page.locator('#pause-button').click();
+  await scan();
+  await page.keyboard.press('Escape');
+  await clickWorld(page, 210, 210);
+  await page.locator('#sell-button').click();
+  await scan();
+  await page.keyboard.press('Escape');
+  for (const phase of ['GAME_OVER', 'VICTORY']) {
+    await page.evaluate((phase) => gameApplication.session.enterTerminal(phase), phase);
+    await scan();
+    await page.locator('#terminal-restart-button').click();
+  }
+});
