@@ -25,7 +25,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | Milestone | Priority | Status | Depends on | Completion evidence |
 | --- | --- | --- | --- | --- |
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
-| M1 · Make every run trustworthy | P0, plus related P1 fixes | Partial: M1.1 complete | M0 | Mobile controls work; dialogs cannot strand play; saves and combat invariants pass regression checks |
+| M1 · Make every run trustworthy | P0, plus related P1 fixes | Partial: M1.1–M1.2 complete | M0 | Mobile controls work; dialogs cannot strand play; saves and combat invariants pass regression checks |
 | M2 · Make decisions readable and measurable | P1 | Partial: review diagnostics only | M1 | Accurate combat information, actionable wave reports, reproducible strategy comparisons |
 | M3 · Prove an engaging five-wave game | P1 | Planned | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
@@ -66,7 +66,7 @@ challenge. P2 adds replay value and release polish after the core works.
 
 ## M1 · Make every run trustworthy
 
-**Status: Partial — M1.1 complete; M1.2–M1.5 planned.** This comes before
+**Status: Partial — M1.1–M1.2 complete; M1.3–M1.5 planned.** This comes before
 balance changes. Findings R01–R07 and R10 in the review describe the baseline
 failures. Work in small, independently
 reviewable changes, each with a regression for the behavior it fixes.
@@ -90,6 +90,18 @@ and 5 accessibility checks pass. Historical policy diagnostics remain identical;
 engine and balance are unchanged. [Verification details and captures](design/reviews/2026-11-11-m1.1/README.md)
 record scope and limits: Chromium emulation, not physical-device or screen-reader
 validation. M1 as a whole remains incomplete.
+
+**M1.2 complete (2026-11-11):** Reconfirmed R03 against main `5a58d36`:
+Escape closed tutorial/settings while retaining TUTORIAL/PAUSED. Native cancel
+now follows tutorial skip, settings Done, pause Resume, sale Cancel and terminal
+Main menu rules, with visible useful focus after transitions. Real
+Tab/Shift-Tab/Enter/Escape regressions cover tutorial skip/replay, building/wave
+settings, pause/resume, sale cancellation and both terminal outcomes. Build,
+22 unit, 4 integration, 2 simulation, 35 e2e (all 27 prior tests preserved), and
+6 accessibility checks pass; historical diagnostic JSON is unchanged.
+[New evidence and limits](design/reviews/2026-11-11-m1.2/README.md) distinguish
+Chromium emulation from physical-device and screen-reader testing. M1.3–M1.5
+remain planned; M1 is incomplete.
 
 Do not change reward values to compensate for a combat bug. Re-run the policy
 baseline after these fixes so subsequent tuning starts from the corrected rules.

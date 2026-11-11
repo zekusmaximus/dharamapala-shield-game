@@ -61,6 +61,20 @@ export class GameUI {
   }
 
   bind() {
+    // Prevent the browser's close-only default: every cancel follows a visible
+    // action so dialog visibility and session state change together.
+    for (const [dialog, cancel] of [
+      [this.elements.tutorialDialog, () => this.skipTutorial()],
+      [this.elements.settingsDialog, () => this.closeSettings()],
+      [this.elements.pauseDialog, () => this.commands.session().resume()],
+      [this.elements.sellDialog, () => this.closeDialog(this.elements.sellDialog)],
+      [this.elements.terminalDialog, () => this.returnToMenu()]
+    ]) {
+      dialog.addEventListener('cancel', (event) => {
+        event.preventDefault();
+        cancel();
+      });
+    }
     for (const [button, panel] of [
       ['close-preview-button', this.elements.preview],
       ['close-inspector-button', this.elements.inspector]
@@ -78,7 +92,7 @@ export class GameUI {
     );
     byId('brand-home').addEventListener('click', (event) => {
       event.preventDefault();
-      this.commands.returnToMenu();
+      this.returnToMenu();
     });
     this.elements.start.addEventListener('click', () => {
       const result = this.commands.session().startWave();
@@ -98,10 +112,11 @@ export class GameUI {
     byId('restart-button').addEventListener('click', () => {
       this.closeDialog(this.elements.pauseDialog);
       this.commands.session().restart();
+      this.focusUseful(this.elements.start);
     });
     byId('menu-button').addEventListener('click', () => {
       this.closeDialog(this.elements.pauseDialog);
-      this.commands.returnToMenu();
+      this.returnToMenu();
     });
     this.elements.upgrade.addEventListener('click', () => {
       const id = this.commands.session().state.selectedDefenseId;
@@ -146,17 +161,17 @@ export class GameUI {
       this.commands.save();
     });
     byId('replay-tutorial-button').addEventListener('click', () => {
-      this.closeSettings(false);
       const session = this.commands.session();
-      if (session.state.phase === PHASES.PAUSED) {
-        session.resume();
-      }
-      const result = session.replayTutorial();
-      if (result.ok) {
-        this.beginTutorial();
-      } else {
+      const buildPhase = session.state.phase === PHASES.BUILDING ||
+        (session.state.phase === PHASES.PAUSED && session.state.resumePhase === PHASES.BUILDING);
+      if (!buildPhase) {
         this.announce('Replay the tutorial during a build phase.', true);
+        return;
       }
+      this.closeSettings();
+      if (session.state.phase === PHASES.PAUSED) session.resume();
+      this.tutorialActive = false;
+      session.replayTutorial();
     });
     byId('tutorial-next-button').addEventListener('click', () =>
       this.advanceTutorial()
@@ -167,10 +182,11 @@ export class GameUI {
     byId('terminal-restart-button').addEventListener('click', () => {
       this.closeDialog(this.elements.terminalDialog);
       this.commands.session().restart();
+      this.focusUseful(this.elements.start);
     });
     byId('terminal-menu-button').addEventListener('click', () => {
       this.closeDialog(this.elements.terminalDialog);
-      this.commands.returnToMenu();
+      this.returnToMenu();
     });
   }
 
@@ -216,6 +232,8 @@ export class GameUI {
     this.updateDialogs(session, model);
     byId('range-toggle').checked = model.settings.showRanges;
     byId('motion-toggle').checked = model.settings.reducedMotion;
+    byId('replay-tutorial-button').disabled = !(model.phase === PHASES.BUILDING ||
+      (model.phase === PHASES.PAUSED && session.state.resumePhase === PHASES.BUILDING));
 
     const hasSave = this.repository.hasSave();
     this.elements.continueButton.disabled = !hasSave;
@@ -493,12 +511,9 @@ export class GameUI {
     const shouldResume = [PHASES.BUILDING, PHASES.WAVE].includes(
       session.state.phase
     );
-    if (shouldResume) {
-      session.pause();
-      this.closeDialog(this.elements.pauseDialog);
-    }
     this.elements.settingsDialog.dataset.resume = String(shouldResume);
     this.openDialog(this.elements.settingsDialog, this.elements.settings);
+    if (shouldResume) session.pause();
   }
 
   closeSettings(resume = true) {
@@ -511,6 +526,12 @@ export class GameUI {
       this.commands.session().state.phase === PHASES.PAUSED
     ) {
       this.commands.session().resume();
+    }
+    if (this.commands.session().state.phase === PHASES.PAUSED) {
+      this.openDialog(this.elements.pauseDialog, this.elements.pause);
+      this.focusUseful(byId('resume-button'));
+    } else {
+      this.focusUseful(this.elements.settings);
     }
   }
 
@@ -564,7 +585,26 @@ export class GameUI {
       return;
     }
     dialog.close();
-    dialog.returnTarget?.focus?.();
+    this.focusUseful(dialog.returnTarget);
+  }
+
+  returnToMenu() {
+    this.tutorialActive = false;
+    this.renderer.tutorialBuildHighlight = false;
+    this.commands.returnToMenu();
+    this.focusUseful(byId('new-game-button'));
+  }
+
+  focusUseful(preferred) {
+    const usable = (element) => element?.isConnected &&
+      !element.disabled && element.checkVisibility() &&
+      !element.closest('dialog:not([open]), details:not([open]) > :not(summary)');
+    const modal = document.querySelector('dialog[open]');
+    const candidates = modal
+      ? [...modal.querySelectorAll('button, input')]
+      : [preferred, this.elements.start, this.elements.pause,
+        this.elements.settings, byId('new-game-button')];
+    candidates.find(usable)?.focus();
   }
 
   phaseLabel(phase) {

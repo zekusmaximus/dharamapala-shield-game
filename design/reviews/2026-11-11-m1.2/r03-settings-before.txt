@@ -1,0 +1,46 @@
+
+> dharmapala-shield-game@1.0.0 test:e2e
+> playwright test --project=e2e --grep restores build phase
+
+[WebServer] (node:1087) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:1099) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [e2e] › tests/e2e/game.spec.js:582:1 › Escape closes settings and restores build phase (R03) (6.0s)
+
+
+  1) [e2e] › tests/e2e/game.spec.js:582:1 › Escape closes settings and restores build phase (R03) ──
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "BUILDING"
+    Received: "PAUSED"
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      428 |
+      429 | async function expectPhase(page, phase) {
+    > 430 |   await expect.poll(() => page.evaluate(() => gameApplication.session.state.phase)).toBe(phase);
+          |                                                                                     ^
+      431 | }
+      432 |
+      433 | test('Escape skips tutorial without stranding TUTORIAL (R03)', async ({ page }) => {
+        at expectPhase (/workspace/dharamapala-shield-game/tests/e2e/game.spec.js:430:85)
+        at /workspace/dharamapala-shield-game/tests/e2e/game.spec.js:590:9
+
+    Error Context: test-results/game-Escape-closes-settings-and-restores-build-phase-R03--e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-Escape-closes-settings-and-restores-build-phase-R03--e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-Escape-closes-settings-and-restores-build-phase-R03--e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [e2e] › tests/e2e/game.spec.js:582:1 › Escape closes settings and restores build phase (R03) ───

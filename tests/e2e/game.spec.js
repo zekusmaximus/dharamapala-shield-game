@@ -419,3 +419,174 @@ test('portrait disclosures and building work with real Tab navigation', async ({
   await page.keyboard.press('Enter');
   await expect(page.locator('#phase-label')).toHaveText('Wave active');
 });
+
+// M1.2 uses browser key input throughout; tabTo observes focus but never sets it.
+async function keyActivate(page, id, backwards = false) {
+  await tabTo(page, page.locator(`#${id}`), backwards);
+  await page.keyboard.press('Enter');
+}
+
+async function expectPhase(page, phase) {
+  await expect.poll(() => page.evaluate(() => gameApplication.session.state.phase)).toBe(phase);
+}
+
+test('Escape skips tutorial without stranding TUTORIAL (R03)', async ({ page }) => {
+  await openFresh(page);
+  await keyActivate(page, 'new-game-button');
+  await expectPhase(page, 'TUTORIAL');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#tutorial-dialog')).not.toBeVisible();
+  await expectPhase(page, 'BUILDING');
+  await expect(page.locator('#start-wave-button')).toBeFocused();
+  await expect(page.locator('#start-wave-button')).toBeEnabled();
+});
+
+async function frozenState(page) {
+  return page.evaluate(() => {
+    const s = gameApplication.session.state;
+    return { time: s.gameTimeMs, wave: s.wave,
+      enemies: [...s.enemies.values()], projectiles: [...s.projectiles.values()] };
+  });
+}
+
+async function expectFrozen(page) {
+  const before = await frozenState(page);
+  await page.waitForTimeout(180);
+  expect(await frozenState(page)).toEqual(before);
+  return before.time;
+}
+
+for (const viewport of [{ width: 1280, height: 720 }, { width: 360, height: 640 }]) {
+  test(`${viewport.width} keyboard tutorial skip, replay and guided exit`, async ({ page }) => {
+    await openFresh(page, viewport);
+    await keyActivate(page, 'new-game-button');
+    // Traverse both ways within the modal, then use its explicit Skip action.
+    await keyActivate(page, 'tutorial-next-button');
+    await keyActivate(page, 'skip-tutorial-button', true);
+    await expectPhase(page, 'BUILDING');
+    await expect(page.locator('#start-wave-button')).toBeFocused();
+    await expectFrozen(page);
+    await keyActivate(page, 'settings-button', true);
+    await keyActivate(page, 'replay-tutorial-button');
+    await expectPhase(page, 'TUTORIAL');
+    await expect(page.locator('#settings-dialog')).not.toBeVisible();
+    await page.keyboard.press('Escape');
+    await expectPhase(page, 'BUILDING');
+    await expect(page.locator('#start-wave-button')).toBeFocused();
+    await keyActivate(page, 'settings-button', true);
+    await keyActivate(page, 'replay-tutorial-button');
+    await keyActivate(page, 'tutorial-next-button');
+    await page.keyboard.press('Enter'); // Choose a Firewall; canvas build exercise.
+    await expectPhase(page, 'BUILDING');
+    await expect(page.locator('#game-canvas')).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#tutorial-dialog')).toBeVisible();
+    await page.keyboard.press('Escape'); // Exit the post-placement tutorial too.
+    await expect(page.locator('#tutorial-dialog')).not.toBeVisible();
+    await expect(page.locator('#start-wave-button')).toBeFocused();
+    expect(await page.evaluate(() => gameApplication.ui.tutorialActive)).toBe(false);
+    await expectFrozen(page);
+  });
+
+  test(`${viewport.width} keyboard settings, pause and sale cancellation preserve play`, async ({ page }) => {
+    await openFresh(page, viewport);
+    await keyActivate(page, 'new-game-button');
+    await page.keyboard.press('Escape');
+    for (const exit of ['Escape', 'Done']) {
+      await keyActivate(page, 'settings-button', true);
+      await expectPhase(page, 'PAUSED');
+      await expect(page.locator('#settings-dialog')).toBeVisible();
+      await expect(page.locator('#pause-dialog')).not.toBeVisible();
+      await expectFrozen(page);
+      if (exit === 'Escape') await page.keyboard.press('Escape');
+      else await keyActivate(page, 'close-settings-button', true);
+      await expectPhase(page, 'BUILDING');
+      await expect(page.locator('#settings-button')).toBeFocused();
+      await expect(page.locator('dialog[open]')).toHaveCount(0);
+    }
+    await keyActivate(page, 'game-canvas'); // Enter places the default Firewall.
+    const towers = await page.evaluate(() => [...gameApplication.session.state.defenses.values()]);
+    for (const exit of ['Escape', 'Cancel']) {
+      await keyActivate(page, 'sell-button');
+      await expect(page.locator('#sell-dialog')).toBeVisible();
+      if (exit === 'Escape') await page.keyboard.press('Escape');
+      else await keyActivate(page, 'cancel-sell-button', true);
+      await expect(page.locator('#sell-dialog')).not.toBeVisible();
+      await expect(page.locator('#sell-button')).toBeFocused();
+      await expectPhase(page, 'BUILDING');
+      expect(await page.evaluate(() => [...gameApplication.session.state.defenses.values()])).toEqual(towers);
+    }
+    await keyActivate(page, 'pause-button', true);
+    await expectPhase(page, 'PAUSED');
+    await expectFrozen(page);
+    await page.keyboard.press('Escape');
+    await expectPhase(page, 'BUILDING');
+    await expect(page.locator('#pause-button')).toBeFocused();
+    await keyActivate(page, 'start-wave-button');
+    await expectPhase(page, 'WAVE');
+    for (const exit of ['Escape', 'Done']) {
+      await keyActivate(page, 'settings-button', true);
+      await expectPhase(page, 'PAUSED');
+      await expect(page.locator('#replay-tutorial-button')).toBeDisabled();
+      const time = await expectFrozen(page);
+      if (exit === 'Escape') await page.keyboard.press('Escape');
+      else await keyActivate(page, 'close-settings-button', true);
+      await expectPhase(page, 'WAVE');
+      await expect(page.locator('#settings-button')).toBeFocused();
+      await expect(page.locator('dialog[open]')).toHaveCount(0);
+      await expect.poll(() => page.evaluate(() => gameApplication.session.state.gameTimeMs)).toBeGreaterThan(time);
+    }
+    for (const exit of ['Escape', 'Resume']) {
+      await keyActivate(page, 'pause-button', true);
+      await expect(page.locator('#pause-dialog')).toBeVisible();
+      await expectPhase(page, 'PAUSED');
+      const time = await expectFrozen(page);
+      // Exercise reverse traversal in the pause modal too.
+      await tabTo(page, page.locator('#menu-button'), true);
+      if (exit === 'Escape') await page.keyboard.press('Escape');
+      else await keyActivate(page, 'resume-button');
+      await expectPhase(page, 'WAVE');
+      await expect(page.locator('#pause-button')).toBeFocused();
+      await expect(page.locator('dialog[open]')).toHaveCount(0);
+      await expect.poll(() => page.evaluate(() => gameApplication.session.state.gameTimeMs)).toBeGreaterThan(time);
+    }
+  });
+}
+
+for (const phase of ['GAME_OVER', 'VICTORY']) {
+  test(`${phase} keyboard terminal navigation and menu settings cancellation`, async ({ page }) => {
+    await openFresh(page);
+    await keyActivate(page, 'settings-button');
+    await page.keyboard.press('Escape');
+    await expectPhase(page, 'MENU');
+    await expect(page.locator('#settings-button')).toBeFocused();
+    await keyActivate(page, 'new-game-button');
+    await page.keyboard.press('Escape');
+    for (const exit of ['restart', 'menu', 'Escape']) {
+      if (exit === 'Escape') await keyActivate(page, 'new-game-button');
+      // Terminal fixture only: do not fake combat or claim campaign coverage.
+      await page.evaluate((phase) => gameApplication.session.enterTerminal(phase), phase);
+      await expectPhase(page, phase);
+      await expect(page.locator('#terminal-dialog')).toBeVisible();
+      await expectFrozen(page);
+      await tabTo(page, page.locator('#terminal-menu-button'), true);
+      if (exit === 'Escape') await page.keyboard.press('Escape');
+      else await keyActivate(page, exit === 'restart' ? 'terminal-restart-button' : 'terminal-menu-button');
+      await expect(page.locator('dialog[open]')).toHaveCount(0);
+      await expectPhase(page, exit === 'restart' ? 'BUILDING' : 'MENU');
+      await expect(page.locator(exit === 'restart' ? '#start-wave-button' : '#new-game-button')).toBeFocused();
+    }
+  });
+}
+
+test('Escape closes settings and restores build phase (R03)', async ({ page }) => {
+  await openFresh(page);
+  await keyActivate(page, 'new-game-button');
+  await keyActivate(page, 'skip-tutorial-button');
+  await keyActivate(page, 'settings-button', true);
+  await expectPhase(page, 'PAUSED');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('dialog[open]')).toHaveCount(0);
+  await expectPhase(page, 'BUILDING');
+  await expect(page.locator('#settings-button')).toBeFocused();
+});
