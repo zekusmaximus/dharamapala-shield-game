@@ -1,3 +1,4 @@
+import { RAID_EMP } from '../core/rules/combat.js';
 import { PATH_METRICS, pointAtPathDistance } from '../core/world.js';
 import { PHASES } from '../core/commands.js';
 
@@ -49,7 +50,7 @@ export class EnemySystem {
       }
       if (enemy.type === 'raidTeam') {
         const ratio = enemy.health / enemy.maxHealth;
-        const thresholds = [0.66, 0.33];
+        const thresholds = RAID_EMP.thresholds;
         thresholds.forEach((threshold, index) => {
           if (session.state.phase !== PHASES.WAVE) return;
           const phase = index + 1;
@@ -58,10 +59,10 @@ export class EnemySystem {
             enemy.phase = phase;
             session.registerBossMinions(enemy, phase);
             for (const defense of session.state.defenses.values()) {
-              if (Math.hypot(defense.x - enemy.x, defense.y - enemy.y) <= 260) {
+              if (Math.hypot(defense.x - enemy.x, defense.y - enemy.y) <= RAID_EMP.radius) {
                 defense.disabledUntilMs = Math.max(
                   defense.disabledUntilMs,
-                  nowMs + 1500
+                  nowMs + RAID_EMP.durationMs
                 );
               }
             }

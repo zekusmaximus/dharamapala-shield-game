@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { clickWorld, enterBuildPhase, openFresh } from './helpers.js';
+import { combatFixture, clickWorld, enterBuildPhase, openFresh } from './helpers.js';
 
 for (const viewport of [
   { name: 'desktop', width: 1280, height: 720 },
@@ -82,4 +82,20 @@ test('portrait support and enemy inspectors remain accessible during a wave', as
   await expect(page.locator('#enemy-inspector')).toHaveAttribute('open', '');
   const results = await new AxeBuilder({ page }).exclude('canvas').analyze();
   expect(results.violations.filter((v) => ['serious', 'critical'].includes(v.impact))).toEqual([]);
+});
+
+test('combat boss warnings and status text have no serious accessibility violations', async ({page}) => {
+  await openFresh(page,{width:360,height:640}); await enterBuildPhase(page);
+  await clickWorld(page,210,210);
+  for (const wave of [5,15]) {
+    if (wave === 15) {
+      await page.evaluate(() => {
+        const s=gameApplication.session; s.restart();
+      });
+    }
+    await combatFixture(page,wave);
+    await expect(page.locator('#combat-state')).toContainText('Health');
+    const results = await new AxeBuilder({page}).exclude('canvas').analyze();
+    expect(results.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);
+  }
 });

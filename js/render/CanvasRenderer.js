@@ -1,3 +1,5 @@
+import { RAID_EMP } from '../core/rules/combat.js';
+import { enemyCombatFeedback, disabledFeedback } from '../core/rules/combatFeedback.js';
 import { getTowerStats } from '../core/rules/towers.js';
 import {
   ENEMY_PATH,
@@ -136,7 +138,8 @@ export class CanvasRenderer {
       } else {
         this.drawDefenseFallback(context, defense, definition, selected);
       }
-      if (defense.disabledUntilMs > session.state.gameTimeMs) {
+      if (disabledFeedback(defense, session.state.gameTimeMs)) {
+        this.drawBadge(context, defense.x, defense.y + 30, '× EMP', '#ffe66d');
         context.strokeStyle = '#ffe66d';
         context.lineWidth = 4;
         context.beginPath();
@@ -151,6 +154,16 @@ export class CanvasRenderer {
     for (const enemy of session.state.enemies.values()) {
       const definition =
         this.balance.enemies[enemy.type] || this.balance.bosses[enemy.type];
+      const feedback = enemyCombatFeedback(enemy, session.state.gameTimeMs);
+      if (feedback.nextEmp !== null) {
+        context.strokeStyle = '#ffe66d';
+        context.lineWidth = 2;
+        context.setLineDash([10, 8]);
+        context.beginPath();
+        context.arc(enemy.x, enemy.y, RAID_EMP.radius, 0, Math.PI * 2);
+        context.stroke();
+        context.setLineDash([]);
+      }
       if (enemy.shield > 0) {
         context.strokeStyle = 'rgba(83, 216, 251, 0.8)';
         context.lineWidth = 4;
@@ -188,6 +201,10 @@ export class CanvasRenderer {
         this.drawEnemyFallback(context, enemy, definition);
       }
 
+      if (feedback.statuses.length) {
+        this.drawBadge(context, enemy.x, enemy.y + enemy.radius + 18,
+          feedback.statuses.map((status) => status.marker === '↓' ? '↓ SLOW' : '◇ VULN').join(' '));
+      }
       const width = Math.max(26, enemy.radius * 2.2);
       const spriteTop = sprite
         ? enemy.y -
@@ -197,6 +214,21 @@ export class CanvasRenderer {
         enemy.y - enemy.radius - 11,
         spriteTop - 6
       );
+      if (enemy.shieldMax > 0) {
+        context.fillStyle = '#090d18';
+        context.fillRect(enemy.x - width / 2, barY - 9, width, 6);
+        context.fillStyle = '#53d8fb';
+        context.fillRect(enemy.x - width / 2, barY - 9, width * enemy.shield / enemy.shieldMax, 6);
+        context.strokeStyle = '#f5f8ff';
+        context.lineWidth = 1;
+        context.strokeRect(enemy.x - width / 2, barY - 9, width, 6);
+      }
+      if (enemy.kind === 'boss') {
+        this.drawBadge(context, enemy.x, Math.max(14, barY - 20),
+          enemy.type === 'raidTeam'
+            ? `P${enemy.phase + 1}/3 · ${Math.ceil(enemy.health)} HP · ${feedback.nextEmp === null ? 'EMP spent' : '⚠ EMP ' + Math.round(feedback.nextEmp * 100) + '%'}`
+            : `${Math.ceil(enemy.health)} HP · Shield ${Math.ceil(enemy.shield)}/${enemy.shieldMax}`);
+      }
       context.fillStyle = '#090d18';
       context.fillRect(enemy.x - width / 2, barY, width, 5);
       context.fillStyle = enemy.health / enemy.maxHealth > 0.35 ? '#53e6a8' : '#ff6b6b';
@@ -207,6 +239,22 @@ export class CanvasRenderer {
         5
       );
     }
+  }
+
+  // Static, high-contrast labels work with both reduced-motion settings and OS preference.
+  drawBadge(context, x, y, text, color = '#f5f8ff') {
+    context.save();
+    const fontSize = Math.max(13, 11 / (this.camera.scale || 1));
+    context.font = `bold ${fontSize}px sans-serif`;
+    context.textAlign = 'center';
+    const width = context.measureText(text).width + 10;
+    x = Math.max(width / 2, Math.min(WORLD.width - width / 2, x));
+    context.fillStyle = '#090d18';
+    y = Math.max(fontSize + 2, Math.min(WORLD.height - 5, y));
+    context.fillRect(x - width / 2, y - fontSize, width, fontSize + 5);
+    context.fillStyle = color;
+    context.fillText(text, x, y);
+    context.restore();
   }
 
   drawProjectiles(context, session) {

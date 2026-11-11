@@ -29,3 +29,22 @@ export async function clickWorld(page, x, y) {
   );
   await page.mouse.click(point.x, point.y);
 }
+
+// Presentation fixture: production boss spawn, frozen frames, explicit state only.
+export async function combatFixture(page, wave = 5) {
+  await page.evaluate((wave) => {
+    const app = gameApplication;
+    const s = app.session;
+    s.state.waveNumber = wave;
+    s.startWave();
+    s.step(1000 / 60);
+    s.tick = () => {}; // freeze only this browser fixture for stable inspection
+    const boss = [...s.state.enemies.values()].find(e => e.kind === 'boss');
+    boss.slowPct = 0.2; boss.slowUntilMs = s.state.gameTimeMs + 1800;
+    boss.vulnerabilityPct = 0.12; boss.vulnerabilityUntilMs = s.state.gameTimeMs + 1800;
+    if (boss.shieldMax) boss.shield = boss.shieldMax / 2;
+    const tower = [...s.state.defenses.values()][0];
+    if (tower) tower.disabledUntilMs = s.state.gameTimeMs + 1500;
+    app.ui.update(s);
+  }, wave);
+}

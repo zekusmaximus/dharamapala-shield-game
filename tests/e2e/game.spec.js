@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { clickWorld, enterBuildPhase, openFresh } from './helpers.js';
+import { combatFixture, clickWorld, enterBuildPhase, openFresh } from './helpers.js';
 
 test('loads the real game without console errors and keeps wave 1 idle', async ({
   page
@@ -954,4 +954,54 @@ test('wave support benefit refreshes when EMP suppression expires', async ({ pag
   await expect(content.locator('tr').filter({ hasText: 'Rate gain while firing' })).toContainText('0.00 shots/s');
   await expect(content).not.toContainText('Aura currently suppressed by EMP');
   await expect(content.locator('tr').filter({ hasText: 'Rate gain while firing' })).toContainText('0.12 shots/s');
+});
+
+for (const [width, height] of [[360,640],[390,844],[640,360],[844,390],[1280,720]]) {
+  test(`combat cues and text stay accessible during waves at ${width}x${height}`, async ({page}) => {
+    await openFresh(page, {width,height}); await enterBuildPhase(page);
+    await clickWorld(page,210,210);
+    await page.evaluate(() => { gameApplication.session.state.waveNumber = 5; gameApplication.ui.update(gameApplication.session); });
+    await expect(page.locator('#emp-warning')).toContainText('66% and 33%');
+    expect(await page.evaluate(() => gameApplication.session.state.enemies.size)).toBe(0);
+    await combatFixture(page);
+    await page.getByRole('region',{name:'Combat status'}).click();
+    await expect(page.locator('#combat-state')).toContainText('Phase 1 / 3');
+    await expect(page.locator('#combat-state')).toContainText('Next EMP at 66%');
+    await expect(page.locator('#combat-state')).toContainText('Slow: 20% less speed');
+    await expect(page.locator('#combat-state')).toContainText('Vulnerable: +12% damage before resistance/armor');
+    await expect(page.locator('#combat-state')).toContainText('cannot fire');
+    await tabTo(page,page.locator('#combat-feedback'));
+    await expect(page.locator('#combat-feedback')).toBeFocused();
+    await tabTo(page,page.locator('#game-canvas'));
+    await page.keyboard.press('Escape'); await page.keyboard.press('Enter');
+    await expect(page.locator('#inspector-content')).toContainText('Firewall Fortress');
+    await expect(page.locator('#upgrade-button')).toBeDisabled();
+    await expect(page.locator('#sell-button')).toBeDisabled();
+    await clickWorld(page,210,210);
+    expect(await page.evaluate(() => gameApplication.session.state.defenses.size)).toBe(1);
+    await page.locator('#settings-button').click();
+    await page.locator('#motion-toggle').check(); await page.keyboard.press('Escape');
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await expect(page.locator('#combat-state')).toContainText('Slow: 20%');
+    await page.screenshot({path: `test-results/m22-${width}x${height}.png`});
+  });
+}
+
+test('combat text follows boss phase, shield damage and status expiry without live-region spam', async ({page}) => {
+  await openFresh(page); await enterBuildPhase(page);
+  await combatFixture(page,15);
+  const actual = await page.evaluate(() => {
+    const e = [...gameApplication.session.state.enemies.values()].find(e => e.kind === 'boss');
+    return {health:Math.ceil(e.health), max:Math.ceil(e.maxHealth), shield:Math.ceil(e.shield), shieldMax:e.shieldMax};
+  });
+  await expect(page.locator('#combat-state')).toContainText(`Health ${actual.health} / ${actual.max}`);
+  await expect(page.locator('#combat-state')).toContainText(`Shield ${actual.shield} / ${actual.shieldMax}`);
+  await expect(page.locator('#combat-state')).toContainText('no health-triggered phases');
+  await expect(page.locator('#combat-state')).not.toHaveAttribute('aria-live');
+  await page.evaluate(() => {
+    const s = gameApplication.session;
+    s.state.gameTimeMs += 1800; gameApplication.ui.refreshLiveInspection(s);
+  });
+  await expect(page.locator('#combat-state')).not.toContainText('Slow:');
+  await expect(page.locator('#combat-state')).not.toContainText('Vulnerable:');
 });
