@@ -1,0 +1,249 @@
+=== Clean checkout: install ===
+
+added 5 packages in 1s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+
+=== Clean checkout: browser ===
+
+=== Clean checkout: build ===
+
+> dharmapala-shield-game@1.0.0 build
+> node scripts/build.mjs
+
+Built client application in /tmp/dharamapala-m22-clean/dist
+
+=== Clean checkout: unit ===
+
+> dharmapala-shield-game@1.0.0 test:unit
+> node --test "tests/unit/*.test.js"
+
+✔ status text obeys expiry and actual speed cap without mutating combat state (1.709401ms)
+✔ pending EMP warnings precede immediate production threshold bursts, including skipped thresholds (2.809722ms)
+✔ Titan reports shield behavior rather than unused phase metadata (0.11878ms)
+✔ canvas draws distinct static markers, shield fill, and pending EMP range from live state (2.309868ms)
+✔ a non-piercing projectile resolves exactly one collision (4.088573ms)
+✔ piercing hit IDs prevent repeat damage and splash is applied once per target (1.540415ms)
+✔ MegaCorp Titan shield recovery waits three seconds after the latest shield or health hit (0.878356ms)
+✔ unplaced blueprints use the same level, cost and refund rules (2.26538ms)
+✔ attacker comparison uses combat stats, active aura, upgrade cost and refund rules (0.566205ms)
+✔ max-level direct attacker has no invented status or next upgrade (0.39743ms)
+✔ Distributor shows actual marginal support, EMP expiry and passive capped income (2.061483ms)
+✔ enemy intel uses active damage types and only implemented abilities (0.68235ms)
+✔ three active towers have distinct tested roles (0.961331ms)
+✔ upgrades never invent status effects without an application duration (0.316959ms)
+✔ only enabled nearby Distributors supply aura, including at the expiry boundary (0.29108ms)
+✔ upgrade and sell values share economy rules (0.809102ms)
+✔ wave schedules are deterministic and zero intervals stay finite (0.38407ms)
+✔ reject malformed save: resource (8.593473ms)
+✔ reject malformed save: lives (1.153232ms)
+✔ reject malformed save: wave (1.480545ms)
+✔ reject malformed save: level (1.826958ms)
+✔ reject malformed save: position (1.060051ms)
+✔ reject malformed save: overlap (4.209635ms)
+✔ reject malformed save: enemyPosition (1.472073ms)
+✔ reject malformed save: health (1.195875ms)
+✔ reject malformed save: phases (1.335827ms)
+✔ reject malformed save: projectileId (1.278901ms)
+✔ reject malformed save: source (1.020901ms)
+✔ reject malformed save: target (1.10654ms)
+✔ reject malformed save: hitIds (1.290177ms)
+✔ reject malformed save: enemyType (0.615189ms)
+✔ reject malformed save: schedule (0.497031ms)
+✔ reject malformed save: cursor (0.585985ms)
+✔ reject malformed save: waveCursor (0.70896ms)
+✔ reject malformed save: count (1.191188ms)
+✔ reject malformed save: gameOver (0.867079ms)
+✔ reject malformed save: victory (0.827709ms)
+✔ reject malformed save: phase (0.634158ms)
+✔ reject malformed save: resume (0.365231ms)
+✔ reject malformed save: clock (0.505783ms)
+✔ reject malformed save: generation (0.729842ms)
+✔ reject malformed save: random (0.520346ms)
+✔ reject malformed save: sequence (0.408107ms)
+✔ reject malformed save: settings (0.488457ms)
+✔ reject malformed save: result (0.619135ms)
+✔ reject malformed save: balanceVersion (0.404972ms)
+✔ reject malformed balance: cost (0.31826ms)
+✔ reject malformed balance: damage (0.175094ms)
+✔ reject malformed balance: resistance (0.43728ms)
+✔ reject malformed balance: wave (0.354676ms)
+✔ reject malformed balance: group (0.303127ms)
+✔ reject malformed balance: difficulty (0.296077ms)
+✔ reject malformed balance: economy (0.199211ms)
+✔ reject malformed balance: upgrades (0.191359ms)
+✔ denied storage never throws, including acquisition/read/write/reset (0.97994ms)
+✔ invalid payload cannot be overwritten before explicit reset (0.649981ms)
+✔ v2 repository round-trips paused state and runtime cursors (6.970643ms)
+✔ corrupt saves are preserved without mutating a live session (0.431221ms)
+✔ legacy removed towers are refunded and active towers are reconstructed (1.426694ms)
+✔ scheduler preserves stable ordering and accepts zero intervals (1.24559ms)
+✔ scheduler rejects stale generations and clear invalidates pending work (0.224829ms)
+✔ phase transitions are explicit and rejected commands do not mutate state (3.152749ms)
+✔ pause freezes game time and spawning (1.294033ms)
+✔ restart invalidates a partially released schedule (0.428116ms)
+✔ leaks never grant kill rewards and kills reward exactly once (0.970024ms)
+✔ placement, upgrades, and selling use one authoritative defense Map (0.713928ms)
+✔ wave inspection can select a tower without opening build commands (0.492734ms)
+✔ wave keyboard inspection cursor is drawn at its world position (1.342307ms)
+✔ catalog covers every active tower, enemy, and boss exactly once (0.385362ms)
+✔ catalog normalizes human and file-style entity IDs (0.172981ms)
+✔ asset loader makes ready sheets available without loading in draw calls (0.464852ms)
+✔ asset loader resolves failures and leaves entities on fallback rendering (0.284169ms)
+✔ renderer uses catalog frames when a sprite is ready (0.478893ms)
+✔ renderer falls back to shapes for missing and undrawable sprites (0.696131ms)
+ℹ tests 74
+ℹ suites 0
+ℹ pass 74
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 618.069196
+
+=== Clean checkout: integration ===
+
+> dharmapala-shield-game@1.0.0 test:integration
+> node --test "tests/integration/*.test.js"
+
+✔ a lethal hit is fully resolved before an enemy-hit listener can enter results (5.857958ms)
+✔ Raid Team EMP suspends the support aura in actual tower fire and restores it at expiry (4.268137ms)
+✔ EMP-disabled support and its recovery continue identically after save/restore (46.260726ms)
+✔ a Distributor disabled at wave clear still earns its passive income (11.541382ms)
+✔ continued combat parity through wave 1, including nested isolation (22.983847ms)
+✔ continued combat parity through wave 5, including nested isolation (50.625429ms)
+✔ continued combat parity through wave 15, including nested isolation (63.612486ms)
+✔ a new session remains in building until start wave is commanded (2.36351ms)
+✔ raid team phases schedule deterministic minions and survive round-trip saves (5.222899ms)
+✔ twenty waves reach victory exactly once and never schedule wave 21 (4.106543ms)
+✔ game over is immediate and subsequent ticks are inert (1.154564ms)
+✔ same-tick exits stop at game over and live, captured, persisted results agree (8.503684ms)
+✔ restored continuing combat reaches the same terminal result (2.467137ms)
+✔ a resolution listener can enter terminal and save before resolution returns (5.18365ms)
+✔ terminal saves reject any disagreement in captured statistics (1.659717ms)
+✔ old 1.0.0 game-over saves with extra same-tick leaks are recovered on load (2.121124ms)
+✔ a terminal transition during an achievement stops later resolution events (0.775471ms)
+✔ a saved Titan fight retains health-hit cooldown and identical later recovery (7.71273ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 620.737453
+
+=== Clean checkout: sim ===
+
+> dharmapala-shield-game@1.0.0 test:sim
+> node --test "tests/sim/*.test.js"
+
+✔ runtime and simulator consume the same balance and pure rules (6.67349ms)
+✔ headless policy executes the real GameSession deterministically (70.725311ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 141.002664
+
+=== Clean checkout: e2e ===
+
+> dharmapala-shield-game@1.0.0 test:e2e
+> playwright test --project=e2e
+
+[WebServer] (node:2181) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 57 tests using 1 worker
+
+(node:2193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [e2e] › tests/e2e/game.spec.js:4:1 › loads the real game without console errors and keeps wave 1 idle (865ms)
+  ✓   2 [e2e] › tests/e2e/game.spec.js:26:1 › loads the sprite sheet and maps every active rendered entity (353ms)
+  ✓   3 [e2e] › tests/e2e/game.spec.js:74:1 › keeps the sprite canvas sharp at device scale factor 2 (536ms)
+  ✓   4 [e2e] › tests/e2e/game.spec.js:110:1 › places, selects, upgrades, sells, and restores a tower save (935ms)
+  ✓   5 [e2e] › tests/e2e/game.spec.js:140:1 › upgraded Firewall inspector describes only its applied combat status (831ms)
+  ✓   6 [e2e] › tests/e2e/game.spec.js:154:1 › Distributor inspector explains support and EMP without a targeting claim (826ms)
+  ✓   7 [e2e] › tests/e2e/game.spec.js:170:1 › pause freezes simulation and restart removes all old state (1.1s)
+  ✓   8 [e2e] › tests/e2e/game.spec.js:205:1 › keyboard-only build flow can place a tower and start a wave (536ms)
+  ✓   9 [e2e] › tests/e2e/game.spec.js:232:3 › desktop layout keeps battlefield and primary controls in the viewport (538ms)
+  ✓  10 [e2e] › tests/e2e/game.spec.js:232:3 › small portrait layout keeps battlefield and primary controls in the viewport (447ms)
+  ✓  11 [e2e] › tests/e2e/game.spec.js:232:3 › portrait layout keeps battlefield and primary controls in the viewport (425ms)
+  ✓  12 [e2e] › tests/e2e/game.spec.js:232:3 › small landscape layout keeps battlefield and primary controls in the viewport (575ms)
+  ✓  13 [e2e] › tests/e2e/game.spec.js:232:3 › landscape layout keeps battlefield and primary controls in the viewport (515ms)
+  ✓  14 [e2e] › tests/e2e/game.spec.js:271:1 › terminal dialogs block play and expose final results (627ms)
+  ✓  15 [e2e] › tests/e2e/game.spec.js:279:1 › same-tick game over persists matching live and final results (723ms)
+  ✓  16 [e2e] › tests/e2e/game.spec.js:314:1 › zoom is not disabled and interactive elements have accessible names (327ms)
+  ✓  17 [e2e] › tests/e2e/game.spec.js:330:1 › portrait preview does not intercept palette selection (610ms)
+  ✓  18 [e2e] › tests/e2e/game.spec.js:379:5 › 360x640 click: open panels allow building and waves (1.4s)
+  ✓  19 [e2e] › tests/e2e/game.spec.js:379:5 › 360x640 tap: open panels allow building and waves (1.9s)
+  ✓  20 [e2e] › tests/e2e/game.spec.js:379:5 › 390x844 click: open panels allow building and waves (1.5s)
+  ✓  21 [e2e] › tests/e2e/game.spec.js:379:5 › 390x844 tap: open panels allow building and waves (2.2s)
+  ✓  22 [e2e] › tests/e2e/game.spec.js:379:5 › 640x360 click: open panels allow building and waves (1.3s)
+  ✓  23 [e2e] › tests/e2e/game.spec.js:379:5 › 640x360 tap: open panels allow building and waves (1.5s)
+  ✓  24 [e2e] › tests/e2e/game.spec.js:379:5 › 844x390 click: open panels allow building and waves (1.5s)
+  ✓  25 [e2e] › tests/e2e/game.spec.js:379:5 › 844x390 tap: open panels allow building and waves (2.0s)
+  ✓  26 [e2e] › tests/e2e/game.spec.js:379:5 › 1280x720 click: open panels allow building and waves (1.8s)
+  ✓  27 [e2e] › tests/e2e/game.spec.js:379:5 › 1280x720 tap: open panels allow building and waves (2.1s)
+  ✓  28 [e2e] › tests/e2e/game.spec.js:430:3 › touch rotation from 360x640 preserves open panel access (1.0s)
+  ✓  29 [e2e] › tests/e2e/game.spec.js:430:3 › touch rotation from 390x844 preserves open panel access (991ms)
+  ✓  30 [e2e] › tests/e2e/game.spec.js:463:1 › portrait disclosures and building work with real Tab navigation (1.2s)
+  ✓  31 [e2e] › tests/e2e/game.spec.js:498:1 › Escape skips tutorial without stranding TUTORIAL (R03) (556ms)
+  ✓  32 [e2e] › tests/e2e/game.spec.js:525:3 › 1280 keyboard tutorial skip, replay and guided exit (2.0s)
+  ✓  33 [e2e] › tests/e2e/game.spec.js:556:3 › 1280 keyboard settings, pause and sale cancellation preserve play (4.4s)
+  ✓  34 [e2e] › tests/e2e/game.spec.js:525:3 › 360 keyboard tutorial skip, replay and guided exit (1.6s)
+  ✓  35 [e2e] › tests/e2e/game.spec.js:556:3 › 360 keyboard settings, pause and sale cancellation preserve play (4.2s)
+  ✓  36 [e2e] › tests/e2e/game.spec.js:622:3 › GAME_OVER keyboard terminal navigation and menu settings cancellation (1.7s)
+  ✓  37 [e2e] › tests/e2e/game.spec.js:622:3 › VICTORY keyboard terminal navigation and menu settings cancellation (1.7s)
+  ✓  38 [e2e] › tests/e2e/game.spec.js:647:1 › Escape closes settings and restores build phase (R03) (895ms)
+  ✓  39 [e2e] › tests/e2e/game.spec.js:659:1 › restart, new run and terminal results are durable and preferences survive navigation (2.3s)
+  ✓  40 [e2e] › tests/e2e/game.spec.js:688:1 › unreadable saves reject without swapping live play and export/reset through real controls (1.3s)
+  ✓  41 [e2e] › tests/e2e/game.spec.js:715:1 › storage denial leaves menu and play usable with visible recovery status (466ms)
+  ✓  42 [e2e] › tests/e2e/game.spec.js:728:1 › completed wave persists a finished clock frame and reloads into deliberate building (929ms)
+  ✓  43 [e2e] › tests/e2e/game.spec.js:747:1 › menu preferences and an uncompleted tutorial survive reload before first placement (862ms)
+  ✓  44 [e2e] › tests/e2e/game.spec.js:762:1 › tower comparison shows rule-derived status, chain, investment and refund (636ms)
+  ✓  45 [e2e] › tests/e2e/game.spec.js:781:1 › Distributor support inspector shows actual benefit and passive income (760ms)
+  ✓  46 [e2e] › tests/e2e/game.spec.js:802:1 › keyboard can inspect towers and enemy roster in build and wave phases (1.1s)
+  ✓  47 [e2e] › tests/e2e/game.spec.js:834:1 › pointer inspects live wave enemies and towers without building or selling (1.5s)
+  ✓  48 [e2e] › tests/e2e/game.spec.js:864:1 › boss enemy details state implemented abilities without unused phase metadata (808ms)
+  ✓  49 [e2e] › tests/e2e/game.spec.js:893:1 › unaffordable and wave-locked tower blueprints remain inspectable without build actions (835ms)
+  ✓  50 [e2e] › tests/e2e/game.spec.js:920:1 › wave keyboard cursor visibly moves to and selects another placed tower (823ms)
+  ✓  51 [e2e] › tests/e2e/game.spec.js:939:1 › wave support benefit refreshes when EMP suppression expires (2.7s)
+  ✓  52 [e2e] › tests/e2e/game.spec.js:960:3 › combat cues and text stay accessible during waves at 360x640 (1.0s)
+  ✓  53 [e2e] › tests/e2e/game.spec.js:960:3 › combat cues and text stay accessible during waves at 390x844 (1.0s)
+  ✓  54 [e2e] › tests/e2e/game.spec.js:960:3 › combat cues and text stay accessible during waves at 640x360 (1.1s)
+  ✓  55 [e2e] › tests/e2e/game.spec.js:960:3 › combat cues and text stay accessible during waves at 844x390 (1.2s)
+  ✓  56 [e2e] › tests/e2e/game.spec.js:960:3 › combat cues and text stay accessible during waves at 1280x720 (1.4s)
+  ✓  57 [e2e] › tests/e2e/game.spec.js:990:1 › combat text follows boss phase, shield damage and status expiry without live-region spam (664ms)
+
+  57 passed (1.2m)
+
+=== Clean checkout: a11y ===
+
+> dharmapala-shield-game@1.0.0 test:a11y
+> playwright test --project=a11y
+
+[WebServer] (node:3249) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 9 tests using 1 worker
+
+(node:3261) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [a11y] › tests/e2e/a11y.spec.js:12:3 › desktop menu and build phase with open inspector have no serious accessibility violations (2.1s)
+  ✓  2 [a11y] › tests/e2e/a11y.spec.js:12:3 › small portrait menu and build phase with open inspector have no serious accessibility violations (1.8s)
+  ✓  3 [a11y] › tests/e2e/a11y.spec.js:12:3 › portrait menu and build phase with open inspector have no serious accessibility violations (1.7s)
+  ✓  4 [a11y] › tests/e2e/a11y.spec.js:12:3 › small landscape menu and build phase with open inspector have no serious accessibility violations (1.7s)
+  ✓  5 [a11y] › tests/e2e/a11y.spec.js:12:3 › landscape menu and build phase with open inspector have no serious accessibility violations (1.8s)
+  ✓  6 [a11y] › tests/e2e/a11y.spec.js:36:1 › tutorial, settings, pause, sale and terminal dialogs have no serious accessibility violations (4.1s)
+  ✓  7 [a11y] › tests/e2e/a11y.spec.js:62:1 › save recovery controls have no serious accessibility violations (1.2s)
+  ✓  8 [a11y] › tests/e2e/a11y.spec.js:71:1 › portrait support and enemy inspectors remain accessible during a wave (1.7s)
+  ✓  9 [a11y] › tests/e2e/a11y.spec.js:87:1 › combat boss warnings and status text have no serious accessibility violations (1.8s)
+
+  9 passed (18.9s)
