@@ -88,40 +88,40 @@
           </section>
 
           <aside class="build-panel" aria-label="Build controls">
-            <section aria-labelledby="tower-palette-title">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">Build</p>
-                  <h2 id="tower-palette-title">Tower palette</h2>
+            <div class="build-content">
+              <section aria-labelledby="tower-palette-title">
+                <div class="section-heading">
+                  <div>
+                    <p class="eyebrow">Build</p>
+                    <h2 id="tower-palette-title">Tower palette</h2>
+                  </div>
                 </div>
-              </div>
-              <div id="tower-palette" class="tower-palette"></div>
-            </section>
+                <div id="tower-palette" class="tower-palette"></div>
+              </section>
 
-            <section id="wave-preview-section" class="wave-preview" aria-labelledby="wave-preview-title">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">Incoming</p>
-                  <h2 id="wave-preview-title">Wave preview</h2>
+              <details id="wave-preview-section" class="wave-preview" open>
+                <summary id="wave-preview-title"><h2>Wave preview</h2></summary>
+                <div class="section-heading">
+                  <div>
+                    <p class="eyebrow">Incoming</p>
+                  </div>
+                  <strong id="boss-warning" class="boss-warning" hidden>Boss</strong>
                 </div>
-                <strong id="boss-warning" class="boss-warning" hidden>Boss</strong>
-              </div>
-              <ul id="wave-preview-list"></ul>
-            </section>
+                <ul id="wave-preview-list"></ul>
+                <button id="close-preview-button" type="button">Hide wave preview</button>
+              </details>
 
-            <section id="tower-inspector" class="tower-inspector" aria-labelledby="inspector-title" hidden>
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">Selected tower</p>
-                  <h2 id="inspector-title">Tower details</h2>
+              <details id="tower-inspector" class="tower-inspector" hidden>
+                <summary id="inspector-title"><h2>Tower details</h2></summary>
+                <p class="eyebrow">Selected tower</p>
+                <div id="inspector-content"></div>
+                <div class="inspector-actions">
+                  <button id="upgrade-button" class="primary" type="button">Upgrade</button>
+                  <button id="sell-button" class="danger" type="button">Sell</button>
                 </div>
-              </div>
-              <div id="inspector-content"></div>
-              <div class="inspector-actions">
-                <button id="upgrade-button" class="primary" type="button">Upgrade</button>
-                <button id="sell-button" class="danger" type="button">Sell</button>
-              </div>
-            </section>
+                <button id="close-inspector-button" type="button">Hide tower details</button>
+              </details>
+            </div>
 
             <div class="wave-actions">
               <button id="start-wave-button" class="primary start-wave" type="button">

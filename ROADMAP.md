@@ -25,7 +25,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | Milestone | Priority | Status | Depends on | Completion evidence |
 | --- | --- | --- | --- | --- |
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
-| M1 · Make every run trustworthy | P0, plus related P1 fixes | Planned | M0 | Mobile controls work; dialogs cannot strand play; saves and combat invariants pass regression checks |
+| M1 · Make every run trustworthy | P0, plus related P1 fixes | Partial: M1.1 complete | M0 | Mobile controls work; dialogs cannot strand play; saves and combat invariants pass regression checks |
 | M2 · Make decisions readable and measurable | P1 | Partial: review diagnostics only | M1 | Accurate combat information, actionable wave reports, reproducible strategy comparisons |
 | M3 · Prove an engaging five-wave game | P1 | Planned | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
@@ -41,7 +41,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | Three tower roles, upgrades, sell | Partial | Accurate inspector, tested support behavior, meaningful upgrade tradeoffs |
 | Twenty waves, six regular enemies, two bosses, three difficulties | Partial | Stronger decisions and pacing; current scripted policy wins all difficulties untouched |
 | Local save/continue and legacy refunds | Partial | Full validation, recovery UI, preferences, balance compatibility, continued-combat parity |
-| HTML controls, keyboard building, responsive styles, axe checks | Partial | Portrait blocker, real touch/Tab flows, dialog and screen-reader review |
+| HTML controls, keyboard building, responsive styles, axe checks | Partial | Physical-device touch, dialog cancellation and screen-reader review |
 | Entity sprites and fallback rendering | Complete static artwork integration | Status feedback, animation, map identity |
 | Audio | Planned | Existing controller is a stub and is not wired into the app |
 | Achievements/progression | Partial | Two run-time toasts exist; no persistent collection or records |
@@ -66,8 +66,9 @@ challenge. P2 adds replay value and release polish after the core works.
 
 ## M1 · Make every run trustworthy
 
-**Status: Planned.** This comes before balance changes. Findings R01–R07 and R10
-in the review describe the current failures. Work in small, independently
+**Status: Partial — M1.1 complete; M1.2–M1.5 planned.** This comes before
+balance changes. Findings R01–R07 and R10 in the review describe the baseline
+failures. Work in small, independently
 reviewable changes, each with a regression for the behavior it fixes.
 
 | Order / work item | Deliverable | Acceptance gate |
@@ -77,6 +78,18 @@ reviewable changes, each with a regression for the behavior it fixes.
 | M1.3 · Protect saves and preferences | Validate full snapshots and balance definitions; copy nested data; persist new/restarted/terminal runs; separate settings; add corrupt-save export/reset and unavailable-storage handling | Bad resources, IDs, levels, positions, references, schedules and phases are rejected before session swap. Valid mid-boss saves continue identically to uninterrupted play. Reload reflects restart/results and preserves preferences. Version-change behavior is documented. |
 | M1.4 · Align combat state and descriptions | Stop all remaining work at terminal transition; fix shield recovery; specify EMP/support rules; remove false status claims | Two same-tick exits cannot mutate captured final results. Recent Titan health damage delays shield recovery. Disabled support follows the documented rule. A Firewall never advertises an unapplied slow. |
 | M1.5 · Automate the release baseline | Add CI with a clean build, Node checks, Chromium installation, browser and accessibility suites; retain useful failure traces | A clean checkout runs the documented pipeline. Browser checks test current build output and include the regressions above. Existing checks stay green. |
+
+**M1.1 complete (2026-11-11):** Reproduced the preview intercepting a normal
+360×640 palette click, then replaced fixed overlays with dismissible native
+preview/inspector disclosures in scrolling build content and a separate Start
+Wave area. Unforced pointer and emulated touch select/place/inspect/upgrade/sell/
+start flows pass at all five specified sizes, including the largest production
+preview (wave 20), expanded panels, rotation in both phone sizes, and real
+Tab/Shift-Tab/Enter access. Build, 22 unit, 4 integration, 2 simulation, 27 e2e,
+and 5 accessibility checks pass. Historical policy diagnostics remain identical;
+engine and balance are unchanged. [Verification details and captures](design/reviews/2026-11-11-m1.1/README.md)
+record scope and limits: Chromium emulation, not physical-device or screen-reader
+validation. M1 as a whole remains incomplete.
 
 Do not change reward values to compensate for a combat bug. Re-run the policy
 baseline after these fixes so subsequent tuning starts from the corrected rules.
@@ -289,7 +302,7 @@ content does not ship merely because the application builds.
 
 ## Immediate next work
 
-Start with **M1.1 portrait interaction**, **M1.2 dialog cancellation**, and
+M1.1 portrait interaction is complete. Continue with **M1.2 dialog cancellation** and
 **M1.3 save integrity/lifecycle**, followed by M1.4 combat corrections and M1.5 CI.
 Then build the feedback and measurement needed for the five-wave design gate.
 Move an item to Complete only when its acceptance evidence is recorded here or in
