@@ -106,9 +106,9 @@ The suites cover phase transitions, fixed scheduling, combat and income rules,
 terminal state agreement, Titan shield recovery, Raid Team EMP support, save
 validation and continued combat after restore. Browser checks exercise actual
 pointer, emulated touch and keyboard flows across desktop, portrait and landscape
-sizes, corrected tower descriptions, and local persistence. Axe checks menu,
-build, dialogs and recovery controls for serious/critical findings, excluding
-canvas. These checks do not establish physical-device, screen-reader, full-campaign
+sizes, M2.1 tower and enemy inspection, and local persistence. Axe checks menu,
+build, wave inspector, dialogs and recovery controls for serious/critical findings,
+excluding canvas. These checks do not establish physical-device, screen-reader, full-campaign
 combat or human playtest results; see the roadmap and milestone evidence.
 
 The CI workflow runs this sequence on Ubuntu for every pull request and on
