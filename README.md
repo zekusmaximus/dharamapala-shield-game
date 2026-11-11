@@ -8,9 +8,9 @@ headless simulation, and tests.
 
 See the [current roadmap](ROADMAP.md) for priorities, milestone status, and
 completion gates, and the [2026-11-11 code review](design/CODE_REVIEW_2026-11-11.md)
-for evidence and known issues. M1 is complete. M2.1 adds rule-derived tower and
-enemy inspection; combat feedback, wave reports, and the five-wave design
-milestone remain in the roadmap.
+for evidence and known issues. M1 is complete. M2.1–M2.4 provide inspection, combat feedback, persistent wave reports and a
+reproducible balance report. M2 remains partial; pacing controls and later design
+work remain in the roadmap.
 
 The earlier [implementation plan](implementation.md) remains an architecture
 reference; it is not the current backlog. The
@@ -108,8 +108,10 @@ validation and continued combat after restore. Browser checks exercise actual
 pointer, emulated touch and keyboard flows across desktop, portrait and landscape
 sizes, M2.1 tower and enemy inspection, and local persistence. Axe checks menu,
 build, wave inspector, dialogs and recovery controls for serious/critical findings,
-excluding canvas. These checks do not establish physical-device, screen-reader, full-campaign
-combat or human playtest results; see the roadmap and milestone evidence.
+excluding canvas. Simulation checks now include actual full-campaign combat for the
+M2.4 policies/configurations and reconcile production accounting. These checks do
+not establish physical-device, screen-reader, arbitrary-strategy coverage or human
+playtest results; see the roadmap and milestone evidence.
 
 The CI workflow runs this sequence on Ubuntu for every pull request and on
 `main` pushes, installing Chromium's system libraries with Playwright's
@@ -124,11 +126,14 @@ Useful simulation commands:
 npm run sim:easy
 npm run sim:normal
 npm run sim:hard
-npm run tune
+npm run balance:report -- --output=/tmp/balance-report.json
 ```
 
-`tune` currently summarizes a fixed policy across seeds; it does not search
-balance parameters. For reproducible strategy comparisons and diagnostic probes:
+`tune` is a compatibility alias for `balance:report`, not a parameter search.
+The reporter compares seven explicit policies across three difficulty configurations,
+with exact repeats used only for reproducibility. See [M2.4 definitions, results and
+attribution limits](design/reviews/2026-11-11-m2.4/README.md). For unchanged
+legacy diagnostic probes:
 
 ```bash
 node tools/review/baseline.mjs

@@ -11,7 +11,7 @@ export async function loadBalance() {
   return JSON.parse(await readFile(resolve(root, 'design/balance.json'), 'utf8'));
 }
 
-function buildPositions() {
+export function buildPositions() {
   const samples = [];
   for (let distance = 0; distance <= PATH_METRICS.totalLength; distance += 45) {
     samples.push(pointAtPathDistance(distance));

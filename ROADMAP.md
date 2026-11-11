@@ -26,7 +26,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | --- | --- | --- | --- | --- |
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
-| M2 · Make decisions readable and measurable | P1 | Partial: M2.1–M2.3 complete; M2.4–M2.6 open | M1 | M2.3 clean checkout passes 74 unit, 25 integration, 2 simulation, 63 browser and 10 accessibility checks; strategy comparisons and later M2 work remain |
+| M2 · Make decisions readable and measurable | P1 | Partial: M2.1–M2.4 complete; M2.5–M2.6 open | M1 | M2.3 clean checkout passes 74 unit, 25 integration, 2 simulation, 63 browser and 10 accessibility checks; M2.4 adds seven-policy production-combat comparisons; later M2 work remains |
 | M3 · Prove an engaging five-wave game | P1 | Planned | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
@@ -155,8 +155,8 @@ finish a run without blocked controls, stale transitions, or contradictory state
 
 ## M2 · Make decisions readable and measurable
 
-**Status: Partial.** M2.1 tower/enemy inspection, M2.2 combat feedback and M2.3 wave reports are complete.
-Expanded measurements and the other work below remain planned. M1
+**Status: Partial.** M2.1 tower/enemy inspection, M2.2 combat feedback, M2.3 wave reports and M2.4 balance reporting are complete.
+Pacing controls and iteration safety below remain planned. M1
 establishes trust; this milestone gives the player and developer enough
 information to improve the game. Findings R07, R08, R10–R12.
 
@@ -174,7 +174,7 @@ information to improve the game. Findings R07, R08, R10–R12.
   escaped coverage, resources gained/spent, and tower contributions. Account for
   shield damage and support/control contribution so the report does not falsely
   credit only direct damage. Keep results accessible until dismissed.
-- [ ] **M2.4 · Build a balance report.** Compare the existing policy, Firewall-only,
+- [x] **M2.4 · Build a balance report.** Compare the existing policy, Firewall-only,
   no-support, expansion-heavy, upgrade-heavy, weak-placement, and counter-aware
   policies on explicit scenarios. Report wave pressure, lives/leaks, boss outcomes,
   time, resource surpluses, spending and contribution. Distinguish deterministic
@@ -239,6 +239,25 @@ balance `1.0.0` and combat/economy values are unchanged.
 distinguish production combat tests from lifecycle fixtures and Chromium
 emulation/axe from physical-device and screen-reader testing. M2 remains partial;
 M2.4–M2.6 are open.
+
+**M2.4 complete (2026-11-11):** From main `4211a55` (PR #21), the
+reporter compares seven precisely defined build policies on fresh Easy/Normal/Hard
+campaigns with production combat and economy, preserving M2.3 attribution limits.
+Each of 21 policy/configuration combinations repeats identically; these repeats
+are reproducibility checks, not independent challenges or human win rates.
+Existing, counter-aware and upgrade-heavy finish all three with 20 lives;
+Firewall-only finishes Hard with 10, no-support with 19. Expansion-heavy loses
+Hard on wave 20; weak placement loses each difficulty on wave 3. The counter
+heuristic produces the same plan/outcomes here and establishes no adaptation
+benefit. Machine-readable wave pressure, lives/leaks, bosses, time, resources,
+spending and tower activity plus reproducible commands are recorded in the
+[M2.4 evidence](design/reviews/2026-11-11-m2.4/README.md). `tune` now aliases the
+reporter without a parameter search. Corrected M1.4 diagnostics remain
+byte-identical. Balance `1.0.0`, values, production gameplay/UI and saves are
+unchanged. A clean checkout and PR #22 CI pass 74 unit, 25 integration, 7 simulation,
+63 end-to-end and 10 accessibility checks; regenerated evidence is byte-identical.
+M2 remains partial;
+M2.5/M2.6 and human difficulty/playtest gates remain open.
 
 **Acceptance gate:** a tester can identify an enemy's threat, compare a new tower
 with an upgrade, see a boss action coming, and use the wave report to explain a
