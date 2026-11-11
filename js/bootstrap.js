@@ -22,6 +22,7 @@ class GameApplication {
     this.camera = new Camera(canvas);
     this.renderer = new CanvasRenderer(canvas, this.camera, balance, spriteAssets);
     this.lastFrameAt = performance.now();
+    this.lastInspectionRefreshAt = 0;
     this.lastWaveSaveAtMs = 0;
     this.unsubscribe = null;
 
@@ -42,7 +43,8 @@ class GameApplication {
       camera: this.camera,
       renderer: this.renderer,
       getSession: () => this.session,
-      announce: (message) => this.ui.announce(message)
+      announce: (message) => this.ui.announce(message),
+      inspectEnemy: (type) => this.ui.inspectEnemyType(type)
     });
     this.bindSession();
     this.bindPlatform();
@@ -60,6 +62,11 @@ class GameApplication {
     const deltaMs = Math.max(0, time - this.lastFrameAt);
     this.lastFrameAt = time;
     this.session.tick(deltaMs);
+    if (this.session.state.phase === PHASES.WAVE &&
+        time - this.lastInspectionRefreshAt >= 250) {
+      this.ui.refreshLiveInspection(this.session);
+      this.lastInspectionRefreshAt = time;
+    }
     if (
       this.session.state.phase === PHASES.WAVE &&
       this.session.state.gameTimeMs - this.lastWaveSaveAtMs >= 10_000

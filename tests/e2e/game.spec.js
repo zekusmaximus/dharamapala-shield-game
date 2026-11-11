@@ -758,3 +758,200 @@ test('menu preferences and an uncompleted tutorial survive reload before first p
   await page.keyboard.press('Escape');
   await expect(page.locator('#start-wave-button')).toBeEnabled();
 });
+
+test('tower comparison shows rule-derived status, chain, investment and refund', async ({ page }) => {
+  await openFresh(page, { width: 390, height: 844 });
+  await enterBuildPhase(page);
+  await page.locator('[data-tower-type="encryption"]').click();
+  await clickWorld(page, 210, 210);
+  const content = page.locator('#inspector-content');
+  await expect(content.locator('tr').filter({ hasText: 'Damage per hit' })).toContainText('22.0');
+  await expect(content.locator('tr').filter({ hasText: 'Damage per hit' })).toContainText('29.7');
+  await expect(content.locator('tr').filter({ hasText: 'Fire rate' }).first()).toContainText('0.80 shots/s');
+  await expect(content.locator('tr').filter({ hasText: 'Slow' })).toContainText('20% for 1.80 s');
+  await expect(content.locator('tr').filter({ hasText: 'Slow' })).toContainText('24% for 2.07 s');
+  await expect(content.locator('tr').filter({ hasText: 'Vulnerability' })).toContainText('12% for 1.80 s');
+  await expect(content.locator('tr').filter({ hasText: 'Vulnerability' })).toContainText('15% for 2.07 s');
+  await expect(content).toContainText('Chain unlocks at level 4');
+  await expect(content).toContainText('Total investment: 50 Dharma, 20 Bandwidth, 10 Anonymity');
+  await expect(content).toContainText('Refund (70%): 35 Dharma, 14 Bandwidth, 7 Anonymity');
+  await expect(content).toContainText('Next upgrade cost: 98 Dharma, 39 Bandwidth, 20 Anonymity');
+});
+
+test('Distributor support inspector shows actual benefit and passive income', async ({ page }) => {
+  await openFresh(page);
+  await enterBuildPhase(page);
+  await page.locator('[data-tower-type="distributor"]').click();
+  await clickWorld(page, 210, 210);
+  await page.locator('[data-tower-type="firewall"]').click();
+  await clickWorld(page, 270, 210);
+  await clickWorld(page, 210, 210);
+  const content = page.locator('#inspector-content');
+  await expect(content).toContainText('Does not attack');
+  await expect(content.locator('tr').filter({ hasText: 'Fire-rate aura' })).toContainText('12%');
+  await expect(content.locator('tr').filter({ hasText: 'Fire-rate aura' })).toContainText('16%');
+  await expect(content.locator('tr').filter({ hasText: 'Attackers with rate boost' })).toContainText('1 of 1 in range');
+  await expect(content.locator('tr').filter({ hasText: 'Rate gain while firing' })).toContainText('0.12 shots/s');
+  await expect(content).toContainText('Firewall Fortress: 1.00 shots/s → 1.12 shots/s');
+  await expect(content).toContainText('Passive wave-clear bonus: +6 Dharma per installed Distributor, capped at +30');
+  await expect(content).toContainText('Total investment: 100 Dharma, 60 Bandwidth, 30 Anonymity');
+  await expect(content).toContainText('Refund (70%): 70 Dharma, 42 Bandwidth, 21 Anonymity');
+  await expect(content).not.toContainText(/\bslow\b/i);
+});
+
+test('keyboard can inspect towers and enemy roster in build and wave phases', async ({ page }) => {
+  await openFresh(page, { width: 360, height: 640 });
+  await tabTo(page, page.getByRole('button', { name: 'New game' }));
+  await page.keyboard.press('Enter');
+  await tabTo(page, page.getByRole('button', { name: 'Skip tutorial' }));
+  await page.keyboard.press('Enter');
+  await tabTo(page, page.locator('#game-canvas'));
+  await page.keyboard.press('Enter');
+  await page.keyboard.press('Escape');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#inspector-content')).toContainText('Firewall Fortress');
+  await tabTo(page, page.locator('[data-enemy-type="scriptKiddie"]'));
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#enemy-inspector-title')).toBeFocused();
+  await expect(page.locator('#enemy-inspector-content')).toContainText('No active special ability');
+  await expect(page.locator('#enemy-inspector-content')).not.toContainText('erratic');
+  await tabTo(page, page.getByRole('button', { name: 'Start wave 1' }));
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#phase-label')).toHaveText('Wave active');
+  await expect(page.locator('[data-enemy-type="scriptKiddie"]')).toHaveAttribute('aria-label', /in this wave/);
+  await tabTo(page, page.locator('#game-canvas'));
+  await page.keyboard.press('Escape');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#tower-inspector')).toHaveAttribute('open', '');
+  await expect(page.locator('#upgrade-button')).toBeDisabled();
+  await expect(page.locator('#sell-button')).toBeDisabled();
+  await tabTo(page, page.locator('[data-enemy-type="scriptKiddie"]'));
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('Physical: ×1.00');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('Shock: ×1.00');
+});
+
+test('pointer inspects live wave enemies and towers without building or selling', async ({ page }) => {
+  await openFresh(page);
+  await enterBuildPhase(page);
+  await clickWorld(page, 210, 210);
+  await page.getByRole('button', { name: 'Start wave 1' }).click();
+  await expect(page.locator('#phase-label')).toHaveText('Wave active');
+  await clickWorld(page, 210, 210);
+  await expect(page.locator('#inspector-content')).toContainText('Firewall Fortress');
+  await expect(page.locator('#upgrade-button')).toBeDisabled();
+  await expect(page.locator('#sell-button')).toBeDisabled();
+  await expect(page.locator('[data-tower-type="firewall"]')).toBeDisabled();
+  await clickWorld(page, 450, 210);
+  expect(await page.evaluate(() => gameApplication.session.state.defenses.size)).toBe(1);
+  await expect.poll(() => page.evaluate(() => [...gameApplication.session.state.enemies.values()]
+    .some((enemy) => enemy.x > 30 && enemy.x < 130))).toBe(true);
+  const position = await page.evaluate(() => {
+    const app = gameApplication;
+    const enemy = [...app.session.state.enemies.values()].find((candidate) => candidate.x > 30 && candidate.x < 130);
+    const rect = app.camera.canvas.getBoundingClientRect();
+    return {
+      x: rect.left + app.camera.offsetX + enemy.x * app.camera.scale,
+      y: rect.top + app.camera.offsetY + enemy.y * app.camera.scale
+    };
+  });
+  await page.mouse.click(position.x, position.y);
+  await expect(page.locator('#enemy-inspector-content')).toContainText('Script Kiddie');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('Armor: 0');
+  expect(await page.evaluate(() => gameApplication.session.state.defenses.size)).toBe(1);
+});
+
+test('boss enemy details state implemented abilities without unused phase metadata', async ({ page }) => {
+  await openFresh(page);
+  await enterBuildPhase(page);
+  await page.evaluate(() => {
+    gameApplication.session.state.waveNumber = 3;
+    gameApplication.ui.update(gameApplication.session);
+  });
+  await page.locator('[data-enemy-type="federalAgent"]').click();
+  await expect(page.locator('#enemy-inspector-content')).toContainText('Armor: 5');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('Physical: ×0.90');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('Shock: ×1.10');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('No active special ability');
+  await expect(page.locator('#enemy-inspector-content')).not.toContainText('persistent');
+  await page.evaluate(() => {
+    gameApplication.session.state.waveNumber = 5;
+    gameApplication.ui.update(gameApplication.session);
+  });
+  await page.locator('[data-enemy-type="raidTeam"]').click();
+  await expect(page.locator('#enemy-inspector-content')).toContainText('reinforcements');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('EMP');
+  await page.evaluate(() => {
+    gameApplication.session.state.waveNumber = 15;
+    gameApplication.ui.update(gameApplication.session);
+  });
+  await page.locator('[data-enemy-type="megaCorpTitan"]').click();
+  await expect(page.locator('#enemy-inspector-content')).toContainText('shield that regenerates');
+  await expect(page.locator('#enemy-inspector-content')).not.toContainText('phase 4');
+});
+
+test('unaffordable and wave-locked tower blueprints remain inspectable without build actions', async ({ page }) => {
+  await openFresh(page, { width: 360, height: 640 });
+  await enterBuildPhase(page);
+  await clickWorld(page, 210, 210);
+  await page.locator('[data-tower-type="encryption"]').click();
+  await clickWorld(page, 270, 210);
+  await expect(page.locator('[data-tower-type="distributor"]')).toBeDisabled();
+  await page.locator('[data-inspect-tower-type="distributor"]').click();
+  await expect(page.locator('#tower-blueprint')).toHaveAttribute('open', '');
+  await expect(page.locator('#tower-blueprint-content')).toContainText('Dharma Distributor · Unplaced');
+  await expect(page.locator('#tower-blueprint-content')).toContainText('Fire-rate aura');
+  await expect(page.locator('#tower-blueprint-content')).toContainText('Build cost: 100 Dharma, 60 Bandwidth, 30 Anonymity');
+  await expect(page.locator('#inspector-content')).toContainText('Encryption Monastery');
+  await page.getByRole('button', { name: 'Start wave 1' }).click();
+  await expect(page.locator('[data-tower-type="firewall"]')).toBeDisabled();
+  await tabTo(page, page.locator('[data-inspect-tower-type="firewall"]'));
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#tower-blueprint-content')).toContainText('Firewall Fortress · Unplaced');
+  await expect(page.locator('#tower-blueprint-content')).toContainText('30.0');
+  await expect(page.locator('#upgrade-button')).toBeDisabled();
+  await expect(page.locator('#sell-button')).toBeDisabled();
+  expect(await page.evaluate(() => ({
+    count: gameApplication.session.state.defenses.size,
+    selectedType: gameApplication.session.state.selectedTowerType
+  }))).toEqual({ count: 2, selectedType: 'encryption' });
+});
+
+test('wave keyboard cursor visibly moves to and selects another placed tower', async ({ page }) => {
+  await openFresh(page);
+  await enterBuildPhase(page);
+  await clickWorld(page, 210, 210);
+  await page.locator('[data-tower-type="encryption"]').click();
+  await clickWorld(page, 270, 210);
+  await page.getByRole('button', { name: 'Start wave 1' }).click();
+  await tabTo(page, page.locator('#game-canvas'));
+  await page.keyboard.press('Escape');
+  await page.keyboard.press('ArrowRight');
+  expect(await page.evaluate(() => gameApplication.renderer.inspectionPosition)).toEqual({ x: 270, y: 210 });
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#inspector-content')).toContainText('Encryption Monastery');
+  await page.keyboard.press('ArrowLeft');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#inspector-content')).toContainText('Firewall Fortress');
+  expect(await page.evaluate(() => gameApplication.session.state.defenses.size)).toBe(2);
+});
+
+test('wave support benefit refreshes when EMP suppression expires', async ({ page }) => {
+  await openFresh(page);
+  await enterBuildPhase(page);
+  await clickWorld(page, 210, 210);
+  await page.locator('[data-tower-type="distributor"]').click();
+  await clickWorld(page, 270, 210);
+  await page.getByRole('button', { name: 'Start wave 1' }).click();
+  await page.evaluate(() => {
+    const app = gameApplication;
+    const support = [...app.session.state.defenses.values()].find((tower) => tower.type === 'distributor');
+    support.disabledUntilMs = app.session.state.gameTimeMs + 1500;
+    app.ui.update(app.session);
+  });
+  const content = page.locator('#inspector-content');
+  await expect(content).toContainText('Aura currently suppressed by EMP');
+  await expect(content.locator('tr').filter({ hasText: 'Rate gain while firing' })).toContainText('0.00 shots/s');
+  await expect(content).not.toContainText('Aura currently suppressed by EMP');
+  await expect(content.locator('tr').filter({ hasText: 'Rate gain while firing' })).toContainText('0.12 shots/s');
+});

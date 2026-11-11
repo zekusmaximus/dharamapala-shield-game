@@ -367,6 +367,19 @@ summary h2 {
   gap: 0.55rem;
 }
 
+.tower-palette-entry {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.4rem;
+}
+
+.tower-info-button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.4rem 0.6rem;
+}
+
 .tower-card {
   width: 100%;
   display: grid;
@@ -418,11 +431,21 @@ summary h2 {
 }
 
 .wave-preview li {
+  font-size: 0.84rem;
+}
+
+.enemy-preview-button {
+  width: 100%;
+  min-height: 44px;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 0.55rem;
   align-items: center;
-  font-size: 0.84rem;
+  text-align: left;
+}
+
+.enemy-preview-button[aria-pressed="true"] {
+  border-color: var(--accent);
 }
 
 .wave-preview small {
@@ -457,6 +480,41 @@ summary h2 {
 .stat-grid span {
   display: block;
   color: var(--muted);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.65rem 0;
+  font-size: 0.8rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 0.5rem 0.35rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.comparison-table th:first-child {
+  width: 35%;
+}
+
+.comparison-table td {
+  font-variant-numeric: tabular-nums;
+}
+
+.inspection-note {
+  margin: 0.45rem 0;
+  font-size: 0.8rem;
+}
+
+#inspector-content ul,
+#enemy-inspector-content ul {
+  padding-left: 1.25rem;
+  font-size: 0.8rem;
 }
 
 .inspector-actions,
@@ -641,6 +699,10 @@ dialog::backdrop {
     grid-template-columns: 1fr;
     min-width: 0;
     padding: 0.45rem;
+  }
+
+  .tower-palette-entry {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .tower-icon {

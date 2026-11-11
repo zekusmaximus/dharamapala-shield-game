@@ -26,7 +26,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | --- | --- | --- | --- | --- |
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
-| M2 · Make decisions readable and measurable | P1 | Partial: review diagnostics only | M1 | Accurate combat information, actionable wave reports, reproducible strategy comparisons |
+| M2 · Make decisions readable and measurable | P1 | Partial: M2.1 complete; M2.2–M2.6 open | M1 | M2.1 clean checkout passes 70 unit, 18 integration, 2 simulation, 51 browser and 8 accessibility checks; combat feedback, wave reports and strategy comparisons remain |
 | M3 · Prove an engaging five-wave game | P1 | Planned | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
@@ -38,7 +38,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | --- | --- | --- |
 | Single `GameSession`, fixed clock, serialized spawning, shared runtime/simulator | Complete foundation | Guard same-tick terminal behavior and expand invariant coverage in M1 |
 | Build → wave → build; pause, restart, game over, victory | Partial | Dialog cancellation, durable transitions, mobile interactions |
-| Three tower roles, upgrades, sell | Partial | Accurate inspector, tested support behavior, meaningful upgrade tradeoffs |
+| Three tower roles, upgrades, sell | Partial | M2.1 inspector and support information are tested; meaningful upgrade tradeoffs remain for M3 |
 | Twenty waves, six regular enemies, two bosses, three difficulties | Partial | Stronger decisions and pacing; current scripted policy wins all difficulties untouched |
 | Local save/continue and legacy refunds | Partial | Full validation, recovery UI, preferences, balance compatibility, continued-combat parity |
 | HTML controls, keyboard building, responsive styles, axe checks | Partial | Physical-device touch, dialog cancellation and screen-reader review |
@@ -155,12 +155,12 @@ finish a run without blocked controls, stale transitions, or contradictory state
 
 ## M2 · Make decisions readable and measurable
 
-**Status: Partial.** The review supplies an initial four-policy diagnostic report;
-the player feedback and expanded measurements below are planned. M1 establishes
-trust; this milestone gives the player and developer enough information to
-improve the game. Findings R07, R08, R10–R12.
+**Status: Partial.** M2.1 tower and enemy inspection is complete. Combat feedback,
+wave reports, expanded measurements and the other work below remain planned. M1
+establishes trust; this milestone gives the player and developer enough
+information to improve the game. Findings R07, R08, R10–R12.
 
-- [ ] **M2.1 · Explain towers and enemies.** Show current/next damage, rate,
+- [x] **M2.1 · Explain towers and enemies.** Show current/next damage, rate,
   relevant status durations, vulnerability, chain unlocks, effective support
   benefit, and investment/refund. Give support its own inspector. Offer enemy
   armor/resistance/ability information and a concise counter hint without
@@ -186,6 +186,25 @@ improve the game. Findings R07, R08, R10–R12.
 - [ ] **M2.6 · Make iteration safe.** Validate used content fields and move tunable
   boss/status parameters into an explicit shared schema where useful. Document or
   remove unused metadata rather than pretending it controls the runtime.
+
+**M2.1 complete (2026-11-11):** From main `4ce86e5`, placed towers now compare
+current and next damage, base and support-adjusted fire rate, range, applicable
+slow/vulnerability durations and chain unlocks. Distributor details show affected
+attackers, available rate gain under the active aura cap and EMP, plus passive
+wave-clear income. All towers show investment and refund; unplaced, unaffordable
+and wave-locked tower blueprints remain inspectable. Enemy details show armor,
+resistance to active damage types, implemented boss abilities and counter hints
+without advertising unused special metadata. The wave roster and battlefield
+support pointer and keyboard inspection while build commands remain locked.
+A detached clean checkout at `61c4b0a` passed the documented install, Chromium,
+build, 70 unit, 18 integration, 2 simulation, 51 end-to-end and 8 accessibility
+checks. The four-policy diagnostic JSON is byte-identical to the M1.4 corrected
+baseline. The [PR #19 CI run](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43075287910)
+passed the same suites on an Ubuntu runner with Node 22. Balance `1.0.0`, save
+format and combat values are unchanged.
+[Verification details and limits](design/reviews/2026-11-11-m2.1/README.md)
+distinguish Chromium emulation and axe from physical-device and screen-reader
+testing. M2 remains partial; M2.2–M2.6 are open.
 
 **Acceptance gate:** a tester can identify an enemy's threat, compare a new tower
 with an upgrade, see a boss action coming, and use the wave report to explain a

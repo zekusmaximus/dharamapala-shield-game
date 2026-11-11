@@ -67,3 +67,19 @@ test('save recovery controls have no serious accessibility violations', async ({
   const results=await new AxeBuilder({page}).analyze();
   expect(results.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);
 });
+
+test('portrait support and enemy inspectors remain accessible during a wave', async ({ page }) => {
+  await openFresh(page, { width: 360, height: 640 });
+  await enterBuildPhase(page);
+  await clickWorld(page, 210, 210);
+  await page.locator('[data-tower-type="distributor"]').click();
+  await clickWorld(page, 270, 210);
+  await page.locator('[data-inspect-tower-type="encryption"]').click();
+  await page.locator('[data-enemy-type="scriptKiddie"]').click();
+  await page.getByRole('button', { name: 'Start wave 1' }).click();
+  await expect(page.locator('#tower-inspector')).toHaveAttribute('open', '');
+  await expect(page.locator('#tower-blueprint')).toHaveAttribute('open', '');
+  await expect(page.locator('#enemy-inspector')).toHaveAttribute('open', '');
+  const results = await new AxeBuilder({ page }).exclude('canvas').analyze();
+  expect(results.violations.filter((v) => ['serious', 'critical'].includes(v.impact))).toEqual([]);
+});

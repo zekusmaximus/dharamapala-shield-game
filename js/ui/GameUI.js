@@ -1,5 +1,6 @@
 import { PHASES } from '../core/commands.js';
 import { canAfford } from '../core/rules/economy.js';
+import { getEnemyInspection, getTowerBlueprint, getTowerInspection } from '../core/rules/inspection.js';
 
 const byId = (id) => document.getElementById(id);
 
@@ -9,6 +10,47 @@ function resourceText(resources) {
 
 function costText(cost) {
   return `${cost.dharma || 0} D · ${cost.bandwidth || 0} B · ${cost.anonymity || 0} A`;
+}
+
+function element(tag, text, className) {
+  const node = document.createElement(tag);
+  node.textContent = text;
+  if (className) node.className = className;
+  return node;
+}
+
+function rateText(rate) {
+  return `${rate.toFixed(2)} shots/s`;
+}
+
+function statusText(percent, durationMs) {
+  return durationMs > 0
+    ? `${Math.round(percent * 100)}% for ${(durationMs / 1000).toFixed(2)} s`
+    : 'None';
+}
+
+function comparisonTable(rows, currentLevel, nextLevel) {
+  const table = document.createElement('table');
+  table.className = 'comparison-table';
+  table.append(element('caption', 'Tower level comparison', 'sr-only'));
+  const head = document.createElement('thead');
+  const headings = document.createElement('tr');
+  for (const title of ['Stat', `Current · Level ${currentLevel}`, nextLevel ? `Next · Level ${nextLevel}` : 'Next · maximum']) {
+    const th = element('th', title);
+    th.scope = 'col';
+    headings.append(th);
+  }
+  head.append(headings);
+  const body = document.createElement('tbody');
+  for (const [label, current, next] of rows) {
+    const row = document.createElement('tr');
+    const th = element('th', label);
+    th.scope = 'row';
+    row.append(th, element('td', current), element('td', next ?? '—'));
+    body.append(row);
+  }
+  table.append(head, body);
+  return table;
 }
 
 export class GameUI {
@@ -34,9 +76,15 @@ export class GameUI {
       progress: byId('wave-progress-bar'),
       progressLabel: byId('wave-progress-label'),
       palette: byId('tower-palette'),
+      paletteEyebrow: byId('palette-eyebrow'),
+      blueprint: byId('tower-blueprint'),
+      blueprintContent: byId('tower-blueprint-content'),
       preview: byId('wave-preview-section'),
+      previewEyebrow: byId('preview-eyebrow'),
       previewList: byId('wave-preview-list'),
       bossWarning: byId('boss-warning'),
+      enemyInspector: byId('enemy-inspector'),
+      enemyInspectorContent: byId('enemy-inspector-content'),
       inspector: byId('tower-inspector'),
       inspectorContent: byId('inspector-content'),
       upgrade: byId('upgrade-button'),
@@ -77,6 +125,8 @@ export class GameUI {
     }
     for (const [button, panel] of [
       ['close-preview-button', this.elements.preview],
+      ['close-blueprint-button', this.elements.blueprint],
+      ['close-enemy-inspector-button', this.elements.enemyInspector],
       ['close-inspector-button', this.elements.inspector]
     ]) {
       byId(button).addEventListener('click', () => {
@@ -224,6 +274,12 @@ export class GameUI {
     this.elements.lives.textContent = model.lives;
     this.elements.wave.textContent = `${model.waveNumber} / ${model.maxWaves}`;
     this.elements.phase.textContent = this.phaseLabel(model.phase);
+    this.elements.paletteEyebrow.textContent = model.phase === PHASES.WAVE
+      ? 'Build locked during wave'
+      : 'Build';
+    this.elements.previewEyebrow.textContent = model.phase === PHASES.WAVE
+      ? 'Wave roster'
+      : 'Incoming';
 
     const scheduled = Math.max(1, model.wave.scheduled);
     this.elements.progress.max = scheduled;
@@ -241,8 +297,10 @@ export class GameUI {
     );
 
     this.renderPalette(model);
+    this.renderBlueprint(session);
     this.renderPreview(model);
-    this.renderInspector(model);
+    this.renderEnemyInspector(session);
+    this.renderInspector(session, model);
     this.updateDescription(session, model);
     this.updateDialogs(session, model);
     byId('range-toggle').checked = model.settings.showRanges;
@@ -263,6 +321,12 @@ export class GameUI {
   }
 
   onSessionEvent(event, session) {
+    if (['new-game', 'restarted', 'returned-to-menu', 'wave-completed'].includes(event.type)) {
+      this.selectedEnemyType = null;
+    }
+    if (['new-game', 'restarted', 'returned-to-menu'].includes(event.type)) {
+      this.selectedBlueprintType = null;
+    }
     if (['defense-placed', 'defense-selected'].includes(event.type)) {
       this.elements.inspector.open = true;
     }
@@ -297,7 +361,9 @@ export class GameUI {
     const signature = JSON.stringify({
       phase: model.phase,
       selected: model.selectedTowerType,
-      towers: model.towers.map((tower) => [tower.type, tower.affordable])
+      inspected: this.selectedBlueprintType,
+      towers: model.towers.map((tower) => [tower.type,
+        model.phase === PHASES.BUILDING && tower.affordable])
     });
     if (this.lastSignatures.get('palette') === signature) {
       return;
@@ -305,6 +371,8 @@ export class GameUI {
     this.lastSignatures.set('palette', signature);
     this.elements.palette.replaceChildren(
       ...model.towers.map((tower) => {
+        const entry = document.createElement('div');
+        entry.className = 'tower-palette-entry';
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'tower-card';
@@ -341,13 +409,66 @@ export class GameUI {
           this.commands.session().selectTowerType(tower.type);
           byId('game-canvas').focus();
         });
-        return button;
+        const inspect = document.createElement('button');
+        inspect.type = 'button';
+        inspect.className = 'tower-info-button';
+        inspect.dataset.inspectTowerType = tower.type;
+        inspect.setAttribute('aria-label', `Inspect ${tower.name} blueprint`);
+        inspect.setAttribute('aria-pressed', String(this.selectedBlueprintType === tower.type));
+        inspect.textContent = 'Info';
+        inspect.addEventListener('click', () => this.inspectBlueprintType(tower.type));
+        entry.append(button, inspect);
+        return entry;
       })
     );
   }
 
+  inspectBlueprintType(type) {
+    this.selectedBlueprintType = type;
+    this.elements.blueprint.open = Boolean(type);
+    this.update(this.commands.session());
+    if (type) this.elements.blueprint.querySelector('summary').focus();
+  }
+
+  renderBlueprint(session) {
+    const type = this.selectedBlueprintType;
+    this.elements.blueprint.hidden = !type;
+    if (!type || this.lastSignatures.get('blueprint') === type) return;
+    this.lastSignatures.set('blueprint', type);
+    const info = getTowerBlueprint(session.balance, type);
+    const { current, next } = info;
+    const rows = current.damage > 0 ? [
+      ['Damage per hit', current.damage.toFixed(1), next?.damage.toFixed(1)],
+      ['Fire rate', rateText(current.ratePerSec), next && rateText(next.ratePerSec)],
+      ['Range', current.range.toFixed(1), next?.range.toFixed(1)]
+    ] : [
+      ['Fire-rate aura', `${Math.round(current.auraFireRatePct * 100)}%`, next && `${Math.round(next.auraFireRatePct * 100)}%`],
+      ['Support range', current.range.toFixed(1), next?.range.toFixed(1)]
+    ];
+    if (current.slowDurationMs > 0 || next?.slowDurationMs > 0) {
+      rows.push(['Slow', statusText(current.slowPct, current.slowDurationMs), next && statusText(next.slowPct, next.slowDurationMs)]);
+    }
+    if (current.vulnerabilityDurationMs > 0 || next?.vulnerabilityDurationMs > 0) {
+      rows.push(['Vulnerability', statusText(current.vulnerabilityPct, current.vulnerabilityDurationMs), next && statusText(next.vulnerabilityPct, next.vulnerabilityDurationMs)]);
+    }
+    if (info.chainUnlockLevel) rows.push(['Chain', current.chainTargets ? `${current.chainTargets} extra target` : 'Locked', next && (next.chainTargets ? `${next.chainTargets} extra target` : 'Locked')]);
+    const note = current.damage > 0
+      ? `${current.role}. Direct damage (${current.damageType}). Effective fire rate depends on nearby active support.`
+      : 'Support / economy. Does not attack. Available fire-rate gain depends on placement, nearby attackers, the aura cap and EMP.';
+    const content = [
+      element('h3', `${current.name} · Unplaced`),
+      element('p', note, 'inspection-note'),
+      comparisonTable(rows, 1, next?.level)
+    ];
+    if (info.chainUnlockLevel) content.push(element('p', `Chain unlocks at level ${info.chainUnlockLevel}.`, 'inspection-note'));
+    if (type === 'distributor') content.push(element('p', `Passive wave-clear bonus: +${info.waveBonusDharma} Dharma per installed Distributor, capped at +${info.waveBonusCapDharma}. EMP pauses its aura, not this bonus.`, 'inspection-note'));
+    content.push(element('p', `Build cost: ${resourceText(info.buildCost)}. If built, total investment: ${resourceText(info.totalInvested)}; refund (${Math.round(info.refundPct * 100)}%): ${resourceText(info.sellValue)}.`, 'inspection-note'));
+    if (info.upgradeCost) content.push(element('p', `Next upgrade cost: ${resourceText(info.upgradeCost)}.`, 'inspection-note'));
+    this.elements.blueprintContent.replaceChildren(...content);
+  }
+
   renderPreview(model) {
-    const signature = JSON.stringify(model.preview);
+    const signature = JSON.stringify([model.preview, this.selectedEnemyType, model.phase]);
     if (this.lastSignatures.get('preview') === signature) {
       return;
     }
@@ -356,82 +477,144 @@ export class GameUI {
     this.elements.previewList.replaceChildren(
       ...(model.preview?.enemies || []).map((enemy) => {
         const item = document.createElement('li');
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'enemy-preview-button';
+        button.dataset.enemyType = enemy.id;
+        const timing = model.phase === PHASES.WAVE ? 'in this wave' : 'incoming';
+        button.setAttribute('aria-label', `Inspect ${enemy.name}, ${enemy.count} ${timing}`);
+        button.setAttribute('aria-pressed', String(this.selectedEnemyType === enemy.id));
         const icon = document.createElement('span');
         icon.setAttribute('aria-hidden', 'true');
         icon.textContent = enemy.icon;
-        const details = document.createElement('span');
         const name = document.createElement('strong');
         name.textContent = enemy.name;
-        const ability = document.createElement('small');
-        ability.textContent = enemy.ability;
-        details.append(name, ability);
         const count = document.createElement('span');
         count.textContent = `× ${enemy.count}`;
-        item.append(icon, details, count);
+        button.append(icon, name, count);
+        button.addEventListener('click', () => this.inspectEnemyType(enemy.id));
+        item.append(button);
         return item;
       })
     );
   }
 
-  renderInspector(model) {
-    const tower = model.selectedTower;
-    this.elements.inspector.hidden = !tower;
-    if (tower?.id !== this.lastInspectedTowerId) {
-      this.elements.inspector.open = Boolean(tower);
-      this.lastInspectedTowerId = tower?.id;
-    }
-    if (!tower) {
-      return;
-    }
-    const signature = JSON.stringify({
-      tower,
-      resources: model.resources,
-      phase: model.phase
+  inspectEnemyType(type) {
+    this.selectedEnemyType = type;
+    this.elements.enemyInspector.open = Boolean(type);
+    this.update(this.commands.session());
+    if (type) this.elements.enemyInspector.querySelector('summary').focus();
+  }
+
+  refreshLiveInspection(session) {
+    const id = session.state.selectedDefenseId;
+    if (!id || !session.state.defenses.has(id)) return;
+    this.renderInspector(session, {
+      selectedTower: { id },
+      phase: session.state.phase,
+      resources: session.state.resources
     });
-    if (this.lastSignatures.get('inspector') === signature) {
-      return;
+  }
+
+  renderEnemyInspector(session) {
+    const type = this.selectedEnemyType;
+    this.elements.enemyInspector.hidden = !type;
+    if (!type || this.lastSignatures.get('enemy-inspector') === type) return;
+    this.lastSignatures.set('enemy-inspector', type);
+    const enemy = getEnemyInspection(session.balance, type);
+    const content = this.elements.enemyInspectorContent;
+    const heading = element('h3', enemy.name);
+    const armor = element('p', `Armor: ${enemy.armor}`, 'inspection-note');
+    const resistanceTitle = element('h4', 'Damage taken before armor');
+    const resistanceList = document.createElement('ul');
+    for (const [damageType, multiplier] of Object.entries(enemy.resistances)) {
+      resistanceList.append(element('li', `${damageType[0].toUpperCase()}${damageType.slice(1)}: ×${multiplier.toFixed(2)}`));
     }
+    const mitigation = element('p', 'A shot is multiplied by its damage type, then armor is subtracted (minimum 1 damage).', 'inspection-note subtle');
+    const abilityTitle = element('h4', 'Implemented ability');
+    const ability = element('p', enemy.ability || 'No active special ability.', 'inspection-note');
+    const counterTitle = element('h4', 'Counter hint');
+    const counter = element('p', enemy.counterHint, 'inspection-note');
+    content.replaceChildren(heading, armor, resistanceTitle, resistanceList, mitigation, abilityTitle, ability, counterTitle, counter);
+  }
+
+  renderInspector(session, model) {
+    const selected = model.selectedTower;
+    this.elements.inspector.hidden = !selected;
+    if (selected?.id !== this.lastInspectedTowerId) {
+      this.elements.inspector.open = Boolean(selected);
+      this.lastInspectedTowerId = selected?.id;
+    }
+    if (!selected) return;
+    const tower = getTowerInspection(
+      session.balance,
+      session.state.defenses.get(selected.id),
+      session.state.defenses.values(),
+      session.state.gameTimeMs,
+      session.state.waveNumber
+    );
+    const signature = JSON.stringify({ tower, resources: model.resources, phase: model.phase });
+    if (this.lastSignatures.get('inspector') === signature) return;
     this.lastSignatures.set('inspector', signature);
-    const current = tower.current;
-    const next = tower.next;
-    const isSupport = tower.type === 'distributor';
-    const roleDescription = isSupport
-      ? `${current.role}. Does not attack. Boosts nearby attacking towers' fire rate while active; EMP pauses the aura, but not its wave-clear bonus.`
-      : `${current.role}. Targets the active threat closest to the endpoint.`;
-    const statusDescription = isSupport
-      ? `${Math.round(current.auraFireRatePct * 100)}% fire-rate aura`
-      : current.slowDurationMs > 0
-        ? `${Math.round(current.slowPct * 100)}% slow`
-        : 'Direct damage';
-    const nextDescription = next
-      ? isSupport
-        ? `Next: ${Math.round(next.auraFireRatePct * 100)}% fire-rate aura, ${Math.round(next.range)} support range.`
-        : `Next: ${next.damage.toFixed(1)} damage, ${Math.round(next.range)} range.`
-      : 'Maximum level reached.';
-    this.elements.inspectorContent.innerHTML = `
-      <p><strong>${current.name}</strong> · Level ${tower.level}</p>
-      <p class="subtle">${roleDescription}</p>
-      <div class="stat-grid">
-        <div><span>Damage</span>${current.damage.toFixed(1)}</div>
-        <div><span>Range</span>${Math.round(current.range)}</div>
-        <div><span>Rate</span>${current.ratePerSec.toFixed(2)}/s</div>
-        <div><span>Status</span>${statusDescription}</div>
-      </div>
-      <p class="subtle">${nextDescription}</p>
-    `;
-    const affordable =
-      tower.upgradeCost && canAfford(model.resources, tower.upgradeCost);
-    this.elements.upgrade.disabled =
-      model.phase !== PHASES.BUILDING || !tower.next || !affordable;
-    this.elements.upgrade.textContent = tower.next
-      ? `Upgrade · ${costText(tower.upgradeCost)}`
-      : 'Maximum level';
-    this.elements.upgrade.title =
-      model.phase !== PHASES.BUILDING
-        ? 'Upgrades are available during the build phase.'
-        : !affordable
-          ? 'Not enough resources.'
-          : '';
+    const { current, next } = tower;
+    const content = this.elements.inspectorContent;
+    const heading = element('h3', `${current.name} · Level ${selected.level}`);
+    if (tower.support) {
+      const support = tower.support;
+      const note = element('p', 'Support / economy. Does not attack. Its fire-rate aura boosts nearby attacking towers while active. Rates assume a target is available. EMP pauses the aura; its passive wave-clear bonus still counts.', 'inspection-note');
+      const rows = [
+        ['Fire-rate aura', `${Math.round(current.auraFireRatePct * 100)}%`, next && `${Math.round(next.auraFireRatePct * 100)}%`],
+        ['Support range', `${current.range.toFixed(1)}`, next && `${next.range.toFixed(1)}`],
+        ['Attackers with rate boost', `${support.current.affectedCount} of ${support.current.coveredCount} in range`, support.next && `${support.next.affectedCount} of ${support.next.coveredCount} in range`],
+        ['Rate gain while firing', rateText(support.current.addedRatePerSec), support.next && rateText(support.next.addedRatePerSec)]
+      ];
+      const table = comparisonTable(rows, selected.level, next?.level);
+      const recipients = document.createElement('ul');
+      for (const recipient of support.current.recipients.filter((item) => item.addedRatePerSec > 1e-9)) {
+        const name = session.balance.towers[recipient.type].name;
+        recipients.append(element('li', `${name}: ${rateText(recipient.withoutRatePerSec)} → ${rateText(recipient.withRatePerSec)} (+${rateText(recipient.addedRatePerSec)})`));
+      }
+      const recipientNote = element('p', support.current.affectedCount
+        ? 'Towers with a faster firing cadence when a target is available:'
+        : 'No attacking tower currently gains fire rate from this aura.', 'inspection-note');
+      const wave = support.waveBonus;
+      const waveBonus = element('p', `Passive wave-clear bonus: +${wave.perDistributorDharma} Dharma per installed Distributor, capped at +${wave.capDharma}. Current total +${wave.totalDharma}; this Distributor adds +${wave.marginalDharma} at the next clear.`, 'inspection-note');
+      content.replaceChildren(heading, note, table, recipientNote, recipients, waveBonus);
+      if (!support.current.active) content.append(element('p', 'Aura currently suppressed by EMP; passive wave-clear income remains.', 'inspection-note'));
+    } else {
+      const note = element('p', `${current.role}. Direct damage (${current.damageType}). Targets the enemy closest to the endpoint within range. Rates assume a target is available.`, 'inspection-note');
+      const rows = [
+        ['Damage per hit', current.damage.toFixed(1), next?.damage.toFixed(1)],
+        ['Fire rate', rateText(current.ratePerSec), next && rateText(next.ratePerSec)],
+        ['Rate with active support', rateText(current.effectiveRatePerSec), next && rateText(next.effectiveRatePerSec)],
+        ['Range', current.range.toFixed(1), next?.range.toFixed(1)]
+      ];
+      if (current.slowDurationMs > 0 || next?.slowDurationMs > 0) {
+        rows.push(['Slow', statusText(current.slowPct, current.slowDurationMs), next && statusText(next.slowPct, next.slowDurationMs)]);
+      }
+      if (current.vulnerabilityDurationMs > 0 || next?.vulnerabilityDurationMs > 0) {
+        rows.push(['Vulnerability', statusText(current.vulnerabilityPct, current.vulnerabilityDurationMs), next && statusText(next.vulnerabilityPct, next.vulnerabilityDurationMs)]);
+      }
+      if (tower.chainUnlockLevel) {
+        rows.push(['Chain', current.chainTargets ? `${current.chainTargets} extra target` : 'Locked', next && (next.chainTargets ? `${next.chainTargets} extra target` : 'Locked')]);
+      }
+      const table = comparisonTable(rows, selected.level, next?.level);
+      const notes = [heading, note, table];
+      if (tower.chainUnlockLevel) notes.push(element('p', `Chain unlocks at level ${tower.chainUnlockLevel}.`, 'inspection-note'));
+      if (session.state.defenses.get(selected.id).disabledUntilMs > session.state.gameTimeMs) notes.push(element('p', 'EMP currently prevents this tower from firing.', 'inspection-note'));
+      content.replaceChildren(...notes);
+    }
+    const economy = element('p', `Total investment: ${resourceText(tower.totalInvested)}. Refund (${Math.round(tower.refundPct * 100)}%): ${resourceText(tower.sellValue)}.`, 'inspection-note');
+    content.append(economy);
+    if (tower.upgradeCost) content.append(element('p', `Next upgrade cost: ${resourceText(tower.upgradeCost)}.`, 'inspection-note'));
+    else content.append(element('p', 'Maximum level reached.', 'inspection-note'));
+    const affordable = tower.upgradeCost && canAfford(model.resources, tower.upgradeCost);
+    this.elements.upgrade.disabled = model.phase !== PHASES.BUILDING || !next || !affordable;
+    this.elements.upgrade.textContent = next ? `Upgrade · ${costText(tower.upgradeCost)}` : 'Maximum level';
+    this.elements.upgrade.title = model.phase !== PHASES.BUILDING
+      ? 'Upgrades are available during the build phase.'
+      : !next ? 'Maximum level reached.'
+        : !affordable ? 'Not enough resources.' : '';
     this.elements.sell.disabled = model.phase !== PHASES.BUILDING;
     this.elements.sell.textContent = `Sell · ${costText(tower.sellValue)}`;
   }

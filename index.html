@@ -84,7 +84,7 @@
               <canvas
                 id="game-canvas"
                 tabindex="0"
-                aria-label="Battlefield. Use arrow keys to move the build cursor and Enter to place the selected tower."
+                aria-label="Battlefield. Use arrow keys to move the cursor and Enter to select a tower, inspect an enemy during a wave, or place a tower during building."
                 aria-describedby="battlefield-description"
               ></canvas>
             </div>
@@ -98,23 +98,35 @@
               <section aria-labelledby="tower-palette-title">
                 <div class="section-heading">
                   <div>
-                    <p class="eyebrow">Build</p>
+                    <p class="eyebrow" id="palette-eyebrow">Build</p>
                     <h2 id="tower-palette-title">Tower palette</h2>
                   </div>
                 </div>
                 <div id="tower-palette" class="tower-palette"></div>
               </section>
 
+              <details id="tower-blueprint" class="tower-blueprint" hidden>
+                <summary id="tower-blueprint-title"><h2>Tower blueprint</h2></summary>
+                <div id="tower-blueprint-content"></div>
+                <button id="close-blueprint-button" type="button">Hide tower blueprint</button>
+              </details>
+
               <details id="wave-preview-section" class="wave-preview" open>
                 <summary id="wave-preview-title"><h2>Wave preview</h2></summary>
                 <div class="section-heading">
                   <div>
-                    <p class="eyebrow">Incoming</p>
+                    <p class="eyebrow" id="preview-eyebrow">Incoming</p>
                   </div>
                   <strong id="boss-warning" class="boss-warning" hidden>Boss</strong>
                 </div>
                 <ul id="wave-preview-list"></ul>
                 <button id="close-preview-button" type="button">Hide wave preview</button>
+              </details>
+
+              <details id="enemy-inspector" class="enemy-inspector" hidden>
+                <summary id="enemy-inspector-title"><h2>Enemy details</h2></summary>
+                <div id="enemy-inspector-content"></div>
+                <button id="close-enemy-inspector-button" type="button">Hide enemy details</button>
               </details>
 
               <details id="tower-inspector" class="tower-inspector" hidden>
@@ -141,7 +153,7 @@
 
       <footer>
         <span>Canvas: battlefield only</span>
-        <span>Keyboard: arrows + Enter to build, Escape to clear selection</span>
+        <span>Keyboard: arrows + Enter to build or inspect, Escape to clear selection</span>
       </footer>
     </div>
 
