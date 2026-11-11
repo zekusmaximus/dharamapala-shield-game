@@ -8,6 +8,7 @@ import { addResources, normalizeResources } from '../core/rules/economy.js';
 import { createDefense } from '../entities/createDefense.js';
 
 export const SAVE_KEY = 'dharmapala-shield/save/v2';
+export const PREFERENCES_KEY = 'dharmapala-shield/preferences/v1';
 const CORRUPT_KEY = `${SAVE_KEY}/corrupt`;
 const TUTORIAL_KEY = 'dharmapala-shield/tutorial-completed';
 const LEGACY_KEYS = [
@@ -17,56 +18,72 @@ const LEGACY_KEYS = [
 ];
 
 export class BrowserSaveRepository {
-  constructor(storage = globalThis.localStorage) {
-    this.storage = storage;
+  constructor(storage) {
+    this.error = null;
+    this.recoveryRaw = null;
+    this.blocked = false;
+    try { this.storage = storage ?? globalThis.localStorage; }
+    catch (error) { this.error = error.message; }
+  }
+
+  read(key) {
+    try { return this.storage?.getItem(key) ?? null; }
+    catch (error) { this.error = error.message; return null; }
   }
 
   hasSave() {
-    return Boolean(
-      this.storage?.getItem(SAVE_KEY) ||
-        LEGACY_KEYS.some((key) => this.storage?.getItem(key))
-    );
+    return Boolean(this.read(SAVE_KEY) || LEGACY_KEYS.some(key => this.read(key)));
+  }
+
+  preferences(fallback = {}) {
+    let saved = {};
+    try { saved = JSON.parse(this.read(PREFERENCES_KEY) || '{}'); } catch { /* defaults */ }
+    return Object.fromEntries(Object.entries({ tutorialCompleted: this.getTutorialCompleted(), showRanges: true, reducedMotion: false }).map(([key, value]) => [key, typeof saved?.[key] === 'boolean' ? saved[key] : typeof fallback[key] === 'boolean' ? fallback[key] : value]));
+  }
+
+  savePreferences(settings) {
+    try {
+      if (!this.storage) throw new Error('Local storage is unavailable');
+      this.storage.setItem(PREFERENCES_KEY, JSON.stringify(settings));
+      return { ok: true };
+    } catch (error) { this.error = error.message; return { ok: false, error: error.message }; }
   }
 
   save(session) {
+    if (this.blocked) return { ok: false, error: 'Export or reset the unreadable save before saving a new run.' };
     try {
+      if (!this.storage) throw new Error('Local storage is unavailable');
       this.storage.setItem(SAVE_KEY, JSON.stringify(session.toSnapshot()));
-      if (session.state.settings.tutorialCompleted) {
-        this.storage.setItem(TUTORIAL_KEY, 'true');
-      }
-      return { ok: true };
-    } catch (error) {
-      return { ok: false, error: error.message };
-    }
+      return this.savePreferences(session.state.settings);
+    } catch (error) { this.error = error.message; return { ok: false, error: error.message }; }
   }
 
   load(balance) {
-    const raw = this.storage?.getItem(SAVE_KEY);
+    const raw = this.read(SAVE_KEY);
     if (raw) {
       try {
-        const snapshot = JSON.parse(raw);
-        return {
-          ok: true,
-          session: GameSession.fromSnapshot(balance, snapshot),
-          migrated: false
-        };
+        const session = GameSession.fromSnapshot(balance, JSON.parse(raw));
+        Object.assign(session.state.settings, this.preferences(session.state.settings));
+        return { ok: true, session, migrated: false };
       } catch (error) {
         this.preserveCorrupt(raw);
         return { ok: false, error: error.message, raw };
       }
     }
+    if (this.error) return { ok: false, error: `Local storage unavailable: ${this.error}` };
     return this.loadLegacy(balance);
   }
 
   loadLegacy(balance) {
     for (const key of LEGACY_KEYS) {
-      const raw = this.storage?.getItem(key);
+      const raw = this.read(key);
       if (!raw) {
         continue;
       }
       try {
         const legacy = JSON.parse(raw);
         const session = this.migrateLegacy(balance, legacy);
+        GameSession.fromSnapshot(balance, session.toSnapshot());
         this.save(session);
         return { ok: true, session, migrated: true };
       } catch (error) {
@@ -133,6 +150,8 @@ export class BrowserSaveRepository {
   }
 
   preserveCorrupt(raw) {
+    this.recoveryRaw = raw;
+    this.blocked = true;
     try {
       this.storage?.setItem(CORRUPT_KEY, raw);
     } catch {
@@ -141,14 +160,19 @@ export class BrowserSaveRepository {
   }
 
   exportCorrupt() {
-    return this.storage?.getItem(CORRUPT_KEY) || null;
+    return this.recoveryRaw || this.read(CORRUPT_KEY);
   }
 
   clear() {
-    this.storage?.removeItem(SAVE_KEY);
+    try {
+      if (!this.storage) throw new Error('Local storage is unavailable');
+      for (const key of [SAVE_KEY, ...LEGACY_KEYS]) this.storage.removeItem(key);
+      this.blocked = false;
+      return { ok: true };
+    } catch (error) { this.error = error.message; return { ok: false, error: error.message }; }
   }
 
   getTutorialCompleted() {
-    return this.storage?.getItem(TUTORIAL_KEY) === 'true';
+    return this.read(TUTORIAL_KEY) === 'true';
   }
 }

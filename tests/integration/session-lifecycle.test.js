@@ -45,6 +45,8 @@ test('raid team phases schedule deterministic minions and survive round-trip sav
   assert.deepEqual(boss.firedPhases, [1, 2]);
   assert.equal(session.state.wave.scheduled, 17);
 
+  // This fixture advances the scheduler directly rather than through step().
+  session.state.wave.spawnCursor = session.scheduler.cursor;
   const snapshot = session.toSnapshot();
   const restored = GameSession.fromSnapshot(balance, snapshot);
   assert.deepEqual(restored.toSnapshot().state, snapshot.state);

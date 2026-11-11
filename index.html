@@ -40,6 +40,12 @@
       </header>
 
       <main>
+        <section id="save-recovery" aria-label="Local save recovery" hidden>
+          <p id="storage-status" role="status"></p>
+          <p>Unreadable saves are kept until you explicitly reset. Export a copy before resetting. Preferences are kept.</p>
+          <button id="export-save-button" type="button">Export recovery save</button>
+          <button id="reset-save-button" type="button">Reset saved run</button>
+        </section>
         <section id="menu-screen" class="menu-screen" aria-labelledby="menu-title">
           <div class="menu-card">
             <p class="eyebrow">A deterministic tower defense</p>

@@ -25,7 +25,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | Milestone | Priority | Status | Depends on | Completion evidence |
 | --- | --- | --- | --- | --- |
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
-| M1 · Make every run trustworthy | P0, plus related P1 fixes | Partial: M1.1–M1.2 complete | M0 | Mobile controls work; dialogs cannot strand play; saves and combat invariants pass regression checks |
+| M1 · Make every run trustworthy | P0, plus related P1 fixes | Partial: M1.1–M1.3 complete | M0 | Mobile controls work; dialogs cannot strand play; saves and combat invariants pass regression checks |
 | M2 · Make decisions readable and measurable | P1 | Partial: review diagnostics only | M1 | Accurate combat information, actionable wave reports, reproducible strategy comparisons |
 | M3 · Prove an engaging five-wave game | P1 | Planned | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
@@ -66,7 +66,7 @@ challenge. P2 adds replay value and release polish after the core works.
 
 ## M1 · Make every run trustworthy
 
-**Status: Partial — M1.1–M1.2 complete; M1.3–M1.5 planned.** This comes before
+**Status: Partial — M1.1–M1.3 complete; M1.4–M1.5 planned.** This comes before
 balance changes. Findings R01–R07 and R10 in the review describe the baseline
 failures. Work in small, independently
 reviewable changes, each with a regression for the behavior it fixes.
@@ -100,8 +100,23 @@ settings, pause/resume, sale cancellation and both terminal outcomes. Build,
 22 unit, 4 integration, 2 simulation, 35 e2e (all 27 prior tests preserved), and
 6 accessibility checks pass; historical diagnostic JSON is unchanged.
 [New evidence and limits](design/reviews/2026-11-11-m1.2/README.md) distinguish
-Chromium emulation from physical-device and screen-reader testing. M1.3–M1.5
-remain planned; M1 is incomplete.
+Chromium emulation from physical-device and screen-reader testing. M1 remains incomplete.
+
+**M1.3 complete (2026-11-11):** Reconfirmed R02/R04 on main `3a0745f`.
+Full candidate and balance validation precedes session replacement; nested save
+and restored data are isolated. New/tutorial, restarted, wave-start/completed and
+terminal runs persist, with completed-tick capture for combat transitions.
+Independent preferences survive new games, restart, menu and reload. Recovery
+controls export the exact rejected payload and explicitly reset the saved run;
+denied storage leaves play usable with a visible warning. Exact balance-version
+compatibility and recovery retention limits are documented. Build, 61 unit,
+7 integration, 2 simulation, 40 e2e (all 35 prior interactions retained), and
+7 accessibility checks pass. Continuation tests advance uninterrupted/restored
+wave 1, mid-phase Raid Team and damaged-shield Titan combat through completion;
+all 12 historical policy outcomes remain unchanged.
+[Evidence and limits](design/reviews/2026-11-11-m1.3/README.md) distinguish Chromium
+emulation/axe from physical-device and screen-reader testing. M1.4–M1.5 remain
+planned; M1 as a whole is incomplete.
 
 Do not change reward values to compensate for a combat bug. Re-run the policy
 baseline after these fixes so subsequent tuning starts from the corrected rules.
@@ -314,8 +329,8 @@ content does not ship merely because the application builds.
 
 ## Immediate next work
 
-M1.1 portrait interaction is complete. Continue with **M1.2 dialog cancellation** and
-**M1.3 save integrity/lifecycle**, followed by M1.4 combat corrections and M1.5 CI.
+M1.1 portrait interaction, M1.2 dialog cancellation and M1.3 save integrity/lifecycle
+are complete. Next are **M1.4 combat corrections**, followed by M1.5 CI.
 Then build the feedback and measurement needed for the five-wave design gate.
 Move an item to Complete only when its acceptance evidence is recorded here or in
 a linked review, test report, or playtest note.

@@ -565,7 +565,7 @@ for (const phase of ['GAME_OVER', 'VICTORY']) {
     for (const exit of ['restart', 'menu', 'Escape']) {
       if (exit === 'Escape') await keyActivate(page, 'new-game-button');
       // Terminal fixture only: do not fake combat or claim campaign coverage.
-      await page.evaluate((phase) => gameApplication.session.enterTerminal(phase), phase);
+      await page.evaluate((phase) => { const s=gameApplication.session; if(phase==='GAME_OVER') s.state.lives=0; else { s.state.waveNumber=s.state.maxWaves; s.state.statistics.wavesCompleted=s.state.maxWaves; } s.enterTerminal(phase); }, phase);
       await expectPhase(page, phase);
       await expect(page.locator('#terminal-dialog')).toBeVisible();
       await expectFrozen(page);
@@ -589,4 +589,107 @@ test('Escape closes settings and restores build phase (R03)', async ({ page }) =
   await expect(page.locator('dialog[open]')).toHaveCount(0);
   await expectPhase(page, 'BUILDING');
   await expect(page.locator('#settings-button')).toBeFocused();
+});
+
+test('restart, new run and terminal results are durable and preferences survive navigation', async ({ page }) => {
+  await openFresh(page); await enterBuildPhase(page);
+  await page.getByRole('button', { name: 'Settings', exact: true }).click();
+  await page.locator('#range-toggle').uncheck(); await page.locator('#motion-toggle').check();
+  await page.keyboard.press('Escape');
+  await clickWorld(page,210,210);
+  await page.getByRole('button', {name:'Pause game'}).click();
+  await page.getByRole('button', {name:'Restart run'}).click();
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')).state.phase)).toBe('BUILDING');
+  await page.reload(); await page.getByRole('button',{name:'Continue',exact:true}).click();
+  if (await page.locator('#resume-button').isVisible()) await page.locator('#resume-button').click();
+  expect(await page.evaluate(()=>({phase:gameApplication.session.state.phase,count:gameApplication.session.state.defenses.size,settings:gameApplication.session.state.settings}))).toEqual({phase:'BUILDING',count:0,settings:{tutorialCompleted:true,showRanges:false,reducedMotion:true}});
+  for (const phase of ['GAME_OVER','VICTORY']) {
+    // Navigation fixture, not a claim of full-campaign combat.
+    await page.evaluate(phase=>{ const s=gameApplication.session; if(phase==='GAME_OVER') s.state.lives=0; else { s.state.waveNumber=s.state.maxWaves; s.state.statistics.wavesCompleted=s.state.maxWaves; } s.enterTerminal(phase); },phase);
+    await expect(page.locator('#terminal-dialog')).toBeVisible();
+    await page.reload(); await page.getByRole('button',{name:'Continue',exact:true}).click();
+  if (await page.locator('#resume-button').isVisible()) await page.locator('#resume-button').click();
+    await expect(page.locator('#terminal-dialog')).toBeVisible();
+    expect(await page.evaluate(()=>gameApplication.session.state.phase)).toBe(phase);
+    await page.keyboard.press('Escape');
+    await page.getByRole('button',{name:'New game',exact:true}).click();
+    await expect(page.locator('#start-wave-button')).toBeEnabled();
+    await page.reload(); await page.getByRole('button',{name:'Continue',exact:true}).click();
+  if (await page.locator('#resume-button').isVisible()) await page.locator('#resume-button').click();
+    expect(await page.evaluate(()=>gameApplication.session.state.settings)).toEqual({tutorialCompleted:true,showRanges:false,reducedMotion:true});
+  }
+});
+
+test('unreadable saves reject without swapping live play and export/reset through real controls', async ({ page }) => {
+  await openFresh(page); await enterBuildPhase(page); await clickWorld(page,210,210);
+  await page.evaluate(()=>{
+    window.previousSession=gameApplication.session;
+    localStorage.setItem('dharmapala-shield/save/v2','{"broken":true}');
+    gameApplication.returnToMenu();
+    // returnToMenu saves valid progress; replace it with the malformed candidate after navigation.
+    localStorage.setItem('dharmapala-shield/save/v2','{"broken":true}');
+  });
+  await page.getByRole('button',{name:'Continue',exact:true}).click();
+  if (await page.locator('#resume-button').isVisible()) await page.locator('#resume-button').click();
+  expect(await page.evaluate(()=>gameApplication.session===window.previousSession && gameApplication.session.state.phase==='MENU')).toBe(true);
+  await expect(page.getByRole('region',{name:'Local save recovery'})).toBeVisible();
+  const downloadPromise=page.waitForEvent('download');
+  await page.getByRole('button',{name:'Export recovery save'}).click();
+  const download=await downloadPromise;
+  const { readFile } = await import('node:fs/promises');
+  expect(await readFile(await download.path(),'utf8')).toBe('{"broken":true}');
+  await page.getByRole('button',{name:'Reset saved run'}).click();
+  await expect(page.getByRole('button',{name:'Continue',exact:true})).toBeDisabled();
+  await page.getByRole('button',{name:'New game',exact:true}).click();
+  await page.reload(); await page.getByRole('button',{name:'Continue',exact:true}).click();
+  if (await page.locator('#resume-button').isVisible()) await page.locator('#resume-button').click();
+  await expect(page.locator('#start-wave-button')).toBeEnabled();
+  expect(await page.evaluate(()=>localStorage.getItem('dharmapala-shield/save/v2/corrupt'))).toBe('{"broken":true}');
+});
+
+test('storage denial leaves menu and play usable with visible recovery status', async ({ page }) => {
+  await page.addInitScript(()=>{
+    for (const key of ['getItem','setItem','removeItem']) Storage.prototype[key]=()=>{throw new DOMException('Storage denied','SecurityError');};
+  });
+  await page.goto('/');
+  await expect(page.locator('#storage-status')).toContainText('Local storage unavailable');
+  await page.getByRole('button',{name:'New game',exact:true}).click();
+  await page.getByRole('button',{name:'Skip tutorial'}).click();
+  await expect(page.locator('#start-wave-button')).toBeEnabled();
+  await page.getByRole('button',{name:'Reset saved run'}).click();
+  await expect(page.locator('#storage-status')).toContainText('Local storage unavailable');
+});
+
+test('completed wave persists a finished clock frame and reloads into deliberate building', async ({page}) => {
+  await openFresh(page); await enterBuildPhase(page);
+  await page.getByRole('button',{name:'Start wave 1'}).click();
+  // Lifecycle fixture: release/resolve enemies, then let a real multi-step tick complete.
+  await page.evaluate(()=>{
+    const s=gameApplication.session;
+    s.scheduler.advance(100000,s.generation,e=>s.spawnEnemy(e));
+    s.state.gameTimeMs=s.scheduler.elapsedMs;
+    s.state.wave.spawnCursor=s.scheduler.cursor;
+    for(const enemy of [...s.state.enemies.values()]) s.resolveEnemy(enemy.id,'KILLED');
+    s.tick(100);
+  });
+  await expect(page.getByRole('button',{name:'Start wave 2'})).toBeEnabled();
+  await page.reload(); await page.getByRole('button',{name:'Continue',exact:true}).click();
+  if (await page.locator('#resume-button').isVisible()) await page.locator('#resume-button').click();
+  await expect(page.getByRole('button',{name:'Start wave 2'})).toBeEnabled();
+  expect(await page.evaluate(()=>gameApplication.session.state.phase)).toBe('BUILDING');
+});
+
+test('menu preferences and an uncompleted tutorial survive reload before first placement', async ({page}) => {
+  await openFresh(page);
+  await page.locator('#settings-button').click();
+  await page.locator('#motion-toggle').check();
+  await page.keyboard.press('Escape');
+  await page.reload();
+  await page.getByRole('button',{name:'New game',exact:true}).click();
+  await expect(page.getByRole('dialog',{name:'Protect the endpoint'})).toBeVisible();
+  await page.reload(); await page.getByRole('button',{name:'Continue',exact:true}).click();
+  await expect(page.getByRole('dialog',{name:'Protect the endpoint'})).toBeVisible();
+  expect(await page.evaluate(()=>gameApplication.session.state.settings.reducedMotion)).toBe(true);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#start-wave-button')).toBeEnabled();
 });

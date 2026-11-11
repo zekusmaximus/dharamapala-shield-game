@@ -65,7 +65,7 @@ function createStatistics() {
 }
 
 function mapFrom(items) {
-  return new Map(items.map((item) => [item.id, { ...item }]));
+  return new Map(items.map((item) => [item.id, structuredClone(item)]));
 }
 
 export class GameSession {
@@ -145,6 +145,7 @@ export class GameSession {
     const difficulty = options.difficulty || this.state.difficulty || 'Normal';
     const tutorialCompleted =
       options.tutorialCompleted ?? this.state.settings.tutorialCompleted;
+    const preferences = { ...this.state.settings };
     this.disposeRuntime();
     this.random = new SeededRandom(seed);
     this.ids = new IdSequence('entity');
@@ -154,6 +155,7 @@ export class GameSession {
       tutorialCompleted,
       phase: tutorialCompleted ? PHASES.BUILDING : PHASES.TUTORIAL
     });
+    Object.assign(this.state.settings, preferences, { tutorialCompleted });
     this.emitState('new-game');
     return commandResult(true, 'NEW_GAME');
   }
@@ -250,6 +252,7 @@ export class GameSession {
       tutorialCompleted: settings.tutorialCompleted,
       phase: PHASES.BUILDING
     });
+    Object.assign(this.state.settings, settings);
     this.emitState('restarted');
     return commandResult(true, 'RESTARTED');
   }
@@ -266,6 +269,7 @@ export class GameSession {
       tutorialCompleted: settings.tutorialCompleted,
       phase: PHASES.MENU
     });
+    Object.assign(this.state.settings, settings);
     this.emitState('returned-to-menu');
     return commandResult(true, 'RETURNED_TO_MENU');
   }
@@ -601,7 +605,7 @@ export class GameSession {
   }
 
   toSnapshot() {
-    return {
+    return structuredClone({
       schemaVersion: SCHEMA_VERSION,
       balanceVersion: this.balance.version,
       savedAt: new Date().toISOString(),
@@ -629,11 +633,12 @@ export class GameSession {
         ids: this.ids.snapshot(),
         generation: this.generation
       }
-    };
+    });
   }
 
   static fromSnapshot(balance, snapshot) {
     validateSnapshot(snapshot, balance);
+    snapshot = structuredClone(snapshot);
     const session = new GameSession(balance, {
       seed: snapshot.state.seed,
       difficulty: snapshot.state.difficulty,

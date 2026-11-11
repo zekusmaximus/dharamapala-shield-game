@@ -87,6 +87,21 @@ export class GameUI {
     byId('new-game-button').addEventListener('click', () =>
       this.commands.newGame(byId('difficulty-select').value)
     );
+    byId('export-save-button').addEventListener('click', () => {
+      const raw = this.repository.exportCorrupt();
+      if (!raw) return;
+      const url = URL.createObjectURL(new Blob([raw], { type: 'application/json' }));
+      const link = document.createElement('a');
+      link.href = url; link.download = 'dharmapala-recovery.json'; link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      this.announce('Recovery save exported.');
+    });
+    byId('reset-save-button').addEventListener('click', () => {
+      const result = this.repository.clear();
+      this.update(this.commands.session());
+      this.announce(result.ok ? 'Saved run reset. Exported and archived recovery copies and preferences are kept.' : `Reset failed: ${result.error}`, !result.ok);
+      this.focusUseful(byId('new-game-button'));
+    });
     this.elements.continueButton.addEventListener('click', () =>
       this.commands.continueGame()
     );
@@ -236,6 +251,11 @@ export class GameUI {
       (model.phase === PHASES.PAUSED && session.state.resumePhase === PHASES.BUILDING));
 
     const hasSave = this.repository.hasSave();
+    byId('save-recovery').hidden = !(this.repository.blocked || this.repository.error);
+    byId('storage-status').textContent = this.repository.error
+      ? `Local storage unavailable: ${this.repository.error}. Play can continue, but changes may be lost on reload.`
+      : 'This save cannot be resumed. Its original payload is preserved.';
+    byId('export-save-button').disabled = !this.repository.exportCorrupt();
     this.elements.continueButton.disabled = !hasSave;
     this.elements.continueHelp.textContent = hasSave
       ? 'Continue from the latest local snapshot.'
