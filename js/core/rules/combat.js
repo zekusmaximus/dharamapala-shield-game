@@ -1,3 +1,9 @@
+export const RAID_EMP = Object.freeze({
+  thresholds: Object.freeze([0.66, 0.33]),
+  radius: 260,
+  durationMs: 1500
+});
+
 export function getEffectiveDamage(rawDamage, definition, damageType = 'physical') {
   const resistanceMultiplier = definition.resists?.[damageType] ?? 1;
   return Math.max(1, rawDamage * resistanceMultiplier - (definition.armor || 0));
