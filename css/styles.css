@@ -738,6 +738,47 @@ dialog::backdrop {
   }
 }
 
+@media (max-width: 700px) and (max-height: 639px) and (orientation: landscape) {
+  .app-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  main {
+    min-width: 0;
+  }
+
+  .app-header {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.3rem;
+  }
+
+  .hud {
+    min-width: 0;
+    gap: 0.15rem;
+  }
+
+  .hud > div {
+    min-width: 0;
+    flex: 1 1 0;
+    padding-inline: 0.15rem;
+  }
+
+  .hud dt {
+    font-size: 0.57rem;
+    letter-spacing: 0;
+  }
+
+  .header-actions {
+    gap: 0.25rem;
+  }
+
+  .header-actions button {
+    min-width: 44px;
+    padding-inline: 0.4rem;
+    font-size: 0.75rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
