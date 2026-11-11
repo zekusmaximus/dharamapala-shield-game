@@ -1,5 +1,8 @@
 # Deferred tower concepts
 
+Status: deferred. The [current roadmap](../ROADMAP.md#deferred-until-the-core-proves-itself)
+prioritizes improving the existing three-tower game before expanding the roster.
+
 Three legacy tower IDs are preserved only by save migration:
 
 - `decoy` — requires a deterministic targeting-redirection mechanic.

@@ -2,6 +2,12 @@
 
 ## Status
 
+Historical architecture specification. As of the 2026-11-11 review, much of this
+design is implemented, but its acceptance criteria are not all verified. Use
+[ROADMAP.md](ROADMAP.md) for current priorities and completion status and the
+[code review](design/CODE_REVIEW_2026-11-11.md) for confirmed gaps. The original
+proposal follows for reference; future-tense language is not a current task list.
+
 Proposed implementation roadmap for turning the current browser prototype into a
 deterministic, testable, responsive, and end-to-end playable tower-defense game.
 
