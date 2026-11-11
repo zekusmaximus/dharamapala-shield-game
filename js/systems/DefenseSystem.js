@@ -1,3 +1,4 @@
+import { towerEntry } from '../core/rules/reports.js';
 import { createProjectile } from '../entities/createProjectile.js';
 import { getAuraMultiplier, getTowerStats } from '../core/rules/towers.js';
 import { rollDamage } from '../core/rules/combat.js';
@@ -44,6 +45,15 @@ export class DefenseSystem {
         defenses,
         nowMs
       );
+      towerEntry(session, defense).shots += 1;
+      if (auraMultiplier > 1) {
+        for (const support of defenses) {
+          if (support.type === 'distributor' && support.disabledUntilMs <= nowMs &&
+            Math.hypot(support.x - defense.x, support.y - defense.y) <= getTowerStats(session.balance, support.type, support.level).range) {
+            towerEntry(session, support).auraShots += 1;
+          }
+        }
+      }
       defense.cooldownMs += stats.cooldownMs / auraMultiplier;
       session.events.emit('projectile-fired', {
         defenseId: defense.id,

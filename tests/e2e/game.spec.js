@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { combatFixture, clickWorld, enterBuildPhase, openFresh } from './helpers.js';
+import { reportFixture, combatFixture, clickWorld, enterBuildPhase, openFresh } from './helpers.js';
 
 test('loads the real game without console errors and keeps wave 1 idle', async ({
   page
@@ -1004,4 +1004,46 @@ test('combat text follows boss phase, shield damage and status expiry without li
   });
   await expect(page.locator('#combat-state')).not.toContainText('Slow:');
   await expect(page.locator('#combat-state')).not.toContainText('Vulnerable:');
+});
+
+for (const viewport of [{width:360,height:640},{width:390,height:844},{width:640,height:360},{width:844,height:390},{width:1280,height:720}]) {
+  test(`wave reports persist and allow pointer and keyboard dismissal at ${viewport.width}x${viewport.height}`, async ({page}) => {
+    await openFresh(page, viewport); await enterBuildPhase(page); await reportFixture(page);
+    const host=page.locator('#wave-reports');
+    const summary=host.locator('summary');
+    await summary.click();
+    await expect(host).toContainText('Script Kiddie');
+    await expect(host).toContainText('No attacking tower range observed');
+    await expect(host).toContainText('Build/upgrade spent');
+    await expect(page.getByRole('button',{name:'Start wave 2',exact:true})).toBeEnabled();
+    await page.reload();
+    await page.getByRole('button',{name:'Continue',exact:true}).click();
+    if (await page.locator('#resume-button').isVisible()) await page.locator('#resume-button').click();
+    await expect(summary).toBeVisible();
+    await page.getByRole('button',{name:'Start wave 2',exact:true}).click();
+    await expect(summary).toBeVisible();
+    // Reach the disclosure through actual Tab traversal, then open with Enter.
+    await page.keyboard.press('Tab');
+    for(let i=0;i<80 && !(await summary.evaluate(e=>e===document.activeElement));i++) await page.keyboard.press('Tab');
+    await expect(summary).toBeFocused();
+    await page.keyboard.press('Enter');
+    await page.keyboard.press('Tab');
+    const dismiss=host.getByRole('button',{name:'Dismiss wave 1 report'});
+    await expect(dismiss).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(summary).toHaveCount(0);
+    await expect(page.getByRole('button',{name:'Pause game'})).toBeFocused();
+    await page.reload(); await page.getByRole('button',{name:'Continue',exact:true}).click();
+    if (await page.locator('#resume-button').isVisible()) await page.locator('#resume-button').click();
+    await expect(summary).toHaveCount(0);
+  });
+}
+
+test('defeat reports remain accessible inside the terminal dialog', async ({page}) => {
+  await openFresh(page,{width:360,height:640}); await enterBuildPhase(page); await reportFixture(page,true);
+  const host=page.locator('#terminal-reports');
+  await host.locator('summary').click();
+  await expect(host).toContainText('defeat');
+  await host.getByRole('button',{name:'Dismiss wave 1 report'}).click();
+  await expect(page.getByRole('button',{name:'Play again',exact:true})).toBeFocused();
 });

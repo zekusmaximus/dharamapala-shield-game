@@ -1,3 +1,4 @@
+import { reportFixture } from './helpers.js';
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { combatFixture, clickWorld, enterBuildPhase, openFresh } from './helpers.js';
@@ -98,4 +99,16 @@ test('combat boss warnings and status text have no serious accessibility violati
     const results = await new AxeBuilder({page}).exclude('canvas').analyze();
     expect(results.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);
   }
+});
+
+test('wave report semantic UI passes axe in building and terminal portrait states', async ({page}) => {
+  await openFresh(page,{width:360,height:640}); await enterBuildPhase(page); await reportFixture(page);
+  await page.locator('#wave-reports summary').click();
+  let results=await new AxeBuilder({page}).exclude('canvas').analyze();
+  expect(results.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);
+  await page.evaluate(()=>gameApplication.session.restart());
+  await reportFixture(page,true);
+  await page.locator('#terminal-reports summary').click();
+  results=await new AxeBuilder({page}).exclude('canvas').analyze();
+  expect(results.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);
 });

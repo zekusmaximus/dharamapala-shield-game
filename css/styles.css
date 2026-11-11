@@ -878,3 +878,6 @@ dialog::backdrop {
 #emp-warning { color: #ffe66d; }
 #emp-warning:empty { display: none; }
 #combat-state p { overflow-wrap: anywhere; }
+
+#wave-reports p, #terminal-reports p { overflow-wrap: anywhere; }
+#wave-reports summary, #terminal-reports summary { min-height: 44px; cursor: pointer; }

@@ -1,3 +1,4 @@
+import { PATH_METRICS, pointAtPathDistance } from '../core/world.js';
 import { enemyCombatFeedback, disabledFeedback, EMP_WARNING } from '../core/rules/combatFeedback.js';
 import { PHASES } from '../core/commands.js';
 import { canAfford } from '../core/rules/economy.js';
@@ -297,6 +298,7 @@ export class GameUI {
       model.phase
     );
 
+    this.renderReports(session);
     this.renderCombatFeedback(session, model);
     this.renderPalette(model);
     this.renderBlueprint(session);
@@ -345,7 +347,7 @@ export class GameUI {
     if (event.type === 'wave-completed') {
       const result = session.state.lastWaveResult;
       this.toast(
-        `Wave ${result.waveNumber} held: ${result.killed} defeated, ${result.leaked} leaked.`
+        `Wave ${result.waveNumber} held: ${result.killed} defeated, ${result.leaked} leaked. Wave report available until dismissed.`
       );
     }
     if (event.type === 'enemy-leaked') {
@@ -356,6 +358,59 @@ export class GameUI {
     }
     if (event.type === 'achievement') {
       this.toast(`Achievement: ${event.title}`);
+    }
+  }
+
+  renderReports(session) {
+    const reports = session.state.reports.pending;
+    const signature = JSON.stringify(reports);
+    if (this.reportSignature === signature) return;
+    this.reportSignature = signature;
+    for (const id of ['wave-reports', 'terminal-reports']) {
+      const host = byId(id);
+      const openWaves = new Set([...host.querySelectorAll('details[open]')].map(d => d.dataset.wave));
+      host.replaceChildren();
+      for (const report of reports) {
+        const details = document.createElement('details');
+        details.dataset.wave = String(report.waveNumber);
+        details.open = openWaves.has(String(report.waveNumber));
+        details.append(element('summary', `Wave ${report.waveNumber} report · ${report.outcome} · ${report.leaked} leaked`));
+        details.append(element('p', `${report.killed} defeated, ${report.leaked} leaked. Build spending covers preparation since the previous result; income covers this wave.${report.partial ? ' Partial accounting: this run was restored from a save without report tracking.' : ''}`));
+        for (const [key, label] of [['spent','Build/upgrade spent'],['refunds','Sale refunds'],['bounty','Kill income'],['clear','Wave-clear income (includes capped Distributor bonus)']]) {
+          details.append(element('p', `${label}: ${resourceText(report[key])}`));
+        }
+        details.append(element('p', `Distributor passive income included in clear reward: ${report.passiveDharma} Dharma, shared under the income cap; installed support earns it even during EMP.`));
+        details.append(element('h3', 'Leaks and coverage'));
+        if (!report.leaks.length) details.append(element('p', 'No leaks recorded.'));
+        const types = [...new Set(report.leaks.map(l => l.type))];
+        for (const type of types) {
+          const leaks = report.leaks.filter(l => l.type === type);
+          const name = (session.balance.enemies[type] || session.balance.bosses[type]).name;
+          details.append(element('p', `${name}: ${leaks.length} escaped; ${leaks.reduce((sum,l) => sum+l.damage,0)} configured life damage (remaining lives clamp at zero).`));
+          for (const leak of leaks) {
+            const d = leak.lastCovered;
+            const point = d === null ? null : pointAtPathDistance(d);
+            details.append(element('p', d === null ? 'No attacking tower range observed along this escape route.' : `Last observed attacking range: (${Math.round(point.x)}, ${Math.round(point.y)}), ${Math.round(d / PATH_METRICS.totalLength * 100)}% along route; ${Math.round(PATH_METRICS.totalLength - d)} route units remained to endpoint (980, 190).`));
+          }
+        }
+        details.append(element('p', 'Coverage samples geometry before movement, including disabled towers. It does not prove a tower could fire or explain why an enemy survived.'));
+        details.append(element('h3', 'Tower contributions'));
+        for (const [towerId, t] of Object.entries(report.towers)) {
+          details.append(element('p', `${session.balance.towers[t.type].name} ${towerId} at (${t.x}, ${t.y}), level ${t.level}: ${t.health.toFixed(1)} health removed; ${t.shield.toFixed(1)} shield removed; ${t.kills} final hits; ${t.shots} shots; ${t.slowHits} slow applications; ${t.vulnerabilityHits} vulnerability applications; aura present for ${t.auraShots} attacker shots.`));
+        }
+        details.append(element('p', 'Health excludes overkill; damage includes active vulnerability after resistance/armor. Shield may recover and be removed again. Status counts are hit applications, including refreshes and lethal hits, not unique targets or extra damage credited to the applier. Aura counts overlap between Distributors and include capped auras; they are not extra shots or damage caused. Passive income is shared under the cap. No prevented leaks or causal damage shares are estimated.'));
+        const dismiss = element('button', `Dismiss wave ${report.waveNumber} report`);
+        dismiss.type = 'button';
+        dismiss.addEventListener('click', () => {
+          session.dismissReport(report.waveNumber);
+          const next = host.querySelector('summary');
+          if (next) next.focus();
+          else if (id === 'terminal-reports') byId('terminal-restart-button').focus();
+          else this.focusUseful(this.elements.start);
+        });
+        details.append(dismiss);
+        host.append(details);
+      }
     }
   }
 
