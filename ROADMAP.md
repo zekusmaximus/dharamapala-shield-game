@@ -275,7 +275,8 @@ install, Chromium, fresh build, 76 unit, 31 integration, 7 simulation, 69
 browser and 10 accessibility checks. Corrected M1.4 diagnostics and regenerated
 M2.4 default-speed report/summary are byte-identical. [M2.5 evidence and
 limits](design/reviews/2026-11-11-m2.5/README.md) distinguish scenario setup and
-automated Chromium from human/device validation. M2 remains partial; M2.6 is open.
+automated Chromium from human/device validation. [PR #23 CI](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43119516712)
+passed the same pipeline on Ubuntu / Node 22. M2 remains partial; M2.6 is open.
 
 **Acceptance gate:** a tester can identify an enemy's threat, compare a new tower
 with an upgrade, see a boss action coming, and use the wave report to explain a

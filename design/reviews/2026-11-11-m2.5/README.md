@@ -106,6 +106,14 @@ output](validation.txt) records:
 | M2.4 report and derived summary | Both byte-identical; SHA-256 `b86ef6780b923a97b8c406c63e71544b64a6346d77c0f922dcb7ae9115f1a6c8` and `a7cd9ac0cf1c60f61f4b72c06eb5ee458f5c737141b33c30e3f8c7bf9fa709eb` |
 | `git diff --check` | Pass |
 
+[PR #23 CI run](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43119516712)
+passed on `6adb8ac` under Ubuntu / Node 22. The validate job completed locked
+install, Chromium with system dependencies, a fresh build and all five suites;
+failure-artifact upload was skipped because the checks passed. The separate
+GitGuardian check passed. This hosted result is independent of the local Node 24
+clean-checkout run above. The follow-up documentation commit records this CI
+result and changes no implementation or scenario data.
+
 The seven-policy M2.4 report remains default-speed production combat evidence,
 with its original attribution and scenario limits. The new speed checks cover
 selected real waves and terminal outcomes, not a 2× full campaign. Chromium
