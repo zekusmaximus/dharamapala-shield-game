@@ -254,7 +254,9 @@ spending and tower activity plus reproducible commands are recorded in the
 [M2.4 evidence](design/reviews/2026-11-11-m2.4/README.md). `tune` now aliases the
 reporter without a parameter search. Corrected M1.4 diagnostics remain
 byte-identical. Balance `1.0.0`, values, production gameplay/UI and saves are
-unchanged. Validation results are recorded in that evidence. M2 remains partial;
+unchanged. A clean checkout and PR #22 CI pass 74 unit, 25 integration, 7 simulation,
+63 end-to-end and 10 accessibility checks; regenerated evidence is byte-identical.
+M2 remains partial;
 M2.5/M2.6 and human difficulty/playtest gates remain open.
 
 **Acceptance gate:** a tester can identify an enemy's threat, compare a new tower

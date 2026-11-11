@@ -102,4 +102,33 @@ behavior; scripted combat findings are not human playtest evidence.
 
 ## Validation
 
-Clean-checkout and hosted CI results are recorded below after execution.
+A fresh detached worktree at implementation commit `7c6145f` started without
+node_modules or dist. Node 24.22.1 / npm 11.9.0, Playwright 1.61.1 and Chromium
+149.0.7827.55 were used. The documented clean-checkout pipeline passed:
+
+| Command | Result |
+| --- | --- |
+| `npm ci --cache /tmp/dharamapala-m24-npm-cache` | Pass |
+| `npx playwright install chromium` | Pass, downloaded to writable `/workspace/.playwright-browsers` |
+| `npm run build` | Pass, fresh dist |
+| `npm run test:unit` | 74 passed |
+| `npm run test:integration` | 25 passed |
+| `npm run test:sim` | 7 passed |
+| `npm run test:e2e` | 63 passed |
+| `npm run test:a11y` | 10 passed, no serious/critical axe findings in scanned UI |
+| Legacy diagnostics vs corrected M1.4 | Byte-identical |
+| Report and summary regeneration | Both byte-identical to committed evidence |
+| `git diff --check` | Pass |
+
+Browser suites used `CI=1`, their own server, freshly built output and
+`PLAYWRIGHT_BROWSERS_PATH=/workspace/.playwright-browsers`. Local system browser
+libraries were already present. [validation.txt](validation.txt) records output
+and post-suite commands. The initial focused constraint test compared snapshot
+wall-clock save timestamps; it was corrected to compare gameplay state. No
+combat rule changed to make a test pass.
+
+[PR #22 CI](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43087364930)
+passed on `7c6145f` under Ubuntu / Node 22: locked installation, Chromium plus
+system dependencies, fresh build, 74 unit, 25 integration, 7 simulation,
+63 end-to-end and 10 accessibility checks. No failure artifacts were needed.
+The final documentation/log commit changes no implementation or scenario data.

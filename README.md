@@ -108,8 +108,10 @@ validation and continued combat after restore. Browser checks exercise actual
 pointer, emulated touch and keyboard flows across desktop, portrait and landscape
 sizes, M2.1 tower and enemy inspection, and local persistence. Axe checks menu,
 build, wave inspector, dialogs and recovery controls for serious/critical findings,
-excluding canvas. These checks do not establish physical-device, screen-reader, full-campaign
-combat or human playtest results; see the roadmap and milestone evidence.
+excluding canvas. Simulation checks now include actual full-campaign combat for the
+M2.4 policies/configurations and reconcile production accounting. These checks do
+not establish physical-device, screen-reader, arbitrary-strategy coverage or human
+playtest results; see the roadmap and milestone evidence.
 
 The CI workflow runs this sequence on Ubuntu for every pull request and on
 `main` pushes, installing Chromium's system libraries with Playwright's
