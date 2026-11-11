@@ -139,7 +139,7 @@ export function validateSnapshot(snapshot, balance) {
   if (s.lastWaveResult !== null) { const result = s.lastWaveResult; assert(integer(result.waveNumber, 1, s.maxWaves) && integer(result.killed) && integer(result.leaked), 'Invalid wave result'); resources(result.reward); }
   if (terminal) {
     stats(s.finalStatistics); fields(s.finalStatistics, ['score', 'lives', 'waveNumber']);
-    assert(['score','lives','waveNumber'].every(k => s.finalStatistics[k] === s[k]), 'Results disagree with run');
+    assert(['kills','leaks','bossesKilled','wavesCompleted'].every(k => s.finalStatistics[k] === s.statistics[k]) && ['score','lives','waveNumber'].every(k => s.finalStatistics[k] === s[k]), 'Results disagree with run');
   } else assert(s.finalStatistics === null, 'Unexpected final results');
   return snapshot;
 }

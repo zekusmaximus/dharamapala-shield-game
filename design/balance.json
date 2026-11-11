@@ -55,7 +55,7 @@
     },
     "distributor": {
       "name": "Dharma Distributor",
-      "description": "Boosts nearby tower fire rate and adds a capped wave-clear resource bonus.",
+      "description": "Boosts nearby attacking towers' fire rate while active. EMP pauses the aura, not the capped wave-clear bonus.",
       "icon": "📡",
       "cost": {
         "dharma": 100,

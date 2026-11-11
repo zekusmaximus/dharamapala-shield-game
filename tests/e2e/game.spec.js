@@ -137,6 +137,36 @@ test('places, selects, upgrades, sells, and restores a tower save', async ({
   ).toBe(0);
 });
 
+test('upgraded Firewall inspector describes only its applied combat status', async ({ page }) => {
+  await openFresh(page);
+  await enterBuildPhase(page);
+  await page.locator('[data-tower-type="firewall"]').click();
+  await clickWorld(page, 210, 210);
+  await page.getByRole('button', { name: /Upgrade/ }).click();
+
+  const inspector = page.locator('#inspector-content');
+  await expect(inspector).toContainText('Firewall Fortress');
+  await expect(inspector).toContainText('Level 2');
+  await expect(inspector).toContainText('Direct damage');
+  await expect(inspector).not.toContainText(/\bslow\b/i);
+});
+
+test('Distributor inspector explains support and EMP without a targeting claim', async ({ page }) => {
+  await openFresh(page);
+  await enterBuildPhase(page);
+  await page.locator('[data-tower-type="distributor"]').click();
+  await clickWorld(page, 210, 210);
+
+  const inspector = page.locator('#inspector-content');
+  await expect(inspector).toContainText('Dharma Distributor');
+  await expect(inspector).toContainText('fire-rate aura');
+  await expect(inspector).toContainText('Does not attack');
+  await expect(inspector).toContainText('EMP pauses the aura');
+  await expect(inspector).toContainText('wave-clear bonus');
+  await expect(inspector).not.toContainText('Targets the active threat');
+  await expect(inspector).not.toContainText(/\bslow\b/i);
+});
+
 test('pause freezes simulation and restart removes all old state', async ({
   page
 }) => {
@@ -244,6 +274,41 @@ test('terminal dialogs block play and expose final results', async ({ page }) =>
   await page.evaluate(() => gameApplication.session.enterTerminal('GAME_OVER'));
   await expect(page.getByRole('dialog', { name: 'Game over' })).toBeVisible();
   await expect(page.getByText(/defeated, 0 leaked/)).toBeVisible();
+});
+
+test('same-tick game over persists matching live and final results', async ({ page }) => {
+  await openFresh(page);
+  await enterBuildPhase(page);
+  await page.getByRole('button', { name: 'Start wave 1' }).click();
+  const live = await page.evaluate(async () => {
+    const { PATH_METRICS, pointAtPathDistance } = await import('/js/core/world.js');
+    const session = gameApplication.session;
+    session.state.lives = 1;
+    const distance = PATH_METRICS.totalLength - 0.01;
+    for (let index = 0; index < 2; index += 1) {
+      const enemy = session.spawnEnemy({ enemyType: 'scriptKiddie', hpMultiplier: 1 });
+      enemy.pathDistance = distance;
+      Object.assign(enemy, pointAtPathDistance(distance));
+    }
+    session.tick(250);
+    return {
+      phase: session.state.phase,
+      leaks: session.state.statistics.leaks,
+      finalLeaks: session.state.finalStatistics?.leaks,
+      remainingEnemies: session.state.enemies.size
+    };
+  });
+  expect(live).toMatchObject({ phase: 'GAME_OVER', leaks: 1, finalLeaks: 1 });
+  expect(live.remainingEnemies).toBeGreaterThanOrEqual(1);
+  await expect.poll(() => page.evaluate(() => {
+    const state = JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')).state;
+    return {
+      phase: state.phase,
+      leaks: state.statistics.leaks,
+      finalLeaks: state.finalStatistics?.leaks,
+      remainingEnemies: state.enemies.length
+    };
+  })).toEqual(live);
 });
 
 test('zoom is not disabled and interactive elements have accessible names', async ({

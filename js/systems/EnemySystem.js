@@ -1,9 +1,12 @@
 import { PATH_METRICS, pointAtPathDistance } from '../core/world.js';
+import { PHASES } from '../core/commands.js';
 
 export class EnemySystem {
   update(session, deltaMs) {
+    if (session.state.phase !== PHASES.WAVE) return;
     const nowMs = session.state.gameTimeMs;
     for (const enemy of [...session.state.enemies.values()]) {
+      if (session.state.phase !== PHASES.WAVE) return;
       if (enemy.resolution) {
         continue;
       }
@@ -13,14 +16,14 @@ export class EnemySystem {
       if (enemy.vulnerabilityUntilMs <= nowMs) {
         enemy.vulnerabilityPct = 0;
       }
-      if (
-        enemy.type === 'megaCorpTitan' &&
-        enemy.shield < enemy.shieldMax &&
-        nowMs >= enemy.shieldCooldownUntilMs
-      ) {
+      if (enemy.type === 'megaCorpTitan' && enemy.shield < enemy.shieldMax) {
+        const recoveryMs = Math.max(
+          0,
+          Math.min(deltaMs, nowMs - enemy.shieldCooldownUntilMs)
+        );
         enemy.shield = Math.min(
           enemy.shieldMax,
-          enemy.shield + enemy.shieldRegenPerSec * (deltaMs / 1000)
+          enemy.shield + enemy.shieldRegenPerSec * (recoveryMs / 1000)
         );
       }
 
@@ -37,8 +40,10 @@ export class EnemySystem {
   }
 
   updateBosses(session) {
+    if (session.state.phase !== PHASES.WAVE) return;
     const nowMs = session.state.gameTimeMs;
     for (const enemy of session.state.enemies.values()) {
+      if (session.state.phase !== PHASES.WAVE) return;
       if (enemy.kind !== 'boss' || enemy.resolution) {
         continue;
       }
@@ -46,6 +51,7 @@ export class EnemySystem {
         const ratio = enemy.health / enemy.maxHealth;
         const thresholds = [0.66, 0.33];
         thresholds.forEach((threshold, index) => {
+          if (session.state.phase !== PHASES.WAVE) return;
           const phase = index + 1;
           if (ratio <= threshold && !enemy.firedPhases.includes(phase)) {
             enemy.firedPhases.push(phase);

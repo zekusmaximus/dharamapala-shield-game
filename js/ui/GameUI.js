@@ -394,16 +394,30 @@ export class GameUI {
     this.lastSignatures.set('inspector', signature);
     const current = tower.current;
     const next = tower.next;
+    const isSupport = tower.type === 'distributor';
+    const roleDescription = isSupport
+      ? `${current.role}. Does not attack. Boosts nearby attacking towers' fire rate while active; EMP pauses the aura, but not its wave-clear bonus.`
+      : `${current.role}. Targets the active threat closest to the endpoint.`;
+    const statusDescription = isSupport
+      ? `${Math.round(current.auraFireRatePct * 100)}% fire-rate aura`
+      : current.slowDurationMs > 0
+        ? `${Math.round(current.slowPct * 100)}% slow`
+        : 'Direct damage';
+    const nextDescription = next
+      ? isSupport
+        ? `Next: ${Math.round(next.auraFireRatePct * 100)}% fire-rate aura, ${Math.round(next.range)} support range.`
+        : `Next: ${next.damage.toFixed(1)} damage, ${Math.round(next.range)} range.`
+      : 'Maximum level reached.';
     this.elements.inspectorContent.innerHTML = `
       <p><strong>${current.name}</strong> · Level ${tower.level}</p>
-      <p class="subtle">${current.role}. Targets the active threat closest to the endpoint.</p>
+      <p class="subtle">${roleDescription}</p>
       <div class="stat-grid">
         <div><span>Damage</span>${current.damage.toFixed(1)}</div>
         <div><span>Range</span>${Math.round(current.range)}</div>
         <div><span>Rate</span>${current.ratePerSec.toFixed(2)}/s</div>
-        <div><span>Status</span>${current.slowPct ? `${Math.round(current.slowPct * 100)}% slow` : current.auraFireRatePct ? `${Math.round(current.auraFireRatePct * 100)}% aura` : 'Direct'}</div>
+        <div><span>Status</span>${statusDescription}</div>
       </div>
-      <p class="subtle">${next ? `Next: ${next.damage.toFixed(1)} damage, ${Math.round(next.range)} range.` : 'Maximum level reached.'}</p>
+      <p class="subtle">${nextDescription}</p>
     `;
     const affordable =
       tower.upgradeCost && canAfford(model.resources, tower.upgradeCost);

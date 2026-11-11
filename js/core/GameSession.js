@@ -68,6 +68,31 @@ function mapFrom(items) {
   return new Map(items.map((item) => [item.id, structuredClone(item)]));
 }
 
+function repairLegacyTerminalLeaks(snapshot) {
+  const state = snapshot?.state;
+  const final = state?.finalStatistics;
+  const live = state?.statistics;
+  if (
+    snapshot?.schemaVersion !== 2 || snapshot.balanceVersion !== '1.0.0' ||
+    state?.schemaVersion !== 2 || state.balanceVersion !== '1.0.0' ||
+    state.phase !== PHASES.GAME_OVER || state.lives !== 0 ||
+    !Number.isSafeInteger(final?.leaks) || !Number.isSafeInteger(live?.leaks) ||
+    !Number.isSafeInteger(state.wave?.leaked) ||
+    final.leaks < 0 || final.leaks >= live.leaks ||
+    final.leaks <= live.leaks - state.wave.leaked ||
+    !['kills', 'bossesKilled', 'wavesCompleted'].every(
+      (key) => final[key] === live[key]
+    ) ||
+    !['score', 'lives', 'waveNumber'].every((key) => final[key] === state[key])
+  ) {
+    return;
+  }
+  // Older builds could resolve more exits after game over had captured results.
+  // Reconcile only that known same-wave leak discrepancy, then validate the
+  // entire snapshot before allowing the run to load.
+  final.leaks = live.leaks;
+}
+
 export class GameSession {
   constructor(balance, options = {}) {
     this.balance = validateBalance(balance);
@@ -386,22 +411,25 @@ export class GameSession {
   }
 
   step(deltaMs) {
-    if (this.state.phase !== PHASES.WAVE || TERMINAL_PHASES.has(this.state.phase)) {
+    if (this.state.phase !== PHASES.WAVE) {
       return false;
     }
     this.state.gameTimeMs += deltaMs;
     this.scheduler.advance(deltaMs, this.generation, (event) =>
       this.spawnEnemy(event)
     );
+    if (this.state.phase !== PHASES.WAVE) return false;
     this.state.wave.spawnCursor = this.scheduler.cursor;
     this.systems.defense.update(this, deltaMs);
+    if (this.state.phase !== PHASES.WAVE) return false;
     this.systems.combat.update(this, deltaMs);
+    if (this.state.phase !== PHASES.WAVE) return false;
     this.systems.enemy.updateBosses(this);
+    if (this.state.phase !== PHASES.WAVE) return false;
     this.systems.enemy.update(this, deltaMs);
-    if (this.state.phase === PHASES.WAVE) {
-      this.systems.wave.update(this);
-    }
-    return true;
+    if (this.state.phase !== PHASES.WAVE) return false;
+    this.systems.wave.update(this);
+    return this.state.phase === PHASES.WAVE;
   }
 
   spawnEnemy(event) {
@@ -441,6 +469,9 @@ export class GameSession {
   }
 
   resolveEnemy(enemyId, outcome) {
+    if (this.state.phase !== PHASES.WAVE) {
+      return this.fail('INVALID_PHASE');
+    }
     const enemy = this.state.enemies.get(enemyId);
     if (!enemy || enemy.resolution) {
       return this.fail('ALREADY_RESOLVED');
@@ -450,6 +481,7 @@ export class GameSession {
     }
     enemy.resolution = outcome;
     this.state.wave.resolved += 1;
+    let resolutionEvent;
 
     if (outcome === ENEMY_OUTCOMES.KILLED) {
       const definition = getEnemyDefinition(this.balance, enemy.type);
@@ -465,8 +497,7 @@ export class GameSession {
       if (enemy.kind === 'boss') {
         this.state.statistics.bossesKilled += 1;
       }
-      this.systems.achievement.onEnemyKilled(this, enemy);
-      this.events.emit('enemy-killed', { enemyId, reward });
+      resolutionEvent = { type: 'enemy-killed', payload: { enemyId, reward } };
     } else {
       const definition = getEnemyDefinition(this.balance, enemy.type);
       const damage = getLeakDamage(
@@ -477,9 +508,17 @@ export class GameSession {
       this.state.lives = Math.max(0, this.state.lives - damage);
       this.state.statistics.leaks += 1;
       this.state.wave.leaked += 1;
-      this.events.emit('enemy-leaked', { enemyId, damage });
+      resolutionEvent = { type: 'enemy-leaked', payload: { enemyId, damage } };
     }
     this.state.enemies.delete(enemyId);
+
+    // Publish a complete resolution. A synchronous listener may enter a terminal
+    // phase and snapshot the session before this command returns.
+    if (outcome === ENEMY_OUTCOMES.KILLED) {
+      this.systems.achievement.onEnemyKilled(this, enemy);
+      if (this.state.phase !== PHASES.WAVE) return commandResult(true, outcome);
+    }
+    this.events.emit(resolutionEvent.type, resolutionEvent.payload);
 
     if (this.state.lives <= 0 && this.state.phase === PHASES.WAVE) {
       this.enterTerminal(PHASES.GAME_OVER);
@@ -532,6 +571,7 @@ export class GameSession {
     }
     this.scheduler.clear();
     this.generation = this.scheduler.generation;
+    this.clock.reset();
     this.state.phase = phase;
     this.state.resumePhase = null;
     this.state.finalStatistics = {
@@ -637,8 +677,9 @@ export class GameSession {
   }
 
   static fromSnapshot(balance, snapshot) {
-    validateSnapshot(snapshot, balance);
     snapshot = structuredClone(snapshot);
+    repairLegacyTerminalLeaks(snapshot);
+    validateSnapshot(snapshot, balance);
     const session = new GameSession(balance, {
       seed: snapshot.state.seed,
       difficulty: snapshot.state.difficulty,

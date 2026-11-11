@@ -15,6 +15,10 @@ export function getTowerStats(balance, towerType, level = 1) {
   const ratePerSec =
     definition.ratePerSec * (1 + balance.upgrades.fireRatePerLevel * upgradeIndex);
   const status = definition.status || {};
+  const slowDurationMs = (status.slowDuration || 0) * (1 + upgradeIndex * 0.15);
+  const vulnerabilityDurationMs =
+    (status.vulnerabilityDuration || status.slowDuration || 0) *
+    (1 + upgradeIndex * 0.15);
 
   return {
     damage,
@@ -25,15 +29,14 @@ export function getTowerStats(balance, towerType, level = 1) {
     aoeRadius: definition.aoeRadius || 0,
     critChance: definition.critChance || 0,
     critMult: definition.critMult || 1,
-    slowPct: Math.min(0.65, (status.slowPct || 0) + upgradeIndex * 0.04),
-    slowDurationMs: (status.slowDuration || 0) * (1 + upgradeIndex * 0.15),
-    vulnerabilityPct: Math.min(
-      0.5,
-      (status.vulnerabilityPct || 0) + upgradeIndex * 0.03
-    ),
-    vulnerabilityDurationMs:
-      (status.vulnerabilityDuration || status.slowDuration || 0) *
-      (1 + upgradeIndex * 0.15),
+    slowPct: slowDurationMs > 0
+      ? Math.min(0.65, (status.slowPct || 0) + upgradeIndex * 0.04)
+      : 0,
+    slowDurationMs,
+    vulnerabilityPct: vulnerabilityDurationMs > 0
+      ? Math.min(0.5, (status.vulnerabilityPct || 0) + upgradeIndex * 0.03)
+      : 0,
+    vulnerabilityDurationMs,
     chainTargets: towerType === 'encryption' && level >= 4 ? 1 : 0,
     auraFireRatePct:
       towerType === 'distributor'
@@ -44,14 +47,20 @@ export function getTowerStats(balance, towerType, level = 1) {
   };
 }
 
-export function getAuraMultiplier(balance, tower, allTowers) {
+export function getAuraMultiplier(balance, tower, allTowers, nowMs = 0) {
   if (tower.type === 'distributor') {
     return 1;
   }
+  // EMP suppresses this active aura until its expiry. Distributor ownership still
+  // grants the separate passive wave-clear income in GameSession.completeWave.
   const cap = balance.economy.distributorAuraCap ?? 0.35;
   let bonus = 0;
   for (const candidate of allTowers) {
-    if (candidate.type !== 'distributor' || candidate.id === tower.id) {
+    if (
+      candidate.type !== 'distributor' ||
+      candidate.id === tower.id ||
+      candidate.disabledUntilMs > nowMs
+    ) {
       continue;
     }
     const stats = getTowerStats(balance, candidate.type, candidate.level);
