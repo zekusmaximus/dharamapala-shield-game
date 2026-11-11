@@ -85,3 +85,33 @@ These are headless Chromium emulation, keyboard and automated axe checks. They
 are not physical-device, screen-reader, Safari/Firefox, manual gesture, human
 readability or player difficulty evidence. Attribution is intentionally limited
 to observed activity; no balance comparisons or tuning were added.
+
+## Clean-checkout validation
+
+A fresh detached worktree at `6922ba9` began without node_modules or dist.
+Node 24.22.1, npm 11.9.0, Playwright 1.61.1 and Chromium 149.0.7827.55
+were used. Browser suites used CI=1, their own server and freshly built output.
+Locked installation used a writable `/tmp` npm cache; Chromium installation used
+`PLAYWRIGHT_BROWSERS_PATH=/workspace/.playwright-browsers`. System libraries
+were already present; hosted CI installs them separately.
+
+| Command | Result |
+| --- | --- |
+| npm ci | Pass |
+| npx playwright install chromium | Pass |
+| npm run build | Pass, fresh dist |
+| npm run test:unit | 74 passed |
+| npm run test:integration | 25 passed |
+| npm run test:sim | 2 passed |
+| npm run test:e2e | 63 passed |
+| npm run test:a11y | 10 passed; no serious/critical violations in scanned UI |
+| node tools/review/baseline.mjs | Byte-identical to corrected M1.4 baseline |
+| git diff --check | Pass |
+
+[Full validation output](validation.txt) records this sequence. Baseline SHA-256:
+`63f3f0133cfa2b0c926493f1d6c7d737e93ec2df52524d39d62fff5a12034bbc`.
+The first browser setup attempt lacked Chromium; installation resolved it.
+An earlier clean run at `23c6f36` passed 62 browser checks and found one broad
+terminal-text locator now matched the new reports too. Scoping the assertion to
+the terminal summary preserved its original purpose; the final clean sequence
+above passed all checks. No production behavior changed for that selector repair.

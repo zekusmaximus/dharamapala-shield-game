@@ -26,7 +26,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | --- | --- | --- | --- | --- |
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
-| M2 · Make decisions readable and measurable | P1 | Partial: M2.1–M2.2 complete; M2.3–M2.6 open | M1 | M2.2 clean checkout passes 74 unit, 18 integration, 2 simulation, 57 browser and 9 accessibility checks; wave reports and strategy comparisons remain |
+| M2 · Make decisions readable and measurable | P1 | Partial: M2.1–M2.3 complete; M2.4–M2.6 open | M1 | M2.3 clean checkout passes 74 unit, 25 integration, 2 simulation, 63 browser and 10 accessibility checks; strategy comparisons and later M2 work remain |
 | M3 · Prove an engaging five-wave game | P1 | Planned | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
@@ -155,8 +155,8 @@ finish a run without blocked controls, stale transitions, or contradictory state
 
 ## M2 · Make decisions readable and measurable
 
-**Status: Partial.** M2.1 tower/enemy inspection and M2.2 combat feedback are complete. Wave
-reports, expanded measurements and the other work below remain planned. M1
+**Status: Partial.** M2.1 tower/enemy inspection, M2.2 combat feedback and M2.3 wave reports are complete.
+Expanded measurements and the other work below remain planned. M1
 establishes trust; this milestone gives the player and developer enough
 information to improve the game. Findings R07, R08, R10–R12.
 
@@ -170,7 +170,7 @@ information to improve the game. Findings R07, R08, R10–R12.
   markers, visible shield health, boss health/phase information, and warnings
   before EMP. Provide equivalent concise text feedback. Start with readable
   effects; preserve contrast and reduced-motion behavior.
-- [ ] **M2.3 · Make wave results useful.** Show leaks by enemy type, where threats
+- [x] **M2.3 · Make wave results useful.** Show leaks by enemy type, where threats
   escaped coverage, resources gained/spent, and tower contributions. Account for
   shield damage and support/control contribution so the report does not falsely
   credit only direct damage. Keep results accessible until dismissed.
@@ -222,6 +222,23 @@ Chromium emulation/axe from physical-device and screen-reader testing.
 The [PR #20 CI run](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43077946553)
 passed the same suites on Ubuntu with Node 22. M2 remains partial; M2.3–M2.6
 are open.
+
+**M2.3 complete (2026-11-11):** From latest main `ce7f095` (PR #20), wave
+reports now persist until individually dismissed, including across subsequent
+starts, save/restore and terminal dialogs. Reports show typed leaks with sampled
+last range positions, exact preparation spending/refunds and wave income, capped
+health removal, shield removal, final hits, status applications and aura-present
+shots. Shared passive support income is explicit. Geometry and activity counts
+are observations, not claims of caused damage or prevented leaks. Optional
+validated v2 tracking preserves valid older saves and marks missing prior history
+partial. A clean checkout at `6922ba9` passed locked install, Chromium, fresh build,
+74 unit, 25 integration, 2 simulation, 63 browser and 10 accessibility checks.
+Deterministic diagnostics are byte-identical to the corrected M1.4 baseline;
+balance `1.0.0` and combat/economy values are unchanged.
+[Evidence and attribution limits](design/reviews/2026-11-11-m2.3/README.md)
+distinguish production combat tests from lifecycle fixtures and Chromium
+emulation/axe from physical-device and screen-reader testing. M2 remains partial;
+M2.4–M2.6 are open.
 
 **Acceptance gate:** a tester can identify an enemy's threat, compare a new tower
 with an upgrade, see a boss action coming, and use the wave report to explain a
