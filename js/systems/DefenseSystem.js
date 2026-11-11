@@ -1,6 +1,7 @@
 import { createProjectile } from '../entities/createProjectile.js';
 import { getAuraMultiplier, getTowerStats } from '../core/rules/towers.js';
 import { rollDamage } from '../core/rules/combat.js';
+import { PHASES } from '../core/commands.js';
 
 export class DefenseSystem {
   update(session, deltaMs) {
@@ -8,6 +9,9 @@ export class DefenseSystem {
     const nowMs = session.state.gameTimeMs;
 
     for (const defense of defenses) {
+      if (session.state.phase !== PHASES.WAVE) {
+        return;
+      }
       if (defense.type === 'distributor' || defense.disabledUntilMs > nowMs) {
         continue;
       }
@@ -37,7 +41,8 @@ export class DefenseSystem {
       const auraMultiplier = getAuraMultiplier(
         session.balance,
         defense,
-        defenses
+        defenses,
+        nowMs
       );
       defense.cooldownMs += stats.cooldownMs / auraMultiplier;
       session.events.emit('projectile-fired', {

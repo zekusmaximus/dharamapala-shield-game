@@ -8,13 +8,13 @@ headless simulation, and tests.
 
 See the [current roadmap](ROADMAP.md) for priorities, milestone status, and
 completion gates, and the [2026-11-11 code review](design/CODE_REVIEW_2026-11-11.md)
-for evidence and known issues. The next priorities are portrait controls, dialog
-cancellation, and save integrity, followed by combat feedback and a five-wave
-design milestone focused on meaningful choices and challenge.
+for evidence and known issues. M1.1–M1.4 now cover portrait controls, dialog
+cancellation, save integrity and combat correctness. M1.5 CI is next; broader
+combat feedback and the five-wave design milestone follow in the roadmap.
 
 The earlier [implementation plan](implementation.md) remains an architecture
-reference; it is not the current backlog.
-Use the [new-chat handoff prompt](design/ROADMAP_HANDOFF.md) to begin M1.1.
+reference; it is not the current backlog. The
+[handoff prompt](design/ROADMAP_HANDOFF.md) records the earlier M1.1 task.
 
 ## Play
 
@@ -37,6 +37,9 @@ The active tower roster is deliberately small:
 - **Encryption Monastery** — slow and vulnerability control, with a late chain
   upgrade.
 - **Dharma Distributor** — nearby fire-rate support and a capped wave-clear bonus.
+  Raid Team EMP temporarily disables its active fire-rate aura. The passive
+  wave-clear bonus counts installed Distributors even if EMP is active when a
+  wave ends. The aura resumes at the exact disable expiry time.
 
 Select a placed tower during building to see current/next stats, upgrade it through
 five levels, or sell it for 70% of the total invested resources.
@@ -47,8 +50,8 @@ canvas, move the build cursor with the arrow keys, and press Enter or Space.
 ## Architecture
 
 `GameSession` is the only owner of mutable gameplay state. Runtime Maps use stable
-IDs; snapshots serialize them to data-only arrays and reconstruct a candidate
-session on load. Completing snapshot validation is a current roadmap priority.
+IDs; snapshots serialize them to data-only arrays and validate a candidate
+before replacing the active session on load.
 
 ```text
 js/
@@ -72,7 +75,10 @@ commands as the UI.
 
 Local saves use `dharmapala-shield/save/v2`. Corrupt payloads are preserved for
 recovery. Version-1 saves are migrated into building mode; removed tower IDs are
-refunded. See [deferred tower concepts](design/FUTURE_TOWERS.md).
+refunded. M1.4 keeps balance version `1.0.0`, so valid v2 runs continue with the
+corrected combat rules. A narrow load repair reconciles older game-over saves
+with the former same-tick leak mismatch; unrelated invalid saves still use the
+export/reset recovery flow. See [deferred tower concepts](design/FUTURE_TOWERS.md).
 
 ## Validation
 
@@ -85,13 +91,14 @@ npm run test:e2e
 npm run test:a11y
 ```
 
-The suites cover selected phase transitions, fixed scheduling, kill/leak economy,
-boss phases, snapshot migration and immediate round trips, wave-20 lifecycle
-victory, forced game over, shared runtime/simulator rules, five-wave headless
-combat, pointer and keyboard smoke flows, save/continue, pause/restart, layout
-bounds at 1280×720, 390×844, and 844×390, and serious/critical axe findings in menu
-and build screens. These do not yet certify full-campaign combat, mobile control
-reachability, all save invariants, or complete accessibility; see the review.
+The suites cover phase transitions, fixed scheduling, combat and income rules,
+terminal state agreement, Titan shield recovery, Raid Team EMP support, save
+validation and continued combat after restore. Browser checks exercise actual
+pointer, emulated touch and keyboard flows across desktop, portrait and landscape
+sizes, corrected tower descriptions, and local persistence. Axe checks menu,
+build, dialogs and recovery controls for serious/critical findings, excluding
+canvas. These checks do not establish physical-device, screen-reader, full-campaign
+combat or human playtest results; see the roadmap and milestone evidence.
 
 Install Chromium with `npx playwright install chromium` before running browser
 checks, and build first so the tests exercise current files in `dist/`.

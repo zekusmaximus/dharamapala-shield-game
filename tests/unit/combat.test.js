@@ -82,21 +82,41 @@ test('piercing hit IDs prevent repeat damage and splash is applied once per targ
   assert.deepEqual(projectile.hitIds, [first.id, second.id]);
 });
 
-test('MegaCorp Titan shield absorbs damage and regenerates deterministically', () => {
+test('MegaCorp Titan shield recovery waits three seconds after the latest shield or health hit', () => {
   const session = waveSession(15);
   const titan = session.spawnEnemy({
     enemyType: 'megaCorpTitan',
     hpMultiplier: 1
   });
-  const projectile = projectileAt(titan, { damage: 20 });
-  const healthBefore = titan.health;
-  const shieldBefore = titan.shield;
-  session.state.projectiles.set(projectile.id, projectile);
-  session.systems.combat.update(session, 0);
-  assert.equal(titan.health, healthBefore);
-  assert.ok(titan.shield < shieldBefore);
-  const damagedShield = titan.shield;
-  session.state.gameTimeMs = titan.shieldCooldownUntilMs;
-  session.systems.enemy.update(session, 1000);
-  assert.ok(titan.shield > damagedShield);
+  const hit = (rawDamage) => session.systems.combat.applyHit(
+    session, projectileAt(titan, { damage: rawDamage }), titan, 1
+  );
+  const startingHealth = titan.health;
+  const startingShield = titan.shield;
+
+  hit(100); // 100 × 0.75 resistance - 30 armor = 45 shield damage.
+  assert.equal(titan.shield, startingShield - 45);
+  assert.equal(titan.health, startingHealth);
+  assert.equal(titan.shieldCooldownUntilMs, 3000);
+
+  hit(500); // 345 effective damage depletes the remaining 288 shield.
+  assert.equal(titan.shield, 0);
+  assert.equal(titan.health, startingHealth - 57);
+  session.state.gameTimeMs = 2000;
+  hit(100); // Direct health damage must postpone shield recovery too.
+  assert.equal(titan.health, startingHealth - 102);
+  assert.equal(titan.shieldCooldownUntilMs, 5000);
+
+  session.state.gameTimeMs = 4000;
+  hit(100); // Another health hit refreshes the cooldown.
+  assert.equal(titan.shieldCooldownUntilMs, 7000);
+  session.state.gameTimeMs = 6999;
+  session.systems.enemy.update(session, 2999);
+  assert.equal(titan.shield, 0);
+  session.state.gameTimeMs = 7000;
+  session.systems.enemy.update(session, 1);
+  assert.equal(titan.shield, 0, 'no recovery has elapsed at the boundary');
+  session.state.gameTimeMs = 7500;
+  session.systems.enemy.update(session, 500);
+  assert.ok(Math.abs(titan.shield - titan.shieldRegenPerSec / 2) < 1e-10);
 });

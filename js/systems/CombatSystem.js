@@ -3,6 +3,7 @@ import {
   circlesIntersect,
   getEffectiveDamage
 } from '../core/rules/combat.js';
+import { PHASES } from '../core/commands.js';
 import { getEnemyDefinition } from '../entities/createEnemy.js';
 
 export class CombatSystem {
@@ -11,8 +12,14 @@ export class CombatSystem {
   }
 
   update(session, deltaMs) {
+    if (session.state.phase !== PHASES.WAVE) {
+      return;
+    }
     const grid = this.buildGrid(session.state.enemies);
     for (const projectile of [...session.state.projectiles.values()]) {
+      if (session.state.phase !== PHASES.WAVE) {
+        return;
+      }
       if (projectile.expiresAtMs <= session.state.gameTimeMs) {
         session.state.projectiles.delete(projectile.id);
         continue;
@@ -45,6 +52,9 @@ export class CombatSystem {
       }
 
       this.resolveImpact(session, projectile, hit);
+      if (session.state.phase !== PHASES.WAVE) {
+        return;
+      }
       if (!projectile.piercing) {
         session.state.projectiles.delete(projectile.id);
       }
@@ -84,6 +94,9 @@ export class CombatSystem {
   }
 
   resolveImpact(session, projectile, primaryTarget) {
+    if (session.state.phase !== PHASES.WAVE) {
+      return;
+    }
     const targets =
       projectile.aoeRadius > 0
         ? [...session.state.enemies.values()].filter(
@@ -95,10 +108,16 @@ export class CombatSystem {
         : [primaryTarget];
 
     for (const enemy of targets) {
+      if (session.state.phase !== PHASES.WAVE) {
+        return;
+      }
       if (projectile.hitIds.includes(enemy.id)) {
         continue;
       }
       this.applyHit(session, projectile, enemy, enemy.id === primaryTarget.id ? 1 : 0.7);
+      if (session.state.phase !== PHASES.WAVE) {
+        return;
+      }
       projectile.hitIds.push(enemy.id);
     }
 
@@ -113,17 +132,23 @@ export class CombatSystem {
         .sort((a, b) => b.pathDistance - a.pathDistance)
         .slice(0, projectile.chainTargets);
       for (const enemy of chained) {
+        if (session.state.phase !== PHASES.WAVE) {
+          return;
+        }
         if (projectile.hitIds.includes(enemy.id)) {
           continue;
         }
         this.applyHit(session, projectile, enemy, 0.6);
+        if (session.state.phase !== PHASES.WAVE) {
+          return;
+        }
         projectile.hitIds.push(enemy.id);
       }
     }
   }
 
   applyHit(session, projectile, enemy, damageMultiplier) {
-    if (enemy.resolution) {
+    if (session.state.phase !== PHASES.WAVE || enemy.resolution) {
       return;
     }
     const definition = getEnemyDefinition(session.balance, enemy.type);
@@ -140,7 +165,12 @@ export class CombatSystem {
       const absorbed = Math.min(enemy.shield, damage);
       enemy.shield -= absorbed;
       damage -= absorbed;
-      enemy.shieldCooldownUntilMs = session.state.gameTimeMs + 3000;
+    }
+    if (enemy.shieldMax > 0) {
+      enemy.shieldCooldownUntilMs = Math.max(
+        enemy.shieldCooldownUntilMs,
+        session.state.gameTimeMs + 3000
+      );
     }
     enemy.health -= damage;
     const source = session.state.defenses.get(projectile.sourceId);
@@ -165,16 +195,19 @@ export class CombatSystem {
         session.state.gameTimeMs + projectile.vulnerabilityDurationMs
       );
     }
-    session.events.emit('enemy-hit', {
-      enemyId: enemy.id,
-      damage,
-      critical: projectile.critical
-    });
     if (enemy.health <= 0) {
       if (source) {
         source.kills += 1;
       }
       session.resolveEnemy(enemy.id, 'KILLED');
+      if (session.state.phase !== PHASES.WAVE) {
+        return;
+      }
     }
+    session.events.emit('enemy-hit', {
+      enemyId: enemy.id,
+      damage,
+      critical: projectile.critical
+    });
   }
 }

@@ -10,9 +10,12 @@ export class GameClock {
     this.accumulatorMs += Math.max(0, Math.min(finiteDelta, this.maxFrameMs));
     let steps = 0;
     while (this.accumulatorMs + Number.EPSILON >= this.stepMs) {
-      step(this.stepMs);
       this.accumulatorMs -= this.stepMs;
       steps += 1;
+      if (step(this.stepMs) === false) {
+        this.reset();
+        break;
+      }
     }
     return {
       steps,
