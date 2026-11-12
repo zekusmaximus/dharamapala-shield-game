@@ -115,8 +115,27 @@ M3.2 tradeoffs and M3.4's comparison against corrected M1.4/M2.4 reports.
 Historical differences in [M3.4 comparison](../2026-11-12-m3.4/comparison.md)
 remain historical; M4.4 makes no balance-attribution claim. The script checks
 that production/content and all prior evidence directories match fetched main,
-including the pinned M3.5 archive SHA-256. Its clean-checkout pipeline and
-hosted PR results are recorded in [validation.txt](validation.txt).
+including the pinned M3.5 archive SHA-256.
+
+A detached clean checkout at implementation commit `c5569ec` started without
+`node_modules` or `dist`. Run `bash design/reviews/2026-11-12-m4.4/verify.sh >
+/tmp/m44-validation.txt 2>&1` from that checkout. Its full output is retained
+in [validation.txt](validation.txt). Node 24.22.1, npm 11.9.0, Playwright 1.61.1
+and Chromium 149.0.7827.55 were used. Local Chromium system libraries were
+already available; hosted CI installs them with `--with-deps`.
+
+| Clean-checkout check | Result |
+| --- | --- |
+| Locked install, Chromium install, fresh build | Pass |
+| Unit / integration / simulation | 138 / 66 / 13 passed |
+| Browser / accessibility | 97 / 14 passed; no serious or critical axe findings in scanned semantic UI |
+| Current diagnostics, 21 campaigns, summary and counterplay regeneration | Byte-identical to M3.4 |
+| Historical M3.3 economy, M3.2 tradeoffs and M3.4 comparison regeneration | Byte-identical |
+| Production/content, prior evidence and pinned M3.5 archive preservation | Pass |
+| Git diff/check and clean worktree after pipeline | Pass |
+
+No runtime defect required a fix. Hosted PR CI is a separate check from this
+local Node 24 run.
 
 Human engagement, difficulty, readability, build diversity, 4–7-minute slice
 timing and replay intent remain unmeasured. The difficulty configurations share

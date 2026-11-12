@@ -330,9 +330,11 @@ or on a lifecycle test that directly awards kills.
 
 ## M3 · Prove an engaging five-wave game
 
-**Status: Partial — M3.1 authored pressure, M3.2 automated prototype, M3.3 economy and M3.4 automated counterplay; specialization retention, M3.5 and the human
+**Status: Partial — M3.1 authored pressure, M3.2 automated prototype, M3.3 economy
+and M3.4 automated counterplay; specialization retention, M3.5 and the human
 engagement gate remain open. Human collection is deferred by the user's
-2026-11-12 decision; M4 engineering may proceed provisionally, starting with M4.4.** Focus on the existing map and three tower roles. Findings
+2026-11-12 decision; M4 engineering may proceed provisionally, with M4.4
+automated verification complete.** Focus on the existing map and three tower roles. Findings
 R08–R09. This is the first major design gate, not a promise to ship every proposed
 mechanic below unchanged.
 
@@ -554,8 +556,8 @@ establish or substitute for the human gate.
 reports and M4.4 complete-run verification exist; they do not complete the
 redesigned campaign.
 Acceptance depends on the M3 gate. The explicit human-validation deferral permits
-bounded M4 engineering now, starting with M4.4 automated verification, with the
-current design remaining provisional.
+bounded M4 engineering; M4.4 automated verification is complete, with the current
+design remaining provisional.
 
 - [ ] **M4.1 · Develop four campaign acts.** Waves 1–5 teach and test fundamentals;
   6–10 combine counters and spending choices; 11–15 stress coverage, shields, and
@@ -580,7 +582,12 @@ current design remaining provisional.
   typed leaks, capped health/shield accounting, support/control activity,
   deliberate starts and terminal freezing pass. The fast lifecycle fixture
   remains separate. [M4.4 evidence](design/reviews/2026-11-12-m4.4/README.md)
-  records the matrix, comparisons and limits.
+  records the matrix, comparisons and limits. A detached clean checkout at
+  `c5569ec` passed locked install, Chromium install, fresh build, 138 unit,
+  66 integration, 13 simulation, 97 browser and 14 accessibility checks.
+  Current diagnostics and campaign artifacts regenerate byte-identically to
+  M3.4; corrected historical comparisons and the pinned M3.5 archive remain
+  unchanged. These are automated results, not player validation.
 - [ ] **M4.5 · Test the full experience.** Record completion, leaks, losses by wave,
   retries, build diversity, confusion, and run time for new and returning players.
   Verify a recoverable mistake does not automatically become an unavoidable loss.
