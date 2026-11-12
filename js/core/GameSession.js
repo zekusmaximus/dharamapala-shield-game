@@ -387,7 +387,7 @@ export class GameSession {
     }
     const branches = this.balance.towers[defense.type].specializations;
     const choosing = branches && defense.level === 2;
-    if (choosing && !Object.hasOwn(branches, specialization)) return this.fail('SPECIALIZATION_REQUIRED');
+    if (choosing && (typeof specialization !== 'string' || !Object.hasOwn(branches, specialization))) return this.fail('SPECIALIZATION_REQUIRED');
     if (!choosing && specialization !== null) return this.fail('SPECIALIZATION_LOCKED');
     const cost = getUpgradeCost(this.balance, defense.type, defense.level);
     if (!canAfford(this.state.resources, cost)) {

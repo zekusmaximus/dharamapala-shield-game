@@ -18,6 +18,8 @@ test('focus and coverage trade hit size, cadence and range under production armo
   assert.equal(focus.damage,linear.damage*1.8);
   assert.equal(coverage.range,linear.range*1.25);
   assert.throws(()=>getTowerStats(balance,'firewall',2,'focus'));
+  assert.throws(()=>getTowerStats(balance,'firewall',3,['focus']));
+  assert.throws(()=>getTowerStats(balance,'firewall',3,''));
   assert.throws(()=>getTowerStats(balance,'encryption',3,'focus'));
 });
 test('control branches override late chain; caps and branch multipliers persist through level 5',()=>{
@@ -34,7 +36,7 @@ test('level-3 choice is explicit, atomic, affordable and irrevocable through lat
   assert.equal(s.upgradeDefense(id,'focus').code,'SPECIALIZATION_LOCKED');
   assert.equal(s.upgradeDefense(id).ok,true);
   const before=s.toSnapshot();
-  for(const branch of [null,'bogus','sustain']) { assert.equal(s.upgradeDefense(id,branch).code,'SPECIALIZATION_REQUIRED'); assert.deepEqual(s.toSnapshot().state,before.state); }
+  for(const branch of [null,'bogus','sustain',['focus'],{},true,0,'']) { assert.equal(s.upgradeDefense(id,branch).code,'SPECIALIZATION_REQUIRED'); assert.deepEqual(s.toSnapshot().state,before.state); }
   assert.equal(s.upgradeDefense(id,'focus').code,'CANNOT_AFFORD');
   assert.deepEqual(s.toSnapshot().state,before.state);
   s.state.resources={dharma:2000,bandwidth:2000,anonymity:2000}; // command fixture only

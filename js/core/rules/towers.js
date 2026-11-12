@@ -21,8 +21,8 @@ export function getTowerStats(balance, towerType, level = 1, specialization = nu
     (status.vulnerabilityDuration ?? status.slowDuration ?? 0) *
     (1 + upgradeIndex * tuning.durationPerLevel);
 
-  const branch = level >= 3 && specialization && Object.hasOwn(definition.specializations || {}, specialization) ? definition.specializations[specialization] : null;
-  if (specialization && !branch) throw new Error(`Invalid specialization: ${towerType}/${specialization}/${level}`);
+  const branch = level >= 3 && typeof specialization === 'string' && Object.hasOwn(definition.specializations || {}, specialization) ? definition.specializations[specialization] : null;
+  if (specialization !== null && (typeof specialization !== 'string' || !branch)) throw new Error(`Invalid specialization: ${towerType}/${specialization}/${level}`);
   const result = {
     damage,
     range,
