@@ -19,7 +19,7 @@ export function createEnemy(
   const maxHealth = definition.baseHP * hpMultiplier * difficulty.hpMult;
   const position = pointAtPathDistance(0);
   const shieldMax =
-    definition.id === 'megaCorpTitan' ? Math.round(maxHealth * 0.35) : 0;
+    definition.abilities?.shield ? Math.round(maxHealth * definition.abilities.shield.healthRatio) : 0;
   return {
     id,
     type: definition.id,
@@ -44,6 +44,6 @@ export function createEnemy(
     shield: shieldMax,
     shieldMax,
     shieldCooldownUntilMs: 0,
-    shieldRegenPerSec: shieldMax * 0.04
+    shieldRegenPerSec: shieldMax * (definition.abilities?.shield?.regenRatioPerSec || 0)
   };
 }

@@ -1,5 +1,4 @@
 import { sampleCoverage } from '../core/rules/reports.js';
-import { RAID_EMP } from '../core/rules/combat.js';
 import { PATH_METRICS, pointAtPathDistance } from '../core/world.js';
 import { PHASES } from '../core/commands.js';
 
@@ -30,7 +29,7 @@ export class EnemySystem {
       }
 
       sampleCoverage(session, enemy);
-      const speedMultiplier = 1 - Math.max(0, Math.min(0.8, enemy.slowPct));
+      const speedMultiplier = 1 - Math.max(0, Math.min(session.balance.combat.status.slowSpeedCap, enemy.slowPct));
       enemy.pathDistance += enemy.speed * speedMultiplier * (deltaMs / 1000);
       const position = pointAtPathDistance(enemy.pathDistance);
       enemy.x = position.x;
@@ -52,7 +51,8 @@ export class EnemySystem {
       }
       if (enemy.type === 'raidTeam') {
         const ratio = enemy.health / enemy.maxHealth;
-        const thresholds = RAID_EMP.thresholds;
+        const { emp } = session.balance.bosses.raidTeam.abilities;
+        const thresholds = emp.thresholds;
         thresholds.forEach((threshold, index) => {
           if (session.state.phase !== PHASES.WAVE) return;
           const phase = index + 1;
@@ -61,10 +61,10 @@ export class EnemySystem {
             enemy.phase = phase;
             session.registerBossMinions(enemy, phase);
             for (const defense of session.state.defenses.values()) {
-              if (Math.hypot(defense.x - enemy.x, defense.y - enemy.y) <= RAID_EMP.radius) {
+              if (Math.hypot(defense.x - enemy.x, defense.y - enemy.y) <= emp.radius) {
                 defense.disabledUntilMs = Math.max(
                   defense.disabledUntilMs,
-                  nowMs + RAID_EMP.durationMs
+                  nowMs + emp.durationMs
                 );
               }
             }

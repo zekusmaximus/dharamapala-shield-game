@@ -1,4 +1,3 @@
-import { RAID_EMP } from '../core/rules/combat.js';
 import { enemyCombatFeedback, disabledFeedback } from '../core/rules/combatFeedback.js';
 import { getTowerStats } from '../core/rules/towers.js';
 import {
@@ -154,13 +153,13 @@ export class CanvasRenderer {
     for (const enemy of session.state.enemies.values()) {
       const definition =
         this.balance.enemies[enemy.type] || this.balance.bosses[enemy.type];
-      const feedback = enemyCombatFeedback(enemy, session.state.gameTimeMs);
+      const feedback = enemyCombatFeedback(this.balance, enemy, session.state.gameTimeMs);
       if (feedback.nextEmp !== null) {
         context.strokeStyle = '#ffe66d';
         context.lineWidth = 2;
         context.setLineDash([10, 8]);
         context.beginPath();
-        context.arc(enemy.x, enemy.y, RAID_EMP.radius, 0, Math.PI * 2);
+        context.arc(enemy.x, enemy.y, this.balance.bosses.raidTeam.abilities.emp.radius, 0, Math.PI * 2);
         context.stroke();
         context.setLineDash([]);
       }
