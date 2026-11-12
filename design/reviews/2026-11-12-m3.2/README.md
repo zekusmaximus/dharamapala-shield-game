@@ -168,3 +168,30 @@ They are presentation evidence only. Both alternatives and their full tables
 require scrolling, particularly in portrait; Start Wave retains its separate
 reserved area. Reproduce after build with `PLAYWRIGHT_BROWSERS_PATH=/workspace/.playwright-browsers
 node design/reviews/2026-11-12-m3.2/capture.mjs`.
+
+## Clean-checkout results
+
+A fresh detached worktree at final implementation commit `f43e1b5` began without
+node_modules or dist. Node 24.22.1 / npm 11.9.0 / Playwright 1.61.1 and Chromium
+149.0.7827.55 were used. [validation.txt](validation.txt) records every command,
+exit code and full output. Browser suites ran sequentially with CI=1, their own
+server and fresh dist. Local Chromium system libraries were already present.
+
+| Check | Result |
+|---|---|
+| Locked npm install, Chromium install, fresh build | Pass |
+| Unit | 124 passed |
+| Integration | 52 passed |
+| Simulation | 7 passed |
+| Browser | 91 passed |
+| Accessibility | 12 passed; no serious/critical axe findings in scanned UI |
+| Regenerate diagnostics, campaigns, summary, controlled comparisons | All byte-identical to committed artifacts |
+| Scope/historical comparison and git diff --check | Pass; historical files unchanged |
+| Clean worktree after checks | No tracked/untracked changes |
+
+The earlier clean run at `c0e83f3` also passed (first-clean-validation.txt).
+Final review then tightened both command and stats boundaries to reject coercible
+non-string branch IDs such as `['focus']`; focused assertions cover that case.
+The complete clean pipeline above was repeated on the final implementation.
+These runs establish automated correctness/reproducibility within the documented
+scope, not human specialization retention or device/assistive-technology acceptance.
