@@ -195,3 +195,17 @@ non-string branch IDs such as `['focus']`; focused assertions cover that case.
 The complete clean pipeline above was repeated on the final implementation.
 These runs establish automated correctness/reproducibility within the documented
 scope, not human specialization retention or device/assistive-technology acceptance.
+
+## Hosted PR checks
+
+[PR #26 CI run](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43150756840)
+passed on `bc5fe2a` under Ubuntu / Node 22. The validate job completed locked
+install, Chromium with system dependencies, fresh build and all five suites:
+124 unit, 52 integration, 7 simulation, 91 browser and 12 accessibility checks.
+Failure-artifact upload was skipped because all checks passed. GitGuardian also
+passed. [ci.txt](ci.txt) records the run/head, all job steps, check conclusions,
+commands and hosted suite summaries. This hosted execution is independent of the
+local Node 24 clean runs. This follow-up commit adds documentation/CI evidence
+only; production, content, test and scenario code are unchanged. PR #26 remains
+open for review and is not merged. The specialization-retention gate remains
+provisional pending actual player observations.
