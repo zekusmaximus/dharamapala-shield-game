@@ -8,7 +8,7 @@ import { clone, loadBalance } from '../helpers/loadBalance.js';
 const balance = await loadBalance();
 
 test('shipped content satisfies the explicit runtime schema', () => {
-  assert.equal(validateBalance(clone(balance)).version, '1.0.0');
+  assert.equal(validateBalance(clone(balance)).version, balance.version);
 });
 
 const malformed = {

@@ -1,0 +1,257 @@
+[WebServer] (node:1550) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 1 worker
+
+(node:1562) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 360×640 (6.1s)
+(node:1647) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 390×844 (6.1s)
+(node:1721) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 640×360 (6.2s)
+(node:1841) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 844×390 (6.6s)
+(node:1929) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  5 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 1280×720 (6.5s)
+(node:2004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  6 [e2e] › tests/e2e/game.spec.js:1169:1 › keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts (985ms)
+  ✘  7 [e2e] › tests/e2e/game.spec.js:1185:1 › new schedule pause/reload/Continue retains pending arrivals, 2× and preferences (697ms)
+(node:2094) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  8 [e2e] › tests/e2e/game.spec.js:1206:1 › prior balance save exports exact original and reset preserves independent preferences (1.0s)
+
+
+  1) [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 360×640 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  locator('#upgrade-button')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" with timeout 5000ms
+      - waiting for locator('#upgrade-button')
+        14 × locator resolved to <button type="button" class="primary" id="upgrade-button">Upgrade</button>
+           - unexpected value "enabled"
+
+
+      1164 |   expect(box.y+box.height).toBeLessThanOrEqual(viewport.height+1);
+      1165 |   await start.click(); await expect(page.locator('#phase-label')).toHaveText('Wave active');
+    > 1166 |   await expect(page.locator('#upgrade-button')).toBeDisabled();
+           |                                                 ^
+      1167 | });
+      1168 |
+      1169 | test('keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts', async ({page}) => {
+        at /workspace/dharamapala-shield-game/tests/e2e/game.spec.js:1166:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-7002b-eliberate-starts-at-360×640-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/game-authored-overlap-timi-7002b-eliberate-starts-at-360×640-e2e/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-7002b-eliberate-starts-at-360×640-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-authored-overlap-timi-7002b-eliberate-starts-at-360×640-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 390×844 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  locator('#upgrade-button')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" with timeout 5000ms
+      - waiting for locator('#upgrade-button')
+        14 × locator resolved to <button type="button" class="primary" id="upgrade-button">Upgrade</button>
+           - unexpected value "enabled"
+
+
+      1164 |   expect(box.y+box.height).toBeLessThanOrEqual(viewport.height+1);
+      1165 |   await start.click(); await expect(page.locator('#phase-label')).toHaveText('Wave active');
+    > 1166 |   await expect(page.locator('#upgrade-button')).toBeDisabled();
+           |                                                 ^
+      1167 | });
+      1168 |
+      1169 | test('keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts', async ({page}) => {
+        at /workspace/dharamapala-shield-game/tests/e2e/game.spec.js:1166:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-6bd55-eliberate-starts-at-390×844-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/game-authored-overlap-timi-6bd55-eliberate-starts-at-390×844-e2e/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-6bd55-eliberate-starts-at-390×844-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-authored-overlap-timi-6bd55-eliberate-starts-at-390×844-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 640×360 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  locator('#upgrade-button')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" with timeout 5000ms
+      - waiting for locator('#upgrade-button')
+        14 × locator resolved to <button type="button" class="primary" id="upgrade-button">Upgrade</button>
+           - unexpected value "enabled"
+
+
+      1164 |   expect(box.y+box.height).toBeLessThanOrEqual(viewport.height+1);
+      1165 |   await start.click(); await expect(page.locator('#phase-label')).toHaveText('Wave active');
+    > 1166 |   await expect(page.locator('#upgrade-button')).toBeDisabled();
+           |                                                 ^
+      1167 | });
+      1168 |
+      1169 | test('keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts', async ({page}) => {
+        at /workspace/dharamapala-shield-game/tests/e2e/game.spec.js:1166:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-3516c-eliberate-starts-at-640×360-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/game-authored-overlap-timi-3516c-eliberate-starts-at-640×360-e2e/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-3516c-eliberate-starts-at-640×360-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-authored-overlap-timi-3516c-eliberate-starts-at-640×360-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 844×390 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  locator('#upgrade-button')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" with timeout 5000ms
+      - waiting for locator('#upgrade-button')
+        14 × locator resolved to <button type="button" class="primary" id="upgrade-button">Upgrade</button>
+           - unexpected value "enabled"
+
+
+      1164 |   expect(box.y+box.height).toBeLessThanOrEqual(viewport.height+1);
+      1165 |   await start.click(); await expect(page.locator('#phase-label')).toHaveText('Wave active');
+    > 1166 |   await expect(page.locator('#upgrade-button')).toBeDisabled();
+           |                                                 ^
+      1167 | });
+      1168 |
+      1169 | test('keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts', async ({page}) => {
+        at /workspace/dharamapala-shield-game/tests/e2e/game.spec.js:1166:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-70d9e-eliberate-starts-at-844×390-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/game-authored-overlap-timi-70d9e-eliberate-starts-at-844×390-e2e/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-70d9e-eliberate-starts-at-844×390-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-authored-overlap-timi-70d9e-eliberate-starts-at-844×390-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 1280×720 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  locator('#upgrade-button')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" with timeout 5000ms
+      - waiting for locator('#upgrade-button')
+        14 × locator resolved to <button type="button" class="primary" id="upgrade-button">Upgrade</button>
+           - unexpected value "enabled"
+
+
+      1164 |   expect(box.y+box.height).toBeLessThanOrEqual(viewport.height+1);
+      1165 |   await start.click(); await expect(page.locator('#phase-label')).toHaveText('Wave active');
+    > 1166 |   await expect(page.locator('#upgrade-button')).toBeDisabled();
+           |                                                 ^
+      1167 | });
+      1168 |
+      1169 | test('keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts', async ({page}) => {
+        at /workspace/dharamapala-shield-game/tests/e2e/game.spec.js:1166:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-3c87d-liberate-starts-at-1280×720-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/game-authored-overlap-timi-3c87d-liberate-starts-at-1280×720-e2e/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-3c87d-liberate-starts-at-1280×720-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-authored-overlap-timi-3c87d-liberate-starts-at-1280×720-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [e2e] › tests/e2e/game.spec.js:1185:1 › new schedule pause/reload/Continue retains pending arrivals, 2× and preferences 
+
+    Error: page.evaluate: TypeError: s.setSettings is not a function
+        at eval (eval at evaluate (:303:30), <anonymous>:5:7)
+        at UtilityScript.evaluate (<anonymous>:305:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:303:30), <anonymous>:5:7)
+        at UtilityScript.evaluate (<anonymous>:305:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at /workspace/dharamapala-shield-game/tests/e2e/game.spec.js:1189:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/game-new-schedule-pause-re-eea9f-arrivals-2×-and-preferences-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/game-new-schedule-pause-re-eea9f-arrivals-2×-and-preferences-e2e/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-new-schedule-pause-re-eea9f-arrivals-2×-and-preferences-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-new-schedule-pause-re-eea9f-arrivals-2×-and-preferences-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6 failed
+    [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 360×640 
+    [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 390×844 
+    [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 640×360 
+    [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 844×390 
+    [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 1280×720 
+    [e2e] › tests/e2e/game.spec.js:1185:1 › new schedule pause/reload/Continue retains pending arrivals, 2× and preferences 
+  2 passed (40.6s)

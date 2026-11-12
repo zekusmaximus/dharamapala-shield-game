@@ -21,7 +21,9 @@ function raidEmpScenario() {
   assert.equal(session.placeDefense('distributor', { x: 270, y: 210 }).ok, true);
   session.state.waveNumber = 5;
   assert.equal(session.startWave().ok, true);
-  session.step(stepMs); // The production schedule spawns Raid Team and an attacker.
+  // Wait for the first authored escort instead of assuming it shares the boss's
+  // first tick. The positioned EMP/target fixture below is unchanged.
+  while (! [...session.state.enemies.values()].some(e => e.type === 'scriptKiddie')) session.step(stepMs);
 
   const boss = [...session.state.enemies.values()].find((enemy) => enemy.type === 'raidTeam');
   const target = [...session.state.enemies.values()].find((enemy) => enemy.type === 'scriptKiddie');
