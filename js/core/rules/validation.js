@@ -1,3 +1,4 @@
+import { bracePhase } from './brace.js';
 import { validateReports } from './reports.js';
 import { ACTIVE_TOWER_TYPES, PHASES, TERMINAL_PHASES } from '../commands.js';
 import { isInsideWorld, isNearPath, snapToBuildGrid, pointAtPathDistance, PATH_METRICS } from '../world.js';
@@ -70,7 +71,7 @@ export function validateBalance(b) {
   }
   for (const type of ACTIVE_TOWER_TYPES) {
     const branches = b.towers[type].specializations;
-    if (['1.2.0', '1.3.0'].includes(b.version) && type !== 'distributor') assert(branches, 'Missing tower specializations');
+    if (['1.2.0', '1.3.0', '1.4.0'].includes(b.version) && type !== 'distributor') assert(branches, 'Missing tower specializations');
     if (!branches) continue; // Historical linear content remains usable for comparisons.
     assert(type !== 'distributor' && b.upgrades.maxLevel >= 3, 'Invalid specialization tower');
     contentKeys(branches, `${type}.specializations`, type === 'firewall' ? ['focus', 'coverage'] : ['sustain', 'reach']);
@@ -93,7 +94,7 @@ export function validateBalance(b) {
   assert(!Object.keys(b.enemies).some((key) => Object.hasOwn(b.bosses, key)), 'Overlapping enemy IDs');
   for (const [id, e] of Object.entries({ ...b.enemies, ...b.bosses })) {
     const path = `${Object.hasOwn(b.bosses, id) ? 'balance.bosses' : 'balance.enemies'}.${id}`;
-    contentKeys(e, path, ['name', 'description', 'icon', 'baseHP', 'armor', 'resists', 'moveSpeed', 'bounty', 'color', 'size', ...(Object.hasOwn(b.bosses, id) ? ['abilities'] : [])], ['leakDamage']);
+    contentKeys(e, path, ['name', 'description', 'icon', 'baseHP', 'armor', 'resists', 'moveSpeed', 'bounty', 'color', 'size', ...(Object.hasOwn(b.bosses, id) ? ['abilities'] : [])], ['leakDamage', ...(Object.hasOwn(b.enemies, id) ? ['brace'] : [])]);
     for (const key of ['name', 'description', 'icon']) contentText(e[key], `${path}.${key}`);
     assert(/^#[0-9a-fA-F]{6}$/.test(e.color), `Invalid ${path}.color`);
     for (const key of ['baseHP', 'moveSpeed', 'size']) contentNumber(e[key], `${path}.${key}`, Number.MIN_VALUE);
@@ -102,7 +103,15 @@ export function validateBalance(b) {
     contentKeys(e.resists, `${path}.resists`, ['physical', 'fire', 'shock']);
     for (const [key, value] of Object.entries(e.resists)) contentNumber(value, `${path}.resists.${key}`);
     contentResources(e.bounty, `${path}.bounty`);
+    if (e.brace !== undefined) {
+      assert(id === 'federalAgent', 'Only the Agent has shield brace');
+      contentKeys(e.brace, `${path}.brace`, ['windupMs', 'durationMs', 'healthRatio']);
+      contentNumber(e.brace.windupMs, 'Brace windupMs', 1000, 10000);
+      contentNumber(e.brace.durationMs, 'Brace durationMs', 1000, 10000);
+      contentNumber(e.brace.healthRatio, 'Brace healthRatio', Number.MIN_VALUE, 1);
+    }
   }
+  if (b.version === '1.4.0') assert(b.enemies.federalAgent?.brace, 'Missing Agent brace');
   const raid = b.bosses.raidTeam.abilities, titan = b.bosses.megaCorpTitan.abilities;
   contentKeys(raid, 'balance.bosses.raidTeam.abilities', ['emp', 'reinforcements']);
   contentKeys(raid.emp, 'balance.bosses.raidTeam.abilities.emp', ['thresholds', 'radius', 'durationMs']);
@@ -130,7 +139,7 @@ export function validateBalance(b) {
   }
   contentKeys(b.economy, 'balance.economy', ['startCash', 'startBandwidth', 'startAnonymity', 'killIncomeMult', 'waveClearBonus', 'waveClearBonusPerWave', 'initialLives', 'sellRefundPct', 'distributorWaveBonus', 'distributorWaveBonusCap', 'distributorAuraCap'], ['activeResources']);
   for (const key of ['startCash', 'startBandwidth', 'startAnonymity', 'waveClearBonus', 'waveClearBonusPerWave', 'distributorWaveBonus', 'distributorWaveBonusCap']) contentInteger(b.economy[key], `balance.economy.${key}`);
-  if (b.version === '1.3.0' || b.economy.activeResources !== undefined) {
+  if (['1.3.0', '1.4.0'].includes(b.version) || b.economy.activeResources !== undefined) {
     assert(Array.isArray(b.economy.activeResources) && b.economy.activeResources.length === 2 &&
       b.economy.activeResources[0] === 'dharma' && b.economy.activeResources[1] === 'bandwidth', 'Invalid active resources');
     assert(b.economy.startAnonymity === 0 &&
@@ -192,7 +201,7 @@ export function validateSnapshot(snapshot, balance) {
   validateBalance(balance);
   const raidReinforcements = balance.bosses.raidTeam.abilities.reinforcements;
   const reinforcementTypes = raidReinforcements.byPhase.flat();
-  assert(snapshot?.schemaVersion === (balance.version === '1.0.0' && !balance.towers.firewall.specializations ? 2 : 3) && snapshot.balanceVersion === balance.version, 'Unsupported save schema or balance version');
+  assert(snapshot?.schemaVersion === (balance.version === '1.4.0' ? 4 : balance.version === '1.0.0' && !balance.towers.firewall.specializations ? 2 : 3) && snapshot.balanceVersion === balance.version, 'Unsupported save schema or balance version');
   const s = snapshot.state, r = snapshot.runtime;
   const reinforcementMultiplier = 1 + s.waveNumber * raidReinforcements.hpMultiplierPerWave;
   assert(s && r && s.schemaVersion === snapshot.schemaVersion && s.balanceVersion === balance.version, 'Invalid state version');
@@ -240,6 +249,15 @@ export function validateSnapshot(snapshot, balance) {
       const expected = createEnemy({ id:e.type, kind:e.kind, ...definition }, {id:e.id, hpMultiplier, difficulty:balance.difficulty[s.difficulty]});
       return ['maxHealth','speed','radius','shieldMax','shieldRegenPerSec'].every(k => e[k] === expected[k]);
     }) && e.spawnedAtMs <= s.gameTimeMs, 'Enemy disagrees with balance');
+    if (definition.brace) {
+      const brace = e.brace, phase = bracePhase(brace, s.gameTimeMs);
+      assert(brace && Object.keys(brace).length === 3 &&
+        brace.activatesAtMs === e.spawnedAtMs + definition.brace.windupMs &&
+        brace.expiresAtMs === brace.activatesAtMs + definition.brace.durationMs &&
+        brace.activated === (phase !== 'warning') &&
+        (phase === 'active' || e.shield === 0) && e.shieldCooldownUntilMs === 0,
+        'Invalid pending brace');
+    } else assert(e.brace === undefined, 'Unexpected brace');
     const p = pointAtPathDistance(e.pathDistance);
     assert(Math.abs(p.x-e.x) < 1e-6 && Math.abs(p.y-e.y) < 1e-6, 'Enemy position disagrees with path');
     assert(Array.isArray(e.firedPhases) && (e.type === 'raidTeam'

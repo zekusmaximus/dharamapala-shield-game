@@ -79,11 +79,11 @@ test('actual full campaigns reconcile M2.3 ledgers, natural bosses/leaks and det
   }
 });
 
-test('fresh production scenarios and repeat hashes match M3.3 evidence; content hash matches current bytes', async () => {
+test('fresh production scenarios and repeat hashes match M3.4 evidence; content hash matches current bytes', async () => {
   const { buildReport } = await import('../../tools/balance/report.mjs');
   const { createHash } = await import('node:crypto');
   const { readFile } = await import('node:fs/promises');
-  const recorded = JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.3/results.json',import.meta.url)));
+  const recorded = JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.4/results.json',import.meta.url)));
   const current = await buildReport();
   const bytes = await readFile(new URL('../../design/balance.json', import.meta.url));
   assert.equal(current.balanceSha256, createHash('sha256').update(bytes).digest('hex'));
@@ -99,4 +99,12 @@ test('earned-resource policy and marginal evidence regenerates deterministically
   const recorded=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.3/economy.json',import.meta.url)));
   // JSON is the report boundary (non-attacking support has no finite cooldown).
   assert.deepEqual(JSON.parse(JSON.stringify(await buildEconomyReport())),recorded);
+});
+
+
+test('M3.4 earned counterplay evidence repeats with shared production combat and constrained purchases',async()=>{
+  const {buildCounterplayReport}=await import('../../tools/balance/counterplay.mjs');
+  const {readFile}=await import('node:fs/promises');
+  const recorded=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.4/counterplay.json',import.meta.url)));
+  assert.deepEqual(JSON.parse(JSON.stringify(await buildCounterplayReport())),recorded);
 });

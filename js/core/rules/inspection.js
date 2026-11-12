@@ -1,3 +1,4 @@
+import { braceDescription } from './brace.js';
 import { getEnemyDefinition } from '../../entities/createEnemy.js';
 import { ACTIVE_TOWER_TYPES } from '../commands.js';
 import {
@@ -160,12 +161,14 @@ export function getEnemyInspection(balance, type) {
     damageType,
     definition.resists?.[damageType] ?? 1
   ]));
-  const ability = type === 'raidTeam'
+  const ability = braceDescription(definition) || (type === 'raidTeam'
     ? 'At health thresholds, calls reinforcements and emits EMP that briefly disables nearby towers.'
     : type === 'megaCorpTitan'
       ? 'Starts with a shield that regenerates after a pause without taking hits.'
-      : null;
-  const counterHint = type === 'raidTeam'
+      : null);
+  const counterHint = definition.brace
+    ? 'Front-load damage before the brace, sustain fire through its finite shield, or use slow and later coverage after it expires. No tower is required.'
+    : type === 'raidTeam'
     ? 'Spread attackers so one EMP cannot pause every firing lane.'
     : type === 'megaCorpTitan'
       ? 'Keep damaging the Titan to delay shield recovery.'

@@ -619,7 +619,7 @@ export class GameUI {
     for (const enemy of enemies) {
       const info = enemyCombatFeedback(balance, enemy, now);
       const status = info.statuses.map((item) => `${item.marker} ${item.text}`).join('; ');
-      if (enemy.kind !== 'boss' && !status) continue;
+      if (enemy.kind !== 'boss' && !status && !info.brace) continue;
       const parts = [`${enemy.name} (${enemy.id})`];
       if (enemy.kind === 'boss') {
         parts.push(`Health ${Math.ceil(Math.max(0, enemy.health))} / ${Math.ceil(enemy.maxHealth)}; ${info.phase}`);
@@ -627,6 +627,7 @@ export class GameUI {
         if (info.nextEmp !== null) parts.push(`⚠ Next EMP at ${Math.round(info.nextEmp * 100)}% health; dashed circle = ${balance.bosses.raidTeam.abilities.emp.radius}-unit burst range`);
         else if (enemy.type === 'raidTeam') parts.push('Both EMP bursts spent');
       }
+      if (info.brace) parts.push(info.brace.text);
       if (status) parts.push(status);
       lines.push(parts.join('. '));
     }

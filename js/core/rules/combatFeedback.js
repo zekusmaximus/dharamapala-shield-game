@@ -1,3 +1,4 @@
+import { bracePhase } from './brace.js';
 // Presentation derives from combat state; no timers or mutations.
 export function getEmpWarning(balance) {
   const { emp } = balance.bosses.raidTeam.abilities;
@@ -19,6 +20,14 @@ export function enemyCombatFeedback(balance, enemy, nowMs) {
     : -1;
   return {
     statuses,
+    brace: !enemy.brace ? null : (() => {
+      const phase = bracePhase(enemy.brace, nowMs);
+      return phase === 'warning'
+        ? { marker: 'BRACE IN', glyph: '!', text: `Shield brace in ${Math.max(0, (enemy.brace.activatesAtMs-nowMs)/1000).toFixed(1)} s; self shield ${enemy.shieldMax}; damage now or cover after expiry` }
+        : phase === 'active'
+          ? { marker: enemy.shield > 0 ? 'BRACE' : 'BROKEN', glyph: enemy.shield > 0 ? 'S' : '×', text: `Shield brace ${Math.ceil(enemy.shield)} / ${enemy.shieldMax}; expires in ${Math.max(0, (enemy.brace.expiresAtMs-nowMs)/1000).toFixed(1)} s; no refill; statuses still apply` }
+          : { marker: 'SPENT', glyph: '✓', text: 'Shield brace spent; no regeneration' };
+    })(),
     nextEmp: nextPhase < 0 ? null : emp.thresholds[nextPhase],
     phase: enemy.type === 'raidTeam'
       ? `Phase ${enemy.phase + 1} / ${emp.thresholds.length + 1}`
