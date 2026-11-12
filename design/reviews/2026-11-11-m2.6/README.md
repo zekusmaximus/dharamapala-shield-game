@@ -108,3 +108,13 @@ The derived summary is byte-identical to M2.4 (SHA-256
 `a7cd9ac0cf1c60f61f4b72c06eb5ee458f5c737141b33c30e3f8c7bf9fa709eb`).
 The content hash difference is structural data provenance, not a gameplay
 result.
+
+## Hosted PR checks
+
+[PR #24 CI](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43130843324)
+passed on `6d1c457` under Ubuntu / Node 22. The `validate` job completed locked
+installation, Chromium with system dependencies, a fresh build and all five
+suites. Failure-artifact upload was skipped because the checks passed. The
+separate GitGuardian check passed. This hosted run is independent of the local
+Node 24 clean-checkout run. The follow-up documentation commit records this
+result and changes no production, test or scenario code.

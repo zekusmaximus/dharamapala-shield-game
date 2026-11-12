@@ -288,7 +288,8 @@ schema v2 and preference keys remain unchanged. Existing valid saves, M1 behavio
 M2 inspection/feedback/reports/accounting and 1×/2× semantics retain their
 passing regressions. A detached clean checkout at `7e29d94` passed locked
 installation, Chromium installation, fresh build, 100 unit, 35 integration,
-7 simulation, 69 end-to-end and 10 accessibility checks. Legacy diagnostics are
+7 simulation, 69 end-to-end and 10 accessibility checks. [PR #24 CI](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43130843324)
+passed the same five suites on Ubuntu / Node 22. Legacy diagnostics are
 byte-identical to corrected M1.4. The regenerated M2.4 report matches every
 policy/scenario outcome, wave and repeat hash; only its balance-file SHA-256
 changes (`8a177078…` → `77d0377e…`) because the content file changed. The
