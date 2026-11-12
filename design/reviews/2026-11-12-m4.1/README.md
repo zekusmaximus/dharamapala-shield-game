@@ -178,7 +178,28 @@ counterplay plus M3.3 economy/M3.2 tradeoff checks, prior-artifact byte
 preservation and pinned M3.5 archive hash, then Git cleanliness. The evidence
 comparison is regenerated from immutable old files; no old report is refreshed.
 The full clean-checkout output is recorded in [validation.txt](validation.txt).
-Hosted CI is a separate gate and is recorded after it completes.
+
+A detached clean checkout of implementation commit `de92f12` began with no
+`node_modules` or `dist`. The [complete log](validation.txt) records Node
+24.22.1, npm 11.9.0, Playwright 1.61.1 and Chromium 149.0.7827.55. Its
+browser suites ran sequentially with their own server.
+
+| Clean-checkout check | Result |
+| --- | --- |
+| Locked npm install, Chromium install, fresh build | Pass |
+| Unit / integration / simulation | 140 / 66 / 13 passed |
+| Browser / accessibility | 99 / 14 passed; no serious/critical axe findings in scanned semantic UI |
+| Current baseline, 21 campaigns, summary, comparison, old-v4 fixture | Byte-identical regeneration |
+| Historical M3.4 counterplay, M3.3 economy, M3.2 tradeoffs | Byte-identical regeneration |
+| Prior evidence directories, pinned M3.5 archive SHA-256 | Unchanged / pass |
+| Scope, Git diff/check and clean worktree | Pass |
+
+Before the clean run, the first focused browser invocation found no installed
+Chromium (`chromium_headless_shell-1228`); `npx playwright install chromium`
+resolved it, and both focused browser checks passed. A concurrently launched
+focused axe scan collided with the browser suite's port 3000; rerunning it
+sequentially passed. Neither setup issue required a product change. Hosted CI
+is a separate gate and is recorded after it completes.
 
 M4.1 design remains provisional until human testing and later M4.3 calibration.
 The M3.2 retention, M3.5 collection and M3 human gate remain open under the
