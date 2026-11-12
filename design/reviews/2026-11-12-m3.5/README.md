@@ -10,10 +10,11 @@ evidence. All earlier review artifacts remain unchanged.
 ## Actual evidence availability
 
 As of 2026-11-12, **zero real first-time or returning-player observations** are
-available to this work. Repository search found no M3.5 session records or
-evidence directory on main. The GitHub PR search for M3.5 returned references
-in older PR bodies, not an M3.5 PR; open PRs and the repository issue search for
-playtests returned none. The remote branch list has no M3.5 branch. No participant
+available to this work. Before this branch, repository search found no M3.5
+session records or evidence directory on main. The GitHub PR search for M3.5
+returned references in older PR bodies, not an existing M3.5 PR; open PRs and
+the repository issue search for playtests returned none. The pre-work remote
+branch list had no M3.5 branch. No participant
 recruitment, session, interview, physical-device use or screen-reader use was
 performed here. Simulator policies, funded/earned fixtures, Chromium checks and
 axe scans in earlier evidence are automated work, not human testimony.
