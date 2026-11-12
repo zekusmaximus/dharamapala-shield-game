@@ -200,3 +200,40 @@ scope/historical checks and a clean Git tree. Local Chromium system libraries
 are already installed; hosted CI installs them with `--with-deps`. Browser suites
 run sequentially with CI=1 and their own server. Results are recorded after the
 clean run; hosted checks are separate from this local evidence.
+
+A detached worktree at final implementation commit **4dedddb** started without
+node_modules or dist. Node 24.22.1 / npm 11.9.0 / Playwright 1.61.1 and Chromium
+149.0.7827.55 were used. [validation.txt](validation.txt) records commands,
+exit codes and full output.
+
+| Check | Result |
+|---|---|
+| Locked install, Chromium install, fresh build | Pass |
+| Unit | 138 passed |
+| Integration | 66 passed |
+| Simulation | 9 passed |
+| Browser | 97 passed |
+| Accessibility | 14 passed; no serious/critical axe findings in scanned semantic UI |
+| Current diagnostics, campaigns, summary and counterplay regeneration | Byte-identical |
+| Historical M3.3 economy and M3.2 funded tradeoff regeneration | Byte-identical |
+| Content scope, historical artifact preservation, Git diff/check | Pass |
+| Clean worktree after pipeline | No tracked or untracked changes |
+
+The runner's clean-directory guard also rejected an initial invocation from the
+populated working checkout before installation; the recorded run above executes
+in the detached clean worktree. The subsequent evidence-record commit changes
+only documentation/logs; production, content, tests and scenarios are unchanged.
+These results complete M3.4 within its documented automated scope, not the
+provisional specialization-retention or broader human M3 gate.
+
+## Hosted PR checks
+
+[PR #28 CI run](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43209160417)
+passed on **4dedddb** on Ubuntu / Node 22. Locked install, Chromium plus system
+dependencies, fresh build and all five suites passed: **138 unit, 66 integration,
+9 simulation, 97 browser, 14 accessibility**. GitGuardian passed too. [ci.txt](ci.txt)
+records the head/run, job steps, check conclusions, commands and suite summaries.
+Failure-artifact upload was skipped because all checks passed. This hosted run
+is independent of the local Node 24 clean-checkout execution. PR #28 is left
+unmerged for review. Specialization retention, physical-device/screen-reader
+acceptance and human playtests remain open.

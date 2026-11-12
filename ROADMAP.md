@@ -27,7 +27,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
 | M2 · Make decisions readable and measurable | P1 | Complete within documented scope: M2.1–M2.6 | M1 | M2.6 clean checkout passes 100 unit, 35 integration, 7 simulation, 69 browser and 10 accessibility checks; corrected M1.4 diagnostics match byte-for-byte and M2.4 policy outcomes match apart from the content-file hash |
-| M3 · Prove an engaging five-wave game | P1 | Partial: M3.1 complete; M3.2 prototype verified, retention provisional; M3.3 automated economy complete; M3.4 implemented, verification pending | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
+| M3 · Prove an engaging five-wave game | P1 | Partial: M3.1 complete; M3.2 prototype verified, retention provisional; M3.3 automated economy complete; M3.4 automated counterplay complete | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
 | M6 · Release and maintain confidently | P2 | Partial: build and test tools exist | M4; M5 for replay-content release | Device/browser checks, performance evidence, hosting/recovery documentation, release checklist |
@@ -307,7 +307,7 @@ or on a lifecycle test that directly awards kills.
 
 ## M3 · Prove an engaging five-wave game
 
-**Status: Partial — M3.1 authored pressure, M3.2 automated prototype and M3.3 economy; specialization retention, M3.4–M3.5 and the human
+**Status: Partial — M3.1 authored pressure, M3.2 automated prototype, M3.3 economy and M3.4 automated counterplay; specialization retention, M3.5 and the human
 engagement gate remain open.** Focus on the existing map and three tower roles. Findings
 R08–R09. This is the first major design gate, not a promise to ship every proposed
 mechanic below unchanged.
@@ -338,7 +338,7 @@ Implementation work:
   intended constraints of Bandwidth and Anonymity; simplify a redundant currency
   if it still does not produce an independent decision. Revisit Distributor
   payback and upgrade marginal value using actual contribution, not raw DPS alone.
-- [ ] **M3.4 · Add a small counterplay vocabulary.** Start with at most two new
+- [x] **M3.4 · Add a small counterplay vocabulary (automated scope).** Start with at most two new
   regular-enemy behaviors, such as a shielded escort and a telegraphed disruptor.
   Each needs a visible cue, more than one practical response, and shared runtime/
   simulator/save coverage. Remove unused ability labels if their behavior is not
@@ -445,6 +445,46 @@ passes the same five suites on Ubuntu / Node 22, plus GitGuardian.
 Automated Chromium/axe checks
 are not physical-device, screen-reader or human playtests. **M3.2 retention remains
 provisional; M3.4–M3.5 and the overall M3 engagement gate remain open.**
+
+**M3.4 complete within automated scope (2026-11-12):**
+From fetched main `fcc4e35` (M3.3 / PR #27), the existing Agent gains one
+telegraphed, one-use self shield: three simulated seconds of warning, then
+60% maximum-health capacity for four seconds, with no refill/regeneration.
+Finite absorption overflows to health; existing targeting, status and damage rules
+remain. Static glyphs/rings/bar and a visible legend have full per-Agent semantic
+text; roster inspection explains effects and alternative preparation responses.
+No second ability or inert legacy label was added. All 20 wave definitions and
+schedules/rewards, tower stats/prices, upgrade/branch choices, income, aura/passive
+rules and retired Anonymity remain unchanged. Later existing Agents inherit the
+rule without redesigning waves 6–20.
+
+Thirty fresh first-five slices compare M3.3/current economy plans on all three
+difficulties; all complete with unchanged lives (Hard saving retains its five
+wave-3 leaks). Sixty earned wave-3 options include 48 affordable combat forks and
+12 blocked control-specialization options. Equal-cost early expansion kills
+before/during brace; later coverage kills after expiry. Normal early/late builds
+retain 20 lives in 12.633/18.067 seconds, removing 132/0 shield health. Focus,
+Coverage and affordable level-2 upgrades offer other measured responses. These
+are specific placement/spending outcomes, not optimality or human build-diversity
+validation. All 21 fresh campaign outcomes/finishing waves/lives/leak counts match
+M3.3; timings/activity can differ. Corrected M1.4 mechanic/rejection probes match;
+full M3.3/M1.4/M2.4 comparisons separate gameplay from content-file hashes and
+preserve historical artifacts and M2 accounting attribution limits.
+
+Balance **1.4.0 / schema v4** explicitly persist pending brace deadlines and
+activation with remaining shield; prior runs require retained-byte export/reset
+recovery, without automatic conversion. Storage slot and independent preferences
+remain compatible. Boundary collision, accounting, pause/continue at both speeds,
+semantic UI and accessibility checks pass. A detached clean checkout at `4dedddb`
+passes locked install, Chromium install, fresh build, **138 unit, 66 integration,
+9 simulation, 97 browser and 14 accessibility** checks, byte-identical current and
+historical report regeneration, scope checks and a clean Git tree.
+[PR #28 CI](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43209160417)
+passes the same suites on Ubuntu/Node 22, plus GitGuardian.
+[M3.4 evidence](design/reviews/2026-11-12-m3.4/README.md) records exact differences,
+commands, comparisons, fixtures and limits. Automated Chromium/axe is not
+physical-device, screen-reader or human playtest evidence. **M3.2 retention stays
+provisional; M3.5 and the broader M3 human gate remain open.**
 
 **Acceptance gate:** at least two materially different builds can beat the slice.
 Several waves reward a change in placement, spending, or specialization; an
