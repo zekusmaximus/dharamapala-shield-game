@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { BrowserSaveRepository, SAVE_KEY } from '../../js/platform/BrowserSaveRepository.js';
@@ -53,7 +54,7 @@ test('corrupt saves are preserved without mutating a live session', () => {
   assert.equal(repository.exportCorrupt(), storage.getItem(SAVE_KEY));
 });
 
-test('legacy removed towers are refunded and active towers are reconstructed', () => {
+test('historical legacy removed towers are refunded and active towers are reconstructed', async () => {
   const storage = new MemoryStorage();
   storage.setItem(
     'dharmapala_shield_save_0',
@@ -71,7 +72,7 @@ test('legacy removed towers are refunded and active towers are reconstructed', (
     })
   );
   const repository = new BrowserSaveRepository(storage);
-  const result = repository.load(balance);
+  const result = repository.load(JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.3/baseline-1.2.0.json',import.meta.url))));
   assert.equal(result.ok, true);
   assert.equal(result.migrated, true);
   assert.equal(result.session.state.phase, PHASES.BUILDING);

@@ -1,5 +1,10 @@
 const RESOURCE_KEYS = Object.freeze(['dharma', 'bandwidth', 'anonymity']);
 
+// Keep the three-key ledger/save shape; historical content defaults to all currencies.
+export function activeResourceKeys(balance) {
+  return balance.economy.activeResources || RESOURCE_KEYS;
+}
+
 export function createStartingResources(balance) {
   return {
     dharma: balance.economy.startCash,
@@ -12,6 +17,10 @@ export function normalizeResources(resources = {}) {
   return Object.fromEntries(
     RESOURCE_KEYS.map((key) => [key, Math.max(0, Number(resources[key]) || 0)])
   );
+}
+
+export function resourceShortfall(resources, cost) {
+  return Object.fromEntries(RESOURCE_KEYS.map(key => [key, Math.max(0, (cost[key] || 0) - resources[key])]));
 }
 
 export function canAfford(resources, cost) {
@@ -85,7 +94,7 @@ export function getWaveReward(balance, waveDefinition, waveNumber, distributors)
     dharma:
       base + Math.min(distributorCap, Math.max(0, distributors) * perDistributor),
     bandwidth: Math.round(base * 0.3),
-    anonymity: Math.round(base * 0.2)
+    anonymity: activeResourceKeys(balance).includes('anonymity') ? Math.round(base * 0.2) : 0
   };
 }
 

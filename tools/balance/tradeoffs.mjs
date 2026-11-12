@@ -1,6 +1,6 @@
 // M3.2 controlled production-combat experiments, not player or campaign evidence.
 import { GameSession } from '../../js/core/GameSession.js';
-import { buildPositions, loadBalance } from '../sim/run.mjs';
+import { buildPositions } from '../sim/run.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -22,9 +22,9 @@ export const FIXTURE = {
     spread: 'Same legal cells ranked by distance to alternating anchors (210,210),(750,330), ties original coverage ranking.'
   }
 };
-export function prepareTradeoff(balance, wave, layout, plan) {
+export function prepareTradeoff(balance, wave, layout, plan, resources = FIXTURE.resources) {
   const s = new GameSession(balance); s.newGame({tutorialCompleted:true,seed:1337,difficulty:'Normal'});
-  s.state.waveNumber = wave; s.state.resources = {...FIXTURE.resources};
+  s.state.waveNumber = wave; s.state.resources = {...resources};
   const positions = buildPositions(); let count=0;
   function buy(type, level=1, branch=null) {
     const anchor = count % 2 ? {x:750,y:330} : {x:210,y:210};
@@ -61,7 +61,8 @@ export function runTradeoff(balance, wave, layout, plan) {
     report:s.state.reports.pending.at(-1)};
 }
 export async function buildTradeoffs() {
-  const current=await loadBalance();
+  // Pin the historical M3.2 experiment; M3.3 uses economy.mjs for earned budgets.
+  const current=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.3/baseline-1.2.0.json',import.meta.url)));
   // Immutable M3.1 input copied from fetched main, with provenance in evidence README.
   const linear=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.2/linear-1.1.0.json',import.meta.url)));
   const rows=[];

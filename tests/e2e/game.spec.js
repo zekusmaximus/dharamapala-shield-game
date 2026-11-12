@@ -857,9 +857,9 @@ test('tower comparison shows rule-derived status, chain, investment and refund',
   await expect(content.locator('tr').filter({ hasText: 'Vulnerability' })).toContainText('12% for 1.80 s');
   await expect(content.locator('tr').filter({ hasText: 'Vulnerability' })).toContainText('15% for 2.07 s');
   await expect(content).toContainText('choose one specialization at level 3');
-  await expect(content).toContainText('Total investment: 50 Dharma, 20 Bandwidth, 10 Anonymity');
-  await expect(content).toContainText('Refund (70%): 35 Dharma, 14 Bandwidth, 7 Anonymity');
-  await expect(content).toContainText('Next upgrade cost: 98 Dharma, 39 Bandwidth, 20 Anonymity');
+  await expect(content).toContainText('Total investment: 50 Dharma, 35 Bandwidth');
+  await expect(content).toContainText('Refund (70%): 35 Dharma, 24 Bandwidth');
+  await expect(content).toContainText('Next upgrade cost: 98 Dharma, 68 Bandwidth');
 });
 
 test('Distributor support inspector shows actual benefit and passive income', async ({ page }) => {
@@ -878,8 +878,8 @@ test('Distributor support inspector shows actual benefit and passive income', as
   await expect(content.locator('tr').filter({ hasText: 'Rate gain while firing' })).toContainText('0.12 shots/s');
   await expect(content).toContainText('Firewall Fortress: 1.00 shots/s → 1.12 shots/s');
   await expect(content).toContainText('Passive wave-clear bonus: +6 Dharma per installed Distributor, capped at +30');
-  await expect(content).toContainText('Total investment: 100 Dharma, 60 Bandwidth, 30 Anonymity');
-  await expect(content).toContainText('Refund (70%): 70 Dharma, 42 Bandwidth, 21 Anonymity');
+  await expect(content).toContainText('Total investment: 70 Dharma, 60 Bandwidth');
+  await expect(content).toContainText('Refund (70%): 49 Dharma, 42 Bandwidth');
   await expect(content).not.toContainText(/\bslow\b/i);
 });
 
@@ -985,7 +985,7 @@ test('unaffordable and wave-locked tower blueprints remain inspectable without b
   await expect(page.locator('#tower-blueprint')).toHaveAttribute('open', '');
   await expect(page.locator('#tower-blueprint-content')).toContainText('Dharma Distributor · Unplaced');
   await expect(page.locator('#tower-blueprint-content')).toContainText('Fire-rate aura');
-  await expect(page.locator('#tower-blueprint-content')).toContainText('Build cost: 100 Dharma, 60 Bandwidth, 30 Anonymity');
+  await expect(page.locator('#tower-blueprint-content')).toContainText('Build cost: 70 Dharma, 60 Bandwidth');
   await expect(page.locator('#inspector-content')).toContainText('Encryption Monastery');
   await page.getByRole('button', { name: 'Start wave 1' }).click();
   await expect(page.locator('[data-tower-type="firewall"]')).toBeDisabled();
@@ -1279,4 +1279,28 @@ test('M3.1 save version rejection exports exact bytes and preserves independent 
   const path=await(await download).path();expect(await readFile(path,'utf8')).toBe(raw);
   await page.getByRole('button',{name:'Reset saved run'}).click();
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/preferences/v1')).reducedMotion)).toBe(true);
+});
+
+for(const viewport of [{width:360,height:640},{width:1280,height:720}])test(`two-resource economy, saving guidance and exact Bandwidth deficit at ${viewport.width}`,async({page})=>{
+  await openFresh(page,viewport);await enterBuildPhase(page);
+  await expect(page.locator('#hud')).toContainText('Dharma');await expect(page.locator('#hud')).toContainText('Bandwidth');await expect(page.locator('#hud')).not.toContainText('Anonymity');
+  await tabTo(page,page.locator('#resource-guide summary'));await page.keyboard.press('Enter');
+  await expect(page.locator('#resource-guide')).toContainText('Save either for later waves; there is no interest. Anonymity is retired.');
+  await page.locator('[data-tower-type="encryption"]').click();await clickWorld(page,210,210);
+  // Real initial resources: 80 Dharma and 25 Bandwidth remain. Both deficits are displayed.
+  await expect(page.locator('#inspector-content')).toContainText('Need 18 Dharma and 43 Bandwidth more.');
+  await expect(page.locator('#upgrade-button')).toBeDisabled();
+  await page.locator('#start-wave-button').click();
+  expect(await page.evaluate(()=>gameApplication.session.upgradeDefense([...gameApplication.session.state.defenses.keys()][0]).ok)).toBe(false);
+});
+
+test('retired-economy v3 bytes export unchanged and reset preserves preferences',async({page})=>{
+  const {readFile}=await import('node:fs/promises');const raw=await readFile('design/reviews/2026-11-12-m3.3/old-1.2.0-v3-save.json','utf8');
+  await openFresh(page,{width:360,height:640});
+  await page.evaluate(raw=>{localStorage.setItem('dharmapala-shield/save/v2',raw);localStorage.setItem('dharmapala-shield/preferences/v1',JSON.stringify({tutorialCompleted:true,showRanges:false,reducedMotion:true}));},raw);await page.reload();
+  await expect(page.locator('#save-recovery')).toBeVisible();
+  const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();expect(await readFile(await(await download).path(),'utf8')).toBe(raw);
+  await page.getByRole('button',{name:'Reset saved run'}).click();await page.getByRole('button',{name:'New game',exact:true}).click();
+  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')));
+  expect(saved.schemaVersion).toBe(3);expect(saved.balanceVersion).toBe('1.3.0');expect(saved.state.resources.anonymity).toBe(0);expect(saved.state.settings).toMatchObject({showRanges:false,reducedMotion:true});
 });

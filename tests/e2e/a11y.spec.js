@@ -137,3 +137,15 @@ test('level-3 alternatives and chosen branches have no serious axe findings in p
     await scan();await page.locator('[data-specialization]').first().click();await scan();
   }
 });
+
+test('two-resource guide, affordability deficits and support capacity caveat pass axe in portrait',async({page})=>{
+  await openFresh(page,{width:360,height:640});await enterBuildPhase(page);
+  await page.locator('#resource-guide summary').click();
+  await page.locator('[data-tower-type="encryption"]').click();await clickWorld(page,210,210);
+  await expect(page.locator('#inspector-content')).toContainText('Need 18 Dharma and 43 Bandwidth more.');
+  let result=await new AxeBuilder({page}).exclude('canvas').analyze();expect(result.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);
+  await page.evaluate(()=>{gameApplication.session.restart();});
+  await page.locator('[data-tower-type="distributor"]').click();await clickWorld(page,210,210);
+  await expect(page.locator('#inspector-content')).toContainText('Available aura capacity is not measured combat activity.');
+  result=await new AxeBuilder({page}).exclude('canvas').analyze();expect(result.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);
+});
