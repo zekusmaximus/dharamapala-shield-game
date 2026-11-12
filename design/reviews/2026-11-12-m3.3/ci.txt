@@ -1,0 +1,129 @@
+$ gh run view 43163915028 --repo zekusmaximus/dharamapala-shield-game --json databaseId,headSha,status,conclusion,url,jobs
+{
+  "conclusion": "success",
+  "databaseId": 43163915028,
+  "headSha": "825b503bb4e359606f3e6be20fa06bceff79b8d1",
+  "jobs": [
+    {
+      "completedAt": "2026-11-12T05:52:07Z",
+      "conclusion": "success",
+      "databaseId": 131001215688,
+      "name": "validate",
+      "startedAt": "2026-11-12T05:49:23Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-node@v4",
+          "number": 3,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Install dependencies",
+          "number": 4,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Install Chromium and system dependencies",
+          "number": 5,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Build current client output",
+          "number": 6,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Unit tests",
+          "number": 7,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Integration tests",
+          "number": 8,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Simulation tests",
+          "number": 9,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "End-to-end tests",
+          "number": 10,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Accessibility tests",
+          "number": 11,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Preserve browser failure artifacts",
+          "number": 12,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@v4",
+          "number": 23,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 24,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 25,
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43163915028/job/131001215688"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43163915028"
+}
+
+$ gh pr checks 27 --repo zekusmaximus/dharamapala-shield-game
+GitGuardian Security Checks	pass	1s	https://dashboard.gitguardian.com	
+validate	pass	2m44s	https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43163915028/job/131001215688	
+
+$ gh run view 43163915028 --repo zekusmaximus/dharamapala-shield-game --log
+Filtered suite summaries (installation output omitted):
+validate	Unit tests	2026-11-12T05:49:48.9490911Z # tests 127
+validate	Unit tests	2026-11-12T05:49:48.9491745Z # pass 127
+validate	Unit tests	2026-11-12T05:49:48.9492071Z # fail 0
+validate	Integration tests	2026-11-12T05:49:52.8259577Z # tests 57
+validate	Integration tests	2026-11-12T05:49:52.8259933Z # pass 57
+validate	Integration tests	2026-11-12T05:49:52.8260115Z # fail 0
+validate	Simulation tests	2026-11-12T05:50:06.0650517Z # tests 8
+validate	Simulation tests	2026-11-12T05:50:06.0651147Z # pass 8
+validate	Simulation tests	2026-11-12T05:50:06.0651452Z # fail 0
+validate	End-to-end tests	2026-11-12T05:51:36.5175764Z   94 passed (1.5m)
+validate	Accessibility tests	2026-11-12T05:52:05.3704339Z   13 passed (28.0s)

@@ -436,7 +436,13 @@ recovery (including pre-v2 imports), without automatic conversion. Schema v3,
 existing save slot and independent preferences remain. Combat, waves/schedules,
 Dharma/Bandwidth income, aura/passive semantics, speed/deliberate starts and
 explicit provisional specialization choices remain. [M3.3 evidence](design/reviews/2026-11-12-m3.3/README.md)
-records commands, actual verification and limits. Automated Chromium/axe checks
+records commands, comparisons and limits. A detached clean checkout at `a89c97e`
+passes locked install, Chromium install, fresh build, 127 unit, 57 integration,
+8 simulation, 94 browser and 13 accessibility checks; all recorded reports
+regenerate byte-identically, including the historical M3.2 funded experiment.
+[PR #27 CI](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43163915028)
+passes the same five suites on Ubuntu / Node 22, plus GitGuardian.
+Automated Chromium/axe checks
 are not physical-device, screen-reader or human playtests. **M3.2 retention remains
 provisional; M3.4–M3.5 and the overall M3 engagement gate remain open.**
 

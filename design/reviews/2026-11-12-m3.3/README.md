@@ -214,3 +214,43 @@ or pinned to historical content as described above, with compatibility rejection
 covered separately.
 
 Clean-checkout and hosted CI results are recorded below after execution.
+
+## Clean-checkout results
+
+A detached worktree at implementation commit `a89c97e` began without node_modules
+or dist. Node 24.22.1 / npm 11.9.0 / Playwright 1.61.1 and Chromium
+149.0.7827.55 were used. [validation.txt](validation.txt) records every command,
+exit code and complete output. Browser suites ran sequentially with CI=1, their
+own server and freshly built dist. Local system browser libraries were present.
+The subsequent clarification commit changes only documentation about Hard saving
+and the affordable/blocked marginal counts; production, tests and scenarios are
+unchanged.
+
+| Check | Result |
+|---|---|
+| Locked npm install, Chromium install, fresh build | Pass |
+| Unit | 127 passed |
+| Integration | 57 passed |
+| Simulation | 8 passed |
+| Browser | 94 passed |
+| Accessibility | 13 passed; no serious/critical axe findings in scanned semantic UI |
+| Regenerate diagnostics, campaigns, summary and earned economies | All byte-identical to committed artifacts |
+| Regenerate historical M3.2 funded comparisons | Byte-identical; no historical artifact edits |
+| Scope/historical comparison, git diff --exit-code / --check | Pass |
+| Clean worktree after checks | No tracked/untracked changes |
+
+These results establish the documented automated M3.3 scope. They do not complete
+specialization retention, physical-device or screen-reader acceptance, or the
+human M3 engagement/difficulty gate.
+
+## Hosted PR checks
+
+[PR #27 CI run](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43163915028)
+passed at `825b503` on Ubuntu / Node 22. Locked install, Chromium plus system
+dependencies, fresh build and all five suites passed: 127 unit, 57 integration,
+8 simulation, 94 browser and 13 accessibility checks. GitGuardian also passed.
+[ci.txt](ci.txt) records the run/head, all job steps, check conclusions, commands
+and hosted suite summaries. Failure artifact upload was skipped because all
+checks passed. This is separate from the local Node 24 clean-checkout result.
+The verification-record follow-up changes documentation/logs only. PR #27 is open
+for review and has not been merged. Specialization retention remains provisional.
