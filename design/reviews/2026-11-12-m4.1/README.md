@@ -198,8 +198,11 @@ Before the clean run, the first focused browser invocation found no installed
 Chromium (`chromium_headless_shell-1228`); `npx playwright install chromium`
 resolved it, and both focused browser checks passed. A concurrently launched
 focused axe scan collided with the browser suite's port 3000; rerunning it
-sequentially passed. Neither setup issue required a product change. Hosted CI
-is a separate gate and is recorded after it completes.
+sequentially passed. Neither setup issue required a product change. Hosted
+[PR #32 CI](ci.txt) separately passed on `e561cc8` (Ubuntu / Node 22): locked
+install, Chromium with system dependencies, build, 140 unit, 66 integration,
+13 simulation, 99 browser and 14 accessibility checks. GitGuardian passed.
+The hosted run does not add human-playtest evidence.
 
 M4.1 design remains provisional until human testing and later M4.3 calibration.
 The M3.2 retention, M3.5 collection and M3 human gate remain open under the

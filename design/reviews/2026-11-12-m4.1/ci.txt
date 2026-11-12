@@ -1,0 +1,24 @@
+Hosted PR #32 validation, first implementation/evidence head
+Repository: zekusmaximus/dharamapala-shield-game
+Head: e561cc841968e4cff19cf7013d3764059197b225
+Run: https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43326694358
+Workflow: CI (pull_request)
+Conclusion: success
+Job: validate (131560823926), success, 2026-11-12 23:11:24–23:14:20 UTC
+
+Commands and results from gh run view 43326694358 --log and --json:
+  npm ci                                      success
+  npx playwright install --with-deps chromium success
+  npm run build                               success
+  npm run test:unit                           140 passed
+  npm run test:integration                    66 passed
+  npm run test:sim                            13 passed
+  npm run test:e2e                            99 passed
+  npm run test:a11y                           14 passed
+  Preserve browser failure artifacts         skipped (all checks passed)
+
+PR statusCheckRollup at this head also showed GitGuardian Security Checks:
+COMPLETED / SUCCESS (2026-11-12 23:11:23 UTC).
+
+This is hosted Ubuntu / Node 22 validation. The separate local clean-checkout
+log is validation.txt. This CI result does not establish human acceptance.
