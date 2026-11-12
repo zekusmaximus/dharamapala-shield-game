@@ -115,4 +115,11 @@ export async function buildEconomyReport() {
   if(JSON.stringify(marginals)!==JSON.stringify([{variant:'m3.2',rows:earnedMarginals(old)},{variant:'m3.3',rows:earnedMarginals(current)}]))throw new Error('Marginal repeat mismatch');
   return {schemaVersion:1,plans:ECONOMY_PLANS,setup:'Fresh default funds/lives, waves 1–5 in order (campaign regressions are recorded separately in results.json), seed 1337, coverage-ranked positions, no grants/skips/sells or synthetic combat. Each run repeats identically. Opportunities list currency blockers separately from legal slots. Sampled route units are 10-unit geometry samples, not combat activity. Support capacity is measured before the wave; auraShots/status applications/health/shield removal and passiveDharma in reports are realized observations, not causal assistance. No human evidence.',runs,marginals};
 }
-if(process.argv[1] && resolve(process.argv[1])===fileURLToPath(import.meta.url))await writeFile(process.argv[2]||'/tmp/m33-economy.json',JSON.stringify(await buildEconomyReport(),null,2)+'\n');
+if(process.argv[1] && resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+  const report=await buildEconomyReport();
+  // Match the campaign reporter: one full wave/fork per line, preserving every field.
+  const runs=report.runs.map(run=>JSON.stringify({...run,waves:[]},null,2).replace('"waves": []','"waves": [\n'+run.waves.map(w=>JSON.stringify(w)).join(',\n')+'\n]'));
+  const marginals=report.marginals.map(v=>JSON.stringify({...v,rows:[]},null,2).replace('"rows": []','"rows": [\n'+v.rows.map(r=>JSON.stringify(r)).join(',\n')+'\n]'));
+  const json=JSON.stringify({...report,runs:[],marginals:[]},null,2).replace('"runs": []','"runs": [\n'+runs.join(',\n')+'\n]').replace('"marginals": []','"marginals": [\n'+marginals.join(',\n')+'\n]')+'\n';
+  await writeFile(process.argv[2]||'/tmp/m33-economy.json',json);
+}
