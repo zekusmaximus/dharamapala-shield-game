@@ -1,0 +1,172 @@
+Follow-up package and template verification; automated only
+
++ git rev-parse HEAD
+3e46cde0dacec56e4cbf79128596992a289d962d
+exit=0
+
++ python3 design/reviews/2026-11-12-m3.5/package-playtest.py
+
+> dharmapala-shield-game@1.0.0 build
+> node scripts/build.mjs
+
+Built client application in /workspace/dharamapala-shield-game/dist
+/workspace/dharamapala-shield-game/design/reviews/2026-11-12-m3.5/playtest-build-fc43adf-1.4.0.zip
+sha256 c89fd1806dab103d0838be5b3678404c7b984a64e6972e8a6e3544da360f80f5
+41 client files; balance 1.4.0; schema v4; source fc43adf7f944b2fd8d82b4738e2dae4f90eb0cf1
+exit=0
+
++ git diff --exit-code
+exit=0
+
+# Exact Python stdin source (save as /tmp/m35-follow-up-kit-check.py):
+from pathlib import Path
+from zipfile import ZipFile
+import hashlib, json, subprocess, csv, re
+root=Path.cwd()
+base='fc43adf7f944b2fd8d82b4738e2dae4f90eb0cf1'
+archive=root/'design/reviews/2026-11-12-m3.5/playtest-build-fc43adf-1.4.0.zip'
+assert hashlib.sha256(archive.read_bytes()).hexdigest()=='c89fd1806dab103d0838be5b3678404c7b984a64e6972e8a6e3544da360f80f5'
+with ZipFile(archive) as z:
+    assert z.testzip() is None
+    info=json.loads(z.read('PLAYTEST_BUILD_INFO.json'))
+    assert info['sourceCommit']==base
+    assert info['balanceVersion']=='1.4.0' and info['saveSchemaVersion']==4
+    assert info['saveStorageSlot']=='dharmapala-shield/save/v2'
+    manifest=z.read('PLAYTEST_FILES.sha256').decode().splitlines()
+    assert len(manifest)==info['fileCount']==41
+    for line in manifest:
+        expected,name=line.split('  ',1)
+        data=z.read(name)
+        assert hashlib.sha256(data).hexdigest()==expected, name
+        assert data==subprocess.check_output(['git','show',base+':'+name]), name
+    assert len(z.namelist())==44
+print('PASS: ZIP CRC/SHA, metadata and all 41 client hashes/bytes match fc43adf; no extra client files')
+follow=root/'design/reviews/2026-11-12-m3.5-follow-up'
+s=json.loads((follow/'session-template.json').read_text())
+assert s['recordType']=='unfilled-template' and s['protocolVersion']=='m3.5-pilot-2'
+assert s['build']['sourceCommit']==base
+assert all(v is None for v in s['consent'].values())
+assert s['attempts']==[] and all(v==[] for v in s['records'].values())
+assert len(list(csv.DictReader((follow/'recruitment-ledger-template.csv').open())))==0
+print('PASS: templates parse; no participant rows, consent, attempts or observations populated')
+for p in follow.glob('*.md'):
+    for link in re.findall(r'\]\(([^)]+)\)',p.read_text()):
+        if not link.startswith(('https://','http://','#')):
+            assert (p.parent/link.split('#')[0]).exists(), (p.name,link)
+print('PASS: all relative Markdown links resolve')
+
+
++ python3 /tmp/m35-follow-up-kit-check.py
+PASS: ZIP CRC/SHA, metadata and all 41 client hashes/bytes match fc43adf; no extra client files
+PASS: templates parse; no participant rows, consent, attempts or observations populated
+PASS: all relative Markdown links resolve
+exit=0
+
+# Extracted archive launch check ran from /tmp/dharamapala-m35-follow-up-clean
+# Exact source (save as /tmp/m35-follow-up-package-smoke.py):
+from functools import partial
+from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
+from tempfile import TemporaryDirectory
+from threading import Thread
+from urllib.request import urlopen
+from zipfile import ZipFile
+import subprocess
+
+with TemporaryDirectory(prefix='m35-follow-up-archive-') as path:
+    with ZipFile('design/reviews/2026-11-12-m3.5/playtest-build-fc43adf-1.4.0.zip') as z:
+        z.extractall(path)
+    server = ThreadingHTTPServer(('127.0.0.1', 0), partial(SimpleHTTPRequestHandler, directory=path))
+    origin = 'http://127.0.0.1:'+str(server.server_port)
+    thread = Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        for endpoint in ['/', '/design/balance.json']:
+            with urlopen(origin+endpoint) as response:
+                print(endpoint, 'HTTP', response.status, 'bytes', len(response.read()), flush=True)
+        code = '''
+import {chromium, expect} from '@playwright/test';
+const browser=await chromium.launch();
+try {
+  const page=await browser.newPage(); const errors=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  await page.goto(process.argv[1]);
+  await page.getByRole('button',{name:'New game',exact:true}).click();
+  await page.getByRole('button',{name:'Skip tutorial',exact:true}).click();
+  await expect(page.locator('#start-wave-button')).toBeVisible();
+  await expect(page.locator('#start-wave-button')).toBeEnabled();
+  if(errors.length)throw Error(JSON.stringify(errors));
+  console.log(JSON.stringify({chromium:browser.version(),startVisible:true,startEnabled:true,errors}));
+} finally { await browser.close(); }
+'''
+        subprocess.run(['node','--input-type=module','-e',code,origin],check=True)
+    finally:
+        server.shutdown(); server.server_close(); thread.join()
+print('PASS: extracted archive served and launched; automated only, not a real player session')
+
++ PLAYWRIGHT_BROWSERS_PATH=/workspace/.playwright-browsers python3 /tmp/m35-follow-up-package-smoke.py
+127.0.0.1 - - [12/Nov/2026 13:19:59] "GET / HTTP/1.1" 200 -
+/ HTTP 200 bytes 12761
+127.0.0.1 - - [12/Nov/2026 13:19:59] "GET /design/balance.json HTTP/1.1" 200 -
+/design/balance.json HTTP 200 bytes 15631
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /css/styles.css HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/GameSession.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/rules/validation.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/platform/BrowserSaveRepository.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/render/Camera.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/platform/InputController.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/render/CanvasRenderer.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/render/SpriteAssetLoader.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/ui/GameUI.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/rules/reports.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/rules/brace.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/world.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/rules/towers.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/commands.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/rules/economy.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/entities/createEnemy.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/rules/waves.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/SeededRandom.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/ids.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/GameClock.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/SessionEvents.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/entities/createDefense.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/rules/combat.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/systems/AchievementSystem.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/SpawnScheduler.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/systems/DefenseSystem.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/systems/CombatSystem.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/systems/EnemySystem.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/systems/WaveSystem.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/render/SpriteCatalog.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/rules/combatFeedback.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/core/rules/inspection.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /js/entities/createProjectile.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /design/balance.json HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 13:20:01] "GET /assets/sprites/entities.svg HTTP/1.1" 200 -
+{"chromium":"149.0.7827.55","startVisible":true,"startEnabled":true,"errors":[]}
+PASS: extracted archive served and launched; automated only, not a real player session
+exit=0
+
+# Repeat archive generation in detached clean verification worktree at 3e46cde
+
++ python3 design/reviews/2026-11-12-m3.5/package-playtest.py
+
+> dharmapala-shield-game@1.0.0 build
+> node scripts/build.mjs
+
+Built client application in /tmp/dharamapala-m35-follow-up-clean/dist
+/tmp/dharamapala-m35-follow-up-clean/design/reviews/2026-11-12-m3.5/playtest-build-fc43adf-1.4.0.zip
+sha256 c89fd1806dab103d0838be5b3678404c7b984a64e6972e8a6e3544da360f80f5
+41 client files; balance 1.4.0; schema v4; source fc43adf7f944b2fd8d82b4738e2dae4f90eb0cf1
+exit=0
+
++ git diff --exit-code 0cdba16 -- design/reviews/2026-11-12-m3.5
+exit=0
+
++ git diff --exit-code fc43adf -- index.html favicon.svg robots.txt assets css js design/balance.json scripts package.json package-lock.json tests tools .github
+exit=0
+
++ git status --porcelain
+exit=0

@@ -506,6 +506,9 @@ clarify unaided scoring, next adjustments after wins, within-pair specialization
 evidence and returning-player ceiling effects. No real observations were found
 in the checked repository sources or provided here. The required five new-player
 sessions and smaller returning group remain outstanding; no gameplay changed.
+Follow-up clean-checkout validation passed 138 unit, 66 integration, 9 simulation,
+97 browser and 14 accessibility checks, with M3.4/current and pinned historical
+outputs byte-identical. The original runnable archive and kit are unchanged.
 
 **Acceptance gate:** at least two materially different builds can beat the slice.
 Several waves reward a change in placement, spending, or specialization; an
