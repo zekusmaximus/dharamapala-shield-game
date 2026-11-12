@@ -945,7 +945,7 @@ test('pointer inspects live wave enemies and towers without building or selling'
   expect(await page.evaluate(() => gameApplication.session.state.defenses.size)).toBe(1);
 });
 
-test('boss enemy details state implemented abilities without unused phase metadata', async ({ page }) => {
+test('enemy details state implemented abilities without unused phase metadata', async ({ page }) => {
   await openFresh(page);
   await enterBuildPhase(page);
   await page.evaluate(() => {
@@ -956,8 +956,10 @@ test('boss enemy details state implemented abilities without unused phase metada
   await expect(page.locator('#enemy-inspector-content')).toContainText('Armor: 5');
   await expect(page.locator('#enemy-inspector-content')).toContainText('Physical: ×0.90');
   await expect(page.locator('#enemy-inspector-content')).toContainText('Shock: ×1.10');
-  await expect(page.locator('#enemy-inspector-content')).toContainText('No active special ability');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('Shield brace: warns for 3 s');
   await expect(page.locator('#enemy-inspector-content')).not.toContainText('persistent');
+  await page.locator('[data-enemy-type="scriptKiddie"]').click();
+  await expect(page.locator('#enemy-inspector-content')).toContainText('No active special ability');
   await page.evaluate(() => {
     gameApplication.session.state.waveNumber = 5;
     gameApplication.ui.update(gameApplication.session);

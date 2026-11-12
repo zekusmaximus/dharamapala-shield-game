@@ -176,6 +176,9 @@ Safari/Firefox, manual accessibility, performance or human playtest evidence.
 
 The first browser invocation lacked Chromium; [initial-browser-setup.txt](initial-browser-setup.txt)
 records that launch failure. Installation resolved it without gameplay changes.
+The first full browser run passed 96/97 and exposed an old Agent inspector
+assertion expecting no ability; it now verifies brace and retains the no-ability
+check on Script Kiddie. [Initial output](initial-browser-validation.txt) is retained.
 Initial Node assertions still expected schema v3 / no regular ability, and new
 snapshot comparisons included wall-clock `savedAt`; those assertions now check
 v4/brace and gameplay state. A boundary test now advances to the first actually
