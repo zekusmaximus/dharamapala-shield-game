@@ -115,5 +115,14 @@ validate	pass	2m21s	https://github.com/zekusmaximus/dharamapala-shield-game/acti
 
 $ gh run view 43134146860 --repo zekusmaximus/dharamapala-shield-game --log
 Selected suite summaries from hosted log:
+validate	Unit tests	2026-11-12T01:23:37.8737399Z # tests 113
+validate	Unit tests	2026-11-12T01:23:37.8737939Z # pass 113
+validate	Unit tests	2026-11-12T01:23:37.8738237Z # fail 0
+validate	Integration tests	2026-11-12T01:23:40.8116876Z # tests 40
+validate	Integration tests	2026-11-12T01:23:40.8117488Z # pass 40
+validate	Integration tests	2026-11-12T01:23:40.8117780Z # fail 0
+validate	Simulation tests	2026-11-12T01:23:52.5353825Z # tests 7
+validate	Simulation tests	2026-11-12T01:23:52.5354486Z # pass 7
+validate	Simulation tests	2026-11-12T01:23:52.5354814Z # fail 0
 validate	End-to-end tests	2026-11-12T01:25:07.8276167Z   77 passed (1.2m)
 validate	Accessibility tests	2026-11-12T01:25:29.3151646Z   11 passed (20.5s)

@@ -495,7 +495,9 @@ content does not ship merely because the application builds.
 ## Immediate next work
 
 M1.1 portrait interaction, M1.2 dialog cancellation, M1.3 save integrity/lifecycle,
-M1.4 combat corrections and M1.5 CI are complete. Next is **M2 feedback and
-measurement** for the five-wave design gate.
+M1.4 combat corrections, M1.5 CI and M2.1–M2.6 are complete within their
+documented scope. M3.1 authored pressure is complete within automated verification.
+The next implementation item is **M3.2 tower tradeoffs**; it has not begun here.
+M3.3–M3.5 and the human five-wave engagement gate remain open.
 Move an item to Complete only when its acceptance evidence is recorded here or in
 a linked review, test report, or playtest note.
