@@ -486,6 +486,16 @@ commands, comparisons, fixtures and limits. Automated Chromium/axe is not
 physical-device, screen-reader or human playtest evidence. **M3.2 retention stays
 provisional; M3.5 and the broader M3 human gate remain open.**
 
+**M3.5 preparation (2026-11-12; gate open):** No actual first-time or returning
+player observations were found in the repository or available during this work.
+A [pinned runnable 1.4.0 build, neutral session protocol, blank recording tools
+and analysis plan](design/reviews/2026-11-12-m3.5/README.md) are ready for at
+least five new players and a smaller returning group. No gameplay, balance or
+save rule changed. There are no observed player times, choices, losses, retries,
+explanations or replay intentions, so M3.5, specialization retention and the
+broader M3 gate remain open. The 4–7-minute slice and 60–90-second first-choice
+targets remain provisional observation targets.
+
 **Acceptance gate:** at least two materially different builds can beat the slice.
 Several waves reward a change in placement, spending, or specialization; an
 unchanging policy does not earn the best result everywhere. In the pilot, at

@@ -1,0 +1,62 @@
+{
+  "recordType": "real-human-session",
+  "sessionId": "",
+  "cohort": null,
+  "priorSessionId": null,
+  "protocolVersion": "m3.5-pilot-1",
+  "build": {
+    "sourceCommit": "fc43adf7f944b2fd8d82b4738e2dae4f90eb0cf1",
+    "balanceVersion": "1.4.0",
+    "saveSchemaVersion": 4,
+    "archiveSha256": "c89fd1806dab103d0838be5b3678404c7b984a64e6972e8a6e3544da360f80f5"
+  },
+  "consent": {
+    "observation": null,
+    "screenCapture": null,
+    "audioCapture": null,
+    "quoteUse": null
+  },
+  "context": {
+    "dateLocal": null,
+    "timeZone": null,
+    "device": null,
+    "operatingSystem": null,
+    "browser": null,
+    "viewport": null,
+    "inputMode": null,
+    "assistiveTechnologyIfDisclosed": null,
+    "difficulty": null,
+    "priorExposure": null,
+    "returnIntervalDescription": null,
+    "observationMode": null,
+    "protocolDeviations": []
+  },
+  "timing": {
+    "startIso": null,
+    "endIso": null,
+    "firstMeaningfulChoiceElapsedSeconds": null,
+    "firstWaveStartElapsedSeconds": null,
+    "firstWaveFiveResultElapsedSeconds": null,
+    "stopReason": null
+  },
+  "attempts": [],
+  "records": {
+    "directObservations": [],
+    "participantExplanations": [],
+    "facilitatorInterpretations": [],
+    "automatedMeasurements": []
+  },
+  "facilitatorInterventions": [],
+  "coverageIndex": {
+    "buildAndSpendingObservationIds": [],
+    "firstConfusionObservationId": null,
+    "lossObservationIds": [],
+    "retryAdjustmentExplanationIds": [],
+    "counterplayExplanationIds": [],
+    "specializationObservationIds": [],
+    "specializationReasonExplanationIds": [],
+    "replayWillingnessExplanationId": null
+  },
+  "evidenceReferences": [],
+  "missingEvidenceAndReason": []
+}
