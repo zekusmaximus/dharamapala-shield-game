@@ -28,7 +28,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
 | M2 · Make decisions readable and measurable | P1 | Complete within documented scope: M2.1–M2.6 | M1 | M2.6 clean checkout passes 100 unit, 35 integration, 7 simulation, 69 browser and 10 accessibility checks; corrected M1.4 diagnostics match byte-for-byte and M2.4 policy outcomes match apart from the content-file hash |
 | M3 · Prove an engaging five-wave game | P1 | Partial: M3.1/M3.3/M3.4 automated scope complete; M3.2 retention provisional; M3.5 human collection deferred, gate open | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
-| M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing content and campaign reporting; M4.4 verification is next under the human-validation deferral | M3 for acceptance; engineering may proceed provisionally | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
+| M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: M4.4 automated complete-run verification; M4.1–M4.3 and M4.5 remain open | M3 for acceptance; engineering may proceed provisionally | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
 | M6 · Release and maintain confidently | P2 | Partial: build and test tools exist | M4; M5 for replay-content release | Device/browser checks, performance evidence, hosting/recovery documentation, release checklist |
 
@@ -42,9 +42,9 @@ observations available to this work. Human engagement, difficulty, readability,
 build diversity and observed timing remain unknown.
 
 M4 engineering may continue in bounded tasks before the human gate is satisfied.
-The immediate task is **M4.4 automated verification of the existing campaign**,
-particularly full-run fixed-clock 1×/2× and JSON pause/restore continuation.
-Reuse existing fresh-campaign policy/report coverage and add only missing checks.
+**M4.4 automated verification of the existing campaign is complete within its
+documented scope**, including full-run fixed-clock 1×/2× and JSON pause/restore
+continuation. Existing fresh-campaign policy/report coverage was reused.
 Later M4 engineering may follow in separately scoped work under the same
 provisional assumptions. This change does not start wave redesign, boss changes,
 economy tuning, M5 or M6. M4 acceptance still requires its documented evidence,
@@ -68,7 +68,7 @@ later development builds must not be pooled with that cohort.
 | Entity sprites and fallback rendering | Complete static artwork integration | Status feedback, animation, map identity |
 | Audio | Planned | Existing controller is a stub and is not wired into the app |
 | Achievements/progression | Partial | Two run-time toasts exist; no persistent collection or records |
-| Build/test/simulation tools | Partial | Full combat campaigns, independent strategy/scenario comparisons, performance budgets |
+| Build/test/simulation tools | Partial | Full combat campaigns and bounded clock/restore parity are verified; independent strategy/scenario comparisons and performance budgets remain |
 
 ## Design commitments
 
@@ -550,8 +550,9 @@ establish or substitute for the human gate.
 
 ## M4 · Deliver a challenging twenty-wave campaign
 
-**Status: Partial.** Twenty waves, terminal handling and fresh-campaign policy
-reports already exist; their presence does not complete the redesigned campaign.
+**Status: Partial.** Twenty waves, terminal handling, fresh-campaign policy
+reports and M4.4 complete-run verification exist; they do not complete the
+redesigned campaign.
 Acceptance depends on the M3 gate. The explicit human-validation deferral permits
 bounded M4 engineering now, starting with M4.4 automated verification, with the
 current design remaining provisional.
@@ -568,14 +569,18 @@ current design remaining provisional.
   rewards several sound approaches and punishes ignored threats. Hard requires
   efficient placement and adaptation while remaining winnable without a hidden
   purchase order. Use composition, timing and opportunity cost as well as numbers.
-- [ ] **M4.4 · Verify complete runs (next engineering task; permitted under deferral).** Extend actual combat campaigns for all
-  difficulties, an expected-defeat/poor-strategy fixture, repeated-command
-  determinism, and uninterrupted-versus-restored boss/campaign equivalence.
-  Existing M2.4/M3.4 reporting already covers seven policies on three fresh
-  difficulty configurations and deterministic repeats. Audit that coverage first;
-  target missing full-campaign 1×/2× fixed-clock and JSON pause/restore parity,
-  with reports/accounting and natural terminal results. Preserve the fast
-  lifecycle test as a separate check. No new verification is claimed yet.
+- [x] **M4.4 · Verify complete runs (automated scope).** Existing M2.4/M3.4
+  reporting covers seven policies on three fresh difficulty configurations and
+  deterministic repeats. Added four bounded four-lane full-run scenarios:
+  Easy/Normal/Hard victories and a natural Hard weak-placement defeat. Production
+  fixed-clock 1×, 2× and mixed 1×/2× with speed changes and pause, plus
+  uninterrupted versus JSON paused/restored continuation at earned build,
+  Raid Team, Titan and defeat checkpoints, match state/runtime and every
+  reached M3.4 wave report. Purchase logs, per-wave and total resources/lives,
+  typed leaks, capped health/shield accounting, support/control activity,
+  deliberate starts and terminal freezing pass. The fast lifecycle fixture
+  remains separate. [M4.4 evidence](design/reviews/2026-11-12-m4.4/README.md)
+  records the matrix, comparisons and limits.
 - [ ] **M4.5 · Test the full experience.** Record completion, leaks, losses by wave,
   retries, build diversity, confusion, and run time for new and returning players.
   Verify a recoverable mistake does not automatically become an unavoidable loss.
@@ -674,12 +679,12 @@ retention gate remains provisional**. M3.3 resource decisions and M3.4 Agent
 counterplay are complete within their documented automated scopes. M3.5 has a
 pinned playtest build and prepared protocol, with no real player observations yet.
 The user has explicitly deferred human collection so engineering can continue
-under provisional assumptions. **Proceed with M4.4 automated verification of the
-existing campaign; missing player records do not block that task.** Do not repeat
-playtest preparation or open another preparation-only PR. Use the
-[next-session prompt](design/reviews/2026-11-12-human-validation-deferral/NEXT_SESSION_PROMPT.md)
-for the bounded task. M3.5, specialization retention and the human five-wave gate
-remain open; collect the first-time and returning-player pilot before claiming
-those acceptance results. The deferral does not complete M4 or begin M5/M6.
+under provisional assumptions. **M4.4 automated verification of existing complete
+runs is complete within its documented scope.** Its [evidence](design/reviews/2026-11-12-m4.4/README.md)
+records full-run clock and JSON continuation parity, as well as the unchanged
+M3.4 reports. M3.5, specialization retention and the human five-wave gate remain
+open; collect the first-time and returning-player pilot before claiming those
+acceptance results. Later M4 work needs its own bounded scope. The deferral does
+not complete M4 or begin M5/M6.
 Move an item to Complete only when its acceptance evidence is recorded here or in
 a linked review, test report, or playtest note.
