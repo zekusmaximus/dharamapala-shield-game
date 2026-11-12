@@ -255,7 +255,7 @@ test at tests/sim/balance-report.test.js:82:1
 ✖ checked-in evidence equals freshly executed production scenarios and repeat hashes (5805.425338ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
   + actual - expected
-  
+
     {
   +   balanceSha256: '77d0377e30da378f50ebc1fa10ea61921cb024ef2bdfb19fd2b34e551eed7c10',
   -   balanceSha256: '8a177078049779085d695c27f80c434de7bb27092215ff6b22ec58e6e708cca3',
@@ -264,7 +264,7 @@ test at tests/sim/balance-report.test.js:82:1
       policies: {
         'counter-aware': 'Existing growth/support/upgrade order, but each Firewall request chooses the higher upcoming HP-weighted base effective DPS per Dharma of Firewall/Encryption; ties Firewall. Ensure Encryption as usual. No future knowledge beyond the incoming authored roster; ignores status/aura/projectile/targeting benefits in this heuristic.',
         'expansion-heavy': 'Buy Firewalls until no affordable legal slot remains; never upgrade or buy other types.',
-  
+
       at TestContext.<anonymous> (file:///workspace/dharamapala-m26-clean/tests/sim/balance-report.test.js:86:10)
       at async Test.run (node:internal/test_runner/test:1409:7)
       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
