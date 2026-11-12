@@ -1,17 +1,24 @@
 import { PATH_METRICS, pointAtPathDistance } from '../core/world.js';
 import { enemyCombatFeedback, disabledFeedback, getEmpWarning } from '../core/rules/combatFeedback.js';
 import { PHASES } from '../core/commands.js';
-import { canAfford } from '../core/rules/economy.js';
+import { canAfford, resourceShortfall } from '../core/rules/economy.js';
 import { getEnemyInspection, getTowerBlueprint, getTowerInspection } from '../core/rules/inspection.js';
 
 const byId = (id) => document.getElementById(id);
 
 function resourceText(resources) {
-  return `${resources.dharma} Dharma, ${resources.bandwidth} Bandwidth, ${resources.anonymity} Anonymity`;
+  return `${resources.dharma} Dharma, ${resources.bandwidth} Bandwidth`;
+}
+
+function shortfallText(resources, cost) {
+  const names = {dharma:'Dharma', bandwidth:'Bandwidth'};
+  const missing = Object.entries(resourceShortfall(resources, cost))
+    .filter(([key, value]) => names[key] && value > 0).map(([key, value]) => `${value} ${names[key]}`);
+  return missing.length ? `Need ${missing.join(' and ')} more.` : 'Affordable with current resources.';
 }
 
 function costText(cost) {
-  return `${cost.dharma || 0} D · ${cost.bandwidth || 0} B · ${cost.anonymity || 0} A`;
+  return `${cost.dharma || 0} D · ${cost.bandwidth || 0} B`;
 }
 
 function element(tag, text, className) {
@@ -71,7 +78,6 @@ export class GameUI {
       hud: byId('hud'),
       dharma: byId('dharma-value'),
       bandwidth: byId('bandwidth-value'),
-      anonymity: byId('anonymity-value'),
       lives: byId('lives-value'),
       wave: byId('wave-value'),
       phase: byId('phase-label'),
@@ -278,7 +284,6 @@ export class GameUI {
 
     this.elements.dharma.textContent = Math.round(model.resources.dharma);
     this.elements.bandwidth.textContent = Math.round(model.resources.bandwidth);
-    this.elements.anonymity.textContent = Math.round(model.resources.anonymity);
     this.elements.lives.textContent = model.lives;
     this.elements.wave.textContent = `${model.waveNumber} / ${model.maxWaves}`;
     this.elements.phase.textContent = this.phaseLabel(model.phase);
@@ -711,6 +716,7 @@ export class GameUI {
       const wave = support.waveBonus;
       const waveBonus = element('p', `Passive wave-clear bonus: +${wave.perDistributorDharma} Dharma per installed Distributor, capped at +${wave.capDharma}. Current total +${wave.totalDharma}; this Distributor adds +${wave.marginalDharma} at the next clear.`, 'inspection-note');
       content.replaceChildren(heading, note, table, recipientNote, recipients, waveBonus);
+      content.append(element('p', 'Available aura capacity is not measured combat activity. Wave reports count shots with the aura present, not extra shots caused by it. Upgrading support increases aura and range; passive income stays the same.', 'inspection-note'));
       if (!support.current.active) content.append(element('p', 'Aura currently suppressed by EMP; passive wave-clear income remains.', 'inspection-note'));
     } else {
       const note = element('p', `${current.role}. Direct damage (${current.damageType}). Targets the enemy closest to the endpoint within range. Rates assume a target is available.`, 'inspection-note');
@@ -737,7 +743,7 @@ export class GameUI {
     }
     const economy = element('p', `Total investment: ${resourceText(tower.totalInvested)}. Refund (${Math.round(tower.refundPct * 100)}%): ${resourceText(tower.sellValue)}.`, 'inspection-note');
     content.append(economy);
-    if (tower.upgradeCost) content.append(element('p', `Next upgrade cost: ${resourceText(tower.upgradeCost)}.`, 'inspection-note'));
+    if (tower.upgradeCost) content.append(element('p', `Next upgrade cost: ${resourceText(tower.upgradeCost)}. ${shortfallText(model.resources, tower.upgradeCost)}`, 'inspection-note'));
     else content.append(element('p', 'Maximum level reached.', 'inspection-note'));
     const definition = session.balance.towers[selected.type];
     if (definition.specializations) content.append(element('p', 'Provisional prototype: choose one specialization at level 3. It remains through levels 4–5; switching requires selling and rebuilding (normal refund applies). Human playtest acceptance is pending.', 'inspection-note'));
@@ -780,7 +786,7 @@ export class GameUI {
     this.elements.upgrade.title = model.phase !== PHASES.BUILDING
       ? 'Upgrades are available during the build phase.'
       : tower.specializations.length ? 'Choose one level-3 specialization in the inspector.' : !next ? 'Maximum level reached.'
-        : !affordable ? 'Not enough resources.' : '';
+        : !affordable ? shortfallText(model.resources, tower.upgradeCost) : '';
     this.elements.sell.disabled = model.phase !== PHASES.BUILDING;
     this.elements.sell.textContent = `Sell · ${costText(tower.sellValue)}`;
   }
@@ -863,9 +869,9 @@ export class GameUI {
         action: 'Next'
       },
       2: {
-        title: 'Spend three resources',
+        title: 'Spend or save resources',
         copy:
-          'Dharma, Bandwidth, and Anonymity pay for towers and upgrades. Unaffordable actions are disabled and explain why.',
+          'Dharma pays for every tower and upgrade. Bandwidth also funds control and support: save it for Encryption upgrades or a Distributor. Saving carries resources forward without interest. Anonymity is retired. Unaffordable actions are disabled and explain why.',
         action: 'Choose a Firewall'
       },
       3: {

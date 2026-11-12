@@ -4,7 +4,7 @@ import {
   PHASES
 } from '../core/commands.js';
 import { GameSession } from '../core/GameSession.js';
-import { addResources, normalizeResources } from '../core/rules/economy.js';
+import { activeResourceKeys, addResources, normalizeResources } from '../core/rules/economy.js';
 import { createDefense } from '../entities/createDefense.js';
 
 export const SAVE_KEY = 'dharmapala-shield/save/v2';
@@ -98,6 +98,9 @@ export class BrowserSaveRepository {
     const data = legacy.gameData || legacy;
     if (!data.resources || !Array.isArray(data.defenses || [])) {
       throw new Error('required game data is missing');
+    }
+    if (!activeResourceKeys(balance).includes('anonymity')) {
+      throw new Error('Legacy economy has retired Anonymity; export/reset this run or use its matching old build.');
     }
     const session = new GameSession(balance, {
       seed: 1337,

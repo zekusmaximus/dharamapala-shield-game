@@ -6,9 +6,10 @@ import {GameSession} from '../../js/core/GameSession.js';
 import {BrowserSaveRepository,SAVE_KEY,PREFERENCES_KEY} from '../../js/platform/BrowserSaveRepository.js';
 import {prepareTradeoff,runTradeoff} from '../../tools/balance/tradeoffs.mjs';
 const balance=await loadBalance();
+const historical=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.3/baseline-1.2.0.json',import.meta.url)));
 const data=s=>{const {state,runtime}=s.toSnapshot();return {state,runtime};};
 for(const plan of ['focus','coverage','sustain','reach']) for(const speed of [1,2]) test(`${plan} ${speed}× production Raid combat survives JSON pause/continue through clearance`,()=>{
-  const s=prepareTradeoff(balance,5,'central',plan); // documented budget/wave fixture
+  const s=prepareTradeoff(balance,5,'central',plan,{dharma:420,bandwidth:300,anonymity:0}); // documented budget/wave fixture
   s.setWaveSpeed(speed);s.startWave();
   for(let i=0;i<180;i++)s.tick(1000/60/speed);
   assert.ok(s.state.projectiles.size>0 || Object.values(s.state.reports.active.towers).some(t=>t.health>0));
@@ -25,7 +26,8 @@ for(const plan of ['focus','coverage','sustain','reach']) for(const speed of [1,
   assert.equal(Object.values(report.towers).reduce((n,t)=>n+t.kills,0),report.killed);
 });
 test('controlled comparisons show scenario-dependent damage/control choices and aura activity',()=>{
-  const run=(wave,layout,plan)=>runTradeoff(balance,wave,layout,plan);
+  // Keep the M3.2 equal-budget combat comparison pinned to its original content.
+  const run=(wave,layout,plan)=>runTradeoff(historical,wave,layout,plan);
   assert.ok(run(3,'central','coverage').timeMs<run(3,'central','focus').timeMs);
   assert.ok(run(3,'spread','focus').timeMs<run(3,'spread','coverage').timeMs);
   assert.ok(run(2,'spread','reach').timeMs<run(2,'spread','sustain').timeMs);
@@ -35,7 +37,7 @@ test('controlled comparisons show scenario-dependent damage/control choices and 
 });
 test('save validator rejects absent, foreign, early, support and malformed branches before restoration',()=>{
   for(const plan of ['focus','coverage','sustain','reach']) {
-    const s=prepareTradeoff(balance,3,'central',plan), snapshot=s.toSnapshot();
+    const s=prepareTradeoff(balance,3,'central',plan,{dharma:420,bandwidth:300,anonymity:0}), snapshot=s.toSnapshot();
     assert.doesNotThrow(()=>GameSession.fromSnapshot(balance,snapshot));
     for(const branch of [undefined,null,'bogus',[],{},['focus','coverage'].includes(plan)?'reach':'focus']) {
       const bad=structuredClone(snapshot);bad.state.defenses[0].specialization=branch;

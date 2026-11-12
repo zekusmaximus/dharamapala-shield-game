@@ -70,7 +70,7 @@ export function validateBalance(b) {
   }
   for (const type of ACTIVE_TOWER_TYPES) {
     const branches = b.towers[type].specializations;
-    if (b.version === '1.2.0' && type !== 'distributor') assert(branches, 'Missing tower specializations');
+    if (['1.2.0', '1.3.0'].includes(b.version) && type !== 'distributor') assert(branches, 'Missing tower specializations');
     if (!branches) continue; // Historical linear content remains usable for comparisons.
     assert(type !== 'distributor' && b.upgrades.maxLevel >= 3, 'Invalid specialization tower');
     contentKeys(branches, `${type}.specializations`, type === 'firewall' ? ['focus', 'coverage'] : ['sustain', 'reach']);
@@ -128,8 +128,15 @@ export function validateBalance(b) {
     contentKeys(b.difficulty[name], path, ['hpMult', 'speedMult', 'bountyMult', 'damageToPlayerMult']);
     for (const key of ['hpMult', 'speedMult', 'bountyMult', 'damageToPlayerMult']) contentNumber(b.difficulty[name][key], `${path}.${key}`, Number.MIN_VALUE);
   }
-  contentKeys(b.economy, 'balance.economy', ['startCash', 'startBandwidth', 'startAnonymity', 'killIncomeMult', 'waveClearBonus', 'waveClearBonusPerWave', 'initialLives', 'sellRefundPct', 'distributorWaveBonus', 'distributorWaveBonusCap', 'distributorAuraCap']);
+  contentKeys(b.economy, 'balance.economy', ['startCash', 'startBandwidth', 'startAnonymity', 'killIncomeMult', 'waveClearBonus', 'waveClearBonusPerWave', 'initialLives', 'sellRefundPct', 'distributorWaveBonus', 'distributorWaveBonusCap', 'distributorAuraCap'], ['activeResources']);
   for (const key of ['startCash', 'startBandwidth', 'startAnonymity', 'waveClearBonus', 'waveClearBonusPerWave', 'distributorWaveBonus', 'distributorWaveBonusCap']) contentInteger(b.economy[key], `balance.economy.${key}`);
+  if (b.version === '1.3.0' || b.economy.activeResources !== undefined) {
+    assert(Array.isArray(b.economy.activeResources) && b.economy.activeResources.length === 2 &&
+      b.economy.activeResources[0] === 'dharma' && b.economy.activeResources[1] === 'bandwidth', 'Invalid active resources');
+    assert(b.economy.startAnonymity === 0 &&
+      [...Object.values(b.towers).map(t => t.cost), ...Object.values(b.enemies).map(e => e.bounty), ...Object.values(b.bosses).map(e => e.bounty)].every(r => r.anonymity === 0),
+      'Retired Anonymity must have zero supply and cost');
+  }
   contentInteger(b.economy.initialLives, 'balance.economy.initialLives', 1);
   contentNumber(b.economy.killIncomeMult, 'balance.economy.killIncomeMult');
   contentNumber(b.economy.sellRefundPct, 'balance.economy.sellRefundPct', 0, 1);

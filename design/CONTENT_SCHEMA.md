@@ -134,3 +134,35 @@ inventing a specialization. Continue old runs only with their matching old build
 The specializations are a **provisional prototype**. Automated scenario-dependent
 results do not satisfy the roadmap requirement for players making different
 defensible choices. Human retention acceptance remains open.
+
+## M3.3 bounded economy simplification (balance 1.3.0, schema v3)
+
+`economy.activeResources` is exactly `["dharma", "bandwidth"]` for 1.3.0.
+Historical definitions may omit it to retain all three original currencies.
+Current content must set starting Anonymity, tower Anonymity costs and enemy/boss
+Anonymity bounties to zero. The shared wave-reward rule also pays zero Anonymity
+when retired. Unknown/reordered/duplicate active resources or nonzero retired
+supply/cost fail content validation. Runtime and simulator share these rules.
+Dharma funds every tower; Bandwidth additionally constrains Encryption and
+Distributor purchases/upgrades. Saving carries balances without interest.
+
+Encryption costs 50 Dharma / 35 Bandwidth; Distributor costs 70 / 60. The existing
+upgrade multiplier and exact rounding, refunds, aura growth/cap, passive income
+and cap, attack stats, specializations, enemy mechanics and all waves/schedules
+remain unchanged. There is no new exchange, sink, enemy behavior or income buff.
+
+The three numeric resource keys remain in snapshots, ledgers and reports; this
+bounded simplification retires an active decision without removing M2 accounting
+fields. New runs produce zero Anonymity throughout. Schema **v3**, the existing
+`dharmapala-shield/save/v2` discovery slot and independent preferences remain.
+There is **no 1.2.0 → 1.3.0 migration**, including building/terminal saves. Exact
+version rejection protects original bytes before session swap, blocks writes,
+and offers export plus explicit Reset saved run. Preferences and the latest
+recovery archive survive reset; export first for a durable copy. Matching old
+builds are needed to continue retired runs. Current content also rejects pre-v2
+refund imports through that recovery flow, rather than reprice old investments
+or silently discard/convert Anonymity. Historical matching-content legacy refund
+behavior remains tested. Schema v3 is unchanged because no serialized shape was
+changed; balance 1.3.0 explicitly versions the changed economy meaning.
+
+M3.2 specialization retention remains provisional pending actual observations.

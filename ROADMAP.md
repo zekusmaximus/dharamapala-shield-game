@@ -27,7 +27,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
 | M2 · Make decisions readable and measurable | P1 | Complete within documented scope: M2.1–M2.6 | M1 | M2.6 clean checkout passes 100 unit, 35 integration, 7 simulation, 69 browser and 10 accessibility checks; corrected M1.4 diagnostics match byte-for-byte and M2.4 policy outcomes match apart from the content-file hash |
-| M3 · Prove an engaging five-wave game | P1 | Partial: M3.1 complete; M3.2 prototype verified, retention provisional | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
+| M3 · Prove an engaging five-wave game | P1 | Partial: M3.1 complete; M3.2 prototype verified, retention provisional; M3.3 automated economy complete | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
 | M6 · Release and maintain confidently | P2 | Partial: build and test tools exist | M4; M5 for replay-content release | Device/browser checks, performance evidence, hosting/recovery documentation, release checklist |
@@ -307,7 +307,7 @@ or on a lifecycle test that directly awards kills.
 
 ## M3 · Prove an engaging five-wave game
 
-**Status: Partial — M3.1 authored pressure and M3.2 automated prototype; specialization retention, M3.3–M3.5 and the human
+**Status: Partial — M3.1 authored pressure, M3.2 automated prototype and M3.3 economy; specialization retention, M3.4–M3.5 and the human
 engagement gate remain open.** Focus on the existing map and three tower roles. Findings
 R08–R09. This is the first major design gate, not a promise to ship every proposed
 mechanic below unchanged.
@@ -333,7 +333,7 @@ Implementation work:
   coverage and sustained control versus chain reach). Compare it with the linear
   baseline and retain it only if players make different defensible choices.
   Persist any specialization through a versioned save change.
-- [ ] **M3.3 · Give resources a job.** Measure supply and demand by wave. Make
+- [x] **M3.3 · Give resources a job (automated scope).** Measure supply and demand by wave. Make
   support/control spending and saving compete with expansion. Distinguish the
   intended constraints of Bandwidth and Anonymity; simplify a redundant currency
   if it still does not produce an independent decision. Revisit Distributor
@@ -404,6 +404,39 @@ No actual player observations were available. Specialization retention is
 **provisional**, M3.2 remains unchecked, and M3 is not complete. Deterministic
 policy outcomes do not validate human engagement, difficulty or build diversity.
 Physical-device, screen-reader and human playtests have not been performed.
+
+**M3.3 complete within automated scope (2026-11-12):**
+From fetched main `804fa67` (PR #26), measured earned supply, demand, spending
+opportunities, saving and surpluses by wave. Five fresh policies on three
+difficulties compare M3.2/current first-five combat; earned common-checkpoint
+forks compare expansion, attacker upgrades/branches, support and saving without
+grants or wave skips. Anonymity never independently blocks the measured M3.2
+options and shares proportional control/support prices, so it is retired from
+active supply/prices/UI while three-key M2 ledgers remain. Encryption costs
+50 Dharma / 35 Bandwidth; Distributor 70 / 60. Wave 2's common Normal bank
+(110/56) can fund expansion/control but Bandwidth blocks support and control
+upgrades independently of Dharma. Saved control specialization is affordable
+by wave 5. All five fresh plans clear the slice on all three difficulties.
+
+Distributor gross passive-only payback falls 17 → 12 clears with cap headroom;
+Bandwidth is not repaid. Available aura capacity and realized aura-present shots
+are reported separately without causal attribution. Sparse support upgrades add
+no passive income and little activity in the measured Raid checkpoint, so upgrade
+prices stay unchanged. Route coverage, armor-adjusted hits, status applications,
+shield/health removal and typed leaks inform marginal comparisons. All 21 campaign
+outcomes/finishing waves/lives/leak counts match M3.2; later currency surpluses
+remain, particularly when policies ignore control/support. Corrected M1.4 mechanic
+and rejected-save probes match; full M3.2/M1.4/M2.4 comparisons preserve historical
+artifacts and separate content hashes from gameplay.
+
+Balance `1.3.0` explicitly retires previous runs through retained-byte export/reset
+recovery (including pre-v2 imports), without automatic conversion. Schema v3,
+existing save slot and independent preferences remain. Combat, waves/schedules,
+Dharma/Bandwidth income, aura/passive semantics, speed/deliberate starts and
+explicit provisional specialization choices remain. [M3.3 evidence](design/reviews/2026-11-12-m3.3/README.md)
+records commands, actual verification and limits. Automated Chromium/axe checks
+are not physical-device, screen-reader or human playtests. **M3.2 retention remains
+provisional; M3.4–M3.5 and the overall M3 engagement gate remain open.**
 
 **Acceptance gate:** at least two materially different builds can beat the slice.
 Several waves reward a change in placement, spending, or specialization; an

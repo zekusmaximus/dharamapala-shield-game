@@ -12,10 +12,11 @@ for evidence and known issues. M1 and M2.1–M2.6 are complete within their
 documented verification scope. M2 includes inspection, combat feedback,
 persistent wave reports, a reproducible balance report, wave-speed controls and
 [validated runtime content](design/CONTENT_SCHEMA.md). M3.1 adds authored first-five-wave spawn windows and preview timing. Balance
-`1.2.0` and snapshot schema v3 retire prior v2 runs through the existing export/reset recovery
+`1.3.0` and snapshot schema v3 retire prior 1.2.0/v2 runs through the existing export/reset recovery
 flow; export before resetting. Independent preferences remain compatible.
-Human difficulty and
-engagement validation remains in later roadmap work.
+M3.3 retires Anonymity and measures earned-resource choices; Dharma funds all towers,
+while Bandwidth also constrains control/support. M3.2 specialization retention
+remains provisional. Human difficulty and engagement validation remain open.
 
 The earlier [implementation plan](implementation.md) remains an architecture
 reference; it is not the current backlog. The
@@ -105,12 +106,12 @@ The simulator runs the production `GameSession` and issues the same build/start
 commands as the UI.
 
 Local saves use snapshot schema v3 in the existing `dharmapala-shield/save/v2`
-storage slot, so prior payloads are discovered and protected. Balance `1.2.0`
-requires exact schema/content compatibility. Prior v2 runs are retained for export
+storage slot, so prior payloads are discovered and protected. Balance `1.3.0`
+requires exact schema/content compatibility. Prior 1.2.0 and v2 runs are retained for export
 and explicit reset; they are never silently assigned a specialization. Preferences
-remain compatible. Legacy imports with level-3 attackers also require recovery.
+remain compatible. Pre-v2 legacy imports also require recovery under the retired economy.
 See [the content and recovery contract](design/CONTENT_SCHEMA.md) and
-[M3.2 evidence](design/reviews/2026-11-12-m3.2/README.md).
+[M3.3 evidence](design/reviews/2026-11-12-m3.3/README.md).
 
 ## Validation
 
