@@ -1,0 +1,119 @@
+$ gh run view 43134146860 --repo zekusmaximus/dharamapala-shield-game --json status,conclusion,jobs,url,headSha
+{
+  "conclusion": "success",
+  "headSha": "fea3185c03feb146019d85f3cfe7e39d1d88107b",
+  "jobs": [
+    {
+      "completedAt": "2026-11-12T01:25:32Z",
+      "conclusion": "success",
+      "databaseId": 130905270558,
+      "name": "validate",
+      "startedAt": "2026-11-12T01:23:11Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-node@v4",
+          "number": 3,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Install dependencies",
+          "number": 4,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Install Chromium and system dependencies",
+          "number": 5,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Build current client output",
+          "number": 6,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Unit tests",
+          "number": 7,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Integration tests",
+          "number": 8,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Simulation tests",
+          "number": 9,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "End-to-end tests",
+          "number": 10,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Accessibility tests",
+          "number": 11,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Preserve browser failure artifacts",
+          "number": 12,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@v4",
+          "number": 23,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 24,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 25,
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43134146860/job/130905270558"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43134146860"
+}
+
+$ gh pr checks 25 --repo zekusmaximus/dharamapala-shield-game
+GitGuardian Security Checks	pass	5s	https://dashboard.gitguardian.com	
+validate	pass	2m21s	https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43134146860/job/130905270558	
+
+$ gh run view 43134146860 --repo zekusmaximus/dharamapala-shield-game --log
+Selected suite summaries from hosted log:
+validate	End-to-end tests	2026-11-12T01:25:07.8276167Z   77 passed (1.2m)
+validate	Accessibility tests	2026-11-12T01:25:29.3151646Z   11 passed (20.5s)

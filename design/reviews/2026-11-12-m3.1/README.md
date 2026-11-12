@@ -198,4 +198,15 @@ and arrival-gap caveat. Portrait requires scrolling to see other packets; Start
 Wave retains its reserved area. These are presentation fixtures, not combat or
 physical-device evidence.
 
-Hosted PR checks are recorded below once completed.
+## Hosted PR checks
+
+[PR #25 CI run](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43134146860)
+passed at `fea3185` on Ubuntu / Node 22. The validate job completed locked
+installation, Chromium plus system dependencies, fresh build and all five suites:
+113 unit, 40 integration, 7 simulation, 77 browser and 11 accessibility checks.
+Failure-artifact upload was skipped because the checks passed. GitGuardian also
+passed. [ci.txt](ci.txt) records the run/head, every job step, check conclusions,
+commands and hosted suite summaries. This is independent of the local Node 24
+clean-checkout result. The follow-up evidence commit changes documentation and
+CI records only, with no production, test or scenario changes. PR #25 remains
+open for review and is not merged.

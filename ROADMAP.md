@@ -364,7 +364,8 @@ finish with 19 rather than 20 lives (a wave-20 leak); upgrade-heavy remains
 untouched. No strong policy leaks in the first five. A detached clean checkout at `e472284`
 passed locked install, Chromium install, fresh build, 113 unit, 40 integration,
 7 simulation, 77 browser and 11 accessibility checks. Current diagnostics, report
-and summary regenerate byte-identically. These observations do not
+and summary regenerate byte-identically. [PR #25 CI](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43134146860)
+passed the same five suites on Ubuntu / Node 22, plus GitGuardian. These observations do not
 establish human challenge/engagement or the broader M3 acceptance gate.
 [New evidence, full comparisons, commands and limits](design/reviews/2026-11-12-m3.1/README.md)
 keep historical evidence unchanged and distinguish combat, setup fixtures and
