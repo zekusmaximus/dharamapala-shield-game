@@ -19,6 +19,11 @@ while Bandwidth also constrains control/support. M3.2 specialization retention
 remains provisional. M3.4 adds one telegraphed, expiring Agent self shield with
 early damage, sustained fire and later coverage responses. Human difficulty and engagement validation remain open.
 
+Human playtest collection is [explicitly deferred](ROADMAP.md#human-validation-deferral--2026-11-12)
+so engineering can continue under provisional assumptions. M4.4 verification of
+the existing campaign is next. M3.5, specialization retention and the human M3
+gate remain open; no player validation is implied by that deferral.
+
 The earlier [implementation plan](implementation.md) remains an architecture
 reference; it is not the current backlog. The
 [handoff prompt](design/ROADMAP_HANDOFF.md) records the earlier M1.1 task.

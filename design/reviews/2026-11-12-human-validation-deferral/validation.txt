@@ -1,0 +1,42 @@
+Documentation-only human-validation deferral: 2026-11-12T16:40:47.332899+00:00
+No new player observations or automated gameplay results are claimed by these checks.
+
++ git rev-parse HEAD
+c471f230094cb4bc5af09e4e1907fe64f9901247
+exit=0
+
++ git diff --check
+exit=0
+
+# Exact source (save as /tmp/verify-human-deferral.py):
+from pathlib import Path
+import re, subprocess, hashlib
+base='c471f230094cb4bc5af09e4e1907fe64f9901247'
+root=Path.cwd()
+paths=['README.md','ROADMAP.md','design/reviews/2026-11-12-human-validation-deferral/README.md','design/reviews/2026-11-12-human-validation-deferral/NEXT_SESSION_PROMPT.md']
+for name in paths:
+ p=root/name
+ for link in re.findall(r'\]\(([^)]+)\)',p.read_text()):
+  if link.startswith(('https://','http://')): continue
+  target,_,anchor=link.partition('#')
+  destination=p.parent/target if target else p
+  assert destination.exists(),(name,link)
+  if anchor and destination.suffix=='.md':
+   headings=re.findall(r'^#{1,6} (.+)$',destination.read_text(),re.M)
+   slugs=[re.sub(r'[^\w -]','',h.lower()).replace(' ','-') for h in headings]
+   assert anchor in slugs,(name,link)
+print('PASS: edited/new Markdown links and heading anchors resolve')
+archive='design/reviews/2026-11-12-m3.5/playtest-build-fc43adf-1.4.0.zip'
+assert hashlib.sha256((root/archive).read_bytes()).hexdigest()=='c89fd1806dab103d0838be5b3678404c7b984a64e6972e8a6e3544da360f80f5'
+print('PASS: pinned archive retains its recorded SHA-256')
+protected=['js','css','assets','tests','tools','scripts','.github','index.html','favicon.svg','robots.txt','design/balance.json','design/CONTENT_SCHEMA.md','design/CODE_REVIEW_2026-11-11.md','package.json','package-lock.json']
+old_dirs=subprocess.check_output(['git','ls-tree','-d','--name-only',base+':design/reviews'],text=True).splitlines()
+protected += ['design/reviews/'+p for p in old_dirs]
+subprocess.run(['git','diff','--exit-code',base,'--',*protected],check=True)
+print('PASS: production/content/tests/build and every prior evidence directory match baseline')
+
++ python3 /tmp/verify-human-deferral.py
+PASS: edited/new Markdown links and heading anchors resolve
+PASS: pinned archive retains its recorded SHA-256
+PASS: production/content/tests/build and every prior evidence directory match baseline
+exit=0
