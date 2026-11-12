@@ -72,12 +72,15 @@ Each wave records supply (bounty, clear and its included passive portion),
 D/B/A before preparation, exact spending/actions, remaining funds at start/end,
 available spending opportunities before/after, currency blockers, towers, route
 coverage samples, status/armor-relevant stats, support capacity and realized
-production reports. All five plans clear all five waves without leaks in all
-three difficulties. Saving is viable for this opening but takes longer on waves
-2–3; this does not establish optimal saving or player difficulty.
+production reports. All five plans complete all five waves in each difficulty. Easy/Normal and four
+Hard plans retain 20 lives; the saving plan leaks four runners and one Agent on
+Hard wave 3 and finishes with 15 lives, under both M3.2 and M3.3. Saving is viable
+for this opening but carries this measured Hard risk and longer wave-2/3 times;
+this does not establish optimal saving or player difficulty.
 
-The same artifact separately records **80 marginal single-wave forks** (ten
-options × waves 2–5 × two content versions), each repeated identically. Every
+The same artifact separately records **80 marginal purchase opportunities** (ten
+options × waves 2–5 × two content versions): 58 affordable single-wave combat
+forks and 22 blocked options, each repeated identically. Every
 fork restores a valid common opening-only checkpoint earned through preceding
 production waves. It carries cooldowns, lives and bank forward; it does not grant
 funds, skip a wave or reset combat state. Entire purchase cost is checked first;

@@ -416,7 +416,9 @@ active supply/prices/UI while three-key M2 ledgers remain. Encryption costs
 50 Dharma / 35 Bandwidth; Distributor 70 / 60. Wave 2's common Normal bank
 (110/56) can fund expansion/control but Bandwidth blocks support and control
 upgrades independently of Dharma. Saved control specialization is affordable
-by wave 5. All five fresh plans clear the slice on all three difficulties.
+by wave 5. All five fresh plans complete the slice on all three difficulties; saving leaks
+five enemies on Hard wave 3 (15 lives), unchanged from M3.2, while other plans
+retain 20 lives.
 
 Distributor gross passive-only payback falls 17 → 12 clears with cap headroom;
 Bandwidth is not repaid. Available aura capacity and realized aura-present shots
