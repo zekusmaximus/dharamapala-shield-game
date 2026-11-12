@@ -60,3 +60,18 @@ export async function reportFixture(page, defeat = false) {
     gameApplication.ui.update(s);
   }, defeat);
 }
+
+// Funded inspector fixture, not a fresh campaign: no combat outcome is implied.
+export async function specializationFixture(page, type = 'firewall', funded = true) {
+  await page.locator(`[data-tower-type="${type}"]`).click();
+  await clickWorld(page, 210, 210);
+  await page.evaluate(() => {
+    gameApplication.session.state.resources = {dharma:2000,bandwidth:2000,anonymity:2000};
+    gameApplication.ui.update(gameApplication.session);
+  });
+  await page.locator('#upgrade-button').click();
+  if (!funded) await page.evaluate(() => {
+    gameApplication.session.state.resources = {dharma:0,bandwidth:0,anonymity:0};
+    gameApplication.ui.update(gameApplication.session);
+  });
+}

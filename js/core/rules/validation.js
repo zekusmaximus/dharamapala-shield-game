@@ -43,7 +43,7 @@ export function validateBalance(b) {
   contentKeys(b.towers, 'balance.towers', ACTIVE_TOWER_TYPES);
   for (const type of ACTIVE_TOWER_TYPES) {
     const t = b.towers[type], path = `balance.towers.${type}`;
-    contentKeys(t, path, ['name', 'description', 'icon', 'cost', 'baseDamage', 'ratePerSec', 'projectileSpeed', 'range', 'aoeRadius', 'critChance', 'critMult', 'status', 'color', ...(type === 'distributor' ? ['support'] : ['damageType'])]);
+    contentKeys(t, path, ['name', 'description', 'icon', 'cost', 'baseDamage', 'ratePerSec', 'projectileSpeed', 'range', 'aoeRadius', 'critChance', 'critMult', 'status', 'color', ...(type === 'distributor' ? ['support'] : ['damageType'])], ['specializations']);
     for (const key of ['name', 'description', 'icon']) contentText(t[key], `${path}.${key}`);
     assert(/^#[0-9a-fA-F]{6}$/.test(t.color), `Invalid ${path}.color`);
     contentResources(t.cost, `${path}.cost`);
@@ -66,6 +66,23 @@ export function validateBalance(b) {
     if (t.status.vulnerabilityPct !== undefined) {
       contentNumber(t.status.vulnerabilityPct, `${path}.status.vulnerabilityPct`, 0, 1);
       contentNumber(t.status.vulnerabilityDuration, `${path}.status.vulnerabilityDuration`);
+    }
+  }
+  for (const type of ACTIVE_TOWER_TYPES) {
+    const branches = b.towers[type].specializations;
+    if (b.version === '1.2.0' && type !== 'distributor') assert(branches, 'Missing tower specializations');
+    if (!branches) continue; // Historical linear content remains usable for comparisons.
+    assert(type !== 'distributor' && b.upgrades.maxLevel >= 3, 'Invalid specialization tower');
+    contentKeys(branches, `${type}.specializations`, type === 'firewall' ? ['focus', 'coverage'] : ['sustain', 'reach']);
+    for (const [id, branch] of Object.entries(branches)) {
+      contentKeys(branch, `${type}.${id}`, ['name', 'description', 'damageMultiplier', 'rangeMultiplier', 'rateMultiplier', 'slowMultiplier', 'durationMultiplier', 'vulnerabilityMultiplier', 'chainTargets']);
+      contentText(branch.name, `${id}.name`); contentText(branch.description, `${id}.description`);
+      for (const key of ['damageMultiplier', 'rangeMultiplier', 'rateMultiplier', 'slowMultiplier', 'durationMultiplier', 'vulnerabilityMultiplier']) contentNumber(branch[key], `${id}.${key}`, Number.MIN_VALUE, 10);
+      contentInteger(branch.chainTargets, `${id}.chainTargets`);
+      assert(branch.chainTargets <= 10 && (type !== 'firewall' || branch.chainTargets === 0), 'Invalid specialization chain');
+      for (let level = 3; level <= b.upgrades.maxLevel; level++) {
+        for (const value of Object.values(getTowerStats(b, type, level, id))) if (typeof value === 'number') assert(number(value), 'Nonfinite specialization stats');
+      }
     }
   }
   assert(b.enemies && typeof b.enemies === 'object' && !Array.isArray(b.enemies), 'Invalid balance.enemies');
@@ -168,10 +185,10 @@ export function validateSnapshot(snapshot, balance) {
   validateBalance(balance);
   const raidReinforcements = balance.bosses.raidTeam.abilities.reinforcements;
   const reinforcementTypes = raidReinforcements.byPhase.flat();
-  assert(snapshot?.schemaVersion === 2 && snapshot.balanceVersion === balance.version, 'Unsupported save schema or balance version');
+  assert(snapshot?.schemaVersion === (balance.version === '1.0.0' && !balance.towers.firewall.specializations ? 2 : 3) && snapshot.balanceVersion === balance.version, 'Unsupported save schema or balance version');
   const s = snapshot.state, r = snapshot.runtime;
   const reinforcementMultiplier = 1 + s.waveNumber * raidReinforcements.hpMultiplierPerWave;
-  assert(s && r && s.schemaVersion === 2 && s.balanceVersion === balance.version, 'Invalid state version');
+  assert(s && r && s.schemaVersion === snapshot.schemaVersion && s.balanceVersion === balance.version, 'Invalid state version');
   assert(Object.values(PHASES).includes(s.phase) && ![PHASES.LOADING, PHASES.MENU].includes(s.phase), 'Invalid saved phase');
   const waveActive = s.phase === PHASES.WAVE || (s.phase === PHASES.PAUSED && s.resumePhase === PHASES.WAVE);
   const terminal = TERMINAL_PHASES.has(s.phase);
@@ -198,6 +215,8 @@ export function validateSnapshot(snapshot, balance) {
   assert(s.effects.length === 0, 'Unsupported effects');
   for (const d of s.defenses) {
     assert(ACTIVE_TOWER_TYPES.includes(d.type) && integer(d.level, 1, balance.upgrades.maxLevel), 'Invalid tower type/level');
+    const branches = balance.towers[d.type].specializations;
+    assert(branches && d.level >= 3 ? typeof d.specialization === 'string' && Object.hasOwn(branches, d.specialization) : d.specialization === null || (snapshot.schemaVersion === 2 && d.specialization === undefined), 'Invalid tower specialization');
     const snapped = snapToBuildGrid(d);
     assert(isInsideWorld(d) && !isNearPath(d) && d.x === snapped.x && d.y === snapped.y && !s.defenses.some(other => other !== d && Math.hypot(other.x-d.x, other.y-d.y) < 45), 'Invalid build position');
     fields(d, ['cooldownMs', 'disabledUntilMs', 'totalDamage', 'kills']);

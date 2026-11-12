@@ -127,3 +127,13 @@ test('overlap and Raid timing previews pass axe with both reduced-motion prefere
     expect(results.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);
   }
 });
+
+test('level-3 alternatives and chosen branches have no serious axe findings in portrait at both motion settings',async({page})=>{
+  const {specializationFixture}=await import('./helpers.js');
+  for(const reducedMotion of [false,true])for(const type of ['firewall','encryption']) {
+    await openFresh(page,{width:360,height:640});await enterBuildPhase(page);await specializationFixture(page,type);
+    await page.evaluate(value=>{gameApplication.session.updateSetting('reducedMotion',value);gameApplication.ui.update(gameApplication.session);},reducedMotion);
+    const scan=async()=>{const r=await new AxeBuilder({page}).exclude('canvas').analyze();expect(r.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);};
+    await scan();await page.locator('[data-specialization]').first().click();await scan();
+  }
+});

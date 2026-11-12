@@ -86,3 +86,51 @@ an installation with their matching old content. Legacy pre-v2 tower-refund impo
 remains the explicit build-state import described in M1.3, not a migration of v2
 combat. M1's historical 1.0.0 terminal repair remains tested against that version;
 it does not bypass the new version gate.
+
+## M3.2 provisional specializations (balance 1.2.0, schema v3)
+
+Firewall and Encryption now require one of two `specializations` at the upgrade
+from level 2 to 3. Distributor remains linear. Definitions have exactly two IDs:
+`focus`/`coverage` and `sustain`/`reach`. Each has nonempty `name`/`description`,
+positive finite multipliers (at most 10) for `damage`, `range`, `rate`, `slow`,
+`duration`, and `vulnerability` (keys end in `Multiplier`), and an integer
+`chainTargets` from 0–10 (Firewall must have zero). Unknown fields fail validation.
+Balance 1.2.0 requires both attacking towers' definitions; historical linear
+content can still run in the comparison tools.
+
+`getTowerStats` first computes the linear level, then applies the chosen branch
+once at levels 3–5. Slow/vulnerability retain the shared tower caps. The branch's
+chain count replaces the old level-4 unlock; secondary damage/radius and full
+status application still use the shared combat rules. There is no new damage,
+armor, enemy, targeting or stacking mechanic. Level 1–2, base costs, upgrade cost
+formula, investment/refund, Distributor aura/income and all wave schedules remain
+unchanged. Equal branch prices deliberately isolate coverage/hit/control choices
+from currencies in this prototype; measured opportunity costs are in M3.2 evidence.
+
+`upgradeDefense(id, specialization)` requires a valid ID exactly at level 2 for
+these towers. Missing/foreign choices fail atomically; later attempts to choose
+again fail. Later upgrades preserve the choice. Selling uses the existing refund;
+rebuilding allows a new choice. Runtime, simulator, renderer, leak coverage and
+semantic inspection all use the same derived stats. A null stats argument is the
+linear comparison for tools/blueprints, not a level-3 runtime purchase option.
+
+New snapshots explicitly use **schemaVersion 3** in both wrapper and state, and
+every tower has `specialization`: null below level 3 / on Distributor; a valid
+own branch ID for attacking towers at levels 3–5. Candidate validation rejects
+missing, malformed, foreign or premature choices before session replacement.
+The storage slot stays `dharmapala-shield/save/v2` so startup discovers and
+protects existing bytes; the key is not the payload version. Preference keys and
+shape are unchanged.
+
+There is **no v2 1.1.0/1.0.0 → v3 1.2.0 migration**, including building and
+terminal saves. Original payloads are retained, writes blocked, export offered,
+and Reset saved run remains explicit. Preferences and the most recent recovery
+archive survive reset; export before resetting for a durable copy. Historical
+1.0.0 terminal repair is tested only with matching historical linear content.
+Pre-v2 refund import still handles lower-level attackers and Distributors; a
+legacy attacker already at level 3+ is rejected through recovery rather than
+inventing a specialization. Continue old runs only with their matching old build.
+
+The specializations are a **provisional prototype**. Automated scenario-dependent
+results do not satisfy the roadmap requirement for players making different
+defensible choices. Human retention acceptance remains open.

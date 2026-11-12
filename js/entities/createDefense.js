@@ -6,6 +6,7 @@ export function createDefense(type, position, id) {
     y: position.y,
     radius: 20,
     level: 1,
+    specialization: null,
     cooldownMs: 0,
     disabledUntilMs: 0,
     totalDamage: 0,

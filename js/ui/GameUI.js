@@ -534,10 +534,14 @@ export class GameUI {
       element('p', note, 'inspection-note'),
       comparisonTable(rows, 1, next?.level)
     ];
-    if (info.chainUnlockLevel) content.push(element('p', `Chain unlocks at level ${info.chainUnlockLevel}.`, 'inspection-note'));
+    if (info.chainUnlockLevel && !info.specializations.length) content.push(element('p', `Chain unlocks at level ${info.chainUnlockLevel}.`, 'inspection-note'));
     if (type === 'distributor') content.push(element('p', `Passive wave-clear bonus: +${info.waveBonusDharma} Dharma per installed Distributor, capped at +${info.waveBonusCapDharma}. EMP pauses its aura, not this bonus.`, 'inspection-note'));
     content.push(element('p', `Build cost: ${resourceText(info.buildCost)}. If built, total investment: ${resourceText(info.totalInvested)}; refund (${Math.round(info.refundPct * 100)}%): ${resourceText(info.sellValue)}.`, 'inspection-note'));
     if (info.upgradeCost) content.push(element('p', `Next upgrade cost: ${resourceText(info.upgradeCost)}.`, 'inspection-note'));
+    if (info.specializations.length) {
+      content.push(element('p', 'Provisional prototype: at level 3 choose one specialization permanently for this tower. Player retention decision awaits playtests.', 'inspection-note'));
+      for (const choice of info.specializations) content.push(element('p', `${choice.name}: ${choice.description}`, 'inspection-note'));
+    }
     this.elements.blueprintContent.replaceChildren(...content);
   }
 
@@ -727,7 +731,7 @@ export class GameUI {
       }
       const table = comparisonTable(rows, selected.level, next?.level);
       const notes = [heading, note, table];
-      if (tower.chainUnlockLevel) notes.push(element('p', `Chain unlocks at level ${tower.chainUnlockLevel}.`, 'inspection-note'));
+      if (tower.chainUnlockLevel && !session.balance.towers[selected.type].specializations) notes.push(element('p', `Chain unlocks at level ${tower.chainUnlockLevel}.`, 'inspection-note'));
       if (session.state.defenses.get(selected.id).disabledUntilMs > session.state.gameTimeMs) notes.push(element('p', 'EMP currently prevents this tower from firing.', 'inspection-note'));
       content.replaceChildren(...notes);
     }
@@ -735,12 +739,47 @@ export class GameUI {
     content.append(economy);
     if (tower.upgradeCost) content.append(element('p', `Next upgrade cost: ${resourceText(tower.upgradeCost)}.`, 'inspection-note'));
     else content.append(element('p', 'Maximum level reached.', 'inspection-note'));
+    const definition = session.balance.towers[selected.type];
+    if (definition.specializations) content.append(element('p', 'Provisional prototype: choose one specialization at level 3. It remains through levels 4–5; switching requires selling and rebuilding (normal refund applies). Human playtest acceptance is pending.', 'inspection-note'));
+    if (tower.chosenSpecialization) content.append(element('p', `Chosen: ${tower.chosenSpecialization.name}. ${tower.chosenSpecialization.description}`, 'inspection-note'));
     const affordable = tower.upgradeCost && canAfford(model.resources, tower.upgradeCost);
+    if (tower.specializations.length) {
+      const group = document.createElement('fieldset');
+      group.append(element('legend', 'Choose level-3 specialization (mutually exclusive)'));
+      for (const choice of tower.specializations) {
+        const chainNote = choice.stats.chainTargets ? ` Secondary hits deal ${Math.round(session.balance.combat.chain.damageMultiplier * 100)}% damage within ${session.balance.combat.chain.radius} units of the first hit and apply full branch status effects.` : '';
+        const detail = element('p', choice.description + chainNote, 'inspection-note');
+        detail.id = `specialization-${choice.id}-description`;
+        const stats = choice.stats;
+        const rows = [
+          ['Damage per hit', current.damage.toFixed(1), stats.damage.toFixed(1)],
+          ['Fire rate', rateText(current.ratePerSec), rateText(stats.ratePerSec)],
+          ['Rate with active support', rateText(current.effectiveRatePerSec), rateText(stats.effectiveRatePerSec)],
+          ['Range', current.range.toFixed(1), stats.range.toFixed(1)],
+          ['Extra chain targets', String(current.chainTargets), String(stats.chainTargets)]
+        ];
+        if (stats.slowPct) rows.push(['Slow', statusText(current.slowPct, current.slowDurationMs), statusText(stats.slowPct, stats.slowDurationMs)]);
+        if (stats.vulnerabilityPct) rows.push(['Vulnerability', statusText(current.vulnerabilityPct, current.vulnerabilityDurationMs), statusText(stats.vulnerabilityPct, stats.vulnerabilityDurationMs)]);
+        const button = element('button', `Specialize: ${choice.name} · ${costText(tower.upgradeCost)}`);
+        button.type = 'button'; button.dataset.specialization = choice.id;
+        button.setAttribute('aria-describedby', detail.id);
+        button.disabled = model.phase !== PHASES.BUILDING || !affordable;
+        button.addEventListener('click', () => {
+          const result = this.commands.session().upgradeDefense(selected.id, choice.id);
+          if (result.ok) {
+            this.announce(`${choice.name} chosen permanently for this tower.`);
+            (this.elements.upgrade.disabled ? this.elements.sell : this.elements.upgrade).focus();
+          } else this.announce(this.disabledReason(result.code), true);
+        });
+        group.append(element('h4', choice.name), detail, comparisonTable(rows, selected.level, 3), button);
+      }
+      content.append(group);
+    }
     this.elements.upgrade.disabled = model.phase !== PHASES.BUILDING || !next || !affordable;
-    this.elements.upgrade.textContent = next ? `Upgrade · ${costText(tower.upgradeCost)}` : 'Maximum level';
+    this.elements.upgrade.textContent = tower.specializations.length ? 'Choose a specialization above' : next ? `Upgrade · ${costText(tower.upgradeCost)}` : 'Maximum level';
     this.elements.upgrade.title = model.phase !== PHASES.BUILDING
       ? 'Upgrades are available during the build phase.'
-      : !next ? 'Maximum level reached.'
+      : tower.specializations.length ? 'Choose one level-3 specialization in the inspector.' : !next ? 'Maximum level reached.'
         : !affordable ? 'Not enough resources.' : '';
     this.elements.sell.disabled = model.phase !== PHASES.BUILDING;
     this.elements.sell.textContent = `Sell · ${costText(tower.sellValue)}`;

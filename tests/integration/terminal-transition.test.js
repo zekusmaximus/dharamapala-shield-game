@@ -122,7 +122,9 @@ test('old 1.0.0 game-over saves with extra same-tick leaks are recovered on load
 
   // Historical rule coverage stays pinned to its own balance version. Current
   // content retires these saves through recovery, tested separately.
-  const oldBalance = { ...balance, version: '1.0.0' };
+  const oldBalance = structuredClone(balance); oldBalance.version = '1.0.0';
+  delete oldBalance.towers.firewall.specializations; delete oldBalance.towers.encryption.specializations;
+  oldSnapshot.schemaVersion = oldSnapshot.state.schemaVersion = 2;
   oldSnapshot.balanceVersion = oldSnapshot.state.balanceVersion = '1.0.0';
   const repository = new BrowserSaveRepository(memoryStorage());
   repository.storage.setItem(SAVE_KEY, JSON.stringify(oldSnapshot));

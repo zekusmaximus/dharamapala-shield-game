@@ -21,7 +21,7 @@ export class DefenseSystem {
         continue;
       }
 
-      const stats = getTowerStats(session.balance, defense.type, defense.level);
+      const stats = getTowerStats(session.balance, defense.type, defense.level, defense.specialization);
       const target = this.findTarget(session, defense, stats.range);
       if (!target) {
         defense.cooldownMs = Math.max(0, defense.cooldownMs);

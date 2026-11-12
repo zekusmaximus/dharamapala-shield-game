@@ -13,7 +13,7 @@ function isActive(defense, nowMs) {
 }
 
 function effectiveAttackRate(balance, defense, allDefenses, nowMs) {
-  const stats = getTowerStats(balance, defense.type, defense.level);
+  const stats = getTowerStats(balance, defense.type, defense.level, defense.specialization);
   return isActive(defense, nowMs)
     ? stats.ratePerSec * getAuraMultiplier(balance, defense, allDefenses, nowMs)
     : 0;
@@ -25,7 +25,7 @@ function supportEffect(balance, distributor, allDefenses, nowMs) {
   const range = getTowerStats(balance, distributor.type, distributor.level).range;
   const recipients = without
     .filter((candidate) => {
-      const stats = getTowerStats(balance, candidate.type, candidate.level);
+      const stats = getTowerStats(balance, candidate.type, candidate.level, candidate.specialization);
       return stats.damage > 0 && stats.ratePerSec > 0 &&
         Math.hypot(candidate.x - distributor.x, candidate.y - distributor.y) <= range;
     })
@@ -69,6 +69,13 @@ function chainUnlockLevel(balance, type) {
     .find((level) => getTowerStats(balance, type, level).chainTargets > 0) ?? null;
 }
 
+export function getSpecializationChoices(balance, type) {
+  return Object.entries(balance.towers[type].specializations || {}).map(([id, branch]) => ({
+    id, name: branch.name, description: branch.description,
+    stats: describeTower(balance, type, 3, id)
+  }));
+}
+
 /** A position-independent comparison for an unplaced tower. */
 export function getTowerBlueprint(balance, type) {
   const current = describeTower(balance, type, 1);
@@ -77,6 +84,7 @@ export function getTowerBlueprint(balance, type) {
   return {
     current,
     next,
+    specializations: getSpecializationChoices(balance, type),
     buildCost: { ...balance.towers[type].cost },
     upgradeCost: next ? getUpgradeCost(balance, type, 1) : null,
     totalInvested: getTotalInvested(balance, type, 1),
@@ -97,10 +105,11 @@ export function getTowerBlueprint(balance, type) {
 export function getTowerInspection(balance, defense, allDefenses, nowMs, waveNumber) {
   const defenses = Array.from(allDefenses);
   const current = {
-    ...describeTower(balance, defense.type, defense.level),
+    ...describeTower(balance, defense.type, defense.level, defense.specialization),
     effectiveRatePerSec: effectiveAttackRate(balance, defense, defenses, nowMs)
   };
-  const nextDefense = defense.level < balance.upgrades.maxLevel
+  const choices = defense.level === 2 ? getSpecializationChoices(balance, defense.type) : [];
+  const nextDefense = !choices.length && defense.level < balance.upgrades.maxLevel
     ? { ...defense, level: defense.level + 1 }
     : null;
   const nextDefenses = nextDefense
@@ -108,7 +117,7 @@ export function getTowerInspection(balance, defense, allDefenses, nowMs, waveNum
     : null;
   const next = nextDefense
     ? {
-        ...describeTower(balance, nextDefense.type, nextDefense.level),
+        ...describeTower(balance, nextDefense.type, nextDefense.level, nextDefense.specialization),
         effectiveRatePerSec: effectiveAttackRate(balance, nextDefense, nextDefenses, nowMs)
       }
     : null;
@@ -116,8 +125,14 @@ export function getTowerInspection(balance, defense, allDefenses, nowMs, waveNum
   return {
     current,
     next,
-    chainUnlockLevel: chainUnlockLevel(balance, defense.type),
-    upgradeCost: nextDefense ? getUpgradeCost(balance, defense.type, defense.level) : null,
+    specializations: choices.map(choice => {
+      const candidate = { ...defense, level: 3, specialization: choice.id };
+      const candidates = defenses.map(tower => tower.id === defense.id ? candidate : tower);
+      return { ...choice, stats: { ...choice.stats, effectiveRatePerSec: effectiveAttackRate(balance, candidate, candidates, nowMs) } };
+    }),
+    chosenSpecialization: balance.towers[defense.type].specializations?.[defense.specialization] || null,
+    chainUnlockLevel: defense.specialization ? null : chainUnlockLevel(balance, defense.type),
+    upgradeCost: nextDefense || choices.length ? getUpgradeCost(balance, defense.type, defense.level) : null,
     totalInvested: getTotalInvested(balance, defense.type, defense.level),
     sellValue: getSellValue(balance, defense.type, defense.level),
     refundPct: balance.economy.sellRefundPct ?? 0.7,

@@ -12,7 +12,7 @@ for evidence and known issues. M1 and M2.1–M2.6 are complete within their
 documented verification scope. M2 includes inspection, combat feedback,
 persistent wave reports, a reproducible balance report, wave-speed controls and
 [validated runtime content](design/CONTENT_SCHEMA.md). M3.1 adds authored first-five-wave spawn windows and preview timing. Balance
-`1.1.0` retires prior `1.0.0` v2 runs through the existing export/reset recovery
+`1.2.0` and snapshot schema v3 retire prior v2 runs through the existing export/reset recovery
 flow; export before resetting. Independent preferences remain compatible.
 Human difficulty and
 engagement validation remains in later roadmap work.
@@ -56,9 +56,8 @@ Wave speed is run state, separate from persistent presentation preferences.
 
 The active tower roster is deliberately small:
 
-- **Firewall Fortress** — reliable single-target damage.
-- **Encryption Monastery** — slow and vulnerability control, with a late chain
-  upgrade.
+- **Firewall Fortress** — single-target damage with a provisional level-3 focus or coverage choice.
+- **Encryption Monastery** — slow and vulnerability control, with a provisional level-3 choice of sustained control or chain reach.
 - **Dharma Distributor** — nearby fire-rate support and a capped wave-clear bonus.
   Raid Team EMP temporarily disables its active fire-rate aura. The passive
   wave-clear bonus counts installed Distributors even if EMP is active when a
@@ -69,7 +68,9 @@ even when it is unaffordable or a wave is active. Select a placed tower to compa
 its current and next level, active support benefit, total investment, and refund.
 During building, it can be upgraded through five levels or sold for 70% of the
 total invested resources. The wave roster opens enemy armor, active damage
-resistances, implemented abilities, and counter hints. During waves, towers and
+resistances, implemented abilities, and counter hints. At level 3, attacking towers require one permanent specialization; later upgrades
+retain it. The inspector compares both alternatives before purchase. This prototype
+awaits actual player observations before a retention decision. During waves, towers and
 live enemies can be inspected on the battlefield, while building, upgrades, and
 selling remain locked.
 
@@ -103,12 +104,13 @@ Balance is loaded from `design/balance.json` by both the browser and Node tools.
 The simulator runs the production `GameSession` and issues the same build/start
 commands as the UI.
 
-Local saves use `dharmapala-shield/save/v2`. Corrupt payloads are preserved for
-recovery. Version-1 saves are migrated into building mode; removed tower IDs are
-refunded. M1.4 keeps balance version `1.0.0`, so valid v2 runs continue with the
-corrected combat rules. A narrow load repair reconciles older game-over saves
-with the former same-tick leak mismatch; unrelated invalid saves still use the
-export/reset recovery flow. See [deferred tower concepts](design/FUTURE_TOWERS.md).
+Local saves use snapshot schema v3 in the existing `dharmapala-shield/save/v2`
+storage slot, so prior payloads are discovered and protected. Balance `1.2.0`
+requires exact schema/content compatibility. Prior v2 runs are retained for export
+and explicit reset; they are never silently assigned a specialization. Preferences
+remain compatible. Legacy imports with level-3 attackers also require recovery.
+See [the content and recovery contract](design/CONTENT_SCHEMA.md) and
+[M3.2 evidence](design/reviews/2026-11-12-m3.2/README.md).
 
 ## Validation
 

@@ -102,7 +102,7 @@ export class CanvasRenderer {
         selected ||
         (session.state.settings.showRanges && defense.type === 'distributor')
       ) {
-        const stats = getTowerStats(this.balance, defense.type, defense.level);
+        const stats = getTowerStats(this.balance, defense.type, defense.level, defense.specialization);
         context.fillStyle =
           defense.type === 'distributor'
             ? 'rgba(16, 185, 129, 0.09)'
