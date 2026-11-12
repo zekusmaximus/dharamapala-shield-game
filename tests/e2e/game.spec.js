@@ -23,6 +23,90 @@ test('loads the real game without console errors and keeps wave 1 idle', async (
   expect(errors).toEqual([]);
 });
 
+for (const viewport of [
+  { width: 360, height: 640 }, { width: 390, height: 844 },
+  { width: 640, height: 360 }, { width: 844, height: 390 },
+  { width: 1280, height: 720 }
+]) {
+  test(`wave speed and Start Wave remain usable at ${viewport.width}×${viewport.height}`, async ({ page }) => {
+    await openFresh(page, viewport);
+    await enterBuildPhase(page);
+    const controls = page.locator('[data-wave-speed-context="game"]');
+    const one = controls.getByRole('button', { name: 'Wave speed 1×' });
+    const two = controls.getByRole('button', { name: 'Wave speed 2×' });
+    const start = page.getByRole('button', { name: 'Start wave 1' });
+    await expect(one).toHaveAttribute('aria-pressed', 'true');
+    await expect(two).toBeVisible();
+    await two.click();
+    await expect(two).toHaveAttribute('aria-pressed', 'true');
+    expect(await page.evaluate(() => ({
+      phase: gameApplication.session.state.phase,
+      speed: gameApplication.session.state.waveSpeed,
+      time: gameApplication.session.state.gameTimeMs,
+      spawned: gameApplication.session.state.wave.spawned
+    }))).toEqual({ phase: 'BUILDING', speed: 2, time: 0, spawned: 0 });
+    for (const control of [two, start]) {
+      const box = await control.boundingBox();
+      expect(box.width).toBeGreaterThanOrEqual(44);
+      expect(box.height).toBeGreaterThanOrEqual(44);
+      expect(box.x).toBeGreaterThanOrEqual(0);
+      expect(box.y).toBeGreaterThanOrEqual(0);
+      expect(box.x + box.width).toBeLessThanOrEqual(viewport.width + 1);
+      expect(box.y + box.height).toBeLessThanOrEqual(viewport.height + 1);
+    }
+    await start.click();
+    await expect(page.locator('#phase-label')).toHaveText('Wave active');
+    await one.click();
+    await expect(one).toHaveAttribute('aria-pressed', 'true');
+    expect(await page.evaluate(() => gameApplication.session.state.waveSpeed)).toBe(1);
+  });
+}
+
+test('keyboard speed choice, pause, settings and Continue retain the chosen wave speed', async ({ page }) => {
+  await openFresh(page, { width: 360, height: 640 });
+  await enterBuildPhase(page);
+  // Skip tutorial returns focus to Start Wave; reverse Tab reaches 2×.
+  await expect(page.locator('#start-wave-button')).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  const gameSpeed = page.locator('[data-wave-speed-context="game"]');
+  await expect(gameSpeed.getByRole('button', { name: 'Wave speed 2×' })).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(gameSpeed.getByRole('button', { name: 'Wave speed 2×' })).toHaveAttribute('aria-pressed', 'true');
+  await page.keyboard.press('Tab');
+  await expect(page.locator('#start-wave-button')).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#phase-label')).toHaveText('Wave active');
+  await page.getByRole('button', { name: 'Pause game' }).click();
+  const pausedAt = await page.evaluate(() => gameApplication.session.state.gameTimeMs);
+  const pauseSpeed = page.locator('[data-wave-speed-context="pause"]');
+  await pauseSpeed.getByRole('button', { name: 'Wave speed 1×' }).click();
+  await page.waitForTimeout(100);
+  expect(await page.evaluate(() => gameApplication.session.state.gameTimeMs)).toBe(pausedAt);
+  await page.getByRole('button', { name: 'Resume', exact: true }).click();
+  await page.getByRole('button', { name: 'Settings' }).click();
+  const settingsSpeed = page.locator('[data-wave-speed-context="settings"]');
+  await settingsSpeed.getByRole('button', { name: 'Wave speed 2×' }).click();
+  await expect(settingsSpeed.getByRole('button', { name: 'Wave speed 2×' })).toHaveAttribute('aria-pressed', 'true');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#phase-label')).toHaveText('Wave active');
+  await page.getByRole('button', { name: 'Pause game' }).click();
+  await page.getByRole('button', { name: 'Save now' }).click();
+  await page.getByRole('button', { name: 'Return to menu' }).click();
+  await page.reload();
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await expect(page.getByRole('dialog', { name: 'Paused' })).toBeVisible();
+  await expect(page.locator('[data-wave-speed-context="pause"]')
+    .getByRole('button', { name: 'Wave speed 2×' })).toHaveAttribute('aria-pressed', 'true');
+  expect(await page.evaluate(() => ({
+    phase: gameApplication.session.state.phase,
+    resume: gameApplication.session.state.resumePhase,
+    speed: gameApplication.session.state.waveSpeed
+  }))).toEqual({ phase: 'PAUSED', resume: 'WAVE', speed: 2 });
+  await page.getByRole('button', { name: 'Resume', exact: true }).click();
+  await expect(page.locator('#phase-label')).toHaveText('Wave active');
+  expect(await page.evaluate(() => gameApplication.session.state.waveSpeed)).toBe(2);
+});
+
 test('loads the sprite sheet and maps every active rendered entity', async ({
   page
 }) => {

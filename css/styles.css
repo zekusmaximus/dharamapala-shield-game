@@ -530,8 +530,48 @@ summary h2 {
 }
 
 .wave-actions {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: end;
+  gap: 0.35rem;
   flex-shrink: 0;
   margin-top: auto;
+}
+
+.wave-speed-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px 44px;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.45rem;
+}
+
+.wave-speed-controls span {
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+.wave-speed-controls button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.4rem 0;
+}
+
+.wave-speed-controls button[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #06111a;
+}
+
+.wave-actions .wave-speed-controls {
+  grid-template-columns: 44px 44px;
+  grid-template-rows: auto 44px;
+  margin: 0;
+}
+
+.wave-actions .wave-speed-controls span {
+  grid-column: 1 / -1;
+  text-align: center;
 }
 
 .start-wave {
@@ -540,7 +580,8 @@ summary h2 {
 }
 
 .wave-actions .subtle {
-  margin: 0.45rem 0 0;
+  grid-column: 1 / -1;
+  margin: 0;
   text-align: center;
 }
 

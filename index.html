@@ -150,6 +150,11 @@
             </div>
 
             <div class="wave-actions">
+              <div class="wave-speed-controls" role="group" aria-label="Wave speed" data-wave-speed-context="game">
+                <span>Wave speed</span>
+                <button type="button" data-wave-speed="1" aria-label="Wave speed 1×" aria-pressed="true">1×</button>
+                <button type="button" data-wave-speed="2" aria-label="Wave speed 2×" aria-pressed="false">2×</button>
+              </div>
               <button id="start-wave-button" class="primary start-wave" type="button">
                 Start wave
               </button>
@@ -182,6 +187,11 @@
         <p class="eyebrow">Simulation frozen</p>
         <h2 id="pause-title">Paused</h2>
         <p>Game time, spawning, cooldowns, movement, and combat are stopped.</p>
+        <div class="wave-speed-controls" role="group" aria-label="Wave speed while paused" data-wave-speed-context="pause">
+          <span>Wave speed</span>
+          <button type="button" data-wave-speed="1" aria-label="Wave speed 1×" aria-pressed="true">1×</button>
+          <button type="button" data-wave-speed="2" aria-label="Wave speed 2×" aria-pressed="false">2×</button>
+        </div>
         <div class="dialog-actions vertical">
           <button id="resume-button" class="primary" type="button">Resume</button>
           <button id="save-button" type="button">Save now</button>
@@ -195,6 +205,11 @@
       <div class="dialog-content">
         <p class="eyebrow">Preferences</p>
         <h2 id="settings-title">Settings</h2>
+        <div class="wave-speed-controls" role="group" aria-label="Wave speed in settings" data-wave-speed-context="settings">
+          <span>Wave speed</span>
+          <button type="button" data-wave-speed="1" aria-label="Wave speed 1×" aria-pressed="true">1×</button>
+          <button type="button" data-wave-speed="2" aria-label="Wave speed 2×" aria-pressed="false">2×</button>
+        </div>
         <label class="check-row">
           <input id="range-toggle" type="checkbox" checked>
           Show support auras and selected tower range

@@ -66,6 +66,7 @@ export function validateSnapshot(snapshot, balance) {
   assert(integer(s.waveNumber, 1, balance.waves.length) && s.maxWaves === balance.waves.length, 'Invalid wave number');
   assert(integer(s.lives, 0, balance.economy.initialLives) && (terminal || s.lives > 0), 'Invalid lives');
   fields(s, ['gameTimeMs', 'score']); resources(s.resources); stats(s.statistics);
+  assert(s.waveSpeed === undefined || s.waveSpeed === 1 || s.waveSpeed === 2, 'Invalid wave speed');
   assert(s.phase !== PHASES.GAME_OVER || s.lives === 0, 'Game over with remaining lives');
   assert(s.phase !== PHASES.VICTORY || (s.lives > 0 && s.waveNumber === s.maxWaves && s.statistics.wavesCompleted === s.maxWaves), 'Incomplete victory');
   assert(s.settings && ['tutorialCompleted', 'showRanges', 'reducedMotion'].every(k => typeof s.settings[k] === 'boolean'), 'Invalid preferences');
