@@ -1,8 +1,14 @@
+import { updateBrace } from '../core/rules/brace.js';
 import { sampleCoverage } from '../core/rules/reports.js';
 import { PATH_METRICS, pointAtPathDistance } from '../core/world.js';
 import { PHASES } from '../core/commands.js';
 
 export class EnemySystem {
+  updateBehaviors(session) {
+    if (session.state.phase !== PHASES.WAVE) return;
+    for (const enemy of session.state.enemies.values()) updateBrace(enemy, session.state.gameTimeMs);
+  }
+
   update(session, deltaMs) {
     if (session.state.phase !== PHASES.WAVE) return;
     const nowMs = session.state.gameTimeMs;

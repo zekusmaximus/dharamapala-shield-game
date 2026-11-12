@@ -170,7 +170,7 @@ export class CombatSystem {
       enemy.shield -= absorbed;
       damage -= absorbed;
     }
-    if (enemy.shieldMax > 0) {
+    if (enemy.type === 'megaCorpTitan' && enemy.shieldMax > 0) {
       enemy.shieldCooldownUntilMs = Math.max(
         enemy.shieldCooldownUntilMs,
         session.state.gameTimeMs + session.balance.bosses.megaCorpTitan.abilities.shield.recoveryDelayMs

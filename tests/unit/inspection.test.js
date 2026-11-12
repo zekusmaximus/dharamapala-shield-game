@@ -105,7 +105,8 @@ test('enemy intel uses active damage types and only implemented abilities', () =
       physical: definition.resists.physical,
       shock: definition.resists.shock
     });
-    assert.equal(info.ability, null);
+    if (definition.brace) assert.match(info.ability, /Shield brace/);
+    else assert.equal(info.ability, null);
     assert.ok(info.counterHint);
     assert.equal(Object.hasOwn(info, 'special'), false);
   }

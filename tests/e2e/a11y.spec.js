@@ -149,3 +149,17 @@ test('two-resource guide, affordability deficits and support capacity caveat pas
   await expect(page.locator('#inspector-content')).toContainText('Available aura capacity is not measured combat activity.');
   result=await new AxeBuilder({page}).exclude('canvas').analyze();expect(result.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);
 });
+
+test('Agent brace inspection and all live phases pass portrait axe with both motion preferences',async({page})=>{
+  const {braceFixture,braceFrame}=await import('./helpers.js');
+  for(const reducedMotion of [false,true]) {
+    await openFresh(page,{width:360,height:640});await enterBuildPhase(page);await braceFixture(page);
+    await page.evaluate(value=>gameApplication.session.updateSetting('reducedMotion',value),reducedMotion);
+    await page.locator('[data-enemy-type="federalAgent"]').click();
+    await expect(page.locator('#enemy-inspector-content')).toContainText('Shield brace');
+    for(const phase of ['warning','active','spent']) {
+      await braceFrame(page,phase);await expect(page.locator('#combat-state')).toContainText('Shield brace');
+      const result=await new AxeBuilder({page}).exclude('canvas').analyze();expect(result.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);
+    }
+  }
+});

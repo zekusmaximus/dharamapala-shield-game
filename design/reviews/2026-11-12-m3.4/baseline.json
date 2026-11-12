@@ -1,0 +1,288 @@
+{
+  "balanceVersion": "1.4.0",
+  "seed": 1337,
+  "note": "Scripted policies use coverage-ranked positions. Results are not human win rates.",
+  "campaigns": [
+    {
+      "difficulty": "Easy",
+      "strategy": "reference",
+      "phase": "VICTORY",
+      "wave": 20,
+      "lives": 20,
+      "statistics": {
+        "kills": 319,
+        "leaks": 0,
+        "bossesKilled": 7,
+        "wavesCompleted": 20
+      },
+      "resources": {
+        "dharma": 2634,
+        "bandwidth": 4549,
+        "anonymity": 0
+      },
+      "towers": 13,
+      "simulatedSeconds": 389.683
+    },
+    {
+      "difficulty": "Easy",
+      "strategy": "no-support",
+      "phase": "VICTORY",
+      "wave": 20,
+      "lives": 20,
+      "statistics": {
+        "kills": 319,
+        "leaks": 0,
+        "bossesKilled": 7,
+        "wavesCompleted": 20
+      },
+      "resources": {
+        "dharma": 2602,
+        "bandwidth": 4609,
+        "anonymity": 0
+      },
+      "towers": 12,
+      "simulatedSeconds": 400.167
+    },
+    {
+      "difficulty": "Easy",
+      "strategy": "firewall-only",
+      "phase": "VICTORY",
+      "wave": 20,
+      "lives": 20,
+      "statistics": {
+        "kills": 319,
+        "leaks": 0,
+        "bossesKilled": 7,
+        "wavesCompleted": 20
+      },
+      "resources": {
+        "dharma": 2307,
+        "bandwidth": 5611,
+        "anonymity": 0
+      },
+      "towers": 12,
+      "simulatedSeconds": 382.25
+    },
+    {
+      "difficulty": "Easy",
+      "strategy": "opening-only",
+      "phase": "GAME_OVER",
+      "wave": 15,
+      "lives": 0,
+      "statistics": {
+        "kills": 168,
+        "leaks": 14,
+        "bossesKilled": 0,
+        "wavesCompleted": 14
+      },
+      "resources": {
+        "dharma": 4447,
+        "bandwidth": 1798,
+        "anonymity": 0
+      },
+      "towers": 4,
+      "simulatedSeconds": 452.85
+    },
+    {
+      "difficulty": "Normal",
+      "strategy": "reference",
+      "phase": "VICTORY",
+      "wave": 20,
+      "lives": 20,
+      "statistics": {
+        "kills": 319,
+        "leaks": 0,
+        "bossesKilled": 7,
+        "wavesCompleted": 20
+      },
+      "resources": {
+        "dharma": 1987,
+        "bandwidth": 3942,
+        "anonymity": 0
+      },
+      "towers": 13,
+      "simulatedSeconds": 412.883
+    },
+    {
+      "difficulty": "Normal",
+      "strategy": "no-support",
+      "phase": "VICTORY",
+      "wave": 20,
+      "lives": 20,
+      "statistics": {
+        "kills": 319,
+        "leaks": 0,
+        "bossesKilled": 7,
+        "wavesCompleted": 20
+      },
+      "resources": {
+        "dharma": 2389,
+        "bandwidth": 4002,
+        "anonymity": 0
+      },
+      "towers": 12,
+      "simulatedSeconds": 432.1
+    },
+    {
+      "difficulty": "Normal",
+      "strategy": "firewall-only",
+      "phase": "VICTORY",
+      "wave": 20,
+      "lives": 20,
+      "statistics": {
+        "kills": 319,
+        "leaks": 0,
+        "bossesKilled": 7,
+        "wavesCompleted": 20
+      },
+      "resources": {
+        "dharma": 2094,
+        "bandwidth": 5004,
+        "anonymity": 0
+      },
+      "towers": 12,
+      "simulatedSeconds": 403.967
+    },
+    {
+      "difficulty": "Normal",
+      "strategy": "opening-only",
+      "phase": "GAME_OVER",
+      "wave": 10,
+      "lives": 0,
+      "statistics": {
+        "kills": 115,
+        "leaks": 12,
+        "bossesKilled": 0,
+        "wavesCompleted": 9
+      },
+      "resources": {
+        "dharma": 2001,
+        "bandwidth": 792,
+        "anonymity": 0
+      },
+      "towers": 4,
+      "simulatedSeconds": 279.4
+    },
+    {
+      "difficulty": "Hard",
+      "strategy": "reference",
+      "phase": "VICTORY",
+      "wave": 20,
+      "lives": 20,
+      "statistics": {
+        "kills": 319,
+        "leaks": 0,
+        "bossesKilled": 7,
+        "wavesCompleted": 20
+      },
+      "resources": {
+        "dharma": 2104,
+        "bandwidth": 3434,
+        "anonymity": 0
+      },
+      "towers": 13,
+      "simulatedSeconds": 458.5
+    },
+    {
+      "difficulty": "Hard",
+      "strategy": "no-support",
+      "phase": "VICTORY",
+      "wave": 20,
+      "lives": 20,
+      "statistics": {
+        "kills": 319,
+        "leaks": 0,
+        "bossesKilled": 7,
+        "wavesCompleted": 20
+      },
+      "resources": {
+        "dharma": 2072,
+        "bandwidth": 3494,
+        "anonymity": 0
+      },
+      "towers": 12,
+      "simulatedSeconds": 477.75
+    },
+    {
+      "difficulty": "Hard",
+      "strategy": "firewall-only",
+      "phase": "VICTORY",
+      "wave": 20,
+      "lives": 20,
+      "statistics": {
+        "kills": 319,
+        "leaks": 0,
+        "bossesKilled": 7,
+        "wavesCompleted": 20
+      },
+      "resources": {
+        "dharma": 1777,
+        "bandwidth": 4496,
+        "anonymity": 0
+      },
+      "towers": 12,
+      "simulatedSeconds": 448.8
+    },
+    {
+      "difficulty": "Hard",
+      "strategy": "opening-only",
+      "phase": "GAME_OVER",
+      "wave": 9,
+      "lives": 0,
+      "statistics": {
+        "kills": 88,
+        "leaks": 15,
+        "bossesKilled": 0,
+        "wavesCompleted": 8
+      },
+      "resources": {
+        "dharma": 1368,
+        "bandwidth": 552,
+        "anonymity": 0
+      },
+      "towers": 4,
+      "simulatedSeconds": 232.283
+    }
+  ],
+  "invalidSaves": [
+    {
+      "name": "missing-bandwidth",
+      "accepted": false,
+      "error": "Invalid numeric fields: dharma, bandwidth, anonymity"
+    },
+    {
+      "name": "negative-lives",
+      "accepted": false,
+      "error": "Invalid lives"
+    },
+    {
+      "name": "invalid-wave",
+      "accepted": false,
+      "error": "Invalid wave number"
+    },
+    {
+      "name": "zero-tower-level",
+      "accepted": false,
+      "error": "Invalid tower type/level"
+    },
+    {
+      "name": "unknown-scheduled-enemy",
+      "accepted": false,
+      "error": "Modified base schedule"
+    }
+  ],
+  "mechanics": {
+    "terminalTick": {
+      "phase": "GAME_OVER",
+      "liveLeaks": 1,
+      "finalLeaks": 1
+    },
+    "shieldAfterRecentHealthHit": {
+      "nowMs": 2000,
+      "cooldownUntilMs": 5000,
+      "shield": 0
+    },
+    "disabledSupportMultiplier": 1,
+    "inputSnapshotBossPhasesAfterRestoredSessionAdvances": []
+  }
+}

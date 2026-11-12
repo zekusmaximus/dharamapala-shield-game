@@ -25,7 +25,7 @@ export async function runScenario(scenario, policyName, balance = null) {
     const e = session.state.enemies.get(enemyId);
     observation.spawnedByType[e.type] = (observation.spawnedByType[e.type] || 0) + 1;
     observation.spawnedHealth += e.maxHealth;
-    observation.initialShield += e.shieldMax;
+    observation.initialShield += e.shield; // Brace capacity is pending, not an initial shield.
     observation.peakAlive = Math.max(observation.peakAlive,session.state.enemies.size);
     if (e.kind === 'boss') {
       const row = {id:e.id,type:e.type,spawnedAtMs:e.spawnedAtMs,outcome:'unresolved',phases:[]};

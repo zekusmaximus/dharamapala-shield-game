@@ -1,0 +1,244 @@
+{"conclusion":"success","headSha":"4dedddb06cf1a512175ae5e1bef4a57eb2fcdfef","jobs":[{"completedAt":"2026-11-12T11:29:39Z","conclusion":"success","databaseId":131151931812,"name":"validate","startedAt":"2026-11-12T11:26:23Z","status":"completed","steps":[{"conclusion":"success","name":"Set up job","number":1,"status":"completed"},{"conclusion":"success","name":"Run actions/checkout@v4","number":2,"status":"completed"},{"conclusion":"success","name":"Run actions/setup-node@v4","number":3,"status":"completed"},{"conclusion":"success","name":"Install dependencies","number":4,"status":"completed"},{"conclusion":"success","name":"Install Chromium and system dependencies","number":5,"status":"completed"},{"conclusion":"success","name":"Build current client output","number":6,"status":"completed"},{"conclusion":"success","name":"Unit tests","number":7,"status":"completed"},{"conclusion":"success","name":"Integration tests","number":8,"status":"completed"},{"conclusion":"success","name":"Simulation tests","number":9,"status":"completed"},{"conclusion":"success","name":"End-to-end tests","number":10,"status":"completed"},{"conclusion":"success","name":"Accessibility tests","number":11,"status":"completed"},{"conclusion":"skipped","name":"Preserve browser failure artifacts","number":12,"status":"completed"},{"conclusion":"success","name":"Post Run actions/setup-node@v4","number":23,"status":"completed"},{"conclusion":"success","name":"Post Run actions/checkout@v4","number":24,"status":"completed"},{"conclusion":"success","name":"Complete job","number":25,"status":"completed"}],"url":"https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43209160417/job/131151931812"}],"status":"completed","url":"https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43209160417"}
+GitGuardian Security Checks	pass	2s	https://dashboard.gitguardian.com	
+validate	pass	3m16s	https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43209160417/job/131151931812	
+validate	Install dependencies	﻿2026-11-12T11:26:36.4626007Z ##[group]Run npm ci
+validate	Install dependencies	2026-11-12T11:26:36.4626427Z [36;1mnpm ci[0m
+validate	Install Chromium and system dependencies	﻿2026-11-12T11:26:40.3734045Z ##[group]Run npx playwright install --with-deps chromium
+validate	Install Chromium and system dependencies	2026-11-12T11:26:40.3734538Z [36;1mnpx playwright install --with-deps chromium[0m
+validate	Install Chromium and system dependencies	2026-11-12T11:26:40.3791736Z shell: /usr/bin/bash -e {0}
+validate	Install Chromium and system dependencies	2026-11-12T11:26:40.3792065Z ##[endgroup]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.5574072Z Installing dependencies...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.5656021Z Switching to root user to install dependencies...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.6589495Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.6862702Z Get:6 https://packages.microsoft.com/ubuntu/26.04/prod resolute InRelease [3964 B]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.7008739Z Hit:2 http://azure.archive.ubuntu.com/ubuntu resolute InRelease
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.7041935Z Get:3 http://azure.archive.ubuntu.com/ubuntu resolute-updates InRelease [137 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.7089700Z Get:4 http://azure.archive.ubuntu.com/ubuntu resolute-backports InRelease [137 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.7153003Z Get:5 http://azure.archive.ubuntu.com/ubuntu resolute-security InRelease [137 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.7295474Z Get:7 https://packages.microsoft.com/ubuntu/26.04/prod resolute/main arm64 Packages [142 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.7561066Z Get:8 https://packages.microsoft.com/ubuntu/26.04/prod resolute/main amd64 Packages [156 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.7722711Z Get:9 http://azure.archive.ubuntu.com/ubuntu resolute-updates/main amd64v3 Packages [869 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.7801900Z Get:10 http://azure.archive.ubuntu.com/ubuntu resolute-updates/universe amd64v3 Packages [390 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.7813278Z Get:11 http://azure.archive.ubuntu.com/ubuntu resolute-updates/universe Translation-en [122 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.8052030Z Get:12 http://azure.archive.ubuntu.com/ubuntu resolute-security/main amd64v3 Packages [718 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.8097306Z Get:13 http://azure.archive.ubuntu.com/ubuntu resolute-security/main Translation-en [157 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.8108586Z Get:14 http://azure.archive.ubuntu.com/ubuntu resolute-security/universe amd64v3 Packages [220 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.8147233Z Get:15 http://azure.archive.ubuntu.com/ubuntu resolute-security/universe Translation-en [72.5 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.8177897Z Get:16 http://azure.archive.ubuntu.com/ubuntu resolute-security/restricted amd64v3 Packages [590 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:41.8221230Z Get:17 http://azure.archive.ubuntu.com/ubuntu resolute-security/restricted Translation-en [122 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:44.2939112Z Fetched 3974 kB in 0s (10.4 MB/s)
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.0870004Z Reading package lists...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.1144928Z Reading package lists...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.3608388Z Building dependency tree...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.3616801Z Reading state information...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4087242Z libasound2t64 is already the newest version (1.2.15.3-1ubuntu1.1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4088032Z libasound2t64 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4088728Z libatk-bridge2.0-0t64 is already the newest version (2.60.4-0ubuntu0.1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4089422Z libatk-bridge2.0-0t64 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4090330Z libatk1.0-0t64 is already the newest version (2.60.4-0ubuntu0.1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4091198Z libatk1.0-0t64 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4091852Z libatspi2.0-0t64 is already the newest version (2.60.4-0ubuntu0.1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4092543Z libatspi2.0-0t64 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4093151Z libcairo2 is already the newest version (1.18.4-3).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4093719Z libcairo2 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4094369Z libcups2t64 is already the newest version (2.4.16-1ubuntu1.3).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4095024Z libcups2t64 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4095762Z libdbus-1-3 is already the newest version (1.16.2-2ubuntu4).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4096395Z libdbus-1-3 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4097008Z libdrm2 is already the newest version (2.4.131-1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4097572Z libdrm2 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4098211Z libgbm1 is already the newest version (26.0.8-1ubuntu0.3).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4098824Z libgbm1 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4100358Z libglib2.0-0t64 is already the newest version (2.88.0-1ubuntu0.1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4101103Z libglib2.0-0t64 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4101814Z libnspr4 is already the newest version (2:4.38.2-1ubuntu1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4102466Z libnspr4 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4103146Z libnss3 is already the newest version (2:3.120-1ubuntu2.2).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4103778Z libnss3 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4104420Z libpango-1.0-0 is already the newest version (1.57.0-1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4105046Z libpango-1.0-0 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4106017Z libx11-6 is already the newest version (2:1.8.13-1ubuntu0.1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4106663Z libx11-6 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4107306Z libxcb1 is already the newest version (1.17.0-2ubuntu1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4107922Z libxcb1 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4108591Z libxcomposite1 is already the newest version (1:0.4.6-1build1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4109289Z libxcomposite1 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4109839Z libxdamage1 is already the newest version (1:1.1.7-1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4110609Z libxdamage1 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4111246Z libxext6 is already the newest version (2:1.3.4-1build3).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4111857Z libxext6 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4112499Z libxfixes3 is already the newest version (1:6.0.0-2build2).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4113122Z libxfixes3 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4113748Z libxkbcommon0 is already the newest version (1.13.1-1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4114373Z libxkbcommon0 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4115063Z libxrandr2 is already the newest version (2:1.5.4-1build1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4115702Z libxrandr2 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4116368Z xvfb is already the newest version (2:21.1.22-1ubuntu1.3).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4117201Z fonts-noto-color-emoji is already the newest version (2.051-1build1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4118089Z libfontconfig1 is already the newest version (2.17.1-3ubuntu1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4118765Z libfontconfig1 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4119488Z libfreetype6 is already the newest version (2.14.2+dfsg-1ubuntu0.2).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4120430Z libfreetype6 set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4121245Z fonts-liberation is already the newest version (1:2.1.5-3build1).
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4121970Z fonts-liberation set to manually installed.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.4805204Z Solving dependencies...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.5948257Z The following additional packages will be installed:
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.5949030Z   xfonts-encodings xfonts-utils
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.5955937Z Recommended packages:
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.5956414Z   fonts-ipafont-mincho fonts-tlwg-loma
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.6197249Z The following NEW packages will be installed:
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.6198318Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.6209698Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.6210636Z   xfonts-utils
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.6464733Z 0 upgraded, 9 newly installed, 0 to remove and 12 not upgraded.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.6465269Z Need to get 21.9 MB of archives.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.6465729Z After this operation, 80.2 MB of additional disk space will be used.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.6466252Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:45.7141650Z Get:2 http://azure.archive.ubuntu.com/ubuntu resolute/universe amd64v3 fonts-ipafont-gothic all 00303-23ubuntu1 [3703 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:47.6564173Z Get:3 http://azure.archive.ubuntu.com/ubuntu resolute/main amd64v3 fonts-freefont-ttf all 20211204+svn4273-4build1 [5656 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:50.6256928Z Get:4 http://azure.archive.ubuntu.com/ubuntu resolute/universe amd64v3 fonts-tlwg-loma-otf all 1:0.7.3-1build1 [106 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:50.7064385Z Get:5 http://azure.archive.ubuntu.com/ubuntu resolute/universe amd64v3 fonts-unifont all 1:16.0.04-1build1 [3169 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:52.5781202Z Get:6 http://azure.archive.ubuntu.com/ubuntu resolute/universe amd64v3 fonts-wqy-zenhei all 0.9.45-8build1 [7863 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:56.6321088Z Get:7 http://azure.archive.ubuntu.com/ubuntu resolute/main amd64v3 xfonts-encodings all 1:1.0.5-0ubuntu3 [576 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:56.9737763Z Get:8 http://azure.archive.ubuntu.com/ubuntu resolute/main amd64v3 xfonts-utils amd64 1:7.7+7build1 [97.3 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.0447168Z Get:9 http://azure.archive.ubuntu.com/ubuntu resolute/universe amd64v3 xfonts-cyrillic all 1:1.0.5+nmu1build1 [384 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.2862890Z Get:10 http://azure.archive.ubuntu.com/ubuntu resolute/universe amd64v3 xfonts-scalable all 1:1.0.3-1.3build1 [304 kB]
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.7589244Z Fetched 21.9 MB in 12s (1852 kB/s)
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.7824183Z Selecting previously unselected package fonts-ipafont-gothic.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.8059947Z (Reading database ... 
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.8060872Z (Reading database ... 5%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.8061263Z (Reading database ... 10%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.8061572Z (Reading database ... 15%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.8061907Z (Reading database ... 20%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.8062521Z (Reading database ... 25%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.8062858Z (Reading database ... 30%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.8063204Z (Reading database ... 35%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.8063549Z (Reading database ... 40%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.8063937Z (Reading database ... 45%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.8064309Z (Reading database ... 50%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:57.8997113Z (Reading database ... 55%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:58.0405323Z (Reading database ... 60%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:58.1998903Z (Reading database ... 65%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:58.3853367Z (Reading database ... 70%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:58.5461890Z (Reading database ... 75%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:58.7499761Z (Reading database ... 80%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:58.9434731Z (Reading database ... 85%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.1488316Z (Reading database ... 90%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.3448448Z (Reading database ... 95%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.3448975Z (Reading database ... 100%
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.3449471Z (Reading database ... 213946 files and directories currently installed.)
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.3498637Z Preparing to unpack .../0-fonts-ipafont-gothic_00303-23ubuntu1_all.deb ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.3610315Z Unpacking fonts-ipafont-gothic (00303-23ubuntu1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.5153334Z Selecting previously unselected package fonts-freefont-ttf.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.5303212Z Preparing to unpack .../1-fonts-freefont-ttf_20211204+svn4273-4build1_all.deb ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.5311158Z Unpacking fonts-freefont-ttf (20211204+svn4273-4build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.6204470Z Selecting previously unselected package fonts-tlwg-loma-otf.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.6355160Z Preparing to unpack .../2-fonts-tlwg-loma-otf_1%3a0.7.3-1build1_all.deb ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.6364592Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.6609462Z Selecting previously unselected package fonts-unifont.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.6758612Z Preparing to unpack .../3-fonts-unifont_1%3a16.0.04-1build1_all.deb ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.6765527Z Unpacking fonts-unifont (1:16.0.04-1build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.7924435Z Selecting previously unselected package fonts-wqy-zenhei.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.8075170Z Preparing to unpack .../4-fonts-wqy-zenhei_0.9.45-8build1_all.deb ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.8229160Z Unpacking fonts-wqy-zenhei (0.9.45-8build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.9122214Z Selecting previously unselected package xfonts-encodings.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.9271811Z Preparing to unpack .../5-xfonts-encodings_1%3a1.0.5-0ubuntu3_all.deb ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.9279194Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu3) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.9593383Z Selecting previously unselected package xfonts-utils.
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.9745473Z Preparing to unpack .../6-xfonts-utils_1%3a7.7+7build1_amd64v3.deb ...
+validate	Install Chromium and system dependencies	2026-11-12T11:26:59.9752982Z Unpacking xfonts-utils (1:7.7+7build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.0098366Z Selecting previously unselected package xfonts-cyrillic.
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.0260330Z Preparing to unpack .../7-xfonts-cyrillic_1%3a1.0.5+nmu1build1_all.deb ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.0268116Z Unpacking xfonts-cyrillic (1:1.0.5+nmu1build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.0628199Z Selecting previously unselected package xfonts-scalable.
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.0778752Z Preparing to unpack .../8-xfonts-scalable_1%3a1.0.3-1.3build1_all.deb ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.0786661Z Unpacking xfonts-scalable (1:1.0.3-1.3build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.1246086Z Setting up fonts-wqy-zenhei (0.9.45-8build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.1401496Z Setting up fonts-freefont-ttf (20211204+svn4273-4build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.1416932Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.1433550Z Setting up xfonts-encodings (1:1.0.5-0ubuntu3) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.1449405Z Setting up fonts-ipafont-gothic (00303-23ubuntu1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.1514964Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.1539141Z Setting up fonts-unifont (1:16.0.04-1build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.1556844Z Setting up xfonts-utils (1:7.7+7build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.1614805Z Setting up xfonts-cyrillic (1:1.0.5+nmu1build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.2067999Z Setting up xfonts-scalable (1:1.0.3-1.3build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.2497202Z Processing triggers for man-db (2.13.1-1build1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.2517298Z Not building database; man-db/auto-update is not 'true'.
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.2531640Z Processing triggers for fontconfig (2.17.1-3ubuntu1) ...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9265971Z 
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9266689Z Running kernel seems to be up-to-date.
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9267040Z 
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9267178Z Restarting services...
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9375578Z 
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9376375Z Service restarts being deferred:
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9379126Z  systemctl restart hosted-compute-agent.service
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9379537Z 
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9381074Z No containers need to be restarted.
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9381398Z 
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9383560Z No user sessions are running outdated binaries.
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9384286Z 
+validate	Install Chromium and system dependencies	2026-11-12T11:27:00.9384842Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+validate	Install Chromium and system dependencies	2026-11-12T11:27:01.9367609Z Downloading Chrome for Testing 149.0.7827.55 (playwright chromium v1228) from https://cdn.playwright.dev/builds/cft/149.0.7827.55/linux64/chrome-linux64.zip
+validate	Install Chromium and system dependencies	2026-11-12T11:27:02.9984069Z |                                                                                |   0% of 177 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:03.1701762Z |■■■■■■■■                                                                        |  10% of 177 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:03.2605683Z |■■■■■■■■■■■■■■■■                                                                |  20% of 177 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:03.3259166Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 177 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:03.3934327Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 177 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:03.4579714Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 177 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:03.5133241Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 177 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:03.5756816Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 177 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:03.6285420Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 177 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:03.6871591Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 177 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:03.7385529Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 177 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:06.0695089Z Chrome for Testing 149.0.7827.55 (playwright chromium v1228) downloaded to /home/runner/.cache/ms-playwright/chromium-1228
+validate	Install Chromium and system dependencies	2026-11-12T11:27:06.0698037Z Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.1048475Z |                                                                                |   0% of 2.3 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.1452330Z |■■■■■■■■                                                                        |  10% of 2.3 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.1625875Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.3 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.1739512Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.3 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.1808120Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.3 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.1866640Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.3 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.1924021Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.3 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.1969533Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.3 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.2003502Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.3 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.2035382Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.2063339Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.2636142Z FFmpeg (playwright ffmpeg v1011) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1011
+validate	Install Chromium and system dependencies	2026-11-12T11:27:07.2638988Z Downloading Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) from https://cdn.playwright.dev/builds/cft/149.0.7827.55/linux64/chrome-headless-shell-linux64.zip
+validate	Install Chromium and system dependencies	2026-11-12T11:27:08.3181955Z |                                                                                |   0% of 114.2 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:08.4652178Z |■■■■■■■■                                                                        |  10% of 114.2 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:08.5215740Z |■■■■■■■■■■■■■■■■                                                                |  20% of 114.2 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:08.5667413Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 114.2 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:08.6118817Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 114.2 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:08.6504438Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 114.2 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:08.6915886Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 114.2 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:08.7283328Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 114.2 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:08.7644616Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 114.2 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:08.8087078Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 114.2 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:08.8416704Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 114.2 MiB
+validate	Install Chromium and system dependencies	2026-11-12T11:27:10.5629086Z Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1228
+validate	Build current client output	﻿2026-11-12T11:27:10.5937852Z ##[group]Run npm run build
+validate	Build current client output	2026-11-12T11:27:10.5938185Z [36;1mnpm run build[0m
+validate	Unit tests	﻿2026-11-12T11:27:10.7932763Z ##[group]Run npm run test:unit
+validate	Unit tests	2026-11-12T11:27:10.7933099Z [36;1mnpm run test:unit[0m
+validate	Unit tests	2026-11-12T11:27:11.6346371Z # tests 138
+validate	Unit tests	2026-11-12T11:27:11.6346871Z # pass 138
+validate	Unit tests	2026-11-12T11:27:11.6347106Z # fail 0
+validate	Integration tests	﻿2026-11-12T11:27:11.6509923Z ##[group]Run npm run test:integration
+validate	Integration tests	2026-11-12T11:27:11.6510591Z [36;1mnpm run test:integration[0m
+validate	Integration tests	2026-11-12T11:27:16.2788847Z # tests 66
+validate	Integration tests	2026-11-12T11:27:16.2789246Z # pass 66
+validate	Integration tests	2026-11-12T11:27:16.2789435Z # fail 0
+validate	Simulation tests	﻿2026-11-12T11:27:16.2945621Z ##[group]Run npm run test:sim
+validate	Simulation tests	2026-11-12T11:27:16.2945962Z [36;1mnpm run test:sim[0m
+validate	Simulation tests	2026-11-12T11:27:31.2099779Z # tests 9
+validate	Simulation tests	2026-11-12T11:27:31.2100667Z # pass 9
+validate	Simulation tests	2026-11-12T11:27:31.2100956Z # fail 0
+validate	End-to-end tests	﻿2026-11-12T11:27:31.2282428Z ##[group]Run npm run test:e2e
+validate	End-to-end tests	2026-11-12T11:27:31.2282793Z [36;1mnpm run test:e2e[0m
+validate	End-to-end tests	2026-11-12T11:29:04.8271852Z   97 passed (1.5m)
+validate	Accessibility tests	﻿2026-11-12T11:29:05.0180998Z ##[group]Run npm run test:a11y
+validate	Accessibility tests	2026-11-12T11:29:05.0181346Z [36;1mnpm run test:a11y[0m
+validate	Accessibility tests	2026-11-12T11:29:36.7506060Z   14 passed (31.1s)
+validate	Complete job	2026-11-12T11:29:37.2710306Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

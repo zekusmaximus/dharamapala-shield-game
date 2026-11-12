@@ -19,6 +19,7 @@ export function createEnemy(
   const maxHealth = definition.baseHP * hpMultiplier * difficulty.hpMult;
   const position = pointAtPathDistance(0);
   const shieldMax =
+    definition.brace ? Math.round(maxHealth * definition.brace.healthRatio) :
     definition.abilities?.shield ? Math.round(maxHealth * definition.abilities.shield.healthRatio) : 0;
   return {
     id,
@@ -41,7 +42,12 @@ export function createEnemy(
     phase: 0,
     firedPhases: [],
     empUntilMs: 0,
-    shield: shieldMax,
+    ...(definition.brace ? { brace: {
+      activatesAtMs: spawnedAtMs + definition.brace.windupMs,
+      expiresAtMs: spawnedAtMs + definition.brace.windupMs + definition.brace.durationMs,
+      activated: false
+    } } : {}),
+    shield: definition.brace ? 0 : shieldMax,
     shieldMax,
     shieldCooldownUntilMs: 0,
     shieldRegenPerSec: shieldMax * (definition.abilities?.shield?.regenRatioPerSec || 0)

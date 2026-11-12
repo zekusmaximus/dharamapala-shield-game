@@ -75,3 +75,22 @@ export async function specializationFixture(page, type = 'firewall', funded = tr
     gameApplication.ui.update(gameApplication.session);
   });
 }
+
+// Skipped-wave presentation fixture, no funding or earned-run combat claim.
+export async function braceFixture(page, speed=1) {
+  await page.evaluate(speed=>{
+    const app=gameApplication,s=app.session;s.tick=()=>{};
+    s.state.waveNumber=3;s.setWaveSpeed(speed);app.ui.update(s);
+  },speed);
+}
+export async function braceFrame(page, phase) {
+  return page.evaluate(phase=>{
+    const app=gameApplication,s=app.session;
+    if(s.state.phase==='BUILDING'){s.startWave();s.step(1000/60);}
+    const e=[...s.state.enemies.values()].find(e=>e.brace);
+    const target=phase==='warning'?e.brace.activatesAtMs-1000:phase==='active'?e.brace.activatesAtMs:e.brace.expiresAtMs;
+    while(s.state.gameTimeMs<target)s.step(1000/60);
+    app.ui.update(s);app.renderer.render(s);
+    return {time:s.state.gameTimeMs,brace:structuredClone(e.brace),shield:e.shield};
+  },phase);
+}

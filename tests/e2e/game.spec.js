@@ -945,7 +945,7 @@ test('pointer inspects live wave enemies and towers without building or selling'
   expect(await page.evaluate(() => gameApplication.session.state.defenses.size)).toBe(1);
 });
 
-test('boss enemy details state implemented abilities without unused phase metadata', async ({ page }) => {
+test('enemy details state implemented abilities without unused phase metadata', async ({ page }) => {
   await openFresh(page);
   await enterBuildPhase(page);
   await page.evaluate(() => {
@@ -956,8 +956,10 @@ test('boss enemy details state implemented abilities without unused phase metada
   await expect(page.locator('#enemy-inspector-content')).toContainText('Armor: 5');
   await expect(page.locator('#enemy-inspector-content')).toContainText('Physical: ×0.90');
   await expect(page.locator('#enemy-inspector-content')).toContainText('Shock: ×1.10');
-  await expect(page.locator('#enemy-inspector-content')).toContainText('No active special ability');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('Shield brace: warns for 3 s');
   await expect(page.locator('#enemy-inspector-content')).not.toContainText('persistent');
+  await page.locator('[data-enemy-type="scriptKiddie"]').click();
+  await expect(page.locator('#enemy-inspector-content')).toContainText('No active special ability');
   await page.evaluate(() => {
     gameApplication.session.state.waveNumber = 5;
     gameApplication.ui.update(gameApplication.session);
@@ -1247,7 +1249,7 @@ for (const viewport of [{width:360,height:640},{width:390,height:844},{width:640
       if(await page.locator('#resume-button').isVisible())await page.locator('#resume-button').click();
       await clickWorld(page,210,210);
       await expect(content).toContainText(`Chosen: ${label}`);
-      expect(await page.evaluate(()=>gameApplication.session.toSnapshot().schemaVersion)).toBe(3);
+      expect(await page.evaluate(()=>gameApplication.session.toSnapshot().schemaVersion)).toBe(4);
       await page.locator('#start-wave-button').click();
       await expect(page.locator('#upgrade-button')).toBeDisabled();
     });
@@ -1302,5 +1304,38 @@ test('retired-economy v3 bytes export unchanged and reset preserves preferences'
   const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();expect(await readFile(await(await download).path(),'utf8')).toBe(raw);
   await page.getByRole('button',{name:'Reset saved run'}).click();await page.getByRole('button',{name:'New game',exact:true}).click();
   const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')));
-  expect(saved.schemaVersion).toBe(3);expect(saved.balanceVersion).toBe('1.3.0');expect(saved.state.resources.anonymity).toBe(0);expect(saved.state.settings).toMatchObject({showRanges:false,reducedMotion:true});
+  expect(saved.schemaVersion).toBe(4);expect(saved.balanceVersion).toBe('1.4.0');expect(saved.state.resources.anonymity).toBe(0);expect(saved.state.settings).toMatchObject({showRanges:false,reducedMotion:true});
+});
+
+for(const speed of [1,2])test(`Agent brace cue/text, pause/reload and explicit v4 state at ${speed}×`,async({page})=>{
+  const {braceFixture,braceFrame}=await import('./helpers.js');
+  await openFresh(page,{width:360,height:640});await enterBuildPhase(page);await braceFixture(page,speed);
+  await tabTo(page,page.locator('[data-enemy-type="federalAgent"]'));await page.keyboard.press('Enter');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('warns for 3 s');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('Kill before activation');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('cover the route after expiry');
+  for(const phase of ['warning','active','spent']) {
+    const frame=await braceFrame(page,phase);
+    const expected=phase==='warning'?'Shield brace in':phase==='active'?'expires in':'Shield brace spent';
+    await expect(page.locator('#combat-state')).toContainText(expected);
+    await tabTo(page,page.locator('#combat-feedback'));await expect(page.locator('#combat-feedback')).toBeFocused();
+    await page.locator('#pause-button').click();
+    expect(await page.evaluate(()=>gameApplication.session.state.gameTimeMs)).toBe(frame.time);
+    await page.reload();await page.getByRole('button',{name:'Continue',exact:true}).click();
+    await expect(page.locator('#combat-state')).toContainText(expected);
+    const actual=await page.evaluate(()=>{
+      const s=gameApplication.session;s.tick=()=>{};
+      const e=[...s.state.enemies.values()].find(e=>e.brace);return {time:s.state.gameTimeMs,brace:e.brace,shield:e.shield,speed:s.state.waveSpeed};
+    });expect(actual).toEqual({...frame,speed});
+    await page.locator('#resume-button').click();
+  }
+  expect(await page.locator('#combat-feedback').getAttribute('aria-live')).toBeNull();
+});
+test('M3.3 v3 recovery exports exact bytes before explicit reset and creates v4 with preferences',async({page})=>{
+  const {readFile}=await import('node:fs/promises');const raw=await readFile('design/reviews/2026-11-12-m3.4/old-1.3.0-v3-save.json','utf8');
+  await openFresh(page);await page.evaluate(raw=>{localStorage.setItem('dharmapala-shield/save/v2',raw);localStorage.setItem('dharmapala-shield/preferences/v1',JSON.stringify({tutorialCompleted:true,showRanges:false,reducedMotion:true}));},raw);await page.reload();
+  await expect(page.locator('#save-recovery')).toBeVisible();expect(await page.evaluate(()=>localStorage.getItem('dharmapala-shield/save/v2'))).toBe(raw);
+  const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();expect(await readFile(await(await download).path(),'utf8')).toBe(raw);
+  await page.getByRole('button',{name:'Reset saved run'}).click();await page.getByRole('button',{name:'New game',exact:true}).click();
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({schemaVersion:4,balanceVersion:'1.4.0',state:{settings:{showRanges:false,reducedMotion:true}}});
 });

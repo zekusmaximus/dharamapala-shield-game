@@ -123,7 +123,7 @@ export class GameSession {
       throw new Error(`Unknown difficulty: ${difficulty}`);
     }
     return {
-      schemaVersion: SCHEMA_VERSION,
+      schemaVersion: this.balance.version === '1.4.0' ? 4 : SCHEMA_VERSION,
       balanceVersion: this.balance.version,
       sessionId: createSessionId(seed),
       seed,
@@ -444,6 +444,7 @@ export class GameSession {
     );
     if (this.state.phase !== PHASES.WAVE) return false;
     this.state.wave.spawnCursor = this.scheduler.cursor;
+    this.systems.enemy.updateBehaviors(this);
     this.systems.defense.update(this, deltaMs);
     if (this.state.phase !== PHASES.WAVE) return false;
     this.systems.combat.update(this, deltaMs);

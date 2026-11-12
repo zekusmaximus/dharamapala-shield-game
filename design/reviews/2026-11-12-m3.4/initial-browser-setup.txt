@@ -1,0 +1,86 @@
+[WebServer] (node:1648) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:1660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [e2e] › tests/e2e/game.spec.js:1308:26 › Agent brace cue/text, pause/reload and explicit v4 state at 1× (2ms)
+(node:1672) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [e2e] › tests/e2e/game.spec.js:1308:26 › Agent brace cue/text, pause/reload and explicit v4 state at 2× (2ms)
+(node:1684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [e2e] › tests/e2e/game.spec.js:1332:1 › M3.3 v3 recovery exports exact bytes before explicit reset and creates v4 with preferences (3ms)
+
+
+  1) [e2e] › tests/e2e/game.spec.js:1308:26 › Agent brace cue/text, pause/reload and explicit v4 state at 1× 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-Agent-brace-cue-text--5fa3a-and-explicit-v4-state-at-1×-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-Agent-brace-cue-text--5fa3a-and-explicit-v4-state-at-1×-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-Agent-brace-cue-text--5fa3a-and-explicit-v4-state-at-1×-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [e2e] › tests/e2e/game.spec.js:1308:26 › Agent brace cue/text, pause/reload and explicit v4 state at 2× 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-Agent-brace-cue-text--aec62-and-explicit-v4-state-at-2×-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-Agent-brace-cue-text--aec62-and-explicit-v4-state-at-2×-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-Agent-brace-cue-text--aec62-and-explicit-v4-state-at-2×-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [e2e] › tests/e2e/game.spec.js:1332:1 › M3.3 v3 recovery exports exact bytes before explicit reset and creates v4 with preferences 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-M3-3-v3-recovery-expo-f9eee-creates-v4-with-preferences-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-M3-3-v3-recovery-expo-f9eee-creates-v4-with-preferences-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-M3-3-v3-recovery-expo-f9eee-creates-v4-with-preferences-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [e2e] › tests/e2e/game.spec.js:1308:26 › Agent brace cue/text, pause/reload and explicit v4 state at 1× 
+    [e2e] › tests/e2e/game.spec.js:1308:26 › Agent brace cue/text, pause/reload and explicit v4 state at 2× 
+    [e2e] › tests/e2e/game.spec.js:1332:1 › M3.3 v3 recovery exports exact bytes before explicit reset and creates v4 with preferences 

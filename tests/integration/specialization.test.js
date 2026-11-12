@@ -14,7 +14,7 @@ for(const plan of ['focus','coverage','sustain','reach']) for(const speed of [1,
   for(let i=0;i<180;i++)s.tick(1000/60/speed);
   assert.ok(s.state.projectiles.size>0 || Object.values(s.state.reports.active.towers).some(t=>t.health>0));
   s.pause();const frozen=data(s);s.tick(10000);assert.deepEqual(data(s),frozen);
-  const snapshot=JSON.parse(JSON.stringify(s.toSnapshot()));assert.equal(snapshot.schemaVersion,3);
+  const snapshot=JSON.parse(JSON.stringify(s.toSnapshot()));assert.equal(snapshot.schemaVersion,4);
   const restored=GameSession.fromSnapshot(balance,snapshot);
   s.resume();restored.resume();
   let frames=0;

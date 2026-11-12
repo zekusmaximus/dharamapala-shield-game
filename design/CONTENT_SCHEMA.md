@@ -166,3 +166,69 @@ behavior remains tested. Schema v3 is unchanged because no serialized shape was
 changed; balance 1.3.0 explicitly versions the changed economy meaning.
 
 M3.2 specialization retention remains provisional pending actual observations.
+
+## M3.4 Agent shield brace (balance 1.4.0, schema v4)
+
+Only `enemies.federalAgent.brace` is added: `{windupMs:3000, durationMs:4000,
+healthRatio:0.6}`. Exactly these fields are accepted; windup/duration must be
+finite 1000–10000 ms, ratio positive and at most 1. No other regular enemy or
+boss may have brace. Current content requires it. No legacy `special` labels
+return. All 20 wave definitions, counts, offsets, intervals, HP multipliers and
+rewards are byte-unchanged; waves 3–4 already introduce Agents. Existing Raid
+reinforcements and later Agent waves inherit the same behavior without schedule
+redesign. Tower stats/prices/branches, armor/resists/speed/HP/bounties, income,
+aura/passive and boss rules are unchanged.
+
+An Agent targets **itself only** (no radius, escort aura, targeting override or
+stacking). On spawn its shield capacity is `round(maxHealth * healthRatio)`,
+including wave/difficulty HP multipliers, but its shield starts at zero. Its
+persisted `brace` stores `activatesAtMs = spawnedAtMs + windupMs`,
+`expiresAtMs = activatesAtMs + durationMs` and boolean `activated:false`.
+At the first fixed tick at/after activation, it gains that shield **once**.
+At/after expiry any remainder becomes zero. If a large direct step skips the
+whole window, no shield is granted. Behavior transitions run after scheduled
+spawns and before tower/projectile combat; hits on the activation tick encounter
+the shield, hits on the expiry tick encounter health. Floating point clock sums
+can move a deadline to the next eligible 60 Hz tick; time is never rounded early.
+Movement/slow does not delay either absolute deadline.
+
+Existing targeting/range, collisions, chain and AoE rules remain. Each impact
+applies vulnerability then resistance/armor, removes shield first and overflows
+to health. Every tower can damage it; slow/vulnerability apply through shield
+with their existing maximum-strength/maximum-expiry rules. Brace does not stack,
+refill after breaking, regenerate, grant immunity or protect neighbors. Titan
+alone uses the hit-free regeneration cooldown. Reports count actually absorbed
+shield damage; granting or expiring unused capacity earns no damage credit.
+
+The three-second warning is an early-damage window; sustained fire can break the
+finite shield during its four-second lifetime; later coverage can fight after
+expiry. Building remains between waves, so these are **preparation responses**,
+not promises of in-wave selling, retarget controls or new purchases. Agent roster
+inspection gives the exact effect and alternatives before Start Wave. Static
+`!` warning, `S` shield, `×` broken and `✓` spent glyphs (with a visible legend),
+a dashed warning ring and solid active shield ring/bar have
+per-Agent semantic Combat status equivalents, including countdowns/capacity.
+No animation/color-only cue is needed; both motion settings share the labels.
+The text uses the existing non-live, keyboard-focusable status section; it is
+not a claim of tested screen-reader usability or guaranteed nonoverlapping badges.
+
+Death/leak removes the entity and its pending brace; there is no independent
+callback to fire later. Terminal phases freeze retained entities for the final
+snapshot and all future ticks/behavior updates are inert. Restart/menu disposal
+clears them. Pause freezes simulated time; 2× uses the same fixed ticks/deadlines
+in half the wall time. JSON continuation preserves deadlines, activation and
+remaining shield. Validation checks exact deadlines from spawn/content, phase /
+activation consistency, zero shield outside the active window, capacity/regen
+against content, and no foreign brace state, before session replacement.
+
+New wrapper/state snapshots explicitly use **schema v4** and balance **1.4.0**.
+The storage discovery slot stays `dharmapala-shield/save/v2`; independent
+preferences keep their existing keys/shape. No v3 1.3.0 (or prior) run is silently
+converted, including building and terminal saves. Exact-version/schema rejection
+retains original bytes, blocks writes, offers export and requires explicit Reset
+saved run. Preferences and the latest recovery archive survive reset; export
+first for durable recovery. Pre-v2 runs still use that same explicit recovery
+under the retired economy. Continue old runs only in a matching old build.
+Historical-content tooling remains pinned to historical definitions; it does
+not bypass the current-content recovery gate. Specialization retention and the
+broader M3 human gate remain provisional/open.

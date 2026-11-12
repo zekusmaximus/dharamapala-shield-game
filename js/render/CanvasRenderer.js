@@ -200,6 +200,19 @@ export class CanvasRenderer {
         this.drawEnemyFallback(context, enemy, definition);
       }
 
+      if (feedback.brace) {
+        // Compact glyphs remain distinct in the existing dense escort packets.
+        this.drawBadge(context, enemy.x, enemy.y - enemy.radius - 36, feedback.brace.glyph, '#ffe66d');
+        if (feedback.brace.marker === 'BRACE IN') {
+          context.strokeStyle = '#ffe66d';
+          context.lineWidth = 2;
+          context.setLineDash([3, 3]);
+          context.beginPath();
+          context.arc(enemy.x, enemy.y, enemy.radius + 7, 0, Math.PI * 2);
+          context.stroke();
+          context.setLineDash([]);
+        }
+      }
       if (feedback.statuses.length) {
         this.drawBadge(context, enemy.x, enemy.y + enemy.radius + 18,
           feedback.statuses.map((status) => status.marker === '↓' ? '↓ SLOW' : '◇ VULN').join(' '));

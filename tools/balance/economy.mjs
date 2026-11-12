@@ -107,7 +107,7 @@ export function earnedMarginals(balance) {
   return rows;
 }
 export async function buildEconomyReport() {
-  const old=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.3/baseline-1.2.0.json',import.meta.url))),current=await loadBalance(),runs=[];
+  const old=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.3/baseline-1.2.0.json',import.meta.url))),current=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.4/baseline-1.3.0.json',import.meta.url))),runs=[];
   for(const [variant,balance] of [['m3.2',old],['m3.3',current]])for(const difficulty of ['Easy','Normal','Hard'])for(const plan of Object.keys(ECONOMY_PLANS)) {
     const run=runEconomy(balance,plan,difficulty);if(JSON.stringify(run)!==JSON.stringify(runEconomy(balance,plan,difficulty)))throw new Error('Repeat mismatch');runs.push({variant,...run});
   }
