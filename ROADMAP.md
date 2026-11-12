@@ -499,6 +499,14 @@ explanations or replay intentions, so M3.5, specialization retention and the
 broader M3 gate remain open. The 4–7-minute slice and 60–90-second first-choice
 targets remain provisional observation targets.
 
+**M3.5 follow-up (2026-11-12; gate still open):** Discovered the existing
+preparation in open PR #29 and continued it. A
+[protocol addendum and blank enrollment/gate worksheets](design/reviews/2026-11-12-m3.5-follow-up/README.md)
+clarify unaided scoring, next adjustments after wins, within-pair specialization
+evidence and returning-player ceiling effects. No real observations were found
+in the checked repository sources or provided here. The required five new-player
+sessions and smaller returning group remain outstanding; no gameplay changed.
+
 **Acceptance gate:** at least two materially different builds can beat the slice.
 Several waves reward a change in placement, spending, or specialization; an
 unchanging policy does not earn the best result everywhere. In the pilot, at
