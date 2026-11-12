@@ -138,7 +138,7 @@ function activeDamageTypes(balance) {
     .map((stats) => stats.damageType))];
 }
 
-/** Describe current threats without advertising unimplemented `special` metadata. */
+/** Describe current threats from implemented combat rules. */
 export function getEnemyInspection(balance, type) {
   const definition = getEnemyDefinition(balance, type);
   const resistances = Object.fromEntries(activeDamageTypes(balance).map((damageType) => [

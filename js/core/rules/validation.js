@@ -17,28 +17,126 @@ function stats(value) {
   assert(value && ['kills', 'leaks', 'bossesKilled', 'wavesCompleted'].every(k => integer(value[k])), 'Invalid statistics');
   assert(value.bossesKilled <= value.kills, 'Invalid boss kills');
 }
+function contentKeys(value, path, required, optional = []) {
+  assert(value && typeof value === 'object' && !Array.isArray(value), `Invalid ${path}`);
+  for (const key of required) assert(Object.hasOwn(value, key), `Missing ${path}.${key}`);
+  for (const key of Object.keys(value)) {
+    assert(required.includes(key) || optional.includes(key), `Unused or unknown content field: ${path}.${key}`);
+  }
+}
+function contentNumber(value, path, min = 0, max = Infinity) {
+  assert(number(value, min, max), `Invalid ${path}`);
+}
+function contentInteger(value, path, min = 0) {
+  assert(integer(value, min), `Invalid ${path}`);
+}
+function contentText(value, path) {
+  assert(typeof value === 'string' && value.trim().length > 0, `Invalid ${path}`);
+}
+function contentResources(value, path) {
+  contentKeys(value, path, ['dharma', 'bandwidth', 'anonymity']);
+  for (const [key, amount] of Object.entries(value)) contentInteger(amount, `${path}.${key}`);
+}
 export function validateBalance(b) {
-  assert(b && typeof b.version === 'string' && b.version.length > 0, 'Balance version required');
+  contentKeys(b, 'balance', ['version', 'towers', 'enemies', 'bosses', 'waves', 'economy', 'difficulty', 'upgrades', 'combat', 'migration']);
+  contentText(b.version, 'balance.version');
+  contentKeys(b.towers, 'balance.towers', ACTIVE_TOWER_TYPES);
   for (const type of ACTIVE_TOWER_TYPES) {
-    const t = b.towers?.[type];
-    assert(t, `Missing active tower: ${type}`);
-    resources(t.cost);
-    fields(t, ['baseDamage', 'ratePerSec', 'projectileSpeed', 'aoeRadius']);
-    assert(number(t.range, Number.MIN_VALUE) && number(t.critChance, 0, 1) && number(t.critMult, 1), 'Invalid tower stats');
-    assert(type === 'distributor' || (t.ratePerSec > 0 && t.projectileSpeed > 0 && ['physical', 'fire', 'shock'].includes(t.damageType)), 'Invalid attacking tower');
-    for (const [key, value] of Object.entries(t.status || {})) assert(number(value, 0, key.endsWith('Pct') ? 1 : Infinity), 'Invalid tower status');
-    if (t.support) assert(number(t.support.fireRatePct, 0, 1), 'Invalid support');
+    const t = b.towers[type], path = `balance.towers.${type}`;
+    contentKeys(t, path, ['name', 'description', 'icon', 'cost', 'baseDamage', 'ratePerSec', 'projectileSpeed', 'range', 'aoeRadius', 'critChance', 'critMult', 'status', 'color', ...(type === 'distributor' ? ['support'] : ['damageType'])]);
+    for (const key of ['name', 'description', 'icon']) contentText(t[key], `${path}.${key}`);
+    assert(/^#[0-9a-fA-F]{6}$/.test(t.color), `Invalid ${path}.color`);
+    contentResources(t.cost, `${path}.cost`);
+    for (const key of ['baseDamage', 'ratePerSec', 'projectileSpeed', 'aoeRadius']) contentNumber(t[key], `${path}.${key}`);
+    contentNumber(t.range, `${path}.range`, Number.MIN_VALUE);
+    contentNumber(t.critChance, `${path}.critChance`, 0, 1);
+    contentNumber(t.critMult, `${path}.critMult`, 1);
+    if (type === 'distributor') {
+      assert(t.baseDamage === 0 && t.ratePerSec === 0 && t.projectileSpeed === 0, 'Distributor must remain non-attacking support');
+      contentKeys(t.support, `${path}.support`, ['fireRatePct', 'fireRatePctPerLevel']);
+      contentNumber(t.support.fireRatePct, `${path}.support.fireRatePct`, 0, 1);
+      contentNumber(t.support.fireRatePctPerLevel, `${path}.support.fireRatePctPerLevel`, 0, 1);
+    } else {
+      assert(t.ratePerSec > 0 && t.projectileSpeed > 0 && ['physical', 'fire', 'shock'].includes(t.damageType), `Invalid ${path}.damageType or attack rate`);
+    }
+    contentKeys(t.status, `${path}.status`, ['slowPct', 'slowDuration'], ['vulnerabilityPct', 'vulnerabilityDuration']);
+    contentNumber(t.status.slowPct, `${path}.status.slowPct`, 0, 1);
+    contentNumber(t.status.slowDuration, `${path}.status.slowDuration`);
+    assert((t.status.vulnerabilityPct === undefined) === (t.status.vulnerabilityDuration === undefined), `Incomplete ${path}.status.vulnerability`);
+    if (t.status.vulnerabilityPct !== undefined) {
+      contentNumber(t.status.vulnerabilityPct, `${path}.status.vulnerabilityPct`, 0, 1);
+      contentNumber(t.status.vulnerabilityDuration, `${path}.status.vulnerabilityDuration`);
+    }
   }
-  assert(b.enemies && b.bosses && !Object.keys(b.enemies).some(k => k in b.bosses), 'Invalid enemy IDs');
-  for (const e of Object.values({ ...b.enemies, ...b.bosses })) {
-    assert(number(e.baseHP, Number.MIN_VALUE) && number(e.moveSpeed, Number.MIN_VALUE) && number(e.size, Number.MIN_VALUE), 'Invalid enemy stats');
-    fields(e, ['armor']); fields(e.resists, ['physical', 'fire', 'shock']); resources(e.bounty);
+  assert(b.enemies && typeof b.enemies === 'object' && !Array.isArray(b.enemies), 'Invalid balance.enemies');
+  contentKeys(b.enemies, 'balance.enemies', Object.keys(b.enemies));
+  assert(Object.keys(b.enemies).length > 0, 'Regular enemies required');
+  assert(Object.keys(b.enemies).every((id) => /^[a-z][A-Za-z0-9]*$/.test(id)), 'Invalid regular enemy ID');
+  contentKeys(b.bosses, 'balance.bosses', ['raidTeam', 'megaCorpTitan']);
+  assert(!Object.keys(b.enemies).some((key) => Object.hasOwn(b.bosses, key)), 'Overlapping enemy IDs');
+  for (const [id, e] of Object.entries({ ...b.enemies, ...b.bosses })) {
+    const path = `${Object.hasOwn(b.bosses, id) ? 'balance.bosses' : 'balance.enemies'}.${id}`;
+    contentKeys(e, path, ['name', 'description', 'icon', 'baseHP', 'armor', 'resists', 'moveSpeed', 'bounty', 'color', 'size', ...(Object.hasOwn(b.bosses, id) ? ['abilities'] : [])], ['leakDamage']);
+    for (const key of ['name', 'description', 'icon']) contentText(e[key], `${path}.${key}`);
+    assert(/^#[0-9a-fA-F]{6}$/.test(e.color), `Invalid ${path}.color`);
+    for (const key of ['baseHP', 'moveSpeed', 'size']) contentNumber(e[key], `${path}.${key}`, Number.MIN_VALUE);
+    contentNumber(e.armor, `${path}.armor`);
+    if (e.leakDamage !== undefined) contentInteger(e.leakDamage, `${path}.leakDamage`, 1);
+    contentKeys(e.resists, `${path}.resists`, ['physical', 'fire', 'shock']);
+    for (const [key, value] of Object.entries(e.resists)) contentNumber(value, `${path}.resists.${key}`);
+    contentResources(e.bounty, `${path}.bounty`);
   }
-  for (const name of ['Easy', 'Normal', 'Hard']) fields(b.difficulty?.[name], ['hpMult', 'speedMult', 'bountyMult', 'damageToPlayerMult'], Number.MIN_VALUE);
-  fields(b.economy, ['startCash', 'startBandwidth', 'startAnonymity', 'killIncomeMult', 'waveClearBonus', 'waveClearBonusPerWave', 'distributorWaveBonus', 'distributorWaveBonusCap']);
-  assert(integer(b.economy.initialLives, 1) && number(b.economy.sellRefundPct, 0, 1) && number(b.economy.distributorAuraCap, 0, 1), 'Invalid economy');
-  fields(b.upgrades, ['costMultiplierPerLevel', 'damagePerLevel', 'rangePerLevel', 'fireRatePerLevel']);
-  assert(b.upgrades.costMultiplierPerLevel > 0 && integer(b.upgrades.maxLevel, 1, 100), 'Invalid upgrades');
+  const raid = b.bosses.raidTeam.abilities, titan = b.bosses.megaCorpTitan.abilities;
+  contentKeys(raid, 'balance.bosses.raidTeam.abilities', ['emp', 'reinforcements']);
+  contentKeys(raid.emp, 'balance.bosses.raidTeam.abilities.emp', ['thresholds', 'radius', 'durationMs']);
+  assert(Array.isArray(raid.emp.thresholds) && raid.emp.thresholds.length === 2, 'Two EMP thresholds required');
+  raid.emp.thresholds.forEach((threshold, index) => {
+    contentNumber(threshold, `EMP threshold ${index}`, Number.MIN_VALUE, 1);
+    assert(index === 0 || threshold < raid.emp.thresholds[index - 1], 'EMP thresholds must descend');
+  });
+  contentNumber(raid.emp.radius, 'EMP radius', Number.MIN_VALUE);
+  contentNumber(raid.emp.durationMs, 'EMP durationMs', Number.MIN_VALUE);
+  contentKeys(raid.reinforcements, 'balance.bosses.raidTeam.abilities.reinforcements', ['byPhase', 'intervalMs', 'hpMultiplierPerWave']);
+  assert(Array.isArray(raid.reinforcements.byPhase) && raid.reinforcements.byPhase.length === raid.emp.thresholds.length && raid.reinforcements.byPhase.every((phase) => Array.isArray(phase) && phase.length > 0 && phase.every((id) => Object.hasOwn(b.enemies, id))), 'Invalid reinforcement phases');
+  contentNumber(raid.reinforcements.intervalMs, 'Reinforcement intervalMs');
+  contentNumber(raid.reinforcements.hpMultiplierPerWave, 'Reinforcement hpMultiplierPerWave');
+  contentKeys(titan, 'balance.bosses.megaCorpTitan.abilities', ['shield']);
+  contentKeys(titan.shield, 'balance.bosses.megaCorpTitan.abilities.shield', ['healthRatio', 'regenRatioPerSec', 'recoveryDelayMs']);
+  contentNumber(titan.shield.healthRatio, 'Titan shield healthRatio', Number.MIN_VALUE);
+  contentNumber(titan.shield.regenRatioPerSec, 'Titan shield regenRatioPerSec');
+  contentNumber(titan.shield.recoveryDelayMs, 'Titan shield recoveryDelayMs', Number.MIN_VALUE);
+  contentKeys(b.difficulty, 'balance.difficulty', ['Easy', 'Normal', 'Hard']);
+  for (const name of ['Easy', 'Normal', 'Hard']) {
+    const path = `balance.difficulty.${name}`;
+    contentKeys(b.difficulty[name], path, ['hpMult', 'speedMult', 'bountyMult', 'damageToPlayerMult']);
+    for (const key of ['hpMult', 'speedMult', 'bountyMult', 'damageToPlayerMult']) contentNumber(b.difficulty[name][key], `${path}.${key}`, Number.MIN_VALUE);
+  }
+  contentKeys(b.economy, 'balance.economy', ['startCash', 'startBandwidth', 'startAnonymity', 'killIncomeMult', 'waveClearBonus', 'waveClearBonusPerWave', 'initialLives', 'sellRefundPct', 'distributorWaveBonus', 'distributorWaveBonusCap', 'distributorAuraCap']);
+  for (const key of ['startCash', 'startBandwidth', 'startAnonymity', 'waveClearBonus', 'waveClearBonusPerWave', 'distributorWaveBonus', 'distributorWaveBonusCap']) contentInteger(b.economy[key], `balance.economy.${key}`);
+  contentInteger(b.economy.initialLives, 'balance.economy.initialLives', 1);
+  contentNumber(b.economy.killIncomeMult, 'balance.economy.killIncomeMult');
+  contentNumber(b.economy.sellRefundPct, 'balance.economy.sellRefundPct', 0, 1);
+  contentNumber(b.economy.distributorAuraCap, 'balance.economy.distributorAuraCap', 0, 1);
+  assert(b.towers.distributor.support.fireRatePct <= b.economy.distributorAuraCap, 'Base Distributor aura exceeds cap');
+  contentKeys(b.upgrades, 'balance.upgrades', ['costMultiplierPerLevel', 'damagePerLevel', 'rangePerLevel', 'fireRatePerLevel', 'maxLevel']);
+  for (const key of ['costMultiplierPerLevel', 'damagePerLevel', 'rangePerLevel', 'fireRatePerLevel']) contentNumber(b.upgrades[key], `balance.upgrades.${key}`, key === 'costMultiplierPerLevel' ? Number.MIN_VALUE : 0);
+  contentInteger(b.upgrades.maxLevel, 'balance.upgrades.maxLevel', 1);
+  assert(b.upgrades.maxLevel <= 100, 'Invalid maxLevel');
+  contentKeys(b.combat, 'balance.combat', ['status', 'chain']);
+  contentKeys(b.combat.status, 'balance.combat.status', ['durationPerLevel', 'slowPctPerLevel', 'slowTowerCap', 'slowSpeedCap', 'vulnerabilityPctPerLevel', 'vulnerabilityTowerCap']);
+  for (const [key, value] of Object.entries(b.combat.status)) contentNumber(value, `balance.combat.status.${key}`, key.endsWith('Cap') ? Number.MIN_VALUE : 0, key.endsWith('Cap') ? 1 : Infinity);
+  assert(b.combat.status.slowTowerCap <= b.combat.status.slowSpeedCap, 'Tower slow cap exceeds runtime speed cap');
+  for (const type of ACTIVE_TOWER_TYPES) {
+    const status = b.towers[type].status;
+    assert(status.slowPct <= b.combat.status.slowTowerCap && (status.slowPct > 0) === (status.slowDuration > 0), `Inactive or capped ${type} slow`);
+    assert((status.vulnerabilityPct || 0) <= b.combat.status.vulnerabilityTowerCap && (Boolean(status.vulnerabilityPct) === Boolean(status.vulnerabilityDuration)), `Inactive or capped ${type} vulnerability`);
+  }
+  contentKeys(b.combat.chain, 'balance.combat.chain', ['unlockLevel', 'targets', 'radius', 'damageMultiplier']);
+  contentInteger(b.combat.chain.unlockLevel, 'balance.combat.chain.unlockLevel', 1);
+  assert(b.combat.chain.unlockLevel <= b.upgrades.maxLevel, 'Chain unlock exceeds maxLevel');
+  contentInteger(b.combat.chain.targets, 'balance.combat.chain.targets', 1);
+  contentNumber(b.combat.chain.radius, 'balance.combat.chain.radius', Number.MIN_VALUE);
+  contentNumber(b.combat.chain.damageMultiplier, 'balance.combat.chain.damageMultiplier', Number.MIN_VALUE);
   for (const type of ACTIVE_TOWER_TYPES) for (let level=1; level<=b.upgrades.maxLevel; level++) {
     const derived = getTowerStats(b,type,level);
     for (const [key,value] of Object.entries(derived)) if (typeof value === 'number' && key !== 'cooldownMs') assert(number(value), 'Nonfinite derived tower stats');
@@ -46,17 +144,31 @@ export function validateBalance(b) {
   }
   assert(Array.isArray(b.waves) && b.waves.length > 0, 'Waves required');
   b.waves.forEach((w, i) => {
-    assert(w.wave === i + 1 && Array.isArray(w.enemies) && w.enemies.length > 0 && number(w.rewardBonus), 'Invalid wave');
-    for (const g of w.enemies) assert((b.enemies[g.id] || b.bosses[g.id]) && integer(g.count, 1) && number(g.interval) && number(g.hpMult, Number.MIN_VALUE), 'Invalid spawn group');
+    contentKeys(w, `balance.waves[${i}]`, ['wave', 'enemies', 'rewardBonus']);
+    assert(w.wave === i + 1 && Array.isArray(w.enemies) && w.enemies.length > 0, `Invalid wave ${i + 1}`);
+    contentInteger(w.rewardBonus, `balance.waves[${i}].rewardBonus`);
+    for (const [j, g] of w.enemies.entries()) {
+      contentKeys(g, `balance.waves[${i}].enemies[${j}]`, ['id', 'count', 'interval', 'hpMult']);
+      assert(Object.hasOwn(b.enemies, g.id) || Object.hasOwn(b.bosses, g.id), 'Unknown wave enemy');
+      contentInteger(g.count, 'Spawn count', 1);
+      contentNumber(g.interval, 'Spawn interval');
+      contentNumber(g.hpMult, 'Spawn hpMult', Number.MIN_VALUE);
+    }
   });
-  for (const refund of Object.values(b.migration?.deferredTowerRefunds || {})) resources(refund);
+  contentKeys(b.migration, 'balance.migration', ['deferredTowerRefunds']);
+  assert(b.migration.deferredTowerRefunds && typeof b.migration.deferredTowerRefunds === 'object' && !Array.isArray(b.migration.deferredTowerRefunds), 'Invalid legacy refunds');
+  contentKeys(b.migration.deferredTowerRefunds, 'balance.migration.deferredTowerRefunds', Object.keys(b.migration.deferredTowerRefunds));
+  for (const [type, refund] of Object.entries(b.migration.deferredTowerRefunds)) contentResources(refund, `balance.migration.deferredTowerRefunds.${type}`);
   return b;
 }
 
 export function validateSnapshot(snapshot, balance) {
   validateBalance(balance);
+  const raidReinforcements = balance.bosses.raidTeam.abilities.reinforcements;
+  const reinforcementTypes = raidReinforcements.byPhase.flat();
   assert(snapshot?.schemaVersion === 2 && snapshot.balanceVersion === balance.version, 'Unsupported save schema or balance version');
   const s = snapshot.state, r = snapshot.runtime;
+  const reinforcementMultiplier = 1 + s.waveNumber * raidReinforcements.hpMultiplierPerWave;
   assert(s && r && s.schemaVersion === 2 && s.balanceVersion === balance.version, 'Invalid state version');
   assert(Object.values(PHASES).includes(s.phase) && ![PHASES.LOADING, PHASES.MENU].includes(s.phase), 'Invalid saved phase');
   const waveActive = s.phase === PHASES.WAVE || (s.phase === PHASES.PAUSED && s.resumePhase === PHASES.WAVE);
@@ -93,23 +205,26 @@ export function validateSnapshot(snapshot, balance) {
     const definition = balance.enemies[e.type] || balance.bosses[e.type];
     assert(definition && e.kind === (balance.bosses[e.type] ? 'boss' : 'regular') && e.resolution === null, 'Invalid enemy');
     fields(e, ['health', 'maxHealth', 'speed', 'spawnedAtMs', 'slowUntilMs', 'vulnerabilityUntilMs', 'empUntilMs', 'shield', 'shieldMax', 'shieldCooldownUntilMs', 'shieldRegenPerSec']);
-    assert(e.health > 0 && e.health <= e.maxHealth && e.shield <= e.shieldMax && number(e.slowPct, 0, 0.8) && number(e.vulnerabilityPct, 0, 1) && number(e.pathDistance, 0, PATH_METRICS.totalLength), 'Invalid enemy runtime');
+    assert(e.health > 0 && e.health <= e.maxHealth && e.shield <= e.shieldMax && number(e.slowPct, 0, balance.combat.status.slowSpeedCap) && number(e.vulnerabilityPct, 0, 1) && number(e.pathDistance, 0, PATH_METRICS.totalLength), 'Invalid enemy runtime');
     const multipliers = balance.waves[s.waveNumber-1].enemies.filter(g => g.id === e.type).map(g => g.hpMult);
-    if (['scriptKiddie','federalAgent'].includes(e.type)) multipliers.push(1+s.waveNumber*0.02);
+    if (reinforcementTypes.includes(e.type)) multipliers.push(reinforcementMultiplier);
     assert(multipliers.some(hpMultiplier => {
       const expected = createEnemy({ id:e.type, kind:e.kind, ...definition }, {id:e.id, hpMultiplier, difficulty:balance.difficulty[s.difficulty]});
       return ['maxHealth','speed','radius','shieldMax','shieldRegenPerSec'].every(k => e[k] === expected[k]);
     }) && e.spawnedAtMs <= s.gameTimeMs, 'Enemy disagrees with balance');
     const p = pointAtPathDistance(e.pathDistance);
     assert(Math.abs(p.x-e.x) < 1e-6 && Math.abs(p.y-e.y) < 1e-6, 'Enemy position disagrees with path');
-    assert(Array.isArray(e.firedPhases) && (e.type === 'raidTeam' ? [[0, []], [1, [1]], [2, [1,2]]].some(([phase, fired]) => e.phase === phase && JSON.stringify(e.firedPhases) === JSON.stringify(fired)) : e.phase === 0 && e.firedPhases.length === 0), 'Invalid boss phases');
+    assert(Array.isArray(e.firedPhases) && (e.type === 'raidTeam'
+      ? integer(e.phase, 0, balance.bosses.raidTeam.abilities.emp.thresholds.length) &&
+        e.firedPhases.length === e.phase && e.firedPhases.every((fired, index) => fired === index + 1)
+      : e.phase === 0 && e.firedPhases.length === 0), 'Invalid boss phases');
   }
   for (const p of s.projectiles) {
     // Targets/hit IDs may have died earlier in the same tick. They must still be allocated IDs.
     assert(reference(p.sourceId, 'defense') && s.defenses.some(d => d.id === p.sourceId && d.type === p.sourceType) && reference(p.targetId, 'enemy'), 'Invalid projectile references');
     assert(Array.isArray(p.hitIds) && new Set(p.hitIds).size === p.hitIds.length && p.hitIds.every(id => reference(id, 'enemy')), 'Invalid hit references');
     fields(p, ['speed', 'damage', 'aoeRadius', 'slowDurationMs', 'vulnerabilityDurationMs', 'createdAtMs', 'expiresAtMs']);
-    assert(number(p.slowPct, 0, 0.8) && number(p.vulnerabilityPct, 0, 1) && integer(p.chainTargets) && typeof p.critical === 'boolean' && typeof p.piercing === 'boolean' && ['physical','fire','shock'].includes(p.damageType) && p.expiresAtMs >= p.createdAtMs, 'Invalid projectile');
+    assert(number(p.slowPct, 0, balance.combat.status.slowSpeedCap) && number(p.vulnerabilityPct, 0, 1) && integer(p.chainTargets) && typeof p.critical === 'boolean' && typeof p.piercing === 'boolean' && ['physical','fire','shock'].includes(p.damageType) && p.expiresAtMs >= p.createdAtMs, 'Invalid projectile');
   }
   const w = s.wave, schedule = r.scheduler;
   assert(w && ['scheduled','spawned','resolved','killed','leaked','spawnCursor'].every(k => integer(w[k])) && w.resolved === w.killed+w.leaked && w.spawned === w.resolved+s.enemies.length && w.spawned <= w.scheduled, 'Invalid wave counters');
@@ -124,16 +239,18 @@ export function validateSnapshot(snapshot, balance) {
   const orders = new Set();
   schedule.events.forEach((e, i) => {
     assert((balance.enemies[e.enemyType] || balance.bosses[e.enemyType]) && number(e.dueAtMs) && number(e.hpMultiplier, Number.MIN_VALUE) && integer(e.order) && !orders.has(e.order) && typeof e.dynamic === 'boolean', 'Invalid schedule event'); orders.add(e.order);
-    if (e.dynamic) assert(reference(e.sourceId, 'enemy') && ['scriptKiddie','federalAgent'].includes(e.enemyType) && e.hpMultiplier === 1+s.waveNumber*0.02 && e.order >= compileSpawnSchedule(balance,s.waveNumber).length, 'Invalid reinforcement');
+    if (e.dynamic) assert(reference(e.sourceId, 'enemy') && reinforcementTypes.includes(e.enemyType) && e.hpMultiplier === reinforcementMultiplier && e.order >= compileSpawnSchedule(balance,s.waveNumber).length, 'Invalid reinforcement');
     if (i < schedule.cursor) assert(e.dueAtMs <= schedule.elapsedMs+1e-6, 'Premature spawn cursor');
     if (i > schedule.cursor) assert(e.dueAtMs >= schedule.events[i-1].dueAtMs, 'Unsorted pending schedule');
   });
   const dynamic = schedule.events.filter(e => e.dynamic);
   const raidCount = balance.waves[s.waveNumber-1].enemies.filter(g => g.id==='raidTeam').reduce((n,g)=>n+g.count,0);
-  assert(dynamic.length <= raidCount*4, 'Excess reinforcements');
+  assert(dynamic.length <= raidCount*reinforcementTypes.length, 'Excess reinforcements');
   for (const source of new Set(dynamic.map(e=>e.sourceId))) {
     const events=dynamic.filter(e=>e.sourceId===source), boss=s.enemies.find(e=>e.id===source);
-    assert(events.length<=4 && events.filter(e=>e.enemyType==='federalAgent').length<=1 && (!boss || boss.type==='raidTeam'), 'Invalid reinforcement source/content');
+    assert(events.length<=reinforcementTypes.length &&
+      [...new Set(reinforcementTypes)].every(type => events.filter(e=>e.enemyType===type).length <= reinforcementTypes.filter(id=>id===type).length) &&
+      (!boss || boss.type==='raidTeam'), 'Invalid reinforcement source/content');
   }
   assert([...orders].every(order => order < schedule.events.length), 'Noncontiguous schedule order');
   assert(number(r.clock?.accumulatorMs, -1e-8, 1000/60+1e-8) && integer(r.randomState, 1, 0xffffffff), 'Invalid runtime clock/random');

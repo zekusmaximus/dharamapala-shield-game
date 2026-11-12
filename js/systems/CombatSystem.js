@@ -128,7 +128,7 @@ export class CombatSystem {
           (enemy) =>
             !enemy.resolution &&
             enemy.id !== primaryTarget.id &&
-            Math.hypot(enemy.x - primaryTarget.x, enemy.y - primaryTarget.y) <= 120
+            Math.hypot(enemy.x - primaryTarget.x, enemy.y - primaryTarget.y) <= session.balance.combat.chain.radius
         )
         .sort((a, b) => b.pathDistance - a.pathDistance)
         .slice(0, projectile.chainTargets);
@@ -139,7 +139,7 @@ export class CombatSystem {
         if (projectile.hitIds.includes(enemy.id)) {
           continue;
         }
-        this.applyHit(session, projectile, enemy, 0.6);
+        this.applyHit(session, projectile, enemy, session.balance.combat.chain.damageMultiplier);
         if (session.state.phase !== PHASES.WAVE) {
           return;
         }
@@ -173,7 +173,7 @@ export class CombatSystem {
     if (enemy.shieldMax > 0) {
       enemy.shieldCooldownUntilMs = Math.max(
         enemy.shieldCooldownUntilMs,
-        session.state.gameTimeMs + 3000
+        session.state.gameTimeMs + session.balance.bosses.megaCorpTitan.abilities.shield.recoveryDelayMs
       );
     }
     enemy.health -= damage;

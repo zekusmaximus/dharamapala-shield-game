@@ -1,5 +1,5 @@
 import { PATH_METRICS, pointAtPathDistance } from '../core/world.js';
-import { enemyCombatFeedback, disabledFeedback, EMP_WARNING } from '../core/rules/combatFeedback.js';
+import { enemyCombatFeedback, disabledFeedback, getEmpWarning } from '../core/rules/combatFeedback.js';
 import { PHASES } from '../core/commands.js';
 import { canAfford } from '../core/rules/economy.js';
 import { getEnemyInspection, getTowerBlueprint, getTowerInspection } from '../core/rules/inspection.js';
@@ -582,24 +582,25 @@ export class GameUI {
 
   renderCombatFeedback(session, model = session.getReadModel()) {
     const now = session.state.gameTimeMs;
+    const balance = session.balance;
     const enemies = [...session.state.enemies.values()].filter((enemy) => !enemy.resolution);
     const raidIncoming = model.preview?.enemies.some((enemy) => enemy.id === 'raidTeam');
-    const pending = enemies.some((enemy) => enemyCombatFeedback(enemy, now).nextEmp !== null);
+    const pending = enemies.some((enemy) => enemyCombatFeedback(balance, enemy, now).nextEmp !== null);
     const warning = raidIncoming && (model.phase === PHASES.BUILDING ||
       [PHASES.WAVE, PHASES.PAUSED].includes(model.phase)) || pending;
     const warningNode = byId('emp-warning');
-    const warningText = warning ? EMP_WARNING : '';
+    const warningText = warning ? getEmpWarning(balance) : '';
     if (warningNode.textContent !== warningText) warningNode.textContent = warningText;
     const lines = [];
     for (const enemy of enemies) {
-      const info = enemyCombatFeedback(enemy, now);
+      const info = enemyCombatFeedback(balance, enemy, now);
       const status = info.statuses.map((item) => `${item.marker} ${item.text}`).join('; ');
       if (enemy.kind !== 'boss' && !status) continue;
       const parts = [`${enemy.name} (${enemy.id})`];
       if (enemy.kind === 'boss') {
         parts.push(`Health ${Math.ceil(Math.max(0, enemy.health))} / ${Math.ceil(enemy.maxHealth)}; ${info.phase}`);
-        if (enemy.shieldMax > 0) parts.push(`Shield ${Math.ceil(enemy.shield)} / ${enemy.shieldMax}; recovers after 3 s without hits`);
-        if (info.nextEmp !== null) parts.push(`⚠ Next EMP at ${Math.round(info.nextEmp * 100)}% health; dashed circle = 260-unit burst range`);
+        if (enemy.shieldMax > 0) parts.push(`Shield ${Math.ceil(enemy.shield)} / ${enemy.shieldMax}; recovers after ${balance.bosses.megaCorpTitan.abilities.shield.recoveryDelayMs / 1000} s without hits`);
+        if (info.nextEmp !== null) parts.push(`⚠ Next EMP at ${Math.round(info.nextEmp * 100)}% health; dashed circle = ${balance.bosses.raidTeam.abilities.emp.radius}-unit burst range`);
         else if (enemy.type === 'raidTeam') parts.push('Both EMP bursts spent');
       }
       if (status) parts.push(status);

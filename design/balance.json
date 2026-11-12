@@ -18,11 +18,9 @@
       "critChance": 0,
       "critMult": 1.0,
       "status": {
-        "burnDps": 0,
         "slowPct": 0,
         "slowDuration": 0
       },
-      "special": "basic",
       "damageType": "physical",
       "color": "#e94560"
     },
@@ -43,13 +41,11 @@
       "critChance": 0,
       "critMult": 1.0,
       "status": {
-        "burnDps": 0,
         "slowPct": 0.2,
         "slowDuration": 1800,
         "vulnerabilityPct": 0.12,
         "vulnerabilityDuration": 1800
       },
-      "special": "encrypt",
       "damageType": "shock",
       "color": "#0f3460"
     },
@@ -70,14 +66,13 @@
       "critChance": 0,
       "critMult": 1.0,
       "status": {
-        "burnDps": 0,
         "slowPct": 0,
         "slowDuration": 0
       },
       "support": {
-        "fireRatePct": 0.12
+        "fireRatePct": 0.12,
+        "fireRatePctPerLevel": 0.04
       },
-      "special": "boost",
       "color": "#10b981"
     }
   },
@@ -100,8 +95,7 @@
         "anonymity": 1
       },
       "color": "#ff6b6b",
-      "size": 15,
-      "special": "erratic"
+      "size": 15
     },
     "federalAgent": {
       "name": "Federal Agent",
@@ -121,8 +115,7 @@
         "anonymity": 3
       },
       "color": "#4ecdc4",
-      "size": 18,
-      "special": "persistent"
+      "size": 18
     },
     "corporateSaboteur": {
       "name": "Corporate Saboteur",
@@ -142,8 +135,7 @@
         "anonymity": 4
       },
       "color": "#95e77e",
-      "size": 16,
-      "special": "stealth"
+      "size": 16
     },
     "aiSurveillance": {
       "name": "AI Surveillance",
@@ -163,8 +155,7 @@
         "anonymity": 7
       },
       "color": "#ffe66d",
-      "size": 20,
-      "special": "adaptive"
+      "size": 20
     },
     "quantumHacker": {
       "name": "Quantum Hacker",
@@ -184,8 +175,7 @@
         "anonymity": 13
       },
       "color": "#a8e6cf",
-      "size": 22,
-      "special": "teleport"
+      "size": 22
     },
     "corruptedMonk": {
       "name": "Corrupted Monk",
@@ -205,8 +195,7 @@
         "anonymity": 21
       },
       "color": "#ff8b94",
-      "size": 25,
-      "special": "corrupt"
+      "size": 25
     }
   },
   "bosses": {
@@ -229,8 +218,14 @@
       },
       "color": "#ff6b35",
       "size": 40,
-      "phases": 3,
-      "special": "minions"
+      "abilities": {
+        "emp": { "thresholds": [0.66, 0.33], "radius": 260, "durationMs": 1500 },
+        "reinforcements": {
+          "byPhase": [["scriptKiddie", "scriptKiddie"], ["federalAgent", "scriptKiddie"]],
+          "intervalMs": 250,
+          "hpMultiplierPerWave": 0.02
+        }
+      }
     },
     "megaCorpTitan": {
       "name": "MegaCorp Titan",
@@ -251,8 +246,9 @@
       },
       "color": "#c77dff",
       "size": 50,
-      "phases": 4,
-      "special": "shield"
+      "abilities": {
+        "shield": { "healthRatio": 0.35, "regenRatioPerSec": 0.04, "recoveryDelayMs": 3000 }
+      }
     }
   },
   "waves": [
@@ -433,7 +429,6 @@
     "killIncomeMult": 0.9,
     "waveClearBonus": 40,
     "waveClearBonusPerWave": 10,
-    "interestPct": 0,
     "initialLives": 20,
     "sellRefundPct": 0.7,
     "distributorWaveBonus": 6,
@@ -467,14 +462,16 @@
     "fireRatePerLevel": 0.12,
     "maxLevel": 5
   },
-  "balance": {
-    "hpGrowthRate": 0.15,
-    "speedGrowthCap": 1.5,
-    "targetTTKEarly": 1.5,
-    "targetTTKMid": 3.5,
-    "targetTTKLate": 5.0,
-    "waveDelayMs": 5000,
-    "enemySpawnDelayMs": 1000
+  "combat": {
+    "status": {
+      "durationPerLevel": 0.15,
+      "slowPctPerLevel": 0.04,
+      "slowTowerCap": 0.65,
+      "slowSpeedCap": 0.8,
+      "vulnerabilityPctPerLevel": 0.03,
+      "vulnerabilityTowerCap": 0.5
+    },
+    "chain": { "unlockLevel": 4, "targets": 1, "radius": 120, "damageMultiplier": 0.6 }
   },
   "migration": {
     "deferredTowerRefunds": {

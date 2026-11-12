@@ -15,10 +15,11 @@ export function getTowerStats(balance, towerType, level = 1) {
   const ratePerSec =
     definition.ratePerSec * (1 + balance.upgrades.fireRatePerLevel * upgradeIndex);
   const status = definition.status || {};
-  const slowDurationMs = (status.slowDuration || 0) * (1 + upgradeIndex * 0.15);
+  const tuning = balance.combat.status;
+  const slowDurationMs = (status.slowDuration || 0) * (1 + upgradeIndex * tuning.durationPerLevel);
   const vulnerabilityDurationMs =
-    (status.vulnerabilityDuration || status.slowDuration || 0) *
-    (1 + upgradeIndex * 0.15);
+    (status.vulnerabilityDuration ?? status.slowDuration ?? 0) *
+    (1 + upgradeIndex * tuning.durationPerLevel);
 
   return {
     damage,
@@ -30,17 +31,19 @@ export function getTowerStats(balance, towerType, level = 1) {
     critChance: definition.critChance || 0,
     critMult: definition.critMult || 1,
     slowPct: slowDurationMs > 0
-      ? Math.min(0.65, (status.slowPct || 0) + upgradeIndex * 0.04)
+      ? Math.min(tuning.slowTowerCap, (status.slowPct || 0) + upgradeIndex * tuning.slowPctPerLevel)
       : 0,
     slowDurationMs,
     vulnerabilityPct: vulnerabilityDurationMs > 0
-      ? Math.min(0.5, (status.vulnerabilityPct || 0) + upgradeIndex * 0.03)
+      ? Math.min(tuning.vulnerabilityTowerCap, (status.vulnerabilityPct || 0) + upgradeIndex * tuning.vulnerabilityPctPerLevel)
       : 0,
     vulnerabilityDurationMs,
-    chainTargets: towerType === 'encryption' && level >= 4 ? 1 : 0,
+    chainTargets: towerType === 'encryption' && level >= balance.combat.chain.unlockLevel
+      ? balance.combat.chain.targets : 0,
     auraFireRatePct:
       towerType === 'distributor'
-        ? Math.min(0.35, (definition.support?.fireRatePct || 0.12) + upgradeIndex * 0.04)
+        ? Math.min(balance.economy.distributorAuraCap,
+          definition.support.fireRatePct + upgradeIndex * definition.support.fireRatePctPerLevel)
         : 0,
     role: ROLE_BY_TYPE[towerType],
     damageType: definition.damageType || 'physical'

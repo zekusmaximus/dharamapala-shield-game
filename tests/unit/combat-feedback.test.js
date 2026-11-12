@@ -9,9 +9,9 @@ test('status text obeys expiry and actual speed cap without mutating combat stat
   const enemy = { type: 'scriptKiddie', slowPct: 0.9, slowUntilMs: 2000,
     vulnerabilityPct: 0.12, vulnerabilityUntilMs: 2000 };
   const before = structuredClone(enemy);
-  assert.deepEqual(enemyCombatFeedback(enemy, 1999).statuses.map(s => s.text),
+  assert.deepEqual(enemyCombatFeedback(balance, enemy, 1999).statuses.map(s => s.text),
     ['Slow: 80% less speed', 'Vulnerable: +12% damage before resistance/armor']);
-  assert.deepEqual(enemyCombatFeedback(enemy, 2000).statuses, []);
+  assert.deepEqual(enemyCombatFeedback(balance, enemy, 2000).statuses, []);
   assert.deepEqual(enemy, before);
   assert.match(disabledFeedback({type:'distributor',disabledUntilMs:2000},1000), /aura paused, passive income retained/);
   assert.equal(disabledFeedback({disabledUntilMs:2000},2000), null);
@@ -21,25 +21,25 @@ test('pending EMP warnings precede immediate production threshold bursts, includ
   const s = new GameSession(balance, { tutorialCompleted: true });
   s.newGame(); s.state.waveNumber = 5; s.startWave(); s.step(1000/60);
   const boss = [...s.state.enemies.values()].find(e => e.type === 'raidTeam');
-  assert.equal(enemyCombatFeedback(boss, s.state.gameTimeMs).nextEmp, 0.66);
+  assert.equal(enemyCombatFeedback(balance, boss, s.state.gameTimeMs).nextEmp, 0.66);
   boss.health = boss.maxHealth * 0.66001;
   s.systems.enemy.updateBosses(s);
   assert.deepEqual(boss.firedPhases, []);
   boss.health = boss.maxHealth * 0.66;
   s.systems.enemy.updateBosses(s);
-  assert.equal(enemyCombatFeedback(boss, s.state.gameTimeMs).nextEmp, 0.33);
-  assert.equal(enemyCombatFeedback(boss, s.state.gameTimeMs).phase, 'Phase 2 / 3');
+  assert.equal(enemyCombatFeedback(balance, boss, s.state.gameTimeMs).nextEmp, 0.33);
+  assert.equal(enemyCombatFeedback(balance, boss, s.state.gameTimeMs).phase, 'Phase 2 / 3');
   boss.health = boss.maxHealth * 0.33;
   s.systems.enemy.updateBosses(s);
-  assert.equal(enemyCombatFeedback(boss, s.state.gameTimeMs).nextEmp, null);
-  assert.equal(enemyCombatFeedback(boss, s.state.gameTimeMs).phase, 'Phase 3 / 3');
+  assert.equal(enemyCombatFeedback(balance, boss, s.state.gameTimeMs).nextEmp, null);
+  assert.equal(enemyCombatFeedback(balance, boss, s.state.gameTimeMs).phase, 'Phase 3 / 3');
   boss.firedPhases = []; boss.phase = 0; boss.health = boss.maxHealth * 0.2;
   s.systems.enemy.updateBosses(s);
   assert.deepEqual(boss.firedPhases, [1, 2]);
 });
 
 test('Titan reports shield behavior rather than unused phase metadata', () => {
-  assert.equal(enemyCombatFeedback({ type:'megaCorpTitan' },0).phase,
+  assert.equal(enemyCombatFeedback(balance, { type:'megaCorpTitan' },0).phase,
     'Shield boss · no health-triggered phases');
 });
 

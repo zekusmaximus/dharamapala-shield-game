@@ -469,15 +469,14 @@ export class GameSession {
   }
 
   registerBossMinions(boss, phase) {
-    const minionTypes = phase === 1
-      ? ['scriptKiddie', 'scriptKiddie']
-      : ['federalAgent', 'scriptKiddie'];
+    const reinforcement = this.balance.bosses.raidTeam.abilities.reinforcements;
+    const minionTypes = reinforcement.byPhase[phase - 1];
     minionTypes.forEach((enemyType, index) => {
       this.scheduler.register(
         {
-          dueAtMs: this.scheduler.elapsedMs + index * 250,
+          dueAtMs: this.scheduler.elapsedMs + index * reinforcement.intervalMs,
           enemyType,
-          hpMultiplier: 1 + this.state.waveNumber * 0.02,
+          hpMultiplier: 1 + this.state.waveNumber * reinforcement.hpMultiplierPerWave,
           dynamic: true,
           sourceId: boss.id
         },
