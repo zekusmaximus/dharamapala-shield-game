@@ -1,0 +1,334 @@
+$ npm ci --cache /tmp/dharamapala-m26-npm-cache
+
+added 5 packages in 739ms
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+$ npx playwright install chromium
+Downloading Chrome for Testing 149.0.7827.55 (playwright chromium v1228)[2m from https://cdn.playwright.dev/builds/cft/149.0.7827.55/linux64/chrome-linux64.zip[22m
+|                                                                                |   0% of 177 MiB
+|■■■■■■■■                                                                        |  10% of 177 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 177 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 177 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 177 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 177 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 177 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 177 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 177 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 177 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 177 MiB
+Chrome for Testing 149.0.7827.55 (playwright chromium v1228) downloaded to /workspace/.playwright-browsers/chromium-1228
+Downloading FFmpeg (playwright ffmpeg v1011)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip[22m
+|                                                                                |   0% of 2.3 MiB
+|■■■■■■■■                                                                        |  10% of 2.3 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
+FFmpeg (playwright ffmpeg v1011) downloaded to /workspace/.playwright-browsers/ffmpeg-1011
+Downloading Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228)[2m from https://cdn.playwright.dev/builds/cft/149.0.7827.55/linux64/chrome-headless-shell-linux64.zip[22m
+|                                                                                |   0% of 114.2 MiB
+|■■■■■■■■                                                                        |  10% of 114.2 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 114.2 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 114.2 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 114.2 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 114.2 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 114.2 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 114.2 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 114.2 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 114.2 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 114.2 MiB
+Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) downloaded to /workspace/.playwright-browsers/chromium_headless_shell-1228
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+$ npm run build
+
+> dharmapala-shield-game@1.0.0 build
+> node scripts/build.mjs
+
+Built client application in /workspace/dharamapala-m26-clean/dist
+$ npm run test:unit
+
+> dharmapala-shield-game@1.0.0 test:unit
+> node --test "tests/unit/*.test.js"
+
+✔ wave speed scales clamped wall time, never the fixed combat step (1.735563ms)
+✔ a speed change retains fractional simulated time and a stopped step clears it (0.25206ms)
+✔ status text obeys expiry and actual speed cap without mutating combat state (1.348139ms)
+✔ pending EMP warnings precede immediate production threshold bursts, including skipped thresholds (3.603756ms)
+✔ Titan reports shield behavior rather than unused phase metadata (0.109895ms)
+✔ canvas draws distinct static markers, shield fill, and pending EMP range from live state (2.482838ms)
+✔ a non-piercing projectile resolves exactly one collision (3.769584ms)
+✔ piercing hit IDs prevent repeat damage and splash is applied once per target (1.424004ms)
+✔ MegaCorp Titan shield recovery waits three seconds after the latest shield or health hit (1.294248ms)
+✔ shipped content satisfies the explicit runtime schema (3.853491ms)
+✔ reject content fixture: unused top-level balance metadata (1.068678ms)
+✔ reject content fixture: unused special label (0.725732ms)
+✔ reject content fixture: unused boss phase count (0.769038ms)
+✔ reject content fixture: unused burn damage (0.993475ms)
+✔ reject content fixture: unused interest rate (0.512562ms)
+✔ reject content fixture: missing display label (0.655947ms)
+✔ reject content fixture: invalid icon (0.641736ms)
+✔ reject content fixture: invalid color (0.8303ms)
+✔ reject content fixture: noninteger bounty (0.676048ms)
+✔ reject content fixture: unknown status property (0.655326ms)
+✔ reject content fixture: inactive slow metadata (0.885102ms)
+✔ reject content fixture: incomplete vulnerability (0.909078ms)
+✔ reject content fixture: slow beyond tower cap (0.760444ms)
+✔ reject content fixture: missing boss ability (0.696829ms)
+✔ reject content fixture: invalid EMP order (0.470538ms)
+✔ reject content fixture: invalid EMP radius (1.068088ms)
+✔ reject content fixture: unknown reinforcement type (0.676198ms)
+✔ reject content fixture: invalid shield ratio (0.57085ms)
+✔ reject content fixture: invalid chain radius (0.531681ms)
+✔ reject content fixture: unreachable chain level (0.586063ms)
+✔ reject content fixture: unknown spawn property (0.474865ms)
+✔ reject content fixture: noninteger wave reward (0.622538ms)
+✔ presentation and derived tower stats read the same validated tunables (0.907516ms)
+✔ unplaced blueprints use the same level, cost and refund rules (1.689393ms)
+✔ attacker comparison uses combat stats, active aura, upgrade cost and refund rules (0.555456ms)
+✔ max-level direct attacker has no invented status or next upgrade (0.19979ms)
+✔ Distributor shows actual marginal support, EMP expiry and passive capped income (1.65429ms)
+✔ enemy intel uses active damage types and only implemented abilities (0.671391ms)
+✔ three active towers have distinct tested roles (0.913285ms)
+✔ upgrades never invent status effects without an application duration (0.296457ms)
+✔ only enabled nearby Distributors supply aura, including at the expiry boundary (0.316306ms)
+✔ upgrade and sell values share economy rules (1.041388ms)
+✔ wave schedules are deterministic and zero intervals stay finite (0.448224ms)
+✔ reject malformed save: resource (7.324337ms)
+✔ reject malformed save: lives (2.251179ms)
+✔ reject malformed save: wave (2.339963ms)
+✔ reject malformed save: level (1.531486ms)
+✔ reject malformed save: position (1.171133ms)
+✔ reject malformed save: overlap (1.249161ms)
+✔ reject malformed save: enemyPosition (1.035609ms)
+✔ reject malformed save: health (1.109871ms)
+✔ reject malformed save: phases (0.96975ms)
+✔ reject malformed save: projectileId (1.449782ms)
+✔ reject malformed save: source (0.895658ms)
+✔ reject malformed save: target (1.014887ms)
+✔ reject malformed save: hitIds (0.886334ms)
+✔ reject malformed save: enemyType (1.123582ms)
+✔ reject malformed save: schedule (0.900175ms)
+✔ reject malformed save: cursor (0.773344ms)
+✔ reject malformed save: waveCursor (1.106926ms)
+✔ reject malformed save: count (1.306728ms)
+✔ reject malformed save: gameOver (0.908939ms)
+✔ reject malformed save: victory (0.682978ms)
+✔ reject malformed save: phase (0.962639ms)
+✔ reject malformed save: resume (0.605862ms)
+✔ reject malformed save: clock (0.935999ms)
+✔ reject malformed save: generation (0.872233ms)
+✔ reject malformed save: random (0.72413ms)
+✔ reject malformed save: sequence (0.892694ms)
+✔ reject malformed save: settings (0.578261ms)
+✔ reject malformed save: result (0.984782ms)
+✔ reject malformed save: balanceVersion (0.766875ms)
+✔ reject malformed balance: cost (0.374584ms)
+✔ reject malformed balance: damage (0.197668ms)
+✔ reject malformed balance: resistance (0.309886ms)
+✔ reject malformed balance: wave (0.485902ms)
+✔ reject malformed balance: group (0.357308ms)
+✔ reject malformed balance: difficulty (0.282665ms)
+✔ reject malformed balance: economy (0.263126ms)
+✔ reject malformed balance: upgrades (0.243076ms)
+✔ denied storage never throws, including acquisition/read/write/reset (1.033847ms)
+✔ invalid payload cannot be overwritten before explicit reset (1.027427ms)
+✔ v2 repository round-trips paused state and runtime cursors (7.651849ms)
+✔ corrupt saves are preserved without mutating a live session (1.053015ms)
+✔ legacy removed towers are refunded and active towers are reconstructed (1.724947ms)
+✔ scheduler preserves stable ordering and accepts zero intervals (1.182451ms)
+✔ scheduler rejects stale generations and clear invalidates pending work (0.155034ms)
+✔ phase transitions are explicit and rejected commands do not mutate state (4.261195ms)
+✔ pause freezes game time and spawning (1.463363ms)
+✔ restart invalidates a partially released schedule (0.705502ms)
+✔ leaks never grant kill rewards and kills reward exactly once (1.631886ms)
+✔ placement, upgrades, and selling use one authoritative defense Map (0.761306ms)
+✔ wave inspection can select a tower without opening build commands (0.640755ms)
+✔ wave keyboard inspection cursor is drawn at its world position (1.545838ms)
+✔ catalog covers every active tower, enemy, and boss exactly once (0.403687ms)
+✔ catalog normalizes human and file-style entity IDs (0.215714ms)
+✔ asset loader makes ready sheets available without loading in draw calls (0.525291ms)
+✔ asset loader resolves failures and leaves entities on fallback rendering (0.300252ms)
+✔ renderer uses catalog frames when a sprite is ready (0.490728ms)
+✔ renderer falls back to shapes for missing and undrawable sprites (0.607113ms)
+ℹ tests 100
+ℹ suites 0
+ℹ pass 100
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 738.758717
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+$ npm run test:integration
+
+> dharmapala-shield-game@1.0.0 test:integration
+> node --test "tests/integration/*.test.js"
+
+✔ a lethal hit is fully resolved before an enemy-hit listener can enter results (7.915266ms)
+✔ configured slow and vulnerability reach actual projectiles and enemy movement (5.303765ms)
+✔ configured Raid Team threshold, radius, duration and minions drive production phase handling and a valid save (7.842117ms)
+✔ configured Titan shield ratio, recovery delay and rate drive production hit and recovery (0.785412ms)
+✔ configured chain radius and secondary multiplier drive the production impact path (0.79095ms)
+✔ Raid Team EMP suspends the support aura in actual tower fire and restores it at expiry (5.930138ms)
+✔ EMP-disabled support and its recovery continue identically after save/restore (53.454996ms)
+✔ a Distributor disabled at wave clear still earns its passive income (14.239136ms)
+✔ continued combat parity through wave 1, including nested isolation (27.231247ms)
+✔ continued combat parity through wave 5, including nested isolation (48.34987ms)
+✔ continued combat parity through wave 15, including nested isolation (72.077221ms)
+✔ a new session remains in building until start wave is commanded (3.152987ms)
+✔ raid team phases schedule deterministic minions and survive round-trip saves (6.129248ms)
+✔ twenty waves reach victory exactly once and never schedule wave 21 (4.811104ms)
+✔ game over is immediate and subsequent ticks are inert (1.302802ms)
+✔ same-tick exits stop at game over and live, captured, persisted results agree (10.188759ms)
+✔ restored continuing combat reaches the same terminal result (2.657551ms)
+✔ a resolution listener can enter terminal and save before resolution returns (2.31782ms)
+✔ terminal saves reject any disagreement in captured statistics (1.967322ms)
+✔ old 1.0.0 game-over saves with extra same-tick leaks are recovered on load (3.571307ms)
+✔ a terminal transition during an achievement stops later resolution events (1.138894ms)
+✔ a saved Titan fight retains health-hit cooldown and identical later recovery (10.66073ms)
+✔ real wave combat accounts spending, refunds, bounties, clear income and tower work; reports survive starts and restore (40.680905ms)
+✔ natural leaks record enemy types, no coverage and sampled last coverage, including defeat (18.54557ms)
+✔ production impact path records shield absorption, capped health, and control applications without inventing assistance damage (0.742518ms)
+✔ production firing records overlapping capped aura presence but excludes EMP-disabled support (0.876459ms)
+✔ legacy v2 reports are optional and explicitly partial; malformed tracking is rejected (11.742669ms)
+✔ a disabled Distributor reports passive clear income independently of active aura (5.049462ms)
+✔ invalid report counts, types, coverage and resource payloads fail before restoration (5.144776ms)
+✔ 1× and 2× reach identical production combat and reports on wave 5 (79.557283ms)
+✔ 1× and 2× reach identical production combat and reports on wave 15 (95.505813ms)
+✔ switching during a Raid Team fight and while paused preserves fractional time across save/continue (65.644717ms)
+✔ natural defeat and victory stop further 2× advancement and lock speed changes (148.598233ms)
+✔ old v2 saves default to 1×, reject invalid speeds, and restart resets speed (3.056491ms)
+✔ 2× selection persists across a real clear, while the next wave waits for Start Wave (1.971388ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1333.600154
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+$ npm run test:sim
+
+> dharmapala-shield-game@1.0.0 test:sim
+> node --test "tests/sim/*.test.js"
+
+✔ scenarios use three distinct production difficulties and full authored campaigns (1.490123ms)
+✔ policy restrictions and ordering apply through production purchase commands (21.896064ms)
+✔ counter heuristic responds to incoming armor/resistance rather than a fixed purchase sequence (0.55778ms)
+✔ actual full campaigns reconcile M2.3 ledgers, natural bosses/leaks and deterministic repeats (2332.580686ms)
+✖ checked-in evidence equals freshly executed production scenarios and repeat hashes (5805.425338ms)
+✔ runtime and simulator consume the same balance and pure rules (7.087079ms)
+✔ headless policy executes the real GameSession deterministically (74.382024ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8543.120982
+
+✖ failing tests:
+
+test at tests/sim/balance-report.test.js:82:1
+✖ checked-in evidence equals freshly executed production scenarios and repeat hashes (5805.425338ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   balanceSha256: '77d0377e30da378f50ebc1fa10ea61921cb024ef2bdfb19fd2b34e551eed7c10',
+  -   balanceSha256: '8a177078049779085d695c27f80c434de7bb27092215ff6b22ec58e6e708cca3',
+      balanceVersion: '1.0.0',
+      evidence: '21 policy/configuration comparisons, each repeated exactly once. Three difficulty configurations share map and roster; neither repeats nor seeds are independent trials. No human win rates.',
+      policies: {
+        'counter-aware': 'Existing growth/support/upgrade order, but each Firewall request chooses the higher upcoming HP-weighted base effective DPS per Dharma of Firewall/Encryption; ties Firewall. Ensure Encryption as usual. No future knowledge beyond the incoming authored roster; ignores status/aura/projectile/targeting benefits in this heuristic.',
+        'expansion-heavy': 'Buy Firewalls until no affordable legal slot remains; never upgrade or buy other types.',
+  
+      at TestContext.<anonymous> (file:///workspace/dharamapala-m26-clean/tests/sim/balance-report.test.js:86:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      schemaVersion: 1,
+      balanceVersion: '1.0.0',
+      balanceSha256: '77d0377e30da378f50ebc1fa10ea61921cb024ef2bdfb19fd2b34e551eed7c10',
+      timestepMs: 16.666666666666668,
+      policies: { existing: 'Unmodified DeterministicPlayerPolicy: ensure Encryption; grow attackers to min(14,2+ceil(wave/2)); add one Distributor from wave 4; upgrade lowest-level attackers, ties by localeCompare ID.', 'firewall-only': 'Existing policy, rejecting every non-Firewall purchase.', 'no-support': 'Existing policy, rejecting Distributor purchases.', 'expansion-heavy': 'Buy Firewalls until no affordable legal slot remains; never upgrade or buy other types.', 'upgrade-heavy': 'Ensure one Encryption and one Firewall; upgrade lowest-level attackers until blocked; then buy at most one Firewall per preparation. No support.', 'weak-placement': 'Existing policy with ascending coverage positions (ties x then y), including zero-coverage cells.', 'counter-aware': 'Existing growth/support/upgrade order, but each Firewall request chooses the higher upcoming HP-weighted base effective DPS per Dharma of Firewall/Encryption; ties Firewall. Ensure Encryption as usual. No future knowledge beyond the incoming authored roster; ignores status/aura/projectile/targeting benefits in this heuristic.' },
+      scenarios: [ [Object], [Object], [Object] ],
+      evidence: '21 policy/configuration comparisons, each repeated exactly once. Three difficulty configurations share map and roster; neither repeats nor seeds are independent trials. No human win rates.',
+      runs: [
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object]
+      ],
+      repeats: [
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object]
+      ]
+    },
+    expected: {
+      schemaVersion: 1,
+      balanceVersion: '1.0.0',
+      balanceSha256: '8a177078049779085d695c27f80c434de7bb27092215ff6b22ec58e6e708cca3',
+      timestepMs: 16.666666666666668,
+      policies: { existing: 'Unmodified DeterministicPlayerPolicy: ensure Encryption; grow attackers to min(14,2+ceil(wave/2)); add one Distributor from wave 4; upgrade lowest-level attackers, ties by localeCompare ID.', 'firewall-only': 'Existing policy, rejecting every non-Firewall purchase.', 'no-support': 'Existing policy, rejecting Distributor purchases.', 'expansion-heavy': 'Buy Firewalls until no affordable legal slot remains; never upgrade or buy other types.', 'upgrade-heavy': 'Ensure one Encryption and one Firewall; upgrade lowest-level attackers until blocked; then buy at most one Firewall per preparation. No support.', 'weak-placement': 'Existing policy with ascending coverage positions (ties x then y), including zero-coverage cells.', 'counter-aware': 'Existing growth/support/upgrade order, but each Firewall request chooses the higher upcoming HP-weighted base effective DPS per Dharma of Firewall/Encryption; ties Firewall. Ensure Encryption as usual. No future knowledge beyond the incoming authored roster; ignores status/aura/projectile/targeting benefits in this heuristic.' },
+      scenarios: [ [Object], [Object], [Object] ],
+      evidence: '21 policy/configuration comparisons, each repeated exactly once. Three difficulty configurations share map and roster; neither repeats nor seeds are independent trials. No human win rates.',
+      runs: [
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object]
+      ],
+      repeats: [
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object]
+      ]
+    },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice

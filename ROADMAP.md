@@ -26,7 +26,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | --- | --- | --- | --- | --- |
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
-| M2 · Make decisions readable and measurable | P1 | Partial: M2.1–M2.5 complete; M2.6 open | M1 | M2.5 clean checkout passes 76 unit, 31 integration, 7 simulation, 69 browser and 10 accessibility checks; M2.4 seven-policy default-speed results remain unchanged; M2.6 remains |
+| M2 · Make decisions readable and measurable | P1 | Complete within documented scope: M2.1–M2.6 | M1 | M2.6 clean checkout passes 100 unit, 35 integration, 7 simulation, 69 browser and 10 accessibility checks; corrected M1.4 diagnostics match byte-for-byte and M2.4 policy outcomes match apart from the content-file hash |
 | M3 · Prove an engaging five-wave game | P1 | Planned | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
@@ -155,9 +155,9 @@ finish a run without blocked controls, stale transitions, or contradictory state
 
 ## M2 · Make decisions readable and measurable
 
-**Status: Partial.** M2.1 tower/enemy inspection, M2.2 combat feedback, M2.3 wave reports,
-M2.4 balance reporting and M2.5 wave speed are complete. M2.6 iteration safety
-remains planned. M1
+**Status: Complete within the documented automated scope.** M2.1 tower/enemy
+inspection, M2.2 combat feedback, M2.3 wave reports, M2.4 balance reporting,
+M2.5 wave speed and M2.6 iteration safety are complete. M1
 establishes trust; this milestone gives the player and developer enough
 information to improve the game. Findings R07, R08, R10–R12.
 
@@ -184,7 +184,7 @@ information to improve the game. Findings R07, R08, R10–R12.
 - [x] **M2.5 · Improve pacing controls.** Add 1×/2× wave speed through fixed clock
   advancement, with pause and save/continue equivalence. Keep wave starts deliberate.
   Make any later fast-forward/auto-start option explicit and opt-in.
-- [ ] **M2.6 · Make iteration safe.** Validate used content fields and move tunable
+- [x] **M2.6 · Make iteration safe.** Validate used content fields and move tunable
   boss/status parameters into an explicit shared schema where useful. Document or
   remove unused metadata rather than pretending it controls the runtime.
 
@@ -277,6 +277,26 @@ M2.4 default-speed report/summary are byte-identical. [M2.5 evidence and
 limits](design/reviews/2026-11-11-m2.5/README.md) distinguish scenario setup and
 automated Chromium from human/device validation. [PR #23 CI](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43119516712)
 passed the same pipeline on Ubuntu / Node 22. M2 remains partial; M2.6 is open.
+
+**M2.6 complete within automated scope (2026-11-11):** From latest main
+`133bf9f` (PR #23), the content contract now validates the fields used by
+production rules and presentation, rejects unknown/inert properties, and shares
+boss EMP/reinforcement/shield, status and chain tunables through explicit
+definitions. Removed `special`, boss `phases`, burn, interest and target/delay
+metadata that did not drive play. Numeric values, balance version `1.0.0`, save
+schema v2 and preference keys remain unchanged. Existing valid saves, M1 behavior,
+M2 inspection/feedback/reports/accounting and 1×/2× semantics retain their
+passing regressions. A detached clean checkout at `7e29d94` passed locked
+installation, Chromium installation, fresh build, 100 unit, 35 integration,
+7 simulation, 69 end-to-end and 10 accessibility checks. Legacy diagnostics are
+byte-identical to corrected M1.4. The regenerated M2.4 report matches every
+policy/scenario outcome, wave and repeat hash; only its balance-file SHA-256
+changes (`8a177078…` → `77d0377e…`) because the content file changed. The
+derived summary is byte-identical. [M2.6 evidence](design/reviews/2026-11-11-m2.6/README.md)
+separates malformed-content fixtures, controlled production paths, full-campaign
+policy evidence and automated Chromium checks. Human playtests, physical devices
+and screen-reader validation remain future gates; completion here makes no claim
+that M3 difficulty or engagement targets are met.
 
 **Acceptance gate:** a tester can identify an enemy's threat, compare a new tower
 with an upgrade, see a boss action coming, and use the wave report to explain a

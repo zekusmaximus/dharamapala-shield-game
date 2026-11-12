@@ -8,9 +8,11 @@ headless simulation, and tests.
 
 See the [current roadmap](ROADMAP.md) for priorities, milestone status, and
 completion gates, and the [2026-11-11 code review](design/CODE_REVIEW_2026-11-11.md)
-for evidence and known issues. M1 is complete. M2.1–M2.5 provide inspection,
-combat feedback, persistent wave reports, a reproducible balance report and
-wave-speed controls. M2 remains partial; M2.6 iteration safety remains open.
+for evidence and known issues. M1 and M2.1–M2.6 are complete within their
+documented verification scope. M2 includes inspection, combat feedback,
+persistent wave reports, a reproducible balance report, wave-speed controls and
+[validated runtime content](design/CONTENT_SCHEMA.md). Human difficulty and
+engagement validation remains in later roadmap work.
 
 The earlier [implementation plan](implementation.md) remains an architecture
 reference; it is not the current backlog. The
