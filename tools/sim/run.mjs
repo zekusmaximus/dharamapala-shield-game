@@ -34,6 +34,11 @@ export function buildPositions() {
 
 const POLICY_POSITIONS = buildPositions();
 
+export function policySpecialization(session, tower) {
+  return tower.level === 2 && session.balance.towers[tower.type].specializations
+    ? (tower.type === 'firewall' ? 'focus' : 'sustain') : null;
+}
+
 export class DeterministicPlayerPolicy {
   build(session) {
     const damageTowers = [...session.state.defenses.values()].filter(
@@ -71,7 +76,7 @@ export class DeterministicPlayerPolicy {
         .filter((tower) => tower.type !== 'distributor')
         .sort((a, b) => a.level - b.level || a.id.localeCompare(b.id));
       for (const tower of candidates) {
-        const result = session.upgradeDefense(tower.id);
+        const result = session.upgradeDefense(tower.id, policySpecialization(session, tower));
         if (result.ok) {
           upgraded = true;
           break;

@@ -1,0 +1,144 @@
+$ gh run view 43150756840 --repo zekusmaximus/dharamapala-shield-game --json databaseId,headSha,status,conclusion,url,event,jobs
+{
+  "conclusion": "success",
+  "databaseId": 43150756840,
+  "event": "pull_request",
+  "headSha": "bc5fe2a44f4788ea147c10e4abdfa717d1d584f5",
+  "jobs": [
+    {
+      "completedAt": "2026-11-12T03:51:20Z",
+      "conclusion": "success",
+      "databaseId": 130959078162,
+      "name": "validate",
+      "startedAt": "2026-11-12T03:49:39Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-node@v4",
+          "number": 3,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Install dependencies",
+          "number": 4,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Install Chromium and system dependencies",
+          "number": 5,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Build current client output",
+          "number": 6,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Unit tests",
+          "number": 7,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Integration tests",
+          "number": 8,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Simulation tests",
+          "number": 9,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "End-to-end tests",
+          "number": 10,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Accessibility tests",
+          "number": 11,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Preserve browser failure artifacts",
+          "number": 12,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@v4",
+          "number": 23,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 24,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 25,
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43150756840/job/130959078162"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43150756840"
+}
+
+$ gh pr view 26 --repo zekusmaximus/dharamapala-shield-game --json statusCheckRollup
+[
+  {
+    "__typename": "CheckRun",
+    "completedAt": "2026-11-12T03:51:20Z",
+    "conclusion": "SUCCESS",
+    "detailsUrl": "https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43150756840/job/130959078162",
+    "name": "validate",
+    "startedAt": "2026-11-12T03:49:39Z",
+    "status": "COMPLETED",
+    "workflowName": "CI"
+  },
+  {
+    "__typename": "CheckRun",
+    "completedAt": "2026-11-12T03:49:44Z",
+    "conclusion": "SUCCESS",
+    "detailsUrl": "https://dashboard.gitguardian.com",
+    "name": "GitGuardian Security Checks",
+    "startedAt": "2026-11-12T03:49:37Z",
+    "status": "COMPLETED",
+    "workflowName": ""
+  }
+]
+
+$ gh run view 43150756840 --repo zekusmaximus/dharamapala-shield-game --log
+Selected hosted suite summaries (full logs remain at run URL):
+validate	Install dependencies	2026-11-12T03:49:44.6561112Z added 5 packages, and audited 6 packages in 542ms
+validate	Build current client output	2026-11-12T03:49:58.5950394Z Built client application in /home/runner/work/dharamapala-shield-game/dharamapala-shield-game/dist
+validate	End-to-end tests	2026-11-12T03:51:00.7333794Z   91 passed (53.7s)
+validate	Accessibility tests	2026-11-12T03:51:17.8151744Z   12 passed (16.6s)
+validate	Complete job	2026-11-12T03:51:18.1330515Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

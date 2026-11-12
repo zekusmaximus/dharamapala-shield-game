@@ -16,7 +16,7 @@ export function towerEntry(session, tower) {
 // Geometry is sampled before movement, independently of targeting, cooldown and EMP.
 export function sampleCoverage(session, enemy) {
   const covered = [...session.state.defenses.values()].some(t => t.type !== 'distributor' &&
-    Math.hypot(t.x - enemy.x, t.y - enemy.y) <= getTowerStats(session.balance, t.type, t.level).range);
+    Math.hypot(t.x - enemy.x, t.y - enemy.y) <= getTowerStats(session.balance, t.type, t.level, t.specialization).range);
   if (covered) session.state.reports.active.coverage[enemy.id] = Math.min(PATH_METRICS.totalLength, enemy.pathDistance);
 }
 export function finishReport(session, outcome) {

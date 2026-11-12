@@ -4,7 +4,7 @@ const ROLE_BY_TYPE = Object.freeze({
   distributor: 'Support / economy'
 });
 
-export function getTowerStats(balance, towerType, level = 1) {
+export function getTowerStats(balance, towerType, level = 1, specialization = null) {
   const definition = balance.towers[towerType];
   if (!definition) {
     throw new Error(`Unknown tower type: ${towerType}`);
@@ -21,7 +21,9 @@ export function getTowerStats(balance, towerType, level = 1) {
     (status.vulnerabilityDuration ?? status.slowDuration ?? 0) *
     (1 + upgradeIndex * tuning.durationPerLevel);
 
-  return {
+  const branch = level >= 3 && typeof specialization === 'string' && Object.hasOwn(definition.specializations || {}, specialization) ? definition.specializations[specialization] : null;
+  if (specialization !== null && (typeof specialization !== 'string' || !branch)) throw new Error(`Invalid specialization: ${towerType}/${specialization}/${level}`);
+  const result = {
     damage,
     range,
     ratePerSec,
@@ -48,6 +50,18 @@ export function getTowerStats(balance, towerType, level = 1) {
     role: ROLE_BY_TYPE[towerType],
     damageType: definition.damageType || 'physical'
   };
+  if (branch) {
+    result.damage *= branch.damageMultiplier;
+    result.range *= branch.rangeMultiplier;
+    result.ratePerSec *= branch.rateMultiplier;
+    result.cooldownMs = 1000 / result.ratePerSec;
+    result.slowPct = Math.min(tuning.slowTowerCap, result.slowPct * branch.slowMultiplier);
+    result.vulnerabilityPct = Math.min(tuning.vulnerabilityTowerCap, result.vulnerabilityPct * branch.vulnerabilityMultiplier);
+    result.slowDurationMs *= branch.durationMultiplier;
+    result.vulnerabilityDurationMs *= branch.durationMultiplier;
+    result.chainTargets = branch.chainTargets;
+  }
+  return result;
 }
 
 export function getAuraMultiplier(balance, tower, allTowers, nowMs = 0) {
@@ -75,7 +89,7 @@ export function getAuraMultiplier(balance, tower, allTowers, nowMs = 0) {
   return 1 + Math.min(cap, bonus);
 }
 
-export function describeTower(balance, towerType, level = 1) {
+export function describeTower(balance, towerType, level = 1, specialization = null) {
   const definition = balance.towers[towerType];
   return {
     type: towerType,
@@ -84,6 +98,7 @@ export function describeTower(balance, towerType, level = 1) {
     icon: definition.icon,
     color: definition.color,
     level,
-    ...getTowerStats(balance, towerType, level)
+    specialization,
+    ...getTowerStats(balance, towerType, level, specialization)
   };
 }

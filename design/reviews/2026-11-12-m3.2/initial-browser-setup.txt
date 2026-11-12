@@ -1,0 +1,2378 @@
+
+> dharmapala-shield-game@1.0.0 test:e2e
+> playwright test --project=e2e
+
+[WebServer] (node:2037) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 91 tests using 1 worker
+
+(node:2049) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   1 [e2e] › tests/e2e/game.spec.js:4:1 › loads the real game without console errors and keeps wave 1 idle (1ms)
+(node:2061) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   2 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 360×640 (1ms)
+(node:2073) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   3 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 390×844 (1ms)
+(node:2085) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   4 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 640×360 (1ms)
+(node:2097) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   5 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 844×390 (1ms)
+(node:2109) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   6 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 1280×720 (1ms)
+(node:2121) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   7 [e2e] › tests/e2e/game.spec.js:65:1 › keyboard speed choice, pause, settings and Continue retain the chosen wave speed (1ms)
+(node:2133) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   8 [e2e] › tests/e2e/game.spec.js:110:1 › loads the sprite sheet and maps every active rendered entity (1ms)
+(node:2145) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   9 [e2e] › tests/e2e/game.spec.js:158:1 › keeps the sprite canvas sharp at device scale factor 2 (1ms)
+(node:2157) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  10 [e2e] › tests/e2e/game.spec.js:194:1 › places, selects, upgrades, sells, and restores a tower save (1ms)
+(node:2169) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  11 [e2e] › tests/e2e/game.spec.js:224:1 › upgraded Firewall inspector describes only its applied combat status (1ms)
+(node:2181) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  12 [e2e] › tests/e2e/game.spec.js:238:1 › Distributor inspector explains support and EMP without a targeting claim (1ms)
+(node:2193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  13 [e2e] › tests/e2e/game.spec.js:254:1 › pause freezes simulation and restart removes all old state (1ms)
+(node:2205) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  14 [e2e] › tests/e2e/game.spec.js:289:1 › keyboard-only build flow can place a tower and start a wave (1ms)
+(node:2217) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  15 [e2e] › tests/e2e/game.spec.js:316:3 › desktop layout keeps battlefield and primary controls in the viewport (0ms)
+(node:2238) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  16 [e2e] › tests/e2e/game.spec.js:316:3 › small portrait layout keeps battlefield and primary controls in the viewport (1ms)
+(node:2250) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  17 [e2e] › tests/e2e/game.spec.js:316:3 › portrait layout keeps battlefield and primary controls in the viewport (0ms)
+(node:2262) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  18 [e2e] › tests/e2e/game.spec.js:316:3 › small landscape layout keeps battlefield and primary controls in the viewport (1ms)
+(node:2274) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  19 [e2e] › tests/e2e/game.spec.js:316:3 › landscape layout keeps battlefield and primary controls in the viewport (1ms)
+(node:2286) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  20 [e2e] › tests/e2e/game.spec.js:355:1 › terminal dialogs block play and expose final results (1ms)
+(node:2298) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  21 [e2e] › tests/e2e/game.spec.js:363:1 › same-tick game over persists matching live and final results (1ms)
+(node:2310) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  22 [e2e] › tests/e2e/game.spec.js:398:1 › zoom is not disabled and interactive elements have accessible names (1ms)
+(node:2322) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  23 [e2e] › tests/e2e/game.spec.js:414:1 › portrait preview does not intercept palette selection (1ms)
+(node:2334) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  24 [e2e] › tests/e2e/game.spec.js:463:5 › 360x640 click: open panels allow building and waves (1ms)
+(node:2346) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  25 [e2e] › tests/e2e/game.spec.js:463:5 › 360x640 tap: open panels allow building and waves (1ms)
+(node:2358) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  26 [e2e] › tests/e2e/game.spec.js:463:5 › 390x844 click: open panels allow building and waves (0ms)
+(node:2370) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  27 [e2e] › tests/e2e/game.spec.js:463:5 › 390x844 tap: open panels allow building and waves (1ms)
+(node:2382) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  28 [e2e] › tests/e2e/game.spec.js:463:5 › 640x360 click: open panels allow building and waves (1ms)
+(node:2394) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  29 [e2e] › tests/e2e/game.spec.js:463:5 › 640x360 tap: open panels allow building and waves (1ms)
+(node:2414) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  30 [e2e] › tests/e2e/game.spec.js:463:5 › 844x390 click: open panels allow building and waves (1ms)
+(node:2426) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  31 [e2e] › tests/e2e/game.spec.js:463:5 › 844x390 tap: open panels allow building and waves (1ms)
+(node:2438) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  32 [e2e] › tests/e2e/game.spec.js:463:5 › 1280x720 click: open panels allow building and waves (1ms)
+(node:2450) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  33 [e2e] › tests/e2e/game.spec.js:463:5 › 1280x720 tap: open panels allow building and waves (1ms)
+(node:2462) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  34 [e2e] › tests/e2e/game.spec.js:514:3 › touch rotation from 360x640 preserves open panel access (1ms)
+(node:2474) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  35 [e2e] › tests/e2e/game.spec.js:514:3 › touch rotation from 390x844 preserves open panel access (1ms)
+(node:2486) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  36 [e2e] › tests/e2e/game.spec.js:547:1 › portrait disclosures and building work with real Tab navigation (1ms)
+(node:2498) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  37 [e2e] › tests/e2e/game.spec.js:582:1 › Escape skips tutorial without stranding TUTORIAL (R03) (1ms)
+(node:2510) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  38 [e2e] › tests/e2e/game.spec.js:609:3 › 1280 keyboard tutorial skip, replay and guided exit (1ms)
+(node:2522) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  39 [e2e] › tests/e2e/game.spec.js:640:3 › 1280 keyboard settings, pause and sale cancellation preserve play (1ms)
+(node:2534) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  40 [e2e] › tests/e2e/game.spec.js:609:3 › 360 keyboard tutorial skip, replay and guided exit (1ms)
+(node:2546) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  41 [e2e] › tests/e2e/game.spec.js:640:3 › 360 keyboard settings, pause and sale cancellation preserve play (1ms)
+(node:2558) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  42 [e2e] › tests/e2e/game.spec.js:706:3 › GAME_OVER keyboard terminal navigation and menu settings cancellation (1ms)
+(node:2570) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  43 [e2e] › tests/e2e/game.spec.js:706:3 › VICTORY keyboard terminal navigation and menu settings cancellation (1ms)
+(node:2582) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  44 [e2e] › tests/e2e/game.spec.js:731:1 › Escape closes settings and restores build phase (R03) (1ms)
+(node:2594) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  45 [e2e] › tests/e2e/game.spec.js:743:1 › restart, new run and terminal results are durable and preferences survive navigation (1ms)
+(node:2606) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  46 [e2e] › tests/e2e/game.spec.js:772:1 › unreadable saves reject without swapping live play and export/reset through real controls (1ms)
+(node:2618) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  47 [e2e] › tests/e2e/game.spec.js:799:1 › storage denial leaves menu and play usable with visible recovery status (0ms)
+(node:2630) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  48 [e2e] › tests/e2e/game.spec.js:812:1 › completed wave persists a finished clock frame and reloads into deliberate building (1ms)
+(node:2642) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  49 [e2e] › tests/e2e/game.spec.js:831:1 › menu preferences and an uncompleted tutorial survive reload before first placement (1ms)
+(node:2654) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  50 [e2e] › tests/e2e/game.spec.js:846:1 › tower comparison shows rule-derived status, chain, investment and refund (1ms)
+(node:2666) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  51 [e2e] › tests/e2e/game.spec.js:865:1 › Distributor support inspector shows actual benefit and passive income (1ms)
+(node:2678) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  52 [e2e] › tests/e2e/game.spec.js:886:1 › keyboard can inspect towers and enemy roster in build and wave phases (0ms)
+(node:2690) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  53 [e2e] › tests/e2e/game.spec.js:918:1 › pointer inspects live wave enemies and towers without building or selling (1ms)
+(node:2702) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  54 [e2e] › tests/e2e/game.spec.js:948:1 › boss enemy details state implemented abilities without unused phase metadata (1ms)
+(node:2714) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  55 [e2e] › tests/e2e/game.spec.js:977:1 › unaffordable and wave-locked tower blueprints remain inspectable without build actions (1ms)
+(node:2726) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  56 [e2e] › tests/e2e/game.spec.js:1004:1 › wave keyboard cursor visibly moves to and selects another placed tower (1ms)
+(node:2738) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  57 [e2e] › tests/e2e/game.spec.js:1023:1 › wave support benefit refreshes when EMP suppression expires (1ms)
+(node:2750) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  58 [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 360x640 (0ms)
+(node:2762) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  59 [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 390x844 (1ms)
+(node:2774) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  60 [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 640x360 (1ms)
+(node:2786) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  61 [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 844x390 (1ms)
+(node:2798) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  62 [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 1280x720 (1ms)
+(node:2810) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  63 [e2e] › tests/e2e/game.spec.js:1074:1 › combat text follows boss phase, shield damage and status expiry without live-region spam (1ms)
+(node:2822) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  64 [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 360x640 (1ms)
+(node:2834) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  65 [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 390x844 (0ms)
+(node:2846) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  66 [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 640x360 (1ms)
+(node:2858) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  67 [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 844x390 (1ms)
+(node:2870) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  68 [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 1280x720 (1ms)
+(node:2882) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  69 [e2e] › tests/e2e/game.spec.js:1126:1 › defeat reports remain accessible inside the terminal dialog (1ms)
+(node:2894) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  70 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 360×640 (1ms)
+(node:2906) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  71 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 390×844 (1ms)
+(node:2918) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  72 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 640×360 (1ms)
+(node:2930) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  73 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 844×390 (1ms)
+(node:2942) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  74 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 1280×720 (1ms)
+(node:2954) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  75 [e2e] › tests/e2e/game.spec.js:1169:1 › keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts (1ms)
+(node:2966) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  76 [e2e] › tests/e2e/game.spec.js:1187:1 › new schedule pause/reload/Continue retains pending arrivals, 2× and preferences (1ms)
+(node:2978) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  77 [e2e] › tests/e2e/game.spec.js:1208:1 › prior balance save exports exact original and reset preserves independent preferences (1ms)
+(node:2990) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  78 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 360×640 is visible, permanent and saved (1ms)
+(node:3002) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  79 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 360×640 is visible, permanent and saved (1ms)
+(node:3014) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  80 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 390×844 is visible, permanent and saved (1ms)
+(node:3026) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  81 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 390×844 is visible, permanent and saved (1ms)
+(node:3038) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  82 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 640×360 is visible, permanent and saved (1ms)
+(node:3050) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  83 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 640×360 is visible, permanent and saved (1ms)
+(node:3062) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  84 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 844×390 is visible, permanent and saved (1ms)
+(node:3074) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  85 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 844×390 is visible, permanent and saved (1ms)
+(node:3086) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  86 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 1280×720 is visible, permanent and saved (0ms)
+(node:3098) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  87 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 1280×720 is visible, permanent and saved (0ms)
+(node:3110) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  88 [e2e] › tests/e2e/game.spec.js:1256:78 › firewall specialization uses actual Tab/Enter and wave-locked choices stay disabled (0ms)
+(node:3122) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  89 [e2e] › tests/e2e/game.spec.js:1256:78 › encryption specialization uses actual Tab/Enter and wave-locked choices stay disabled (1ms)
+(node:3134) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  90 [e2e] › tests/e2e/game.spec.js:1264:1 › unaffordable and wave-locked level-3 choices explain costs without permitting purchases (1ms)
+(node:3146) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  91 [e2e] › tests/e2e/game.spec.js:1272:1 › M3.1 save version rejection exports exact bytes and preserves independent preferences (1ms)
+
+
+  1) [e2e] › tests/e2e/game.spec.js:4:1 › loads the real game without console errors and keeps wave 1 idle 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-loads-the-real-game-w-dd2a3-rrors-and-keeps-wave-1-idle-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-loads-the-real-game-w-dd2a3-rrors-and-keeps-wave-1-idle-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-loads-the-real-game-w-dd2a3-rrors-and-keeps-wave-1-idle-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 360×640 ──────
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-wave-speed-and-Start-Wave-remain-usable-at-360×640-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-wave-speed-and-Start-Wave-remain-usable-at-360×640-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-wave-speed-and-Start-Wave-remain-usable-at-360×640-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 390×844 ──────
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-wave-speed-and-Start-Wave-remain-usable-at-390×844-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-wave-speed-and-Start-Wave-remain-usable-at-390×844-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-wave-speed-and-Start-Wave-remain-usable-at-390×844-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 640×360 ──────
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-wave-speed-and-Start-Wave-remain-usable-at-640×360-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-wave-speed-and-Start-Wave-remain-usable-at-640×360-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-wave-speed-and-Start-Wave-remain-usable-at-640×360-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 844×390 ──────
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-wave-speed-and-Start-Wave-remain-usable-at-844×390-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-wave-speed-and-Start-Wave-remain-usable-at-844×390-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-wave-speed-and-Start-Wave-remain-usable-at-844×390-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 1280×720 ─────
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-wave-speed-and-Start-Wave-remain-usable-at-1280×720-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-wave-speed-and-Start-Wave-remain-usable-at-1280×720-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-wave-speed-and-Start-Wave-remain-usable-at-1280×720-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [e2e] › tests/e2e/game.spec.js:65:1 › keyboard speed choice, pause, settings and Continue retain the chosen wave speed 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-keyboard-speed-choice-a4553-etain-the-chosen-wave-speed-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-keyboard-speed-choice-a4553-etain-the-chosen-wave-speed-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-keyboard-speed-choice-a4553-etain-the-chosen-wave-speed-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [e2e] › tests/e2e/game.spec.js:110:1 › loads the sprite sheet and maps every active rendered entity 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-loads-the-sprite-shee-e4f5b-very-active-rendered-entity-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-loads-the-sprite-shee-e4f5b-very-active-rendered-entity-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-loads-the-sprite-shee-e4f5b-very-active-rendered-entity-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [e2e] › tests/e2e/game.spec.js:158:1 › keeps the sprite canvas sharp at device scale factor 2 ─
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-keeps-the-sprite-canvas-sharp-at-device-scale-factor-2-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-keeps-the-sprite-canvas-sharp-at-device-scale-factor-2-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-keeps-the-sprite-canvas-sharp-at-device-scale-factor-2-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [e2e] › tests/e2e/game.spec.js:194:1 › places, selects, upgrades, sells, and restores a tower save 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-places-selects-upgrades-sells-and-restores-a-tower-save-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-places-selects-upgrades-sells-and-restores-a-tower-save-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-places-selects-upgrades-sells-and-restores-a-tower-save-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [e2e] › tests/e2e/game.spec.js:224:1 › upgraded Firewall inspector describes only its applied combat status 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-upgraded-Firewall-ins-be747-y-its-applied-combat-status-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-upgraded-Firewall-ins-be747-y-its-applied-combat-status-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-upgraded-Firewall-ins-be747-y-its-applied-combat-status-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [e2e] › tests/e2e/game.spec.js:238:1 › Distributor inspector explains support and EMP without a targeting claim 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-Distributor-inspector-f46ed-P-without-a-targeting-claim-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-Distributor-inspector-f46ed-P-without-a-targeting-claim-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-Distributor-inspector-f46ed-P-without-a-targeting-claim-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [e2e] › tests/e2e/game.spec.js:254:1 › pause freezes simulation and restart removes all old state 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-pause-freezes-simulat-d3647-start-removes-all-old-state-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-pause-freezes-simulat-d3647-start-removes-all-old-state-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-pause-freezes-simulat-d3647-start-removes-all-old-state-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [e2e] › tests/e2e/game.spec.js:289:1 › keyboard-only build flow can place a tower and start a wave 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-keyboard-only-build-f-736a0-ce-a-tower-and-start-a-wave-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-keyboard-only-build-f-736a0-ce-a-tower-and-start-a-wave-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-keyboard-only-build-f-736a0-ce-a-tower-and-start-a-wave-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [e2e] › tests/e2e/game.spec.js:316:3 › desktop layout keeps battlefield and primary controls in the viewport 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-desktop-layout-keeps--3a5e9-ry-controls-in-the-viewport-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-desktop-layout-keeps--3a5e9-ry-controls-in-the-viewport-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-desktop-layout-keeps--3a5e9-ry-controls-in-the-viewport-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [e2e] › tests/e2e/game.spec.js:316:3 › small portrait layout keeps battlefield and primary controls in the viewport 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-small-portrait-layout-21ddb-ry-controls-in-the-viewport-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-small-portrait-layout-21ddb-ry-controls-in-the-viewport-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-small-portrait-layout-21ddb-ry-controls-in-the-viewport-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  17) [e2e] › tests/e2e/game.spec.js:316:3 › portrait layout keeps battlefield and primary controls in the viewport 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-portrait-layout-keeps-f05d3-ry-controls-in-the-viewport-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-portrait-layout-keeps-f05d3-ry-controls-in-the-viewport-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-portrait-layout-keeps-f05d3-ry-controls-in-the-viewport-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18) [e2e] › tests/e2e/game.spec.js:316:3 › small landscape layout keeps battlefield and primary controls in the viewport 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-small-landscape-layou-cba6f-ry-controls-in-the-viewport-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-small-landscape-layou-cba6f-ry-controls-in-the-viewport-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-small-landscape-layou-cba6f-ry-controls-in-the-viewport-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  19) [e2e] › tests/e2e/game.spec.js:316:3 › landscape layout keeps battlefield and primary controls in the viewport 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-landscape-layout-keep-4cf30-ry-controls-in-the-viewport-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-landscape-layout-keep-4cf30-ry-controls-in-the-viewport-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-landscape-layout-keep-4cf30-ry-controls-in-the-viewport-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  20) [e2e] › tests/e2e/game.spec.js:355:1 › terminal dialogs block play and expose final results ──
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-terminal-dialogs-block-play-and-expose-final-results-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-terminal-dialogs-block-play-and-expose-final-results-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-terminal-dialogs-block-play-and-expose-final-results-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  21) [e2e] › tests/e2e/game.spec.js:363:1 › same-tick game over persists matching live and final results 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-same-tick-game-over-p-e4969-hing-live-and-final-results-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-same-tick-game-over-p-e4969-hing-live-and-final-results-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-same-tick-game-over-p-e4969-hing-live-and-final-results-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  22) [e2e] › tests/e2e/game.spec.js:398:1 › zoom is not disabled and interactive elements have accessible names 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-zoom-is-not-disabled--fcbaa-ments-have-accessible-names-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-zoom-is-not-disabled--fcbaa-ments-have-accessible-names-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-zoom-is-not-disabled--fcbaa-ments-have-accessible-names-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  23) [e2e] › tests/e2e/game.spec.js:414:1 › portrait preview does not intercept palette selection ─
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-portrait-preview-does-not-intercept-palette-selection-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-portrait-preview-does-not-intercept-palette-selection-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-portrait-preview-does-not-intercept-palette-selection-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  24) [e2e] › tests/e2e/game.spec.js:463:5 › 360x640 click: open panels allow building and waves ───
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-360x640-click-open-panels-allow-building-and-waves-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-360x640-click-open-panels-allow-building-and-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-360x640-click-open-panels-allow-building-and-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  25) [e2e] › tests/e2e/game.spec.js:463:5 › 360x640 tap: open panels allow building and waves ─────
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-360x640-tap-open-panels-allow-building-and-waves-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-360x640-tap-open-panels-allow-building-and-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-360x640-tap-open-panels-allow-building-and-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  26) [e2e] › tests/e2e/game.spec.js:463:5 › 390x844 click: open panels allow building and waves ───
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-390x844-click-open-panels-allow-building-and-waves-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-390x844-click-open-panels-allow-building-and-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-390x844-click-open-panels-allow-building-and-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  27) [e2e] › tests/e2e/game.spec.js:463:5 › 390x844 tap: open panels allow building and waves ─────
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-390x844-tap-open-panels-allow-building-and-waves-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-390x844-tap-open-panels-allow-building-and-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-390x844-tap-open-panels-allow-building-and-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  28) [e2e] › tests/e2e/game.spec.js:463:5 › 640x360 click: open panels allow building and waves ───
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-640x360-click-open-panels-allow-building-and-waves-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-640x360-click-open-panels-allow-building-and-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-640x360-click-open-panels-allow-building-and-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  29) [e2e] › tests/e2e/game.spec.js:463:5 › 640x360 tap: open panels allow building and waves ─────
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-640x360-tap-open-panels-allow-building-and-waves-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-640x360-tap-open-panels-allow-building-and-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-640x360-tap-open-panels-allow-building-and-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  30) [e2e] › tests/e2e/game.spec.js:463:5 › 844x390 click: open panels allow building and waves ───
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-844x390-click-open-panels-allow-building-and-waves-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-844x390-click-open-panels-allow-building-and-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-844x390-click-open-panels-allow-building-and-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  31) [e2e] › tests/e2e/game.spec.js:463:5 › 844x390 tap: open panels allow building and waves ─────
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-844x390-tap-open-panels-allow-building-and-waves-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-844x390-tap-open-panels-allow-building-and-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-844x390-tap-open-panels-allow-building-and-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  32) [e2e] › tests/e2e/game.spec.js:463:5 › 1280x720 click: open panels allow building and waves ──
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-1280x720-click-open-panels-allow-building-and-waves-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-1280x720-click-open-panels-allow-building-and-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-1280x720-click-open-panels-allow-building-and-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  33) [e2e] › tests/e2e/game.spec.js:463:5 › 1280x720 tap: open panels allow building and waves ────
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-1280x720-tap-open-panels-allow-building-and-waves-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-1280x720-tap-open-panels-allow-building-and-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-1280x720-tap-open-panels-allow-building-and-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  34) [e2e] › tests/e2e/game.spec.js:514:3 › touch rotation from 360x640 preserves open panel access 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-touch-rotation-from-360x640-preserves-open-panel-access-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-touch-rotation-from-360x640-preserves-open-panel-access-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-touch-rotation-from-360x640-preserves-open-panel-access-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  35) [e2e] › tests/e2e/game.spec.js:514:3 › touch rotation from 390x844 preserves open panel access 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-touch-rotation-from-390x844-preserves-open-panel-access-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-touch-rotation-from-390x844-preserves-open-panel-access-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-touch-rotation-from-390x844-preserves-open-panel-access-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  36) [e2e] › tests/e2e/game.spec.js:547:1 › portrait disclosures and building work with real Tab navigation 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-portrait-disclosures--88f05-rk-with-real-Tab-navigation-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-portrait-disclosures--88f05-rk-with-real-Tab-navigation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-portrait-disclosures--88f05-rk-with-real-Tab-navigation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  37) [e2e] › tests/e2e/game.spec.js:582:1 › Escape skips tutorial without stranding TUTORIAL (R03) 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-Escape-skips-tutorial-without-stranding-TUTORIAL-R03--e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-Escape-skips-tutorial-without-stranding-TUTORIAL-R03--e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-Escape-skips-tutorial-without-stranding-TUTORIAL-R03--e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  38) [e2e] › tests/e2e/game.spec.js:609:3 › 1280 keyboard tutorial skip, replay and guided exit ───
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-1280-keyboard-tutorial-skip-replay-and-guided-exit-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-1280-keyboard-tutorial-skip-replay-and-guided-exit-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-1280-keyboard-tutorial-skip-replay-and-guided-exit-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  39) [e2e] › tests/e2e/game.spec.js:640:3 › 1280 keyboard settings, pause and sale cancellation preserve play 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-1280-keyboard-setting-91a19--cancellation-preserve-play-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-1280-keyboard-setting-91a19--cancellation-preserve-play-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-1280-keyboard-setting-91a19--cancellation-preserve-play-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  40) [e2e] › tests/e2e/game.spec.js:609:3 › 360 keyboard tutorial skip, replay and guided exit ────
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-360-keyboard-tutorial-skip-replay-and-guided-exit-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-360-keyboard-tutorial-skip-replay-and-guided-exit-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-360-keyboard-tutorial-skip-replay-and-guided-exit-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  41) [e2e] › tests/e2e/game.spec.js:640:3 › 360 keyboard settings, pause and sale cancellation preserve play 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-360-keyboard-settings-83f9c--cancellation-preserve-play-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-360-keyboard-settings-83f9c--cancellation-preserve-play-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-360-keyboard-settings-83f9c--cancellation-preserve-play-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  42) [e2e] › tests/e2e/game.spec.js:706:3 › GAME_OVER keyboard terminal navigation and menu settings cancellation 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-GAME-OVER-keyboard-te-91691--menu-settings-cancellation-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-GAME-OVER-keyboard-te-91691--menu-settings-cancellation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-GAME-OVER-keyboard-te-91691--menu-settings-cancellation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  43) [e2e] › tests/e2e/game.spec.js:706:3 › VICTORY keyboard terminal navigation and menu settings cancellation 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-VICTORY-keyboard-term-2fded--menu-settings-cancellation-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-VICTORY-keyboard-term-2fded--menu-settings-cancellation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-VICTORY-keyboard-term-2fded--menu-settings-cancellation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  44) [e2e] › tests/e2e/game.spec.js:731:1 › Escape closes settings and restores build phase (R03) ─
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-Escape-closes-settings-and-restores-build-phase-R03--e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-Escape-closes-settings-and-restores-build-phase-R03--e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-Escape-closes-settings-and-restores-build-phase-R03--e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  45) [e2e] › tests/e2e/game.spec.js:743:1 › restart, new run and terminal results are durable and preferences survive navigation 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-restart-new-run-and-t-7053a-ferences-survive-navigation-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-restart-new-run-and-t-7053a-ferences-survive-navigation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-restart-new-run-and-t-7053a-ferences-survive-navigation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  46) [e2e] › tests/e2e/game.spec.js:772:1 › unreadable saves reject without swapping live play and export/reset through real controls 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-unreadable-saves-reje-53db8-reset-through-real-controls-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-unreadable-saves-reje-53db8-reset-through-real-controls-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-unreadable-saves-reje-53db8-reset-through-real-controls-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  47) [e2e] › tests/e2e/game.spec.js:799:1 › storage denial leaves menu and play usable with visible recovery status 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-storage-denial-leaves-e7fa0-ith-visible-recovery-status-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-storage-denial-leaves-e7fa0-ith-visible-recovery-status-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-storage-denial-leaves-e7fa0-ith-visible-recovery-status-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  48) [e2e] › tests/e2e/game.spec.js:812:1 › completed wave persists a finished clock frame and reloads into deliberate building 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-completed-wave-persis-45b7d-ds-into-deliberate-building-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-completed-wave-persis-45b7d-ds-into-deliberate-building-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-completed-wave-persis-45b7d-ds-into-deliberate-building-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  49) [e2e] › tests/e2e/game.spec.js:831:1 › menu preferences and an uncompleted tutorial survive reload before first placement 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-menu-preferences-and--900a6-load-before-first-placement-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-menu-preferences-and--900a6-load-before-first-placement-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-menu-preferences-and--900a6-load-before-first-placement-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  50) [e2e] › tests/e2e/game.spec.js:846:1 › tower comparison shows rule-derived status, chain, investment and refund 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-tower-comparison-show-ed041-chain-investment-and-refund-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-tower-comparison-show-ed041-chain-investment-and-refund-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-tower-comparison-show-ed041-chain-investment-and-refund-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  51) [e2e] › tests/e2e/game.spec.js:865:1 › Distributor support inspector shows actual benefit and passive income 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-Distributor-support-i-6821c--benefit-and-passive-income-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-Distributor-support-i-6821c--benefit-and-passive-income-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-Distributor-support-i-6821c--benefit-and-passive-income-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  52) [e2e] › tests/e2e/game.spec.js:886:1 › keyboard can inspect towers and enemy roster in build and wave phases 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-keyboard-can-inspect--c14a6-er-in-build-and-wave-phases-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-keyboard-can-inspect--c14a6-er-in-build-and-wave-phases-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-keyboard-can-inspect--c14a6-er-in-build-and-wave-phases-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  53) [e2e] › tests/e2e/game.spec.js:918:1 › pointer inspects live wave enemies and towers without building or selling 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-pointer-inspects-live-a4d1e-without-building-or-selling-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-pointer-inspects-live-a4d1e-without-building-or-selling-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-pointer-inspects-live-a4d1e-without-building-or-selling-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  54) [e2e] › tests/e2e/game.spec.js:948:1 › boss enemy details state implemented abilities without unused phase metadata 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-boss-enemy-details-st-61af9-thout-unused-phase-metadata-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-boss-enemy-details-st-61af9-thout-unused-phase-metadata-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-boss-enemy-details-st-61af9-thout-unused-phase-metadata-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  55) [e2e] › tests/e2e/game.spec.js:977:1 › unaffordable and wave-locked tower blueprints remain inspectable without build actions 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-unaffordable-and-wave-5692e-table-without-build-actions-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-unaffordable-and-wave-5692e-table-without-build-actions-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-unaffordable-and-wave-5692e-table-without-build-actions-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  56) [e2e] › tests/e2e/game.spec.js:1004:1 › wave keyboard cursor visibly moves to and selects another placed tower 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-wave-keyboard-cursor--13cd6-elects-another-placed-tower-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-wave-keyboard-cursor--13cd6-elects-another-placed-tower-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-wave-keyboard-cursor--13cd6-elects-another-placed-tower-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  57) [e2e] › tests/e2e/game.spec.js:1023:1 › wave support benefit refreshes when EMP suppression expires 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-wave-support-benefit--1cde4-hen-EMP-suppression-expires-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-wave-support-benefit--1cde4-hen-EMP-suppression-expires-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-wave-support-benefit--1cde4-hen-EMP-suppression-expires-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  58) [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 360x640 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-combat-cues-and-text--b0834-ble-during-waves-at-360x640-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-combat-cues-and-text--b0834-ble-during-waves-at-360x640-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-combat-cues-and-text--b0834-ble-during-waves-at-360x640-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  59) [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 390x844 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-combat-cues-and-text--e12f6-ble-during-waves-at-390x844-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-combat-cues-and-text--e12f6-ble-during-waves-at-390x844-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-combat-cues-and-text--e12f6-ble-during-waves-at-390x844-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  60) [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 640x360 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-combat-cues-and-text--93885-ble-during-waves-at-640x360-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-combat-cues-and-text--93885-ble-during-waves-at-640x360-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-combat-cues-and-text--93885-ble-during-waves-at-640x360-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  61) [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 844x390 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-combat-cues-and-text--9d609-ble-during-waves-at-844x390-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-combat-cues-and-text--9d609-ble-during-waves-at-844x390-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-combat-cues-and-text--9d609-ble-during-waves-at-844x390-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  62) [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 1280x720 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-combat-cues-and-text--739eb-le-during-waves-at-1280x720-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-combat-cues-and-text--739eb-le-during-waves-at-1280x720-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-combat-cues-and-text--739eb-le-during-waves-at-1280x720-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  63) [e2e] › tests/e2e/game.spec.js:1074:1 › combat text follows boss phase, shield damage and status expiry without live-region spam 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-combat-text-follows-b-13a72-ry-without-live-region-spam-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-combat-text-follows-b-13a72-ry-without-live-region-spam-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-combat-text-follows-b-13a72-ry-without-live-region-spam-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  64) [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 360x640 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-wave-reports-persist--3f640-yboard-dismissal-at-360x640-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-wave-reports-persist--3f640-yboard-dismissal-at-360x640-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-wave-reports-persist--3f640-yboard-dismissal-at-360x640-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  65) [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 390x844 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-wave-reports-persist--d5c63-yboard-dismissal-at-390x844-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-wave-reports-persist--d5c63-yboard-dismissal-at-390x844-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-wave-reports-persist--d5c63-yboard-dismissal-at-390x844-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  66) [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 640x360 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-wave-reports-persist--0eb04-yboard-dismissal-at-640x360-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-wave-reports-persist--0eb04-yboard-dismissal-at-640x360-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-wave-reports-persist--0eb04-yboard-dismissal-at-640x360-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  67) [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 844x390 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-wave-reports-persist--9c9fb-yboard-dismissal-at-844x390-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-wave-reports-persist--9c9fb-yboard-dismissal-at-844x390-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-wave-reports-persist--9c9fb-yboard-dismissal-at-844x390-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  68) [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 1280x720 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-wave-reports-persist--db68a-board-dismissal-at-1280x720-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-wave-reports-persist--db68a-board-dismissal-at-1280x720-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-wave-reports-persist--db68a-board-dismissal-at-1280x720-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  69) [e2e] › tests/e2e/game.spec.js:1126:1 › defeat reports remain accessible inside the terminal dialog 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-defeat-reports-remain-9b3f1--inside-the-terminal-dialog-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-defeat-reports-remain-9b3f1--inside-the-terminal-dialog-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-defeat-reports-remain-9b3f1--inside-the-terminal-dialog-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  70) [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 360×640 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-authored-overlap-timi-7002b-eliberate-starts-at-360×640-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-7002b-eliberate-starts-at-360×640-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-authored-overlap-timi-7002b-eliberate-starts-at-360×640-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  71) [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 390×844 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-authored-overlap-timi-6bd55-eliberate-starts-at-390×844-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-6bd55-eliberate-starts-at-390×844-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-authored-overlap-timi-6bd55-eliberate-starts-at-390×844-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  72) [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 640×360 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-authored-overlap-timi-3516c-eliberate-starts-at-640×360-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-3516c-eliberate-starts-at-640×360-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-authored-overlap-timi-3516c-eliberate-starts-at-640×360-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  73) [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 844×390 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-authored-overlap-timi-70d9e-eliberate-starts-at-844×390-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-70d9e-eliberate-starts-at-844×390-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-authored-overlap-timi-70d9e-eliberate-starts-at-844×390-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  74) [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 1280×720 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-authored-overlap-timi-3c87d-liberate-starts-at-1280×720-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-authored-overlap-timi-3c87d-liberate-starts-at-1280×720-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-authored-overlap-timi-3c87d-liberate-starts-at-1280×720-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  75) [e2e] › tests/e2e/game.spec.js:1169:1 › keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-keyboard-reads-Raid-t-41d6a-ses-and-deliberately-starts-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-keyboard-reads-Raid-t-41d6a-ses-and-deliberately-starts-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-keyboard-reads-Raid-t-41d6a-ses-and-deliberately-starts-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  76) [e2e] › tests/e2e/game.spec.js:1187:1 › new schedule pause/reload/Continue retains pending arrivals, 2× and preferences 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-new-schedule-pause-re-eea9f-arrivals-2×-and-preferences-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-new-schedule-pause-re-eea9f-arrivals-2×-and-preferences-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-new-schedule-pause-re-eea9f-arrivals-2×-and-preferences-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  77) [e2e] › tests/e2e/game.spec.js:1208:1 › prior balance save exports exact original and reset preserves independent preferences 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-prior-balance-save-ex-89b47-ves-independent-preferences-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-prior-balance-save-ex-89b47-ves-independent-preferences-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-prior-balance-save-ex-89b47-ves-independent-preferences-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  78) [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 360×640 is visible, permanent and saved 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-specialization-choice-c0c05-visible-permanent-and-saved-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-specialization-choice-c0c05-visible-permanent-and-saved-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-specialization-choice-c0c05-visible-permanent-and-saved-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  79) [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 360×640 is visible, permanent and saved 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-specialization-choice-faca1-visible-permanent-and-saved-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-specialization-choice-faca1-visible-permanent-and-saved-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-specialization-choice-faca1-visible-permanent-and-saved-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  80) [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 390×844 is visible, permanent and saved 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-specialization-choice-6a0c0-visible-permanent-and-saved-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-specialization-choice-6a0c0-visible-permanent-and-saved-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-specialization-choice-6a0c0-visible-permanent-and-saved-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  81) [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 390×844 is visible, permanent and saved 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-specialization-choice-14e15-visible-permanent-and-saved-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-specialization-choice-14e15-visible-permanent-and-saved-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-specialization-choice-14e15-visible-permanent-and-saved-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  82) [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 640×360 is visible, permanent and saved 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-specialization-choice-c2b28-visible-permanent-and-saved-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-specialization-choice-c2b28-visible-permanent-and-saved-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-specialization-choice-c2b28-visible-permanent-and-saved-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  83) [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 640×360 is visible, permanent and saved 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-specialization-choice-a5b5a-visible-permanent-and-saved-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-specialization-choice-a5b5a-visible-permanent-and-saved-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-specialization-choice-a5b5a-visible-permanent-and-saved-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  84) [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 844×390 is visible, permanent and saved 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-specialization-choice-7acc9-visible-permanent-and-saved-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-specialization-choice-7acc9-visible-permanent-and-saved-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-specialization-choice-7acc9-visible-permanent-and-saved-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  85) [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 844×390 is visible, permanent and saved 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-specialization-choice-f0de0-visible-permanent-and-saved-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-specialization-choice-f0de0-visible-permanent-and-saved-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-specialization-choice-f0de0-visible-permanent-and-saved-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  86) [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 1280×720 is visible, permanent and saved 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-specialization-choice-8bbc0-visible-permanent-and-saved-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-specialization-choice-8bbc0-visible-permanent-and-saved-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-specialization-choice-8bbc0-visible-permanent-and-saved-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  87) [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 1280×720 is visible, permanent and saved 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-specialization-choice-7e787-visible-permanent-and-saved-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-specialization-choice-7e787-visible-permanent-and-saved-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-specialization-choice-7e787-visible-permanent-and-saved-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  88) [e2e] › tests/e2e/game.spec.js:1256:78 › firewall specialization uses actual Tab/Enter and wave-locked choices stay disabled 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-firewall-specializati-1e93d-ocked-choices-stay-disabled-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-firewall-specializati-1e93d-ocked-choices-stay-disabled-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-firewall-specializati-1e93d-ocked-choices-stay-disabled-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  89) [e2e] › tests/e2e/game.spec.js:1256:78 › encryption specialization uses actual Tab/Enter and wave-locked choices stay disabled 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-encryption-specializa-07cf0-ocked-choices-stay-disabled-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-encryption-specializa-07cf0-ocked-choices-stay-disabled-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-encryption-specializa-07cf0-ocked-choices-stay-disabled-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  90) [e2e] › tests/e2e/game.spec.js:1264:1 › unaffordable and wave-locked level-3 choices explain costs without permitting purchases 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-unaffordable-and-wave-d6f40-ithout-permitting-purchases-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-unaffordable-and-wave-d6f40-ithout-permitting-purchases-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-unaffordable-and-wave-d6f40-ithout-permitting-purchases-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  91) [e2e] › tests/e2e/game.spec.js:1272:1 › M3.1 save version rejection exports exact bytes and preserves independent preferences 
+
+    Error: browserType.launch: Executable doesn't exist at /workspace/.playwright-browsers/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/game-M3-1-save-version-rej-f546a-ves-independent-preferences-e2e/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-M3-1-save-version-rej-f546a-ves-independent-preferences-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-M3-1-save-version-rej-f546a-ves-independent-preferences-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  91 failed
+    [e2e] › tests/e2e/game.spec.js:4:1 › loads the real game without console errors and keeps wave 1 idle 
+    [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 360×640 ───────
+    [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 390×844 ───────
+    [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 640×360 ───────
+    [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 844×390 ───────
+    [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 1280×720 ──────
+    [e2e] › tests/e2e/game.spec.js:65:1 › keyboard speed choice, pause, settings and Continue retain the chosen wave speed 
+    [e2e] › tests/e2e/game.spec.js:110:1 › loads the sprite sheet and maps every active rendered entity 
+    [e2e] › tests/e2e/game.spec.js:158:1 › keeps the sprite canvas sharp at device scale factor 2 ──
+    [e2e] › tests/e2e/game.spec.js:194:1 › places, selects, upgrades, sells, and restores a tower save 
+    [e2e] › tests/e2e/game.spec.js:224:1 › upgraded Firewall inspector describes only its applied combat status 
+    [e2e] › tests/e2e/game.spec.js:238:1 › Distributor inspector explains support and EMP without a targeting claim 
+    [e2e] › tests/e2e/game.spec.js:254:1 › pause freezes simulation and restart removes all old state 
+    [e2e] › tests/e2e/game.spec.js:289:1 › keyboard-only build flow can place a tower and start a wave 
+    [e2e] › tests/e2e/game.spec.js:316:3 › desktop layout keeps battlefield and primary controls in the viewport 
+    [e2e] › tests/e2e/game.spec.js:316:3 › small portrait layout keeps battlefield and primary controls in the viewport 
+    [e2e] › tests/e2e/game.spec.js:316:3 › portrait layout keeps battlefield and primary controls in the viewport 
+    [e2e] › tests/e2e/game.spec.js:316:3 › small landscape layout keeps battlefield and primary controls in the viewport 
+    [e2e] › tests/e2e/game.spec.js:316:3 › landscape layout keeps battlefield and primary controls in the viewport 
+    [e2e] › tests/e2e/game.spec.js:355:1 › terminal dialogs block play and expose final results ────
+    [e2e] › tests/e2e/game.spec.js:363:1 › same-tick game over persists matching live and final results 
+    [e2e] › tests/e2e/game.spec.js:398:1 › zoom is not disabled and interactive elements have accessible names 
+    [e2e] › tests/e2e/game.spec.js:414:1 › portrait preview does not intercept palette selection ───
+    [e2e] › tests/e2e/game.spec.js:463:5 › 360x640 click: open panels allow building and waves ─────
+    [e2e] › tests/e2e/game.spec.js:463:5 › 360x640 tap: open panels allow building and waves ───────
+    [e2e] › tests/e2e/game.spec.js:463:5 › 390x844 click: open panels allow building and waves ─────
+    [e2e] › tests/e2e/game.spec.js:463:5 › 390x844 tap: open panels allow building and waves ───────
+    [e2e] › tests/e2e/game.spec.js:463:5 › 640x360 click: open panels allow building and waves ─────
+    [e2e] › tests/e2e/game.spec.js:463:5 › 640x360 tap: open panels allow building and waves ───────
+    [e2e] › tests/e2e/game.spec.js:463:5 › 844x390 click: open panels allow building and waves ─────
+    [e2e] › tests/e2e/game.spec.js:463:5 › 844x390 tap: open panels allow building and waves ───────
+    [e2e] › tests/e2e/game.spec.js:463:5 › 1280x720 click: open panels allow building and waves ────
+    [e2e] › tests/e2e/game.spec.js:463:5 › 1280x720 tap: open panels allow building and waves ──────
+    [e2e] › tests/e2e/game.spec.js:514:3 › touch rotation from 360x640 preserves open panel access ─
+    [e2e] › tests/e2e/game.spec.js:514:3 › touch rotation from 390x844 preserves open panel access ─
+    [e2e] › tests/e2e/game.spec.js:547:1 › portrait disclosures and building work with real Tab navigation 
+    [e2e] › tests/e2e/game.spec.js:582:1 › Escape skips tutorial without stranding TUTORIAL (R03) ──
+    [e2e] › tests/e2e/game.spec.js:609:3 › 1280 keyboard tutorial skip, replay and guided exit ─────
+    [e2e] › tests/e2e/game.spec.js:640:3 › 1280 keyboard settings, pause and sale cancellation preserve play 
+    [e2e] › tests/e2e/game.spec.js:609:3 › 360 keyboard tutorial skip, replay and guided exit ──────
+    [e2e] › tests/e2e/game.spec.js:640:3 › 360 keyboard settings, pause and sale cancellation preserve play 
+    [e2e] › tests/e2e/game.spec.js:706:3 › GAME_OVER keyboard terminal navigation and menu settings cancellation 
+    [e2e] › tests/e2e/game.spec.js:706:3 › VICTORY keyboard terminal navigation and menu settings cancellation 
+    [e2e] › tests/e2e/game.spec.js:731:1 › Escape closes settings and restores build phase (R03) ───
+    [e2e] › tests/e2e/game.spec.js:743:1 › restart, new run and terminal results are durable and preferences survive navigation 
+    [e2e] › tests/e2e/game.spec.js:772:1 › unreadable saves reject without swapping live play and export/reset through real controls 
+    [e2e] › tests/e2e/game.spec.js:799:1 › storage denial leaves menu and play usable with visible recovery status 
+    [e2e] › tests/e2e/game.spec.js:812:1 › completed wave persists a finished clock frame and reloads into deliberate building 
+    [e2e] › tests/e2e/game.spec.js:831:1 › menu preferences and an uncompleted tutorial survive reload before first placement 
+    [e2e] › tests/e2e/game.spec.js:846:1 › tower comparison shows rule-derived status, chain, investment and refund 
+    [e2e] › tests/e2e/game.spec.js:865:1 › Distributor support inspector shows actual benefit and passive income 
+    [e2e] › tests/e2e/game.spec.js:886:1 › keyboard can inspect towers and enemy roster in build and wave phases 
+    [e2e] › tests/e2e/game.spec.js:918:1 › pointer inspects live wave enemies and towers without building or selling 
+    [e2e] › tests/e2e/game.spec.js:948:1 › boss enemy details state implemented abilities without unused phase metadata 
+    [e2e] › tests/e2e/game.spec.js:977:1 › unaffordable and wave-locked tower blueprints remain inspectable without build actions 
+    [e2e] › tests/e2e/game.spec.js:1004:1 › wave keyboard cursor visibly moves to and selects another placed tower 
+    [e2e] › tests/e2e/game.spec.js:1023:1 › wave support benefit refreshes when EMP suppression expires 
+    [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 360x640 
+    [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 390x844 
+    [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 640x360 
+    [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 844x390 
+    [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 1280x720 
+    [e2e] › tests/e2e/game.spec.js:1074:1 › combat text follows boss phase, shield damage and status expiry without live-region spam 
+    [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 360x640 
+    [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 390x844 
+    [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 640x360 
+    [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 844x390 
+    [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 1280x720 
+    [e2e] › tests/e2e/game.spec.js:1126:1 › defeat reports remain accessible inside the terminal dialog 
+    [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 360×640 
+    [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 390×844 
+    [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 640×360 
+    [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 844×390 
+    [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 1280×720 
+    [e2e] › tests/e2e/game.spec.js:1169:1 › keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts 
+    [e2e] › tests/e2e/game.spec.js:1187:1 › new schedule pause/reload/Continue retains pending arrivals, 2× and preferences 
+    [e2e] › tests/e2e/game.spec.js:1208:1 › prior balance save exports exact original and reset preserves independent preferences 
+    [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 360×640 is visible, permanent and saved 
+    [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 360×640 is visible, permanent and saved 
+    [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 390×844 is visible, permanent and saved 
+    [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 390×844 is visible, permanent and saved 
+    [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 640×360 is visible, permanent and saved 
+    [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 640×360 is visible, permanent and saved 
+    [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 844×390 is visible, permanent and saved 
+    [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 844×390 is visible, permanent and saved 
+    [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 1280×720 is visible, permanent and saved 
+    [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 1280×720 is visible, permanent and saved 
+    [e2e] › tests/e2e/game.spec.js:1256:78 › firewall specialization uses actual Tab/Enter and wave-locked choices stay disabled 
+    [e2e] › tests/e2e/game.spec.js:1256:78 › encryption specialization uses actual Tab/Enter and wave-locked choices stay disabled 
+    [e2e] › tests/e2e/game.spec.js:1264:1 › unaffordable and wave-locked level-3 choices explain costs without permitting purchases 
+    [e2e] › tests/e2e/game.spec.js:1272:1 › M3.1 save version rejection exports exact bytes and preserves independent preferences 

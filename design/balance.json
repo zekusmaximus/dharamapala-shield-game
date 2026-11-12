@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "towers": {
     "firewall": {
       "name": "Firewall Fortress",
@@ -22,7 +22,31 @@
         "slowDuration": 0
       },
       "damageType": "physical",
-      "color": "#e94560"
+      "color": "#e94560",
+      "specializations": {
+        "focus": {
+          "name": "Focus",
+          "description": "Larger hits lose less to armor, but shorter range and slower shots sacrifice coverage.",
+          "damageMultiplier": 1.8,
+          "rangeMultiplier": 0.8,
+          "rateMultiplier": 0.7,
+          "slowMultiplier": 1,
+          "durationMultiplier": 1,
+          "vulnerabilityMultiplier": 1,
+          "chainTargets": 0
+        },
+        "coverage": {
+          "name": "Coverage",
+          "description": "Longer reach and faster shots cover more route, but smaller hits lose more to armor.",
+          "damageMultiplier": 0.85,
+          "rangeMultiplier": 1.25,
+          "rateMultiplier": 1.45,
+          "slowMultiplier": 1,
+          "durationMultiplier": 1,
+          "vulnerabilityMultiplier": 1,
+          "chainTargets": 0
+        }
+      }
     },
     "encryption": {
       "name": "Encryption Monastery",
@@ -47,7 +71,31 @@
         "vulnerabilityDuration": 1800
       },
       "damageType": "shock",
-      "color": "#0f3460"
+      "color": "#0f3460",
+      "specializations": {
+        "sustain": {
+          "name": "Sustained control",
+          "description": "Stronger, longer slow and vulnerability on one target; gives up all chain hits.",
+          "damageMultiplier": 1,
+          "rangeMultiplier": 1,
+          "rateMultiplier": 1,
+          "slowMultiplier": 1.4,
+          "durationMultiplier": 1.5,
+          "vulnerabilityMultiplier": 1.5,
+          "chainTargets": 0
+        },
+        "reach": {
+          "name": "Chain reach",
+          "description": "Hits two extra nearby enemies from level 3, with longer range but weaker, shorter control and smaller hits.",
+          "damageMultiplier": 0.85,
+          "rangeMultiplier": 1.15,
+          "rateMultiplier": 1,
+          "slowMultiplier": 0.75,
+          "durationMultiplier": 0.75,
+          "vulnerabilityMultiplier": 0.75,
+          "chainTargets": 2
+        }
+      }
     },
     "distributor": {
       "name": "Dharma Distributor",

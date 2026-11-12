@@ -1,0 +1,64 @@
+
+> dharmapala-shield-game@1.0.0 test:integration
+> node --test "tests/integration/*.test.js"
+
+✔ a lethal hit is fully resolved before an enemy-hit listener can enter results (5.977777ms)
+✔ configured slow and vulnerability reach actual projectiles and enemy movement (4.306745ms)
+✔ configured Raid Team threshold, radius, duration and minions drive production phase handling and a valid save (9.351518ms)
+✔ configured Titan shield ratio, recovery delay and rate drive production hit and recovery (0.765531ms)
+✔ configured chain radius and secondary multiplier drive the production impact path (0.674795ms)
+✔ Raid Team EMP suspends the support aura in actual tower fire and restores it at expiry (4.134275ms)
+✔ EMP-disabled support and its recovery continue identically after save/restore (37.115627ms)
+✔ a Distributor disabled at wave clear still earns its passive income (9.65191ms)
+✔ continued combat parity through wave 1, including nested isolation (16.41666ms)
+✔ continued combat parity through wave 5, including nested isolation (28.47649ms)
+✔ continued combat parity through wave 15, including nested isolation (35.720159ms)
+✔ a new session remains in building until start wave is commanded (2.426949ms)
+✔ raid team phases schedule deterministic minions and survive round-trip saves (4.105892ms)
+✔ twenty waves reach victory exactly once and never schedule wave 21 (2.8339ms)
+✔ game over is immediate and subsequent ticks are inert (0.764449ms)
+✔ focus 1× production Raid combat survives JSON pause/continue through clearance (27.094802ms)
+✔ focus 2× production Raid combat survives JSON pause/continue through clearance (14.068209ms)
+✔ coverage 1× production Raid combat survives JSON pause/continue through clearance (13.552264ms)
+✔ coverage 2× production Raid combat survives JSON pause/continue through clearance (14.183031ms)
+✔ sustain 1× production Raid combat survives JSON pause/continue through clearance (35.475411ms)
+✔ sustain 2× production Raid combat survives JSON pause/continue through clearance (48.033279ms)
+✔ reach 1× production Raid combat survives JSON pause/continue through clearance (18.063786ms)
+✔ reach 2× production Raid combat survives JSON pause/continue through clearance (17.476543ms)
+✔ controlled comparisons show scenario-dependent damage/control choices and aura activity (33.686012ms)
+✔ save validator rejects absent, foreign, early, support and malformed branches before restoration (11.897476ms)
+✔ M3.1 v2 exact bytes survive version rejection, export and reset; preferences stay compatible (4.021145ms)
+✔ legacy level-3 attacker is rejected rather than assigned an invented branch (0.750168ms)
+✔ same-tick exits stop at game over and live, captured, persisted results agree (8.62762ms)
+✔ restored continuing combat reaches the same terminal result (2.282431ms)
+✔ a resolution listener can enter terminal and save before resolution returns (1.963913ms)
+✔ terminal saves reject any disagreement in captured statistics (1.684953ms)
+✔ old 1.0.0 game-over saves with extra same-tick leaks are recovered on load (2.874221ms)
+✔ a terminal transition during an achievement stops later resolution events (1.297701ms)
+✔ a saved Titan fight retains health-hit cooldown and identical later recovery (7.477943ms)
+✔ fresh five-wave production slice at 1× preserves schedules, overlap, recovery, accounting and continuation (357.681971ms)
+✔ fresh five-wave production slice at 2× preserves schedules, overlap, recovery, accounting and continuation (334.446752ms)
+✔ old production 1.0.0 v2 save is retained for export/reset; preferences remain compatible (7.731383ms)
+✔ modified overlapping base due times reject before restore (1.113785ms)
+✔ reordered simultaneous escorts reject instead of changing deterministic tie order (0.768115ms)
+✔ real wave combat accounts spending, refunds, bounties, clear income and tower work; reports survive starts and restore (26.520889ms)
+✔ natural leaks record enemy types, no coverage and sampled last coverage, including defeat (10.734858ms)
+✔ production impact path records shield absorption, capped health, and control applications without inventing assistance damage (0.557969ms)
+✔ production firing records overlapping capped aura presence but excludes EMP-disabled support (0.582145ms)
+✔ legacy v2 reports are optional and explicitly partial; malformed tracking is rejected (12.050124ms)
+✔ a disabled Distributor reports passive clear income independently of active aura (8.332667ms)
+✔ invalid report counts, types, coverage and resource payloads fail before restoration (17.931106ms)
+✔ 1× and 2× reach identical production combat and reports on wave 5 (44.450403ms)
+✔ 1× and 2× reach identical production combat and reports on wave 15 (57.300801ms)
+✔ switching during a Raid Team fight and while paused preserves fractional time across save/continue (39.875345ms)
+✔ natural defeat and victory stop further 2× advancement and lock speed changes (83.046005ms)
+✔ old v2 saves default to 1×, reject invalid speeds, and restart resets speed (3.782126ms)
+✔ 2× selection persists across a real clear, while the next wave waits for Start Wave (1.894378ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 52
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1887.772057

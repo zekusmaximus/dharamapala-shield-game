@@ -144,6 +144,9 @@ export class BrowserSaveRepository {
         1,
         Math.min(balance.upgrades.maxLevel, Number(oldDefense.level) || 1)
       );
+      if (defense.level >= 3 && balance.towers[defense.type].specializations) {
+        throw new Error('Legacy level-3 attacker needs an explicit specialization; export/reset this run.');
+      }
       session.state.defenses.set(defense.id, defense);
     }
     return session;

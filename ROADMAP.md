@@ -27,7 +27,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
 | M2 · Make decisions readable and measurable | P1 | Complete within documented scope: M2.1–M2.6 | M1 | M2.6 clean checkout passes 100 unit, 35 integration, 7 simulation, 69 browser and 10 accessibility checks; corrected M1.4 diagnostics match byte-for-byte and M2.4 policy outcomes match apart from the content-file hash |
-| M3 · Prove an engaging five-wave game | P1 | Partial: M3.1 complete within automated scope | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
+| M3 · Prove an engaging five-wave game | P1 | Partial: M3.1 complete; M3.2 prototype verified, retention provisional | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
 | M6 · Release and maintain confidently | P2 | Partial: build and test tools exist | M4; M5 for replay-content release | Device/browser checks, performance evidence, hosting/recovery documentation, release checklist |
@@ -307,7 +307,7 @@ or on a lifecycle test that directly awards kills.
 
 ## M3 · Prove an engaging five-wave game
 
-**Status: Partial — M3.1 authored pressure only; M3.2–M3.5 and the human
+**Status: Partial — M3.1 authored pressure and M3.2 automated prototype; specialization retention, M3.3–M3.5 and the human
 engagement gate remain open.** Focus on the existing map and three tower roles. Findings
 R08–R09. This is the first major design gate, not a promise to ship every proposed
 mechanic below unchanged.
@@ -327,7 +327,7 @@ Implementation work:
 - [x] **M3.1 · Author pressure, not just counts.** Use deliberate spawn offsets and
   overlap to create runners, escorts, recovery windows, and a boss climax. Show
   the relevant timing in the preview. Keep schedules deterministic and serializable.
-- [ ] **M3.2 · Establish tower tradeoffs.** Tune coverage, costs, armor interactions,
+- [ ] **M3.2 · Establish tower tradeoffs (prototype implemented; retention provisional).** Tune coverage, costs, armor interactions,
   slow/vulnerability, and aura value together. Prototype a mutually exclusive
   level-3 specialization for damage and control towers (for example, focus versus
   coverage and sustained control versus chain reach). Compare it with the linear
@@ -370,6 +370,40 @@ establish human challenge/engagement or the broader M3 acceptance gate.
 [New evidence, full comparisons, commands and limits](design/reviews/2026-11-12-m3.1/README.md)
 keep historical evidence unchanged and distinguish combat, setup fixtures and
 automated Chromium/axe from physical-device, screen-reader and human playtests.
+
+**M3.2 prototype (2026-11-12; player-retention acceptance provisional):**
+From fetched main `a3ca828` (PR #25), level-3 Firewall Focus/Coverage and
+Encryption Sustained control/Chain reach are explicit mutually exclusive choices,
+retained through levels 4–5. Semantic inspectors compare stats, costs and consequences;
+commands, combat, simulator, range/coverage and validation share definitions.
+Balance `1.2.0` and save schema v3 persist the branch. Older v2 runs are retained
+for export/reset, with no automatic migration; preferences remain compatible.
+All existing tower costs, level 1–2 stats, income, enemies, waves and schedules
+are unchanged. Equal branch prices test tradeoffs without redesigning currencies.
+
+The equal-budget controlled fixtures compare expansion, upgrades, control and
+support on existing waves 2–5 at central/spread placements, against the unchanged
+M3.1 linear definitions. Coverage wins central wave 3 time (15.317 vs Focus
+16.583 s); Focus wins spread wave 3 (16.017 vs 17.533 s). Chain reach clears
+spread runners faster than Sustained control; Sustained control avoids the
+central Raid leak that Chain reach allows. Expansion and aura-supported builds
+also have competitive cases; no tower is proved universally necessary. These
+funded fixtures are separate from fresh-run policy campaigns. The 21 campaign
+configurations repeat exactly; every strong policy clears the first five without
+leaks, and several Hard campaigns become easier. Corrected M1.4 mechanic/rejection
+probes still match. [M3.2 evidence](design/reviews/2026-11-12-m3.2/README.md)
+records full M3.1/M1.4/M2.4 comparisons, commands, accounting and limitations.
+
+A detached clean checkout at `f43e1b5` passed locked install, Chromium install,
+fresh build, 124 unit, 52 integration, 7 simulation, 91 browser and 12 accessibility
+checks; all evidence regenerated byte-identically. [PR #26 CI](https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43150756840)
+passed the same suites on Ubuntu / Node 22, plus GitGuardian. Historical artifacts
+are unchanged.
+
+No actual player observations were available. Specialization retention is
+**provisional**, M3.2 remains unchecked, and M3 is not complete. Deterministic
+policy outcomes do not validate human engagement, difficulty or build diversity.
+Physical-device, screen-reader and human playtests have not been performed.
 
 **Acceptance gate:** at least two materially different builds can beat the slice.
 Several waves reward a change in placement, spending, or specialization; an
@@ -497,7 +531,9 @@ content does not ship merely because the application builds.
 M1.1 portrait interaction, M1.2 dialog cancellation, M1.3 save integrity/lifecycle,
 M1.4 combat corrections, M1.5 CI and M2.1–M2.6 are complete within their
 documented scope. M3.1 authored pressure is complete within automated verification.
-The next implementation item is **M3.2 tower tradeoffs**; it has not begun here.
+M3.2 tower tradeoffs now has a verified automated prototype; its **player-observation
+retention gate remains provisional**. Review/playtest that prototype before accepting
+the specialization design. This change does not start M3.3 or later work.
 M3.3–M3.5 and the human five-wave engagement gate remain open.
 Move an item to Complete only when its acceptance evidence is recorded here or in
 a linked review, test report, or playtest note.

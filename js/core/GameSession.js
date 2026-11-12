@@ -42,7 +42,7 @@ import { DefenseSystem } from '../systems/DefenseSystem.js';
 import { EnemySystem } from '../systems/EnemySystem.js';
 import { WaveSystem } from '../systems/WaveSystem.js';
 
-const SCHEMA_VERSION = 2;
+const SCHEMA_VERSION = 3;
 
 function emptyWaveState() {
   return {
@@ -374,7 +374,7 @@ export class GameSession {
     return commandResult(true, 'DEFENSE_SELECTED');
   }
 
-  upgradeDefense(id) {
+  upgradeDefense(id, specialization = null) {
     if (this.state.phase !== PHASES.BUILDING) {
       return this.fail('INVALID_PHASE');
     }
@@ -385,12 +385,17 @@ export class GameSession {
     if (defense.level >= this.balance.upgrades.maxLevel) {
       return this.fail('MAX_LEVEL');
     }
+    const branches = this.balance.towers[defense.type].specializations;
+    const choosing = branches && defense.level === 2;
+    if (choosing && (typeof specialization !== 'string' || !Object.hasOwn(branches, specialization))) return this.fail('SPECIALIZATION_REQUIRED');
+    if (!choosing && specialization !== null) return this.fail('SPECIALIZATION_LOCKED');
     const cost = getUpgradeCost(this.balance, defense.type, defense.level);
     if (!canAfford(this.state.resources, cost)) {
       return this.fail('CANNOT_AFFORD', { cost });
     }
     this.state.resources = subtractCost(this.state.resources, cost);
     resourceEntry(this, 'spent', cost);
+    if (choosing) defense.specialization = specialization;
     defense.level += 1;
     this.emitState('defense-upgraded');
     return commandResult(true, 'DEFENSE_UPGRADED', {
@@ -625,14 +630,16 @@ export class GameSession {
           current: describeTower(
             this.balance,
             selected.type,
-            selected.level
+            selected.level,
+            selected.specialization
           ),
           next:
-            selected.level < this.balance.upgrades.maxLevel
+            selected.level < this.balance.upgrades.maxLevel && !(selected.level === 2 && this.balance.towers[selected.type].specializations)
               ? describeTower(
                   this.balance,
                   selected.type,
-                  selected.level + 1
+                  selected.level + 1,
+                  selected.specialization
                 )
               : null,
           upgradeCost:
@@ -680,7 +687,7 @@ export class GameSession {
 
   toSnapshot() {
     return structuredClone({
-      schemaVersion: SCHEMA_VERSION,
+      schemaVersion: this.state.schemaVersion,
       balanceVersion: this.balance.version,
       savedAt: new Date().toISOString(),
       state: {

@@ -856,7 +856,7 @@ test('tower comparison shows rule-derived status, chain, investment and refund',
   await expect(content.locator('tr').filter({ hasText: 'Slow' })).toContainText('24% for 2.07 s');
   await expect(content.locator('tr').filter({ hasText: 'Vulnerability' })).toContainText('12% for 1.80 s');
   await expect(content.locator('tr').filter({ hasText: 'Vulnerability' })).toContainText('15% for 2.07 s');
-  await expect(content).toContainText('Chain unlocks at level 4');
+  await expect(content).toContainText('choose one specialization at level 3');
   await expect(content).toContainText('Total investment: 50 Dharma, 20 Bandwidth, 10 Anonymity');
   await expect(content).toContainText('Refund (70%): 35 Dharma, 14 Bandwidth, 7 Anonymity');
   await expect(content).toContainText('Next upgrade cost: 98 Dharma, 39 Bandwidth, 20 Anonymity');
@@ -1195,7 +1195,7 @@ test('new schedule pause/reload/Continue retains pending arrivals, 2× and prefe
   });
   await page.getByRole('button',{name:'Pause game',exact:true}).click();
   const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')));
-  expect(saved.balanceVersion).toBe('1.1.0'); expect(saved.runtime.scheduler.cursor).toBe(4);
+  expect(saved.balanceVersion).toBe(await page.evaluate(()=>gameApplication.balance.version)); expect(saved.runtime.scheduler.cursor).toBe(4);
   await page.reload(); await page.getByRole('button',{name:'Continue',exact:true}).click();
   expect(await page.evaluate(()=>gameApplication.session.scheduler.snapshot())).toEqual(saved.runtime.scheduler);
   expect(await page.evaluate(()=>gameApplication.session.state.settings)).toEqual(saved.state.settings);
@@ -1222,4 +1222,61 @@ test('prior balance save exports exact original and reset preserves independent 
   await page.getByRole('button',{name:'New game',exact:true}).click();
   await expect(page.locator('#start-wave-button')).toBeEnabled();
   expect(await page.evaluate(()=>gameApplication.session.state.settings)).toEqual({tutorialCompleted:true,showRanges:false,reducedMotion:true});
+});
+
+// M3.2 setup grants funds for inspector interactions; not campaign evidence.
+for (const viewport of [{width:360,height:640},{width:390,height:844},{width:640,height:360},{width:844,height:390},{width:1280,height:720}]) {
+  for (const [type,choice,label] of [['firewall','coverage','Coverage'],['encryption','reach','Chain reach']]) {
+    test(`specialization choice ${type} at ${viewport.width}×${viewport.height} is visible, permanent and saved`,async({page})=>{
+      const {specializationFixture}=await import('./helpers.js');
+      await openFresh(page,viewport);await enterBuildPhase(page);await specializationFixture(page,type);
+      const content=page.locator('#inspector-content');
+      await expect(content.getByRole('group',{name:'Choose level-3 specialization (mutually exclusive)'})).toBeVisible();
+      await expect(content).toContainText('Human playtest acceptance is pending');
+      const button=page.locator(`[data-specialization="${choice}"]`);
+      await expect(button).toHaveAttribute('aria-describedby',`specialization-${choice}-description`);
+      await button.click();
+      await expect(content).toContainText(`Chosen: ${label}`);
+      await expect(page.locator('[data-specialization]')).toHaveCount(0);
+      await expect(page.locator('#upgrade-button')).toBeFocused();
+      await page.locator('#upgrade-button').click();
+      await expect(content).toContainText(`Chosen: ${label}`);
+      expect(await page.evaluate(()=>[...gameApplication.session.state.defenses.values()][0].level)).toBe(4);
+      expect(await page.evaluate(()=>gameApplication.session.state.phase)).toBe('BUILDING');
+      await page.reload();await page.getByRole('button',{name:'Continue',exact:true}).click();
+      if(await page.locator('#resume-button').isVisible())await page.locator('#resume-button').click();
+      await clickWorld(page,210,210);
+      await expect(content).toContainText(`Chosen: ${label}`);
+      expect(await page.evaluate(()=>gameApplication.session.toSnapshot().schemaVersion)).toBe(3);
+      await page.locator('#start-wave-button').click();
+      await expect(page.locator('#upgrade-button')).toBeDisabled();
+    });
+  }
+}
+for (const [type,choice] of [['firewall','focus'],['encryption','sustain']]) test(`${type} specialization uses actual Tab/Enter with useful focus after choice`,async({page})=>{
+  const {specializationFixture}=await import('./helpers.js');
+  await openFresh(page,{width:360,height:640});await enterBuildPhase(page);await specializationFixture(page,type);
+  const button=page.locator(`[data-specialization="${choice}"]`);
+  await tabTo(page,button,true);await page.keyboard.press('Enter');
+  await expect(page.locator('#upgrade-button')).toBeFocused();
+  expect(await page.evaluate(()=>[...gameApplication.session.state.defenses.values()][0].specialization)).toBe(choice);
+});
+test('unaffordable and wave-locked level-3 choices explain costs without permitting purchases',async({page})=>{
+  const {specializationFixture}=await import('./helpers.js');
+  await openFresh(page);await enterBuildPhase(page);await specializationFixture(page,'firewall',false);
+  for(const id of ['focus','coverage'])await expect(page.locator(`[data-specialization="${id}"]`)).toBeDisabled();
+  await expect(page.locator('#inspector-content')).toContainText('Next upgrade cost: 114 Dharma');
+  await page.locator('#start-wave-button').click();
+  for(const id of ['focus','coverage'])await expect(page.locator(`[data-specialization="${id}"]`)).toBeDisabled();
+});
+test('M3.1 save version rejection exports exact bytes and preserves independent preferences',async({page})=>{
+  const {readFile}=await import('node:fs/promises');
+  const raw=await readFile('design/reviews/2026-11-12-m3.2/old-1.1.0-v2-save.json','utf8');
+  await openFresh(page);
+  await page.evaluate(raw=>{localStorage.setItem('dharmapala-shield/save/v2',raw);localStorage.setItem('dharmapala-shield/preferences/v1',JSON.stringify({tutorialCompleted:true,showRanges:false,reducedMotion:true}));},raw);
+  await page.reload();await expect(page.getByRole('region',{name:'Local save recovery'})).toBeVisible();
+  const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();
+  const path=await(await download).path();expect(await readFile(path,'utf8')).toBe(raw);
+  await page.getByRole('button',{name:'Reset saved run'}).click();
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/preferences/v1')).reducedMotion)).toBe(true);
 });

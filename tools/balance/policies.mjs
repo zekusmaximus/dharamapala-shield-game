@@ -1,4 +1,4 @@
-import { DeterministicPlayerPolicy, buildPositions } from '../sim/run.mjs';
+import { DeterministicPlayerPolicy, buildPositions, policySpecialization } from '../sim/run.mjs';
 import { getEffectiveDamage } from '../../js/core/rules/combat.js';
 import { getTowerStats } from '../../js/core/rules/towers.js';
 
@@ -29,7 +29,7 @@ function upgradeAll(session) {
   while (true) {
     const candidates = [...session.state.defenses.values()].filter(t=>t.type!=='distributor')
       .sort((a,b)=>a.level-b.level || a.id.localeCompare(b.id));
-    if (!candidates.some(t=>session.upgradeDefense(t.id).ok)) break;
+    if (!candidates.some(t=>session.upgradeDefense(t.id, policySpecialization(session, t)).ok)) break;
   }
 }
 export function createPolicy(name) {

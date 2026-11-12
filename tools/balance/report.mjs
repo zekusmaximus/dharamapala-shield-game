@@ -77,6 +77,7 @@ export async function buildReport() {
   }
   return {schemaVersion:1,balanceVersion:balance.version,
     balanceSha256:createHash('sha256').update(await readFile(new URL('../../design/balance.json',import.meta.url))).digest('hex'),
+    specializationChoices: balance.towers.firewall.specializations ? 'Explicit fixed policy: Focus for Firewall, Sustained control for Encryption at level 3; no human or adaptation claim.' : 'Linear baseline; no specialization.',
     timestepMs:1000/60,policies:POLICY_DEFINITIONS,scenarios:SCENARIOS,
     evidence:'21 policy/configuration comparisons, each repeated exactly once. Three difficulty configurations share map and roster; neither repeats nor seeds are independent trials. No human win rates.',
     runs,repeats};

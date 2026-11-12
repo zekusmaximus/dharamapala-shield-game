@@ -1,0 +1,139 @@
+
+> dharmapala-shield-game@1.0.0 test:e2e
+> playwright test --project=e2e
+
+[WebServer] (node:3582) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 91 tests using 1 worker
+
+(node:3594) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [e2e] › tests/e2e/game.spec.js:4:1 › loads the real game without console errors and keeps wave 1 idle (788ms)
+  ✓   2 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 360×640 (546ms)
+  ✓   3 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 390×844 (703ms)
+  ✓   4 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 640×360 (610ms)
+  ✓   5 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 844×390 (509ms)
+  ✓   6 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 1280×720 (589ms)
+  ✓   7 [e2e] › tests/e2e/game.spec.js:65:1 › keyboard speed choice, pause, settings and Continue retain the chosen wave speed (1.1s)
+  ✓   8 [e2e] › tests/e2e/game.spec.js:110:1 › loads the sprite sheet and maps every active rendered entity (280ms)
+  ✓   9 [e2e] › tests/e2e/game.spec.js:158:1 › keeps the sprite canvas sharp at device scale factor 2 (388ms)
+  ✓  10 [e2e] › tests/e2e/game.spec.js:194:1 › places, selects, upgrades, sells, and restores a tower save (647ms)
+  ✓  11 [e2e] › tests/e2e/game.spec.js:224:1 › upgraded Firewall inspector describes only its applied combat status (463ms)
+  ✓  12 [e2e] › tests/e2e/game.spec.js:238:1 › Distributor inspector explains support and EMP without a targeting claim (459ms)
+  ✓  13 [e2e] › tests/e2e/game.spec.js:254:1 › pause freezes simulation and restart removes all old state (878ms)
+  ✓  14 [e2e] › tests/e2e/game.spec.js:289:1 › keyboard-only build flow can place a tower and start a wave (425ms)
+  ✓  15 [e2e] › tests/e2e/game.spec.js:316:3 › desktop layout keeps battlefield and primary controls in the viewport (388ms)
+  ✓  16 [e2e] › tests/e2e/game.spec.js:316:3 › small portrait layout keeps battlefield and primary controls in the viewport (315ms)
+  ✓  17 [e2e] › tests/e2e/game.spec.js:316:3 › portrait layout keeps battlefield and primary controls in the viewport (414ms)
+  ✓  18 [e2e] › tests/e2e/game.spec.js:316:3 › small landscape layout keeps battlefield and primary controls in the viewport (342ms)
+  ✓  19 [e2e] › tests/e2e/game.spec.js:316:3 › landscape layout keeps battlefield and primary controls in the viewport (399ms)
+  ✓  20 [e2e] › tests/e2e/game.spec.js:355:1 › terminal dialogs block play and expose final results (480ms)
+  ✓  21 [e2e] › tests/e2e/game.spec.js:363:1 › same-tick game over persists matching live and final results (524ms)
+  ✓  22 [e2e] › tests/e2e/game.spec.js:398:1 › zoom is not disabled and interactive elements have accessible names (263ms)
+  ✓  23 [e2e] › tests/e2e/game.spec.js:414:1 › portrait preview does not intercept palette selection (413ms)
+  ✓  24 [e2e] › tests/e2e/game.spec.js:463:5 › 360x640 click: open panels allow building and waves (1.0s)
+  ✓  25 [e2e] › tests/e2e/game.spec.js:463:5 › 360x640 tap: open panels allow building and waves (1.1s)
+  ✓  26 [e2e] › tests/e2e/game.spec.js:463:5 › 390x844 click: open panels allow building and waves (1.1s)
+  ✓  27 [e2e] › tests/e2e/game.spec.js:463:5 › 390x844 tap: open panels allow building and waves (1.3s)
+  ✓  28 [e2e] › tests/e2e/game.spec.js:463:5 › 640x360 click: open panels allow building and waves (924ms)
+  ✓  29 [e2e] › tests/e2e/game.spec.js:463:5 › 640x360 tap: open panels allow building and waves (1.2s)
+  ✓  30 [e2e] › tests/e2e/game.spec.js:463:5 › 844x390 click: open panels allow building and waves (1.1s)
+  ✓  31 [e2e] › tests/e2e/game.spec.js:463:5 › 844x390 tap: open panels allow building and waves (1.3s)
+  ✓  32 [e2e] › tests/e2e/game.spec.js:463:5 › 1280x720 click: open panels allow building and waves (1.2s)
+  ✓  33 [e2e] › tests/e2e/game.spec.js:463:5 › 1280x720 tap: open panels allow building and waves (1.7s)
+  ✓  34 [e2e] › tests/e2e/game.spec.js:514:3 › touch rotation from 360x640 preserves open panel access (776ms)
+  ✓  35 [e2e] › tests/e2e/game.spec.js:514:3 › touch rotation from 390x844 preserves open panel access (791ms)
+  ✓  36 [e2e] › tests/e2e/game.spec.js:547:1 › portrait disclosures and building work with real Tab navigation (751ms)
+  ✓  37 [e2e] › tests/e2e/game.spec.js:582:1 › Escape skips tutorial without stranding TUTORIAL (R03) (382ms)
+  ✓  38 [e2e] › tests/e2e/game.spec.js:609:3 › 1280 keyboard tutorial skip, replay and guided exit (1.7s)
+  ✓  39 [e2e] › tests/e2e/game.spec.js:640:3 › 1280 keyboard settings, pause and sale cancellation preserve play (3.9s)
+  ✓  40 [e2e] › tests/e2e/game.spec.js:609:3 › 360 keyboard tutorial skip, replay and guided exit (1.2s)
+  ✓  41 [e2e] › tests/e2e/game.spec.js:640:3 › 360 keyboard settings, pause and sale cancellation preserve play (3.3s)
+  ✓  42 [e2e] › tests/e2e/game.spec.js:706:3 › GAME_OVER keyboard terminal navigation and menu settings cancellation (1.3s)
+  ✓  43 [e2e] › tests/e2e/game.spec.js:706:3 › VICTORY keyboard terminal navigation and menu settings cancellation (1.3s)
+  ✓  44 [e2e] › tests/e2e/game.spec.js:731:1 › Escape closes settings and restores build phase (R03) (609ms)
+  ✓  45 [e2e] › tests/e2e/game.spec.js:743:1 › restart, new run and terminal results are durable and preferences survive navigation (1.6s)
+  ✓  46 [e2e] › tests/e2e/game.spec.js:772:1 › unreadable saves reject without swapping live play and export/reset through real controls (798ms)
+  ✓  47 [e2e] › tests/e2e/game.spec.js:799:1 › storage denial leaves menu and play usable with visible recovery status (293ms)
+  ✓  48 [e2e] › tests/e2e/game.spec.js:812:1 › completed wave persists a finished clock frame and reloads into deliberate building (620ms)
+  ✓  49 [e2e] › tests/e2e/game.spec.js:831:1 › menu preferences and an uncompleted tutorial survive reload before first placement (561ms)
+  ✓  50 [e2e] › tests/e2e/game.spec.js:846:1 › tower comparison shows rule-derived status, chain, investment and refund (512ms)
+  ✓  51 [e2e] › tests/e2e/game.spec.js:865:1 › Distributor support inspector shows actual benefit and passive income (559ms)
+  ✓  52 [e2e] › tests/e2e/game.spec.js:886:1 › keyboard can inspect towers and enemy roster in build and wave phases (705ms)
+  ✓  53 [e2e] › tests/e2e/game.spec.js:918:1 › pointer inspects live wave enemies and towers without building or selling (1.4s)
+  ✓  54 [e2e] › tests/e2e/game.spec.js:948:1 › boss enemy details state implemented abilities without unused phase metadata (961ms)
+  ✓  55 [e2e] › tests/e2e/game.spec.js:977:1 › unaffordable and wave-locked tower blueprints remain inspectable without build actions (793ms)
+  ✓  56 [e2e] › tests/e2e/game.spec.js:1004:1 › wave keyboard cursor visibly moves to and selects another placed tower (642ms)
+  ✓  57 [e2e] › tests/e2e/game.spec.js:1023:1 › wave support benefit refreshes when EMP suppression expires (2.3s)
+  ✓  58 [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 360x640 (740ms)
+  ✓  59 [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 390x844 (764ms)
+  ✓  60 [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 640x360 (758ms)
+  ✓  61 [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 844x390 (813ms)
+  ✓  62 [e2e] › tests/e2e/game.spec.js:1044:3 › combat cues and text stay accessible during waves at 1280x720 (959ms)
+  ✓  63 [e2e] › tests/e2e/game.spec.js:1074:1 › combat text follows boss phase, shield damage and status expiry without live-region spam (432ms)
+  ✓  64 [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 360x640 (4.5s)
+  ✓  65 [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 390x844 (4.5s)
+  ✓  66 [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 640x360 (959ms)
+  ✓  67 [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 844x390 (948ms)
+  ✓  68 [e2e] › tests/e2e/game.spec.js:1094:3 › wave reports persist and allow pointer and keyboard dismissal at 1280x720 (1.0s)
+  ✓  69 [e2e] › tests/e2e/game.spec.js:1126:1 › defeat reports remain accessible inside the terminal dialog (418ms)
+  ✓  70 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 360×640 (649ms)
+  ✓  71 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 390×844 (544ms)
+  ✓  72 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 640×360 (540ms)
+  ✓  73 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 844×390 (581ms)
+  ✓  74 [e2e] › tests/e2e/game.spec.js:1139:4 › authored overlap timing remains inspectable with deliberate starts at 1280×720 (620ms)
+  ✓  75 [e2e] › tests/e2e/game.spec.js:1169:1 › keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts (519ms)
+  ✘  76 [e2e] › tests/e2e/game.spec.js:1187:1 › new schedule pause/reload/Continue retains pending arrivals, 2× and preferences (513ms)
+(node:4860) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  77 [e2e] › tests/e2e/game.spec.js:1208:1 › prior balance save exports exact original and reset preserves independent preferences (548ms)
+  ✓  78 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 360×640 is visible, permanent and saved (841ms)
+  ✓  79 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 360×640 is visible, permanent and saved (958ms)
+  ✓  80 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 390×844 is visible, permanent and saved (824ms)
+  ✓  81 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 390×844 is visible, permanent and saved (895ms)
+  ✓  82 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 640×360 is visible, permanent and saved (807ms)
+  ✓  83 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 640×360 is visible, permanent and saved (834ms)
+  ✓  84 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 844×390 is visible, permanent and saved (921ms)
+  ✓  85 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 844×390 is visible, permanent and saved (849ms)
+  ✓  86 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice firewall at 1280×720 is visible, permanent and saved (878ms)
+  ✓  87 [e2e] › tests/e2e/game.spec.js:1230:5 › specialization choice encryption at 1280×720 is visible, permanent and saved (892ms)
+  ✓  88 [e2e] › tests/e2e/game.spec.js:1256:78 › firewall specialization uses actual Tab/Enter and wave-locked choices stay disabled (489ms)
+  ✓  89 [e2e] › tests/e2e/game.spec.js:1256:78 › encryption specialization uses actual Tab/Enter and wave-locked choices stay disabled (529ms)
+  ✓  90 [e2e] › tests/e2e/game.spec.js:1264:1 › unaffordable and wave-locked level-3 choices explain costs without permitting purchases (575ms)
+  ✓  91 [e2e] › tests/e2e/game.spec.js:1272:1 › M3.1 save version rejection exports exact bytes and preserves independent preferences (406ms)
+
+
+  1) [e2e] › tests/e2e/game.spec.js:1187:1 › new schedule pause/reload/Continue retains pending arrivals, 2× and preferences 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "1.1.0"
+    Received: "1.2.0"
+
+      1196 |   await page.getByRole('button',{name:'Pause game',exact:true}).click();
+      1197 |   const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')));
+    > 1198 |   expect(saved.balanceVersion).toBe('1.1.0'); expect(saved.runtime.scheduler.cursor).toBe(4);
+           |                                ^
+      1199 |   await page.reload(); await page.getByRole('button',{name:'Continue',exact:true}).click();
+      1200 |   expect(await page.evaluate(()=>gameApplication.session.scheduler.snapshot())).toEqual(saved.runtime.scheduler);
+      1201 |   expect(await page.evaluate(()=>gameApplication.session.state.settings)).toEqual(saved.state.settings);
+        at /workspace/dharamapala-shield-game/tests/e2e/game.spec.js:1198:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/game-new-schedule-pause-re-eea9f-arrivals-2×-and-preferences-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/game-new-schedule-pause-re-eea9f-arrivals-2×-and-preferences-e2e/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-new-schedule-pause-re-eea9f-arrivals-2×-and-preferences-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-new-schedule-pause-re-eea9f-arrivals-2×-and-preferences-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [e2e] › tests/e2e/game.spec.js:1187:1 › new schedule pause/reload/Continue retains pending arrivals, 2× and preferences 
+  90 passed (1.4m)
