@@ -25,8 +25,9 @@ Wave 5 result or stop: ___  Total session: ___  Pauses/retry time: ___
 | --- | ---: | --- | --- | --- | --- |
 | | | | | | |
 
-First confusion: time ___; what the player did/said ___; screen context ___;
-whether help was requested ___; intervention and exact words, if any ___.
+First confusion: time ___; visible behavior ___; screen context ___; linked
+participant quote ID, if any ___; whether help was requested ___; intervention
+and exact words, if any ___.
 
 Wave outcomes (1–5 for each attempt): wave ___; cleared/lost/stopped ___;
 lives before/after ___; leaked type/count ___; report or warning inspected ___;

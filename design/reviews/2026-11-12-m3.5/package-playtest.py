@@ -20,6 +20,7 @@ SOURCE_PATHS = [
     "assets",
     "css",
     "js",
+    "package.json",
     "scripts/build.mjs",
 ]
 

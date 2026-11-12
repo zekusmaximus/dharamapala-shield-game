@@ -43,6 +43,10 @@ inside the extracted directory.
 
 Package smoke on 2026-11-12: the archive passed ZIP integrity and all 41 file
 hashes; the extracted build returned HTTP 200 for `/` (12,761 bytes) and
-`/design/balance.json` (15,631 bytes) from a local Python server. This tests
-packaging/serving, not human gameplay or readability. The full clean-checkout
-game pipeline is recorded in README.md and `validation.txt`.
+`/design/balance.json` (15,631 bytes) from a local Python server. A second
+local server on port 8766 served the archive to Chromium; ordinary New game →
+Skip tutorial reached `BUILDING` with a visible Start wave 1 control and no page
+errors. The first chosen port, 8765, was still held by the earlier smoke server;
+that local port collision did not affect the archive. These are automated
+packaging/basic interaction checks, not human gameplay or readability. The full
+clean-checkout game pipeline is recorded in README.md and `validation.txt`.
