@@ -62,7 +62,8 @@ millisecond offset after **Start Wave**. Its count spawns at
 `offsetMs + index * interval`. Groups can overlap or appear out of time order.
 Omitting the offset retains the original sequential rule: start after the
 preceding group's start plus **count × interval**, including the trailing
-interval. Thus waves 6–20 retain their exact schedules. Zero intervals release
+interval. At M3.1, waves 6–20 retained their exact prior schedules; M4.1 later
+authored them with explicit offsets. Zero intervals release
 simultaneously; fractional offsets release on the first eligible fixed tick.
 Derived times must remain finite. Compiled events sort by due time, breaking ties
 in authored group/index order, then receive contiguous chronological `order`
@@ -232,3 +233,31 @@ under the retired economy. Continue old runs only in a matching old build.
 Historical-content tooling remains pinned to historical definitions; it does
 not bypass the current-content recovery gate. Specialization retention and the
 broader M3 human gate remain provisional/open.
+
+## M4.1 four-act authored campaign (balance 1.5.0, schema v4)
+
+Waves 1–5 keep their M3.1 definitions exactly. Waves 6–20 now all use
+`offsetMs` for mixed and sometimes repeated packets. The existing shared
+compiler, stable event order, preview windows, scheduled-arrival gaps,
+deliberate starts and fixed-clock 1×/2× behavior are unchanged. The preview
+describes authored spawn timing, not an empty route, a build interval or boss
+reinforcement timing. [The pressure plan](reviews/2026-11-12-m4.1/PRESSURE_PLAN.md)
+records the old per-wave pressure and intended decisions before this edit;
+[the comparison](reviews/2026-11-12-m4.1/comparison.md) lists each exact group
+change and resulting production observations. Wave reward bonuses and all
+non-wave balance values remain unchanged. Some late-wave enemy counts and type
+mixes change, so earned bounty and combat outcomes can change even with the same
+fixed prices and scripted purchases.
+
+This is a content-meaning change, so new snapshots use balance **1.5.0**. The
+wrapper and state still use **schema v4** because no saved state field changed.
+`GameSession` construction and snapshot validation both classify 1.4.0 and
+1.5.0 as v4, while still requiring an exact balance-version match on restore.
+An old 1.4.0/v4 run is rejected before session swap; its original bytes remain
+in `dharmapala-shield/save/v2`, writes are blocked, export is available, and
+reset is explicit. Independent preference keys and the most recent recovery
+archive survive reset; export before reset for durable retention. Retitling old
+version strings is not a migration: pending wave events must match the 1.5.0
+schedule and fail validation otherwise. The pinned 1.4.0 M3.5 build and all
+historical evidence remain on their own content version. Level-3 specialization
+retention and human M3/M4 acceptance remain open.

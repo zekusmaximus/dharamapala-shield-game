@@ -62,10 +62,32 @@ test('overflowing derived times reject before session construction', () => {
   assert.throws(()=>validateBalance(b), /derived spawn time/);
 });
 
-test('waves 6–20 retain the legacy sequential contract exactly', async () => {
-  const old = JSON.parse(await readFile(new URL('../../design/reviews/2026-11-11-m2.4/results.json',import.meta.url)));
-  const run = old.runs.find(r=>r.policy==='existing' && r.scenario==='normal-campaign');
-  for (const wave of run.waves.filter(w=>w.wave>=6)) {
-    assert.deepEqual(compileSpawnSchedule(balance,wave.wave),wave.pressure.authoredSchedule);
+test('M4.1 act packets have exact count/end, cross-type overlap and preview parity', () => {
+  const countAndLast = [
+    [10,7600],[19,8900],[10,9700],[17,10000],[16,13700],
+    [8,6500],[18,10600],[7,6700],[15,9200],[12,9400],
+    [15,12100],[25,10500],[17,8800],[33,18700],[33,18700]
+  ];
+  for (let wave = 6; wave <= 20; wave++) {
+    const groups = balance.waves[wave - 1].enemies;
+    assert.ok(groups.every(group => Number.isFinite(group.offsetMs)));
+    assert.ok(groups.some((a, i) => groups.some((b, j) => i !== j && a.id !== b.id &&
+      a.offsetMs <= b.offsetMs + (b.count - 1) * b.interval &&
+      b.offsetMs <= a.offsetMs + (a.count - 1) * a.interval)), `wave ${wave} has cross-type overlap`);
+    const schedule = compileSpawnSchedule(balance, wave);
+    assert.deepEqual([schedule.length, schedule.at(-1).dueAtMs], countAndLast[wave - 6]);
+    assert.deepEqual(schedule.map(e => e.order), schedule.map((_, index) => index));
+    const fromPreview = getWavePreview(balance, wave).enemies.flatMap(e => e.windows.flatMap(w =>
+      Array.from({ length: w.count }, (_, i) => ({ type: e.id, due: w.startMs + i * w.intervalMs }))
+    )).sort((a,b) => a.due-b.due || a.type.localeCompare(b.type));
+    assert.deepEqual(fromPreview, schedule.map(e => ({type:e.enemyType,due:e.dueAtMs}))
+      .sort((a,b) => a.due-b.due || a.type.localeCompare(b.type)));
   }
+});
+
+test('established first act remains exactly the M3.4 schedule', async () => {
+  const old = JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.4/results.json',import.meta.url)));
+  const run = old.runs.find(r => r.policy === 'existing' && r.scenario === 'normal-campaign');
+  for (const wave of run.waves.filter(w => w.wave <= 5))
+    assert.deepEqual(compileSpawnSchedule(balance, wave.wave), wave.pressure.authoredSchedule);
 });
