@@ -1,3 +1,4 @@
-Compared current JSON with origin/main (20d33bb):
+$ node design/reviews/2026-11-12-m3.1/check-scope.mjs
+Compared current JSON with latest main at task start (20d33bb):
 PASS: only version and first-five-wave scheduling fields differ.
 PASS: typed counts/HP multipliers, rewards, waves 6–20 and every other definition match.

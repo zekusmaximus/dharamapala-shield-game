@@ -152,6 +152,7 @@ cmp /tmp/m31-results.json design/reviews/2026-11-12-m3.1/results.json
 node tools/balance/summary.mjs /tmp/m31-results.json /tmp/m31-summary.md
 cmp /tmp/m31-summary.md design/reviews/2026-11-12-m3.1/summary.md
 node design/reviews/2026-11-12-m3.1/compare.mjs
+node design/reviews/2026-11-12-m3.1/check-scope.mjs
 git diff --check
 ```
 
@@ -167,4 +168,34 @@ palette. [Initial browser output](initial-browser-validation.txt) is retained;
 no production combat rule or authored schedule was changed to satisfy those
 assertions. All checks were then rerun against the corrected tests.
 
-Clean-checkout and hosted PR results are recorded below after validation.
+## Clean-checkout results
+
+A detached worktree at implementation commit `e472284` began without
+node_modules or dist. Node 24.22.1, npm 11.9.0, Playwright 1.61.1 and Chromium
+149.0.7827.55 were used. [validation.txt](validation.txt) records commands,
+exit codes and full output with CI=1 and the writable browser cache. Locked
+installation, Chromium installation, fresh build and all five suites passed:
+
+| Check | Result |
+|---|---|
+| Unit | 113 passed |
+| Integration | 40 passed |
+| Simulation | 7 passed |
+| Browser | 77 passed |
+| Accessibility | 11 passed; no serious/critical axe findings in scanned UI |
+| Regenerate current diagnostics, report, summary | All byte-identical to committed M3.1 evidence |
+| Rebuild historical comparison | Identical; historical mechanic/rejection probes and policy/scenario definitions match |
+| Scope check / git diff --check | Pass |
+
+The scope checker and screenshot helper were run from the working checkout after
+the pipeline; they change evidence only. Reproduce captures after a build with
+`PLAYWRIGHT_BROWSERS_PATH=/workspace/.playwright-browsers node
+design/reviews/2026-11-12-m3.1/capture.mjs`. It starts a server on port 3001,
+selects the authored wave and scrolls the panel for the capture. The visually
+reviewed [escort portrait](escort-portrait.png) shows both Agent packets in the
+scrolling pane; [Raid desktop](raid-desktop.png) shows the boss, runner timings
+and arrival-gap caveat. Portrait requires scrolling to see other packets; Start
+Wave retains its reserved area. These are presentation fixtures, not combat or
+physical-device evidence.
+
+Hosted PR checks are recorded below once completed.
