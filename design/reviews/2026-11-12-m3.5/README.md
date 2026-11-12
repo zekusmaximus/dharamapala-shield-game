@@ -1,0 +1,110 @@
+# M3.5 first-five-wave playtest preparation and evidence
+
+Fetched latest `origin/main` at `fc43adf` (merged M3.4 / PR #28) and created
+`m3.5-first-five-playtest`. No applicable `AGENTS.md` was present in the
+checkout or workspace. Read ROADMAP.md, CONTENT_SCHEMA.md, the historical
+2026-11-11 code review, and all M1.1–M1.5, M2.1–M2.6 and M3.1–M3.4 verification
+READMEs. The code review is baseline history; M3.4 is the latest implementation
+evidence. All earlier review artifacts remain unchanged.
+
+## Actual evidence availability
+
+As of 2026-11-12, **zero real first-time or returning-player observations** are
+available to this work. Before this branch, repository search found no M3.5
+session records or evidence directory on main. The GitHub PR search for M3.5
+returned references in older PR bodies, not an existing M3.5 PR; open PRs and
+the repository issue search for playtests returned none. The pre-work remote
+branch list had no M3.5 branch. No participant
+recruitment, session, interview, physical-device use or screen-reader use was
+performed here. Simulator policies, funded/earned fixtures, Chromium checks and
+axe scans in earlier evidence are automated work, not human testimony.
+
+## Prepared protocol and build
+
+- [BUILD.md](BUILD.md) identifies and explains the ready-to-serve
+  [1.4.0 archive](playtest-build-fc43adf-1.4.0.zip), pinned to merged commit
+  `fc43adf7f944b2fd8d82b4738e2dae4f90eb0cf1` and save schema v4.
+- [FACILITATOR.md](FACILITATOR.md) supplies neutral prompts, recruitment and
+  no-coaching rules; [PARTICIPANT_TASKS.md](PARTICIPANT_TASKS.md) is the player card.
+- [OBSERVATION_SHEET.md](OBSERVATION_SHEET.md) is a blank session worksheet.
+  [session-template.json](session-template.json) and
+  [DATA_DICTIONARY.md](DATA_DICTIONARY.md) separate direct observation, player
+  explanation, facilitator interpretation and automated measurement.
+- [ANALYSIS_PLAN.md](ANALYSIS_PLAN.md) fixes the pilot definitions and gate
+  decisions before observations. No practice/example entries are mixed with
+  real sessions; no populated session record is present.
+
+The package contains the original client, with no changed gameplay source,
+content, test or save code. The base commit's balance file remains `1.4.0` and
+its SHA-256 is recorded in BUILD.md. Anonymity remains retired from active
+prices/UI, with its numeric save/report key retained. Encryption remains 50
+Dharma / 35 Bandwidth and Distributor 70 / 60. Explicit level-3 branches remain
+provisional; Agent brace remains one-use, 3-second warning / 4-second shield at
+60% maximum health, with no refill. M3.1 scheduling and the existing recovery
+contract are untouched.
+
+## Observations, revisions and M3 gate
+
+No player build/spending choices, first confusion, loss explanations, retries,
+counterplay understanding, specialization reasons or replay willingness were
+observed. **No first-five gameplay fix was made.** The pilot's 4–7-minute slice
+and 60–90-second first meaningful choice targets have no measured human values;
+they remain provisional, with no added waiting or altered gameplay.
+
+| Question | Current answer |
+| --- | --- |
+| At least four of five new players start unaided and explain one successful counter plus useful next adjustment? | Unknown: 0/5 required sessions observed. |
+| Can returning players improve through a deliberate change? | Unknown: 0 returning sessions and no paired prior results. |
+| Do players make different defensible specialization choices? | Unknown: no human opportunities, choices or reasons. M3.2 retention remains provisional. |
+| Are choices/counterplay understood under actual resource constraints? | Unknown for humans. M3.3/M3.4 earned-resource automation is separate evidence. |
+
+M3.5 is **open** and the broader M3 gate is **open**. No engagement, human
+difficulty, readability or build-diversity claim follows from the runnable build
+or prior automated checks. No M4 or M6 work is included.
+
+## Verification and attribution limits
+
+`package-playtest.py` built the exact base client. `git diff fc43adf --` over
+the served/build source paths exited 0. ZIP integrity and all 41 internal file
+hashes passed. A local HTTP server served the extracted index and balance JSON
+with 200 responses; Chromium also reached the build phase from that extracted
+archive without page errors. The archive rebuilt from detached clean checkout
+`c91555a` to the same SHA-256 and left its Git tree clean.
+[Package commands/results](package-smoke.txt) record these checks separately
+from the game pipeline.
+
+The documented `bash design/reviews/2026-11-12-m3.4/verify.sh` pipeline ran in
+that detached clean checkout with Node 24.22.1, npm 11.9.0, Playwright 1.61.1
+and Chromium 149.0.7827.55. [Full commands and results](validation.txt) record
+locked install, Chromium install, fresh build, **138 unit, 66 integration, 9
+simulation, 97 browser and 14 accessibility tests passed**. The current M3.4
+diagnostics, all 21 policy/difficulty campaign reports and summary, and earned
+counterplay output regenerated byte-identically. Historical M3.3 earned economy
+and M3.2 funded tradeoff outputs also matched. The M3.4 comparison script
+checked scope, repeats and corrected M1.4/M2.4 historical probes; all passed.
+Earlier review artifacts were untouched. This is automated regression evidence,
+not a new human pilot.
+
+No new code/content behavior exists to warrant a focused gameplay regression or
+a balance/schema change. The prior M2.3 limits
+still apply: health/shield removal, status applications, aura-present shots and
+sampled range are activity/geometry measures, not causal credit for a player's
+counter or a prevented leak.
+
+Automated unit/integration/simulation, Chromium and axe results; real player
+sessions; physical-device use; and screen-reader use are distinct categories.
+The package smoke only tests the first category. No data from the other three
+was obtained here.
+
+## Required next evidence
+
+Run at least **five first-time** Normal-difficulty sessions on the pinned
+archive, recording all invitations/exclusions and every session's build/spend,
+first confusion, warnings/reports consulted, typed losses, explanation and
+planned/actual retry adjustment, affordable specialization opportunity/choice/
+reason, counter explanation, replay intention and wall timing. Run a **smaller
+returning group of at least two** in separate sessions on the same archive,
+linking each to a recorded prior result and capturing a planned change before
+play and the comparable outcome afterward. Keep actual quotes and observations
+separate from interpretation. Evaluate the gate with ANALYSIS_PLAN.md; make only
+evidence-backed, narrow first-five revisions and revalidate any changed build.

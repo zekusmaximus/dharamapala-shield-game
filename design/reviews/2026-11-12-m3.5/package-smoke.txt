@@ -1,0 +1,31 @@
+M3.5 package smoke, 2026-11-12; automated only
+Source main: fc43adf7f944b2fd8d82b4738e2dae4f90eb0cf1
+Detached verification checkout: c91555a
+
+$ git diff fc43adf --exit-code -- index.html favicon.svg robots.txt design/balance.json assets css js package.json scripts/build.mjs
+exit=0 (no served/build-source changes)
+
+$ python3 design/reviews/2026-11-12-m3.5/package-playtest.py
+Built client application in dist
+sha256 c89fd1806dab103d0838be5b3678404c7b984a64e6972e8a6e3544da360f80f5
+41 client files; balance 1.4.0; schema v4; source fc43adf7f944b2fd8d82b4738e2dae4f90eb0cf1
+exit=0; same SHA-256 when repeated from detached clean checkout
+
+$ python3 -m zipfile -t design/reviews/2026-11-12-m3.5/playtest-build-fc43adf-1.4.0.zip
+Done testing
+$ sha256sum -c PLAYTEST_FILES.sha256  # in the extracted archive directory
+41 client file lines returned OK; exit=0
+
+$ python3 -m http.server 8765 --bind 127.0.0.1  # extracted archive directory
+$ curl --fail --silent --show-error --output /tmp/dharamapala-m35-index.html --write-out 'index HTTP %{http_code}, bytes %{size_download}\n' http://127.0.0.1:8765/
+index HTTP 200, bytes 12761
+$ curl --fail --silent --show-error --output /tmp/dharamapala-m35-served-balance.json --write-out 'balance HTTP %{http_code}, bytes %{size_download}\n' http://127.0.0.1:8765/design/balance.json
+balance HTTP 200, bytes 15631
+
+A later server start on 8765 reported EADDRINUSE because the earlier smoke
+server still held the port. Serving the same extracted archive on 8766 passed.
+From the detached checkout's installed Playwright, headless Chromium opened
+http://127.0.0.1:8766/, clicked New game, clicked Skip tutorial, then read:
+{"phase":"BUILDING","startVisible":true,"errors":[]}
+exit=0; no page errors. This is a basic automated launch check, not a player
+session, physical-device check or screen-reader result.

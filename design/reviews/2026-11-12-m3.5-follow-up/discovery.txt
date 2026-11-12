@@ -1,0 +1,64 @@
+Follow-up evidence discovery UTC 2026-11-12T13:16:00.101203+00:00
+
++ git rev-parse origin/main
+fc43adf7f944b2fd8d82b4738e2dae4f90eb0cf1
+exit=0
+
++ git rev-parse HEAD
+0cdba16f36b6e93240b6d5deaf0a05b846e5a6cc
+exit=0
+
++ git ls-files *AGENTS.md
+exit=0
+
++ gh api repos/zekusmaximus/dharamapala-shield-game/branches --paginate --jq .[].name
+claude/youthful-mayer-sn27kp
+docs/game-review-roadmap
+feat/m1-5-ci
+feat/m2-1-inspectors
+feat/m2-2-explain-combat
+feat/m2-3-wave-results
+feat/m2-4-balance-report
+feat/m2-6-content-contract
+feat/m3-1-wave-pressure
+fix/m1.1-portrait-controls
+fix/m1.2-dialog-cancellation
+fix/m1.3-save-preferences
+fix/m1.4-combat-state
+m3.2-tower-tradeoffs
+m3.3-resource-decisions
+m3.4-counterplay
+m3.5-first-five-playtest
+main
+exit=0
+
++ gh pr list --state all --search M3.5 --json number,title,state,headRefName,url
+[{"headRefName":"m3.5-first-five-playtest","number":29,"state":"OPEN","title":"M3.5: prepare pinned first-five playtest and evidence protocol","url":"https://github.com/zekusmaximus/dharamapala-shield-game/pull/29"},{"headRefName":"m3.4-counterplay","number":28,"state":"MERGED","title":"M3.4: add a telegraphed Agent shield with multiple earned counterplays","url":"https://github.com/zekusmaximus/dharamapala-shield-game/pull/28"},{"headRefName":"feat/m3-1-wave-pressure","number":25,"state":"MERGED","title":"M3.1: author first-five-wave pressure and preview timing","url":"https://github.com/zekusmaximus/dharamapala-shield-game/pull/25"},{"headRefName":"m3.3-resource-decisions","number":27,"state":"MERGED","title":"M3.3: give resources distinct constraints and retire redundant Anonymity","url":"https://github.com/zekusmaximus/dharamapala-shield-game/pull/27"}]
+exit=0
+
++ gh pr view 29 --json number,title,state,headRefName,headRefOid,comments,reviews,statusCheckRollup
+{"comments":[],"headRefName":"m3.5-first-five-playtest","headRefOid":"0cdba16f36b6e93240b6d5deaf0a05b846e5a6cc","number":29,"reviews":[],"state":"OPEN","statusCheckRollup":[{"__typename":"CheckRun","completedAt":"2026-11-12T12:44:00Z","conclusion":"SUCCESS","detailsUrl":"https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43220285901/job/131189764063","name":"validate","startedAt":"2026-11-12T12:41:58Z","status":"COMPLETED","workflowName":"CI"},{"__typename":"CheckRun","completedAt":"2026-11-12T12:42:16Z","conclusion":"SUCCESS","detailsUrl":"https://dashboard.gitguardian.com","name":"GitGuardian Security Checks","startedAt":"2026-11-12T12:41:59Z","status":"COMPLETED","workflowName":""}],"title":"M3.5: prepare pinned first-five playtest and evidence protocol"}
+exit=0
+
++ gh pr view 28 --json comments,reviews
+{"comments":[],"reviews":[]}
+exit=0
+
++ gh issue list --state all --limit 100 --json number,title,state,url
+[]
+exit=0
+
++ git ls-files design/reviews/2026-11-12-m3.5
+design/reviews/2026-11-12-m3.5/ANALYSIS_PLAN.md
+design/reviews/2026-11-12-m3.5/BUILD.md
+design/reviews/2026-11-12-m3.5/DATA_DICTIONARY.md
+design/reviews/2026-11-12-m3.5/FACILITATOR.md
+design/reviews/2026-11-12-m3.5/OBSERVATION_SHEET.md
+design/reviews/2026-11-12-m3.5/PARTICIPANT_TASKS.md
+design/reviews/2026-11-12-m3.5/README.md
+design/reviews/2026-11-12-m3.5/package-playtest.py
+design/reviews/2026-11-12-m3.5/package-smoke.txt
+design/reviews/2026-11-12-m3.5/playtest-build-fc43adf-1.4.0.zip
+design/reviews/2026-11-12-m3.5/session-template.json
+design/reviews/2026-11-12-m3.5/validation.txt
+exit=0
