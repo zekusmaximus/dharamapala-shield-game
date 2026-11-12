@@ -28,7 +28,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
 | M2 · Make decisions readable and measurable | P1 | Complete within documented scope: M2.1–M2.6 | M1 | M2.6 clean checkout passes 100 unit, 35 integration, 7 simulation, 69 browser and 10 accessibility checks; corrected M1.4 diagnostics match byte-for-byte and M2.4 policy outcomes match apart from the content-file hash |
 | M3 · Prove an engaging five-wave game | P1 | Partial: M3.1/M3.3/M3.4 automated scope complete; M3.2 retention provisional; M3.5 human collection deferred, gate open | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
-| M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing content and campaign reporting; M4.4 verification is next under the human-validation deferral | M3 for acceptance; M4.4 engineering may proceed provisionally | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
+| M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing content and campaign reporting; M4.4 verification is next under the human-validation deferral | M3 for acceptance; engineering may proceed provisionally | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
 | M6 · Release and maintain confidently | P2 | Partial: build and test tools exist | M4; M5 for replay-content release | Device/browser checks, performance evidence, hosting/recovery documentation, release checklist |
 
@@ -41,12 +41,14 @@ retention and the broader M3 human gate remain open, with no real participant
 observations available to this work. Human engagement, difficulty, readability,
 build diversity and observed timing remain unknown.
 
-The immediate engineering task is **M4.4 automated verification of the existing
-campaign**, particularly full-run fixed-clock 1×/2× and JSON pause/restore
-continuation. It can proceed before the human gate is satisfied. Reuse existing
-fresh-campaign policy/report coverage and add only missing checks. This does not
-start wave redesign, boss changes, economy tuning, M5 or M6. M4 acceptance still
-requires its documented evidence, including player validation.
+M4 engineering may continue in bounded tasks before the human gate is satisfied.
+The immediate task is **M4.4 automated verification of the existing campaign**,
+particularly full-run fixed-clock 1×/2× and JSON pause/restore continuation.
+Reuse existing fresh-campaign policy/report coverage and add only missing checks.
+Later M4 engineering may follow in separately scoped work under the same
+provisional assumptions. This change does not start wave redesign, boss changes,
+economy tuning, M5 or M6. M4 acceptance still requires its documented evidence,
+including player validation.
 
 The [decision record and next-session prompt](design/reviews/2026-11-12-human-validation-deferral/README.md)
 preserve the authorization, scope, limitations and outstanding pilot. The pinned
@@ -330,7 +332,7 @@ or on a lifecycle test that directly awards kills.
 
 **Status: Partial — M3.1 authored pressure, M3.2 automated prototype, M3.3 economy and M3.4 automated counterplay; specialization retention, M3.5 and the human
 engagement gate remain open. Human collection is deferred by the user's
-2026-11-12 decision; M4.4 engineering may proceed provisionally.** Focus on the existing map and three tower roles. Findings
+2026-11-12 decision; M4 engineering may proceed provisionally, starting with M4.4.** Focus on the existing map and three tower roles. Findings
 R08–R09. This is the first major design gate, not a promise to ship every proposed
 mechanic below unchanged.
 
@@ -542,8 +544,8 @@ through a deliberate change rather than repeating the same purchase sequence.
 Use a provisional 4–7 minute target for this slice including building, with a
 meaningful choice in the first 60–90 seconds. Revise from observation; do not add
 empty waiting to hit a duration. M4 acceptance depends on evidence that the slice
-is clear and worth replaying. Under the explicit 2026-11-12 deferral, M4.4
-automated engineering may proceed before that evidence is collected; it cannot
+is clear and worth replaying. Under the explicit 2026-11-12 deferral, bounded M4
+engineering may proceed before that evidence is collected; it cannot
 establish or substitute for the human gate.
 
 ## M4 · Deliver a challenging twenty-wave campaign
@@ -551,7 +553,8 @@ establish or substitute for the human gate.
 **Status: Partial.** Twenty waves, terminal handling and fresh-campaign policy
 reports already exist; their presence does not complete the redesigned campaign.
 Acceptance depends on the M3 gate. The explicit human-validation deferral permits
-M4.4 automated verification now, with the current design remaining provisional.
+bounded M4 engineering now, starting with M4.4 automated verification, with the
+current design remaining provisional.
 
 - [ ] **M4.1 · Develop four campaign acts.** Waves 1–5 teach and test fundamentals;
   6–10 combine counters and spending choices; 11–15 stress coverage, shields, and

@@ -41,7 +41,10 @@ must retain the original evidence-source distinctions and consented records.
 The user authorized proceeding under provisional assumptions. The selected next
 task is **M4.4 automated verification of the existing twenty-wave campaign**.
 This is an engineering choice within that authorization; the user did not
-specifically prescribe the M4.4 test design.
+specifically prescribe the M4.4 test design. The deferral permits continued
+bounded M4 engineering, with M4.4 first; later scoped M4 tasks do not require
+pretending the human gate passed or obtaining this same deferral again. The
+current task does not start those later changes or authorize M5/M6.
 
 Inspection confirms existing coverage in `tools/balance/report.mjs` and
 `tests/sim/balance-report.test.js`: seven policies, Easy/Normal/Hard fresh
