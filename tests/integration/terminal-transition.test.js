@@ -120,18 +120,22 @@ test('old 1.0.0 game-over saves with extra same-tick leaks are recovered on load
   // The old terminal capture had already happened after the first leak.
   assert.equal(oldSnapshot.state.finalStatistics.leaks, 1);
 
+  // Historical rule coverage stays pinned to its own balance version. Current
+  // content retires these saves through recovery, tested separately.
+  const oldBalance = { ...balance, version: '1.0.0' };
+  oldSnapshot.balanceVersion = oldSnapshot.state.balanceVersion = '1.0.0';
   const repository = new BrowserSaveRepository(memoryStorage());
   repository.storage.setItem(SAVE_KEY, JSON.stringify(oldSnapshot));
-  const loaded = repository.load(balance);
+  const loaded = repository.load(oldBalance);
   assert.equal(loaded.ok, true);
   assert.equal(loaded.session.state.statistics.leaks, 2);
   assert.equal(loaded.session.state.finalStatistics.leaks, 2);
   assert.equal(oldSnapshot.state.finalStatistics.leaks, 1);
-  GameSession.fromSnapshot(balance, loaded.session.toSnapshot());
+  GameSession.fromSnapshot(oldBalance, loaded.session.toSnapshot());
 
   const unrelated = structuredClone(oldSnapshot);
   unrelated.state.finalStatistics.kills += 1;
-  assert.throws(() => GameSession.fromSnapshot(balance, unrelated), /Results disagree/);
+  assert.throws(() => GameSession.fromSnapshot(oldBalance, unrelated), /Results disagree/);
 });
 
 test('a terminal transition during an achievement stops later resolution events', () => {

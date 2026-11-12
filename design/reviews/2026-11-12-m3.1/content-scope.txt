@@ -1,0 +1,3 @@
+Compared current JSON with origin/main (20d33bb):
+PASS: only version and first-five-wave scheduling fields differ.
+PASS: typed counts/HP multipliers, rewards, waves 6–20 and every other definition match.

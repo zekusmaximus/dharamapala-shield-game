@@ -1131,3 +1131,95 @@ test('defeat reports remain accessible inside the terminal dialog', async ({page
   await host.getByRole('button',{name:'Dismiss wave 1 report'}).click();
   await expect(page.getByRole('button',{name:'Play again',exact:true})).toBeFocused();
 });
+
+// M3.1 preview setup selects an authored wave only; clicks/keys remain real.
+for (const viewport of [
+  {width:360,height:640}, {width:390,height:844}, {width:640,height:360},
+  {width:844,height:390}, {width:1280,height:720}
+]) test(`authored overlap timing remains inspectable with deliberate starts at ${viewport.width}×${viewport.height}`, async ({page}) => {
+  await openFresh(page,viewport); await enterBuildPhase(page);
+  await page.evaluate(()=>{ gameApplication.session.state.waveNumber=4; gameApplication.ui.update(gameApplication.session); });
+  const preview=page.locator('#wave-preview-section');
+  await expect(preview).toContainText('simulated seconds after Start Wave');
+  const agents=page.locator('#wave-preview-list li').filter({has:page.getByRole('button',{name:/Inspect Federal Agent/})});
+  await expect(agents).toContainText('3 from 0 s to 1.8 s; every 0.9 s');
+  await expect(agents).toContainText('2 from 6 s to 6.9 s; every 0.9 s');
+  await expect(page.locator('#wave-preview-gaps')).toContainText('between 1.8 s and 6 s');
+  await expect(page.locator('#wave-preview-gaps')).toContainText('may still be active');
+  await page.getByRole('button',{name:/Inspect Federal Agent/}).click();
+  await expect(page.locator('#enemy-inspector')).toContainText('Armor');
+  await expect(page.locator('#enemy-inspector')).toHaveAttribute('open','');
+  await page.getByRole('button',{name:'Hide wave preview'}).click();
+  await expect(page.locator('#wave-preview-title')).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(preview).toHaveAttribute('open','');
+  await page.locator('[data-wave-speed-context="game"]').getByRole('button',{name:'Wave speed 2×'}).click();
+  expect(await page.evaluate(()=>({phase:gameApplication.session.state.phase,time:gameApplication.session.state.gameTimeMs,spawned:gameApplication.session.state.wave.spawned})))
+    .toEqual({phase:'BUILDING',time:0,spawned:0});
+  await expect(agents).toContainText('3 from 0 s to 1.8 s');
+  const start=page.getByRole('button',{name:'Start wave 4'});
+  const box=await start.boundingBox();
+  expect(box.x).toBeGreaterThanOrEqual(0); expect(box.y).toBeGreaterThanOrEqual(0);
+  expect(box.x+box.width).toBeLessThanOrEqual(viewport.width+1);
+  expect(box.y+box.height).toBeLessThanOrEqual(viewport.height+1);
+  await start.click(); await expect(page.locator('#phase-label')).toHaveText('Wave active');
+  await expect(page.locator('[data-tower-type="firewall"]')).toBeDisabled();
+});
+
+test('keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts', async ({page}) => {
+  await openFresh(page,{width:360,height:640}); await enterBuildPhase(page);
+  await page.evaluate(()=>{ gameApplication.session.state.waveNumber=5; gameApplication.ui.update(gameApplication.session); });
+  await tabTo(page,page.locator('#wave-preview-title'),true);
+  await page.keyboard.press('Enter'); await page.keyboard.press('Enter');
+  await expect(page.locator('#wave-preview-list')).toContainText('1 at 0 s');
+  await expect(page.locator('#wave-preview-list')).toContainText('6 from 6.5 s to 8 s; every 0.3 s');
+  await expect(page.locator('#emp-warning')).toContainText('66%');
+  const raid=page.getByRole('button',{name:/Inspect Raid Team/});
+  await expect(raid).toHaveAccessibleDescription('1 at 0 s');
+  await tabTo(page,raid); await page.keyboard.press('Enter');
+  await expect(page.locator('#enemy-inspector-title')).toBeFocused();
+  await tabTo(page,page.getByRole('button',{name:'Hide wave preview'}),true); await page.keyboard.press('Enter');
+  await expect(page.locator('#wave-preview-title')).toBeFocused();
+  await tabTo(page,page.getByRole('button',{name:'Start wave 5'})); await page.keyboard.press('Enter');
+  await expect(page.locator('#phase-label')).toHaveText('Wave active');
+});
+
+test('new schedule pause/reload/Continue retains pending arrivals, 2× and preferences', async ({page}) => {
+  await openFresh(page,{width:360,height:640}); await enterBuildPhase(page); await clickWorld(page,210,210);
+  await page.locator('[data-wave-speed-context="game"]').getByRole('button',{name:'Wave speed 2×'}).click();
+  await page.getByRole('button',{name:'Start wave 1'}).click();
+  await page.evaluate(()=>{
+    const s=gameApplication.session; s.tick=()=>{}; // disable RAF only for the checkpoint fixture
+    while(s.scheduler.elapsedMs<4000) s.step(1000/60);
+    s.updateSetting('showRanges',false); s.updateSetting('reducedMotion',true);
+  });
+  await page.getByRole('button',{name:'Pause game',exact:true}).click();
+  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')));
+  expect(saved.balanceVersion).toBe('1.1.0'); expect(saved.runtime.scheduler.cursor).toBe(4);
+  await page.reload(); await page.getByRole('button',{name:'Continue',exact:true}).click();
+  expect(await page.evaluate(()=>gameApplication.session.scheduler.snapshot())).toEqual(saved.runtime.scheduler);
+  expect(await page.evaluate(()=>gameApplication.session.state.settings)).toEqual(saved.state.settings);
+  expect(await page.evaluate(()=>gameApplication.session.state.waveSpeed)).toBe(2);
+  await page.getByRole('button',{name:'Resume',exact:true}).click();
+  await expect(page.locator('#wave-preview-list')).toContainText('4 from 6.5 s to 8.6 s');
+  await expect(page.locator('#phase-label')).toHaveText('Wave active');
+});
+
+test('prior balance save exports exact original and reset preserves independent preferences', async ({page}) => {
+  const {readFile}=await import('node:fs/promises');
+  const raw=await readFile('design/reviews/2026-11-12-m3.1/old-1.0.0-save.json','utf8');
+  await openFresh(page);
+  await page.evaluate(raw=>{
+    localStorage.setItem('dharmapala-shield/save/v2',raw);
+    localStorage.setItem('dharmapala-shield/preferences/v1',JSON.stringify({tutorialCompleted:true,showRanges:false,reducedMotion:true}));
+  },raw);
+  await page.reload();
+  await expect(page.getByRole('region',{name:'Local save recovery'})).toBeVisible();
+  expect(await page.evaluate(()=>localStorage.getItem('dharmapala-shield/save/v2'))).toBe(raw);
+  const waiting=page.waitForEvent('download'); await page.getByRole('button',{name:'Export recovery save'}).click();
+  expect(await readFile(await (await waiting).path(),'utf8')).toBe(raw);
+  await page.getByRole('button',{name:'Reset saved run'}).click();
+  await page.getByRole('button',{name:'New game',exact:true}).click();
+  await expect(page.locator('#start-wave-button')).toBeEnabled();
+  expect(await page.evaluate(()=>gameApplication.session.state.settings)).toEqual({tutorialCompleted:true,showRanges:false,reducedMotion:true});
+});

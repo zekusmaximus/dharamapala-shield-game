@@ -47,10 +47,42 @@ The current validator rejects their reintroduction.
 
 Values moved into the active schema retain their pre-M2.6 numbers. The content
 file hash changes because its structure changed; it is not a combat outcome.
-Balance version `1.0.0`, save schema v2 and preference keys stay unchanged, so
-existing valid saves continue under the same numeric rules. Future edits that
+At M2.6, balance version `1.0.0`, save schema v2 and preference keys stayed
+unchanged, so valid saves continued under the same numeric rules. Future edits that
 change combat/economy meaning or derived saved entity stats must use a new
 balance version and an explicit migration or the existing export/reset recovery
 flow. Run the corrected M1.4 diagnostics and M2.4 seven-policy report after
 such edits; deterministic repeats establish reproducibility, not player
 difficulty or a balance target.
+
+## M3.1 authored spawn windows (balance 1.1.0)
+
+A wave group may include `offsetMs`: a finite, nonnegative absolute simulated
+millisecond offset after **Start Wave**. Its count spawns at
+`offsetMs + index * interval`. Groups can overlap or appear out of time order.
+Omitting the offset retains the original sequential rule: start after the
+preceding group's start plus **count × interval**, including the trailing
+interval. Thus waves 6–20 retain their exact schedules. Zero intervals release
+simultaneously; fractional offsets release on the first eligible fixed tick.
+Derived times must remain finite. Compiled events sort by due time, breaking ties
+in authored group/index order, then receive contiguous chronological `order`
+values. Runtime, simulator, preview and save validation share this compiler.
+Dynamic health-triggered Raid reinforcements retain the existing scheduler rules.
+
+The preview aggregates each enemy type and lists every packet's count, first/last
+arrival and interval. It identifies gaps of at least two simulated seconds between
+scheduled arrivals; those gaps are **not** promised empty battlefields, build
+phases or pauses in health-triggered boss reinforcements. At 2× the same schedule
+uses half the real time. Neither speed nor a recovery gap starts the next wave.
+
+The first five schedules changed, so balance is now `1.1.0`. Schema v2 and run /
+preference keys are unchanged. There is **no v2 1.0.0 → 1.1.0 migration**, even
+for building or terminal saves. The exact-version validator rejects them before
+session replacement; the existing recovery UI retains the original raw payload,
+blocks overwrites, offers export and requires explicit Reset saved run before a
+new run can be saved. Reset keeps independent preferences and the most recent
+recovery archive. Export first for a durable copy; old runs can continue only in
+an installation with their matching old content. Legacy pre-v2 tower-refund import
+remains the explicit build-state import described in M1.3, not a migration of v2
+combat. M1's historical 1.0.0 terminal repair remains tested against that version;
+it does not bypass the new version gate.

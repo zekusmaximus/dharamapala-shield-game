@@ -11,7 +11,10 @@ completion gates, and the [2026-11-11 code review](design/CODE_REVIEW_2026-11-11
 for evidence and known issues. M1 and M2.1–M2.6 are complete within their
 documented verification scope. M2 includes inspection, combat feedback,
 persistent wave reports, a reproducible balance report, wave-speed controls and
-[validated runtime content](design/CONTENT_SCHEMA.md). Human difficulty and
+[validated runtime content](design/CONTENT_SCHEMA.md). M3.1 adds authored first-five-wave spawn windows and preview timing. Balance
+`1.1.0` retires prior `1.0.0` v2 runs through the existing export/reset recovery
+flow; export before resetting. Independent preferences remain compatible.
+Human difficulty and
 engagement validation remains in later roadmap work.
 
 The earlier [implementation plan](implementation.md) remains an architecture

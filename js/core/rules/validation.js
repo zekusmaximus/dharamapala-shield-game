@@ -148,12 +148,14 @@ export function validateBalance(b) {
     assert(w.wave === i + 1 && Array.isArray(w.enemies) && w.enemies.length > 0, `Invalid wave ${i + 1}`);
     contentInteger(w.rewardBonus, `balance.waves[${i}].rewardBonus`);
     for (const [j, g] of w.enemies.entries()) {
-      contentKeys(g, `balance.waves[${i}].enemies[${j}]`, ['id', 'count', 'interval', 'hpMult']);
+      contentKeys(g, `balance.waves[${i}].enemies[${j}]`, ['id', 'count', 'interval', 'hpMult'], ['offsetMs']);
       assert(Object.hasOwn(b.enemies, g.id) || Object.hasOwn(b.bosses, g.id), 'Unknown wave enemy');
       contentInteger(g.count, 'Spawn count', 1);
       contentNumber(g.interval, 'Spawn interval');
       contentNumber(g.hpMult, 'Spawn hpMult', Number.MIN_VALUE);
+      if (Object.hasOwn(g, 'offsetMs')) contentNumber(g.offsetMs, 'Spawn offsetMs');
     }
+    assert(compileSpawnSchedule(b, w.wave).every(event => Number.isFinite(event.dueAtMs)), 'Invalid derived spawn time');
   });
   contentKeys(b.migration, 'balance.migration', ['deferredTowerRefunds']);
   assert(b.migration.deferredTowerRefunds && typeof b.migration.deferredTowerRefunds === 'object' && !Array.isArray(b.migration.deferredTowerRefunds), 'Invalid legacy refunds');
@@ -241,7 +243,10 @@ export function validateSnapshot(snapshot, balance) {
     assert((balance.enemies[e.enemyType] || balance.bosses[e.enemyType]) && number(e.dueAtMs) && number(e.hpMultiplier, Number.MIN_VALUE) && integer(e.order) && !orders.has(e.order) && typeof e.dynamic === 'boolean', 'Invalid schedule event'); orders.add(e.order);
     if (e.dynamic) assert(reference(e.sourceId, 'enemy') && reinforcementTypes.includes(e.enemyType) && e.hpMultiplier === reinforcementMultiplier && e.order >= compileSpawnSchedule(balance,s.waveNumber).length, 'Invalid reinforcement');
     if (i < schedule.cursor) assert(e.dueAtMs <= schedule.elapsedMs+1e-6, 'Premature spawn cursor');
-    if (i > schedule.cursor) assert(e.dueAtMs >= schedule.events[i-1].dueAtMs, 'Unsorted pending schedule');
+    if (i > 0) {
+      const previous = schedule.events[i - 1];
+      assert(e.dueAtMs > previous.dueAtMs || (e.dueAtMs === previous.dueAtMs && e.order > previous.order), 'Unsorted schedule or unstable spawn tie');
+    }
   });
   const dynamic = schedule.events.filter(e => e.dynamic);
   const raidCount = balance.waves[s.waveNumber-1].enemies.filter(g => g.id==='raidTeam').reduce((n,g)=>n+g.count,0);

@@ -548,6 +548,10 @@ export class GameUI {
     }
     this.lastSignatures.set('preview', signature);
     this.elements.bossWarning.hidden = !model.preview?.isBossWave;
+    const seconds = ms => `${Number((ms / 1000).toFixed(3))} s`;
+    byId('wave-preview-gaps').textContent = (model.preview?.gaps || []).length
+      ? `No scheduled arrivals between ${model.preview.gaps.map(gap => `${seconds(gap.startMs)} and ${seconds(gap.endMs)}`).join('; ')}. Enemies already on the route and health-triggered reinforcements may still be active.`
+      : 'Enemies already on the route and health-triggered reinforcements may overlap scheduled arrivals.';
     this.elements.previewList.replaceChildren(
       ...(model.preview?.enemies || []).map((enemy) => {
         const item = document.createElement('li');
@@ -568,6 +572,17 @@ export class GameUI {
         button.append(icon, name, count);
         button.addEventListener('click', () => this.inspectEnemyType(enemy.id));
         item.append(button);
+        const timingIds = [];
+        for (const [index, window] of enemy.windows.entries()) {
+          const timing = window.count === 1
+            ? `1 at ${seconds(window.startMs)}`
+            : `${window.count} from ${seconds(window.startMs)} to ${seconds(window.endMs)}; every ${seconds(window.intervalMs)}`;
+          const note = element('p', timing, 'inspection-note');
+          note.id = `spawn-timing-${model.preview.wave}-${enemy.id}-${index}`;
+          timingIds.push(note.id);
+          item.append(note);
+        }
+        button.setAttribute('aria-describedby', timingIds.join(' '));
         return item;
       })
     );

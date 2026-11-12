@@ -1,6 +1,6 @@
 # Dharmapala Shield roadmap
 
-Updated 2026-11-11. Baseline: commit `58f0853`, balance `1.0.0`.
+Updated 2026-11-12. Baseline: commit `58f0853`, balance `1.0.0`.
 
 The goal is a tower-defense game that rewards observation, planning, and adapting
 after a mistake. The engine is largely in place. The next work should establish
@@ -27,7 +27,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | M0 · Establish the baseline | Foundation | Complete | — | Review, current-state inventory, 42 passing existing tests, balance runs, additional defect probes |
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
 | M2 · Make decisions readable and measurable | P1 | Complete within documented scope: M2.1–M2.6 | M1 | M2.6 clean checkout passes 100 unit, 35 integration, 7 simulation, 69 browser and 10 accessibility checks; corrected M1.4 diagnostics match byte-for-byte and M2.4 policy outcomes match apart from the content-file hash |
-| M3 · Prove an engaging five-wave game | P1 | Planned | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
+| M3 · Prove an engaging five-wave game | P1 | Partial: M3.1 authored; validation recorded below | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
 | M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: existing 20-wave content only | M3 | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
 | M6 · Release and maintain confidently | P2 | Partial: build and test tools exist | M4; M5 for replay-content release | Device/browser checks, performance evidence, hosting/recovery documentation, release checklist |
@@ -307,7 +307,8 @@ or on a lifecycle test that directly awards kills.
 
 ## M3 · Prove an engaging five-wave game
 
-**Status: Planned.** Focus on the existing map and three tower roles. Findings
+**Status: Partial — M3.1 authored pressure only; M3.2–M3.5 and the human
+engagement gate remain open.** Focus on the existing map and three tower roles. Findings
 R08–R09. This is the first major design gate, not a promise to ship every proposed
 mechanic below unchanged.
 
@@ -323,7 +324,7 @@ mechanic below unchanged.
 
 Implementation work:
 
-- [ ] **M3.1 · Author pressure, not just counts.** Use deliberate spawn offsets and
+- [x] **M3.1 · Author pressure, not just counts.** Use deliberate spawn offsets and
   overlap to create runners, escorts, recovery windows, and a boss climax. Show
   the relevant timing in the preview. Keep schedules deterministic and serializable.
 - [ ] **M3.2 · Establish tower tradeoffs.** Tune coverage, costs, armor interactions,
@@ -346,6 +347,25 @@ Implementation work:
   players and a smaller returning-player group. Record the build choices, first
   confusion, reason for each loss, changes on retry, and willingness to replay.
   Keep observations separate from statistical population claims.
+
+**M3.1 implemented (2026-11-12), verification recorded in the linked evidence:**
+From latest main `20d33bb` (PR #24), waves 1–5 now use absolute spawn offsets,
+two-packet runner bursts, overlapping armored escorts, 2.9–4.2-second arrival
+gaps and the existing Raid Team EMP/reinforcement climax. Preview lists packet
+counts, windows and spacing with keyboard-accessible descriptions; gaps explicitly
+do not promise an empty route. Counts, HP multipliers, rewards, tower/enemy/boss
+values, economy and waves 6–20 are unchanged. Balance `1.1.0` explicitly retires
+old `1.0.0` v2 runs through retained-payload export/reset recovery; preferences
+and save schema remain compatible. Production slices cover deliberate starts,
+overlap, gaps and JSON continuation at 1×/2×. Corrected M1.4 mechanics/rejection
+probes match; all 21 M2.4 policy/difficulty outcomes retain victory/defeat and
+finishing wave, with changed timings/pressure. Hard existing/counter-aware now
+finish with 19 rather than 20 lives (a wave-20 leak); upgrade-heavy remains
+untouched. No strong policy leaks in the first five. These observations do not
+establish human challenge/engagement or the broader M3 acceptance gate.
+[New evidence, full comparisons, commands and limits](design/reviews/2026-11-12-m3.1/README.md)
+keep historical evidence unchanged and distinguish combat, setup fixtures and
+automated Chromium/axe from physical-device, screen-reader and human playtests.
 
 **Acceptance gate:** at least two materially different builds can beat the slice.
 Several waves reward a change in placement, spending, or specialization; an

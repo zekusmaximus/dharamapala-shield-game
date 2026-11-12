@@ -6,7 +6,7 @@ const report = JSON.parse(await readFile(input,'utf8'));
 const sum = (run,fn) => run.waves.reduce((n,w)=>n+fn(w),0);
 const money = r => ['dharma','bandwidth','anonymity'].map(k=>r[k]).join('/');
 const totalMoney = (run,key) => money(Object.fromEntries(['dharma','bandwidth','anonymity'].map(k=>[k,sum(run,w=>w.accounting[key][k])])));
-let md = '# M2.4 scripted results\n\nGenerated from results.json by tools/balance/summary.mjs. Resources are Dharma/Bandwidth/Anonymity. Time is simulated wave time, excluding preparation and report CPU time. These are fixed-policy observations, not human difficulty or win rates.\n\n';
+let md = '# Scripted balance results\n\nGenerated from results.json by tools/balance/summary.mjs. Resources are Dharma/Bandwidth/Anonymity. Time is simulated wave time, excluding preparation and report CPU time. These are fixed-policy observations, not human difficulty or win rates.\n\n';
 md += '| Scenario | Policy | Outcome (last played wave) | Lives / leaks | Boss killed/leaked/unresolved | Seconds | End resources | Spent | Bounty | Clear (includes passive) | Passive Dharma |\n|---|---|---|---|---|---|---|---|---|---|---|\n';
 for (const r of report.runs) {
  const bosses=r.waves.flatMap(w=>w.pressure.bosses);
