@@ -162,7 +162,10 @@ log](validation.txt) records Node 24.22.1, npm 11.9.0, Chromium
 | Prior evidence and pinned M3.5 archive SHA-256 | Preserved |
 | Diff whitespace and clean detached worktree | Pass |
 
-The hosted PR CI run is separate from this local Node 24 check.
+[Hosted PR #34 CI](ci.txt) passed the same five suites on Ubuntu / Node 22
+at implementation/documentation head `d168661`; GitGuardian also passed. The
+run is separate from the detached Node 24 check. The hosted-result note itself
+is a later evidence-only commit, whose PR checks are observed separately.
 
 M3.2 specialization retention, M3.5 collection, the human M3 gate and M4
 human acceptance remain **open**. Fixed scripts, deterministic repeats,
