@@ -1,1 +1,23 @@
-Hosted PR CI: pending. The clean-checkout pipeline passed at f1bb06a; see validation.txt.
+Hosted PR #33 validation, implementation and clean-checkout evidence head
+Repository: zekusmaximus/dharamapala-shield-game
+Head: 647e28d02804ced725c74ecf5fc36dfa0d904633
+Run: https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43358561163
+Workflow: CI (pull_request)
+Conclusion: success
+Job: validate (131666350756), success, 2026-11-13 03:22:50–03:25:18 UTC
+
+Commands and results from gh run view 43358561163 --log and --json:
+  npm ci                                      success
+  npx playwright install --with-deps chromium success
+  npm run build                               success
+  npm run test:unit                           141 passed
+  npm run test:integration                    66 passed
+  npm run test:sim                            13 passed
+  npm run test:e2e                            102 passed
+  npm run test:a11y                           14 passed
+  Preserve browser failure artifacts         skipped (all checks passed)
+
+PR #33 checks at this head also showed GitGuardian Security Checks: pass.
+This is hosted Ubuntu / Node 22 validation. The separate local detached
+clean-checkout log is validation.txt. These automated results do not establish
+human understanding, difficulty, build diversity or M4 acceptance.

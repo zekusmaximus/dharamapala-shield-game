@@ -147,6 +147,12 @@ old content. The fixture now supplies its original two Raid thresholds and
 phase lists; focused integration and the entire clean pipeline pass. No
 production rule changed for that test repair.
 
+Hosted [PR #33 CI](ci.txt) passed on evidence head `647e28d` (Ubuntu / Node
+22): locked install, Chromium with system dependencies, build, 141 unit, 66
+integration, 13 simulation, 102 browser and 14 accessibility checks.
+GitGuardian passed. This confirms automated validation on the hosted runner,
+not player acceptance.
+
 From the repository root, the evidence commands are:
 
 ```bash
