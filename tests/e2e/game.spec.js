@@ -1186,6 +1186,23 @@ test('keyboard reads Raid timing and warning, inspects, dismisses and deliberate
   await expect(page.locator('#phase-label')).toHaveText('Wave active');
 });
 
+test('later act previews expose mixed packets and final boss timing before Start Wave', async ({page}) => {
+  await openFresh(page,{width:360,height:640});await enterBuildPhase(page);
+  await page.evaluate(()=>{gameApplication.session.state.waveNumber=7;gameApplication.ui.update(gameApplication.session);});
+  const runners=page.locator('#wave-preview-list li').filter({has:page.getByRole('button',{name:/Inspect Script Kiddie/})});
+  await expect(runners).toContainText('5 from 0 s to 1.8 s; every 0.45 s');
+  await expect(runners).toContainText('5 from 6.1 s to 7.9 s; every 0.45 s');
+  await page.evaluate(()=>{gameApplication.session.state.waveNumber=20;gameApplication.ui.update(gameApplication.session);});
+  await expect(page.locator('#wave-preview-list li')).toHaveCount(5);
+  const titan=page.getByRole('button',{name:/Inspect MegaCorp Titan/});
+  await expect(titan).toHaveAccessibleDescription('2 from 0 s to 14 s; every 14 s');
+  await expect(page.locator('#wave-preview-list')).toContainText('8 from 14.5 s to 18.7 s; every 0.6 s');
+  await tabTo(page,titan,true);await page.keyboard.press('Enter');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('shield');
+  expect(await page.evaluate(()=>({phase:gameApplication.session.state.phase,time:gameApplication.session.state.gameTimeMs})))
+    .toEqual({phase:'BUILDING',time:0});
+});
+
 test('new schedule pause/reload/Continue retains pending arrivals, 2× and preferences', async ({page}) => {
   await openFresh(page,{width:360,height:640}); await enterBuildPhase(page); await clickWorld(page,210,210);
   await page.locator('[data-wave-speed-context="game"]').getByRole('button',{name:'Wave speed 2×'}).click();
@@ -1304,7 +1321,7 @@ test('retired-economy v3 bytes export unchanged and reset preserves preferences'
   const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();expect(await readFile(await(await download).path(),'utf8')).toBe(raw);
   await page.getByRole('button',{name:'Reset saved run'}).click();await page.getByRole('button',{name:'New game',exact:true}).click();
   const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')));
-  expect(saved.schemaVersion).toBe(4);expect(saved.balanceVersion).toBe('1.4.0');expect(saved.state.resources.anonymity).toBe(0);expect(saved.state.settings).toMatchObject({showRanges:false,reducedMotion:true});
+  expect(saved.schemaVersion).toBe(4);expect(saved.balanceVersion).toBe('1.5.0');expect(saved.state.resources.anonymity).toBe(0);expect(saved.state.settings).toMatchObject({showRanges:false,reducedMotion:true});
 });
 
 for(const speed of [1,2])test(`Agent brace cue/text, pause/reload and explicit v4 state at ${speed}×`,async({page})=>{
@@ -1337,5 +1354,23 @@ test('M3.3 v3 recovery exports exact bytes before explicit reset and creates v4 
   await expect(page.locator('#save-recovery')).toBeVisible();expect(await page.evaluate(()=>localStorage.getItem('dharmapala-shield/save/v2'))).toBe(raw);
   const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();expect(await readFile(await(await download).path(),'utf8')).toBe(raw);
   await page.getByRole('button',{name:'Reset saved run'}).click();await page.getByRole('button',{name:'New game',exact:true}).click();
-  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({schemaVersion:4,balanceVersion:'1.4.0',state:{settings:{showRanges:false,reducedMotion:true}}});
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({schemaVersion:4,balanceVersion:'1.5.0',state:{settings:{showRanges:false,reducedMotion:true}}});
+});
+
+test('M4.1 old 1.4.0/v4 wave bytes export exactly before reset and retain preferences',async({page})=>{
+  const {readFile}=await import('node:fs/promises');
+  const raw=await readFile('design/reviews/2026-11-12-m4.1/old-1.4.0-v4-save.json','utf8');
+  await openFresh(page);await page.evaluate(raw=>{
+    localStorage.setItem('dharmapala-shield/save/v2',raw);
+    localStorage.setItem('dharmapala-shield/preferences/v1',JSON.stringify({tutorialCompleted:true,showRanges:false,reducedMotion:true}));
+  },raw);await page.reload();
+  await expect(page.locator('#save-recovery')).toBeVisible();
+  expect(await page.evaluate(()=>localStorage.getItem('dharmapala-shield/save/v2'))).toBe(raw);
+  const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();
+  expect(await readFile(await(await download).path(),'utf8')).toBe(raw);
+  await page.getByRole('button',{name:'Reset saved run'}).click();
+  await page.getByRole('button',{name:'New game',exact:true}).click();
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({
+    schemaVersion:4,balanceVersion:'1.5.0',state:{settings:{showRanges:false,reducedMotion:true}}
+  });
 });

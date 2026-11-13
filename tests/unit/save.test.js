@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { BrowserSaveRepository, SAVE_KEY } from '../../js/platform/BrowserSaveRepository.js';
+import { BrowserSaveRepository, SAVE_KEY, PREFERENCES_KEY } from '../../js/platform/BrowserSaveRepository.js';
 import { GameSession, PHASES } from '../../js/core/GameSession.js';
 import { loadBalance } from '../helpers/loadBalance.js';
 
@@ -52,6 +52,35 @@ test('corrupt saves are preserved without mutating a live session', () => {
   const result = repository.load(balance);
   assert.equal(result.ok, false);
   assert.equal(repository.exportCorrupt(), storage.getItem(SAVE_KEY));
+});
+
+test('old 1.4.0/v4 wave bytes remain exportable until explicit reset; preferences survive', async () => {
+  const raw = await readFile(new URL('../../design/reviews/2026-11-12-m4.1/old-1.4.0-v4-save.json', import.meta.url), 'utf8');
+  const old = JSON.parse(raw);
+  assert.equal(old.schemaVersion, 4);
+  assert.equal(old.balanceVersion, '1.4.0');
+  assert.throws(() => GameSession.fromSnapshot(balance, old), /Unsupported save schema or balance version/);
+  const relabeled = structuredClone(old);
+  relabeled.balanceVersion = relabeled.state.balanceVersion = '1.5.0';
+  assert.throws(() => GameSession.fromSnapshot(balance, relabeled),
+    'old pending wave-7 events cannot be smuggled through by changing version strings');
+  const storage = new MemoryStorage();
+  storage.setItem(SAVE_KEY, raw);
+  storage.setItem(PREFERENCES_KEY, JSON.stringify({ tutorialCompleted: true, showRanges: false, reducedMotion: true }));
+  const repository = new BrowserSaveRepository(storage);
+  assert.equal(repository.load(balance).ok, false);
+  assert.equal(storage.getItem(SAVE_KEY), raw);
+  assert.equal(repository.save(new GameSession(balance)).ok, false);
+  assert.equal(repository.exportCorrupt(), raw);
+  assert.equal(repository.clear().ok, true);
+  assert.equal(storage.getItem(SAVE_KEY), null);
+  assert.equal(repository.exportCorrupt(), raw);
+  assert.deepEqual(repository.preferences(), { tutorialCompleted: true, showRanges: false, reducedMotion: true });
+  const fresh = new GameSession(balance);
+  fresh.newGame({ tutorialCompleted: true });
+  assert.equal(repository.save(fresh).ok, true);
+  assert.equal(JSON.parse(storage.getItem(SAVE_KEY)).schemaVersion, 4);
+  assert.equal(JSON.parse(storage.getItem(SAVE_KEY)).balanceVersion, '1.5.0');
 });
 
 test('historical legacy removed towers are refunded and active towers are reconstructed', async () => {

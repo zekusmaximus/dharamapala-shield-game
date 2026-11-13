@@ -113,9 +113,9 @@ test('wave report semantic UI passes axe in building and terminal portrait state
   expect(results.violations.filter(v=>['serious','critical'].includes(v.impact))).toEqual([]);
 });
 
-test('overlap and Raid timing previews pass axe with both reduced-motion preferences', async ({page}) => {
+test('first-act and later mixed timing previews pass axe with both reduced-motion preferences', async ({page}) => {
   await openFresh(page,{width:360,height:640}); await enterBuildPhase(page);
-  for (const wave of [4,5]) for (const reducedMotion of [false,true]) {
+  for (const wave of [4,5,7,19,20]) for (const reducedMotion of [false,true]) {
     // Presentation-only setup: no claim of fighting these waves in this scan.
     await page.evaluate(({wave,reducedMotion})=>{
       const s=gameApplication.session; s.state.waveNumber=wave; s.state.settings.reducedMotion=reducedMotion;

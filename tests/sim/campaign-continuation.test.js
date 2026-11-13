@@ -8,8 +8,8 @@ import { createPolicy } from '../../tools/balance/policies.mjs';
 import { loadBalance } from '../helpers/loadBalance.js';
 
 const balance = await loadBalance();
-const historical = JSON.parse(await readFile(new URL(
-  '../../design/reviews/2026-11-12-m3.4/results.json', import.meta.url
+const currentReport = JSON.parse(await readFile(new URL(
+  '../../design/reviews/2026-11-12-m4.1/results.json', import.meta.url
 )));
 const resourceKeys = ['dharma', 'bandwidth', 'anonymity'];
 const frameDeltas = [37, 91, 250, 19, 300, 54, 123];
@@ -136,7 +136,7 @@ function checkWave(lanes, before, atStart, livesBefore, steps, expected, totals)
   const report = state.reports.pending.at(-1);
   assert.equal(report.waveNumber, expected.wave);
   assert.equal(report.partial, false);
-  assert.deepEqual(report, expected.accounting, 'tick campaign must match M3.4 production report');
+  assert.deepEqual(report, expected.accounting, 'tick campaign must match M4.1 production report');
   assert.deepEqual(before, expected.resourcesBefore);
   assert.deepEqual(atStart, expected.resourcesAtStart);
   assert.deepEqual(state.resources, expected.resourcesAfter);
@@ -181,7 +181,7 @@ function checkWave(lanes, before, atStart, livesBefore, steps, expected, totals)
 function verifyCase(config) {
   const lanes = Array.from({ length: 4 }, (_, i) => makeLane(config.difficulty, config.policy, i === 0));
   const snapshots = [], checkpoints = [], reached = new Set();
-  const reference = historical.runs.find(run => run.scenario === `${config.difficulty.toLowerCase()}-campaign` && run.policy === config.policy);
+  const reference = currentReport.runs.find(run => run.scenario === `${config.difficulty.toLowerCase()}-campaign` && run.policy === config.policy);
   assert.ok(reference);
   const totals = { kills: 0, leaks: 0, health: 0, shield: 0,
     slowHits: 0, vulnerabilityHits: 0, auraShots: 0, passiveDharma: 0,

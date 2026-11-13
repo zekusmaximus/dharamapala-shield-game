@@ -28,7 +28,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
 | M2 · Make decisions readable and measurable | P1 | Complete within documented scope: M2.1–M2.6 | M1 | M2.6 clean checkout passes 100 unit, 35 integration, 7 simulation, 69 browser and 10 accessibility checks; corrected M1.4 diagnostics match byte-for-byte and M2.4 policy outcomes match apart from the content-file hash |
 | M3 · Prove an engaging five-wave game | P1 | Partial: M3.1/M3.3/M3.4 automated scope complete; M3.2 retention provisional; M3.5 human collection deferred, gate open | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
-| M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: M4.4 automated complete-run verification; M4.1–M4.3 and M4.5 remain open | M3 for acceptance; engineering may proceed provisionally | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
+| M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: M4.1 authored acts and M4.4 complete-run verification have automated evidence; M4.2/M4.3/M4.5 and human acceptance remain open | M3 for acceptance; engineering may proceed provisionally | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
 | M6 · Release and maintain confidently | P2 | Partial: build and test tools exist | M4; M5 for replay-content release | Device/browser checks, performance evidence, hosting/recovery documentation, release checklist |
 
@@ -42,13 +42,12 @@ observations available to this work. Human engagement, difficulty, readability,
 build diversity and observed timing remain unknown.
 
 M4 engineering may continue in bounded tasks before the human gate is satisfied.
-**M4.4 automated verification of the existing campaign is complete within its
+**M4.4 automated verification of the original campaign is complete within its
 documented scope**, including full-run fixed-clock 1×/2× and JSON pause/restore
-continuation. Existing fresh-campaign policy/report coverage was reused.
-Later M4 engineering may follow in separately scoped work under the same
-provisional assumptions. This change does not start wave redesign, boss changes,
-economy tuning, M5 or M6. M4 acceptance still requires its documented evidence,
-including player validation.
+continuation. **M4.1 now authors the four-act pressure curve** and verifies its
+automated outcomes under the same deferral. Later M4 engineering may follow in
+separately scoped work. Neither result changes boss abilities or economy rules,
+starts M5/M6, or satisfies M4's player-validation acceptance gate.
 
 The [decision record and next-session prompt](design/reviews/2026-11-12-human-validation-deferral/README.md)
 preserve the authorization, scope, limitations and outstanding pilot. The pinned
@@ -333,8 +332,9 @@ or on a lifecycle test that directly awards kills.
 **Status: Partial — M3.1 authored pressure, M3.2 automated prototype, M3.3 economy
 and M3.4 automated counterplay; specialization retention, M3.5 and the human
 engagement gate remain open. Human collection is deferred by the user's
-2026-11-12 decision; M4 engineering may proceed provisionally, with M4.4
-automated verification complete.** Focus on the existing map and three tower roles. Findings
+2026-11-12 decision; M4 engineering may proceed provisionally, with M4.1
+authored pressure and M4.4 verification complete in automated scope.** Focus on
+the existing map and three tower roles. Findings
 R08–R09. This is the first major design gate, not a promise to ship every proposed
 mechanic below unchanged.
 
@@ -552,17 +552,34 @@ establish or substitute for the human gate.
 
 ## M4 · Deliver a challenging twenty-wave campaign
 
-**Status: Partial.** Twenty waves, terminal handling, fresh-campaign policy
-reports and M4.4 complete-run verification exist; they do not complete the
-redesigned campaign.
+**Status: Partial.** Twenty authored waves, terminal handling, fresh-campaign
+policy reports, M4.1 act pressure and M4.4 complete-run verification exist;
+the redesigned campaign is still provisional and its acceptance remains open.
 Acceptance depends on the M3 gate. The explicit human-validation deferral permits
-bounded M4 engineering; M4.4 automated verification is complete, with the current
-design remaining provisional.
+bounded M4 engineering; M4.1 and M4.4 automated work is complete within the
+scopes documented below, with the current design remaining provisional.
 
-- [ ] **M4.1 · Develop four campaign acts.** Waves 1–5 teach and test fundamentals;
+- [x] **M4.1 · Develop four campaign acts (automated authoring/verification scope).** Waves 1–5 teach and test fundamentals;
   6–10 combine counters and spending choices; 11–15 stress coverage, shields, and
   commitment; 16–20 recombine learned threats in a climax. Give recovery waves a
-  purpose and avoid unexplained difficulty spikes.
+  purpose and avoid unexplained difficulty spikes. Balance `1.5.0` retains the
+  first five exactly and authors overlapping, previewed packets across 6–20;
+  recovery waves 6/8/11/13/16 contrast or introduce the following threat.
+  Existing Normal/Hard fixed-policy act-IV peaks change 10/16 → 18/20 while
+  both still win at 20 lives. All 21 fresh policy/difficulty production runs
+  repeat exactly; their per-wave pressure, lives, typed leaks, banks, bosses,
+  timings and support/control activity are compared with the unchanged M3.4 /
+  M4.4 baseline. The M4.4 fixed-clock/JSON test passes against new content
+  without removing parity, accounting or terminal invariants. Old 1.4.0/v4
+  bytes require export/explicit reset; 1.5.0 retains schema v4 and independent
+  preferences. [M4.1 evidence](design/reviews/2026-11-12-m4.1/README.md)
+  records exact content edits, comparisons and limits. A detached clean checkout
+  at `de92f12` passed locked install, Chromium install, fresh build, 140 unit,
+  66 integration, 13 simulation, 99 browser and 14 accessibility checks;
+  current evidence regenerated byte-identically and historical artifacts /
+  pinned M3.5 archive remained unchanged. [PR #32 CI](design/reviews/2026-11-12-m4.1/ci.txt)
+  passed the same five suites on Ubuntu / Node 22. These are automated scripted outcomes,
+  not observed challenge, player understanding or M4 acceptance.
 - [ ] **M4.2 · Make bosses distinct and fair.** Raid Team tests warned disruption
   and reinforcement handling. Titan tests sustained pressure and shield recovery.
   Design the final combination around skills already taught. If an additional
@@ -686,12 +703,14 @@ retention gate remains provisional**. M3.3 resource decisions and M3.4 Agent
 counterplay are complete within their documented automated scopes. M3.5 has a
 pinned playtest build and prepared protocol, with no real player observations yet.
 The user has explicitly deferred human collection so engineering can continue
-under provisional assumptions. **M4.4 automated verification of existing complete
-runs is complete within its documented scope.** Its [evidence](design/reviews/2026-11-12-m4.4/README.md)
-records full-run clock and JSON continuation parity, as well as the unchanged
-M3.4 reports. M3.5, specialization retention and the human five-wave gate remain
-open; collect the first-time and returning-player pilot before claiming those
-acceptance results. Later M4 work needs its own bounded scope. The deferral does
-not complete M4 or begin M5/M6.
+under provisional assumptions. **M4.1 four-act authoring and M4.4 full-run
+verification are complete within their respective automated scopes.** Their
+[M4.1](design/reviews/2026-11-12-m4.1/README.md) and
+[M4.4](design/reviews/2026-11-12-m4.4/README.md) evidence separates new 1.5.0
+campaign results from the historical 1.4.0 baseline and retains full-run clock /
+JSON continuation parity. M3.5, specialization retention and the human five-wave
+gate remain open; collect the first-time and returning-player pilot before
+claiming those acceptance results. M4.2, M4.3 and M4.5 require their own work.
+The deferral does not complete M4 or begin M5/M6.
 Move an item to Complete only when its acceptance evidence is recorded here or in
 a linked review, test report, or playtest note.

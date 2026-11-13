@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "towers": {
     "firewall": {
       "name": "Firewall Fortress",
@@ -348,131 +348,140 @@
     {
       "wave": 6,
       "enemies": [
-        {"id": "federalAgent", "count": 7, "interval": 1000, "hpMult": 1.15},
-        {"id": "corporateSaboteur", "count": 3, "interval": 1500, "hpMult": 1.0}
+        {"id": "federalAgent", "count": 7, "interval": 1100, "hpMult": 1.15, "offsetMs": 0},
+        {"id": "corporateSaboteur", "count": 3, "interval": 1300, "hpMult": 1.0, "offsetMs": 5000}
       ],
       "rewardBonus": 20
     },
     {
       "wave": 7,
       "enemies": [
-        {"id": "scriptKiddie", "count": 10, "interval": 700, "hpMult": 1.3},
-        {"id": "federalAgent", "count": 5, "interval": 1100, "hpMult": 1.2},
-        {"id": "corporateSaboteur", "count": 4, "interval": 1400, "hpMult": 1.05}
+        {"id": "scriptKiddie", "count": 5, "interval": 450, "hpMult": 1.3, "offsetMs": 0},
+        {"id": "federalAgent", "count": 5, "interval": 1100, "hpMult": 1.2, "offsetMs": 900},
+        {"id": "corporateSaboteur", "count": 4, "interval": 1100, "hpMult": 1.05, "offsetMs": 5600},
+        {"id": "scriptKiddie", "count": 5, "interval": 450, "hpMult": 1.3, "offsetMs": 6100}
       ],
       "rewardBonus": 25
     },
     {
       "wave": 8,
       "enemies": [
-        {"id": "corporateSaboteur", "count": 8, "interval": 1000, "hpMult": 1.15},
-        {"id": "aiSurveillance", "count": 2, "interval": 2000, "hpMult": 1.0}
+        {"id": "corporateSaboteur", "count": 4, "interval": 900, "hpMult": 1.15, "offsetMs": 0},
+        {"id": "aiSurveillance", "count": 2, "interval": 2000, "hpMult": 1.0, "offsetMs": 2200},
+        {"id": "corporateSaboteur", "count": 4, "interval": 900, "hpMult": 1.15, "offsetMs": 7000}
       ],
       "rewardBonus": 30
     },
     {
       "wave": 9,
       "enemies": [
-        {"id": "federalAgent", "count": 8, "interval": 900, "hpMult": 1.3},
-        {"id": "corporateSaboteur", "count": 6, "interval": 1200, "hpMult": 1.2},
-        {"id": "aiSurveillance", "count": 3, "interval": 1800, "hpMult": 1.05}
+        {"id": "federalAgent", "count": 8, "interval": 900, "hpMult": 1.3, "offsetMs": 0},
+        {"id": "aiSurveillance", "count": 3, "interval": 2000, "hpMult": 1.05, "offsetMs": 3500},
+        {"id": "corporateSaboteur", "count": 6, "interval": 1000, "hpMult": 1.2, "offsetMs": 5000}
       ],
       "rewardBonus": 35
     },
     {
       "wave": 10,
       "enemies": [
-        {"id": "raidTeam", "count": 1, "interval": 0, "hpMult": 1.4},
-        {"id": "aiSurveillance", "count": 5, "interval": 1500, "hpMult": 1.2},
-        {"id": "corporateSaboteur", "count": 10, "interval": 800, "hpMult": 1.3}
+        {"id": "raidTeam", "count": 1, "interval": 0, "hpMult": 1.4, "offsetMs": 0},
+        {"id": "corporateSaboteur", "count": 5, "interval": 800, "hpMult": 1.3, "offsetMs": 1200},
+        {"id": "aiSurveillance", "count": 5, "interval": 1500, "hpMult": 1.2, "offsetMs": 3000},
+        {"id": "corporateSaboteur", "count": 5, "interval": 800, "hpMult": 1.3, "offsetMs": 10500}
       ],
       "rewardBonus": 60
     },
     {
       "wave": 11,
       "enemies": [
-        {"id": "aiSurveillance", "count": 6, "interval": 1200, "hpMult": 1.25},
-        {"id": "quantumHacker", "count": 2, "interval": 2000, "hpMult": 1.0}
+        {"id": "aiSurveillance", "count": 6, "interval": 1200, "hpMult": 1.25, "offsetMs": 0},
+        {"id": "quantumHacker", "count": 2, "interval": 2000, "hpMult": 1.0, "offsetMs": 4500}
       ],
       "rewardBonus": 40
     },
     {
       "wave": 12,
       "enemies": [
-        {"id": "corporateSaboteur", "count": 10, "interval": 800, "hpMult": 1.4},
-        {"id": "aiSurveillance", "count": 5, "interval": 1300, "hpMult": 1.3},
-        {"id": "quantumHacker", "count": 3, "interval": 1800, "hpMult": 1.05}
+        {"id": "corporateSaboteur", "count": 10, "interval": 800, "hpMult": 1.4, "offsetMs": 0},
+        {"id": "aiSurveillance", "count": 5, "interval": 1300, "hpMult": 1.3, "offsetMs": 2800},
+        {"id": "quantumHacker", "count": 3, "interval": 1800, "hpMult": 1.05, "offsetMs": 7000}
       ],
       "rewardBonus": 45
     },
     {
       "wave": 13,
       "enemies": [
-        {"id": "quantumHacker", "count": 5, "interval": 1400, "hpMult": 1.15},
-        {"id": "corruptedMonk", "count": 2, "interval": 2500, "hpMult": 1.0}
+        {"id": "quantumHacker", "count": 5, "interval": 1400, "hpMult": 1.15, "offsetMs": 0},
+        {"id": "corruptedMonk", "count": 2, "interval": 2500, "hpMult": 1.0, "offsetMs": 4200}
       ],
       "rewardBonus": 50
     },
     {
       "wave": 14,
       "enemies": [
-        {"id": "aiSurveillance", "count": 8, "interval": 1100, "hpMult": 1.4},
-        {"id": "quantumHacker", "count": 4, "interval": 1500, "hpMult": 1.2},
-        {"id": "corruptedMonk", "count": 2, "interval": 2200, "hpMult": 1.05}
+        {"id": "federalAgent", "count": 3, "interval": 1100, "hpMult": 1.3, "offsetMs": 0},
+        {"id": "aiSurveillance", "count": 6, "interval": 1100, "hpMult": 1.4, "offsetMs": 1800},
+        {"id": "quantumHacker", "count": 4, "interval": 1500, "hpMult": 1.2, "offsetMs": 4000},
+        {"id": "corruptedMonk", "count": 2, "interval": 2200, "hpMult": 1.05, "offsetMs": 7000}
       ],
       "rewardBonus": 55
     },
     {
       "wave": 15,
       "enemies": [
-        {"id": "megaCorpTitan", "count": 1, "interval": 0, "hpMult": 1.0},
-        {"id": "quantumHacker", "count": 8, "interval": 1000, "hpMult": 1.3},
-        {"id": "corruptedMonk", "count": 3, "interval": 2000, "hpMult": 1.15}
+        {"id": "megaCorpTitan", "count": 1, "interval": 0, "hpMult": 1.0, "offsetMs": 0},
+        {"id": "quantumHacker", "count": 8, "interval": 1000, "hpMult": 1.3, "offsetMs": 1600},
+        {"id": "corruptedMonk", "count": 3, "interval": 2000, "hpMult": 1.15, "offsetMs": 5400}
       ],
       "rewardBonus": 90
     },
     {
       "wave": 16,
       "enemies": [
-        {"id": "corruptedMonk", "count": 5, "interval": 1800, "hpMult": 1.2},
-        {"id": "quantumHacker", "count": 10, "interval": 900, "hpMult": 1.4}
+        {"id": "corruptedMonk", "count": 5, "interval": 1800, "hpMult": 1.2, "offsetMs": 0},
+        {"id": "quantumHacker", "count": 10, "interval": 900, "hpMult": 1.4, "offsetMs": 4000}
       ],
       "rewardBonus": 60
     },
     {
       "wave": 17,
       "enemies": [
-        {"id": "quantumHacker", "count": 12, "interval": 800, "hpMult": 1.45},
-        {"id": "corruptedMonk", "count": 5, "interval": 1600, "hpMult": 1.25},
-        {"id": "aiSurveillance", "count": 8, "interval": 1000, "hpMult": 1.5}
+        {"id": "quantumHacker", "count": 12, "interval": 800, "hpMult": 1.45, "offsetMs": 0},
+        {"id": "corruptedMonk", "count": 5, "interval": 1600, "hpMult": 1.25, "offsetMs": 2800},
+        {"id": "aiSurveillance", "count": 6, "interval": 1000, "hpMult": 1.5, "offsetMs": 5500},
+        {"id": "corporateSaboteur", "count": 2, "interval": 1200, "hpMult": 1.5, "offsetMs": 8000}
       ],
       "rewardBonus": 65
     },
     {
       "wave": 18,
       "enemies": [
-        {"id": "corruptedMonk", "count": 6, "interval": 1500, "hpMult": 1.3},
-        {"id": "quantumHacker", "count": 10, "interval": 900, "hpMult": 1.5},
-        {"id": "megaCorpTitan", "count": 1, "interval": 5000, "hpMult": 1.2}
+        {"id": "corruptedMonk", "count": 6, "interval": 1500, "hpMult": 1.3, "offsetMs": 0},
+        {"id": "quantumHacker", "count": 8, "interval": 900, "hpMult": 1.5, "offsetMs": 2500},
+        {"id": "federalAgent", "count": 2, "interval": 1300, "hpMult": 1.5, "offsetMs": 5200},
+        {"id": "megaCorpTitan", "count": 1, "interval": 5000, "hpMult": 1.2, "offsetMs": 7000}
       ],
       "rewardBonus": 70
     },
     {
       "wave": 19,
       "enemies": [
-        {"id": "quantumHacker", "count": 15, "interval": 700, "hpMult": 1.55},
-        {"id": "corruptedMonk", "count": 8, "interval": 1400, "hpMult": 1.35},
-        {"id": "aiSurveillance", "count": 10, "interval": 1000, "hpMult": 1.6}
+        {"id": "quantumHacker", "count": 14, "interval": 900, "hpMult": 1.55, "offsetMs": 0},
+        {"id": "corruptedMonk", "count": 7, "interval": 1700, "hpMult": 1.35, "offsetMs": 4500},
+        {"id": "aiSurveillance", "count": 8, "interval": 1200, "hpMult": 1.6, "offsetMs": 8500},
+        {"id": "corporateSaboteur", "count": 4, "interval": 900, "hpMult": 1.6, "offsetMs": 16000}
       ],
       "rewardBonus": 75
     },
     {
       "wave": 20,
       "enemies": [
-        {"id": "megaCorpTitan", "count": 2, "interval": 8000, "hpMult": 1.4},
-        {"id": "raidTeam", "count": 1, "interval": 4000, "hpMult": 2.0},
-        {"id": "corruptedMonk", "count": 10, "interval": 1200, "hpMult": 1.4},
-        {"id": "quantumHacker", "count": 20, "interval": 600, "hpMult": 1.6}
+        {"id": "megaCorpTitan", "count": 2, "interval": 14000, "hpMult": 1.4, "offsetMs": 0},
+        {"id": "corruptedMonk", "count": 10, "interval": 1200, "hpMult": 1.4, "offsetMs": 3000},
+        {"id": "quantumHacker", "count": 8, "interval": 600, "hpMult": 1.6, "offsetMs": 4500},
+        {"id": "raidTeam", "count": 1, "interval": 4000, "hpMult": 2.0, "offsetMs": 7000},
+        {"id": "federalAgent", "count": 4, "interval": 1000, "hpMult": 1.6, "offsetMs": 10500},
+        {"id": "quantumHacker", "count": 8, "interval": 600, "hpMult": 1.6, "offsetMs": 14500}
       ],
       "rewardBonus": 150
     }

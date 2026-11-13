@@ -123,7 +123,7 @@ export class GameSession {
       throw new Error(`Unknown difficulty: ${difficulty}`);
     }
     return {
-      schemaVersion: this.balance.version === '1.4.0' ? 4 : SCHEMA_VERSION,
+      schemaVersion: ['1.4.0', '1.5.0'].includes(this.balance.version) ? 4 : SCHEMA_VERSION,
       balanceVersion: this.balance.version,
       sessionId: createSessionId(seed),
       seed,
