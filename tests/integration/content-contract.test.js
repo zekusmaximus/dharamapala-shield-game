@@ -43,10 +43,10 @@ test('configured slow and vulnerability reach actual projectiles and enemy movem
 test('configured Raid Team threshold, radius, duration and minions drive production phase handling and a valid save', () => {
   const balance = clone(shipped);
   const { emp, reinforcements } = balance.bosses.raidTeam.abilities;
-  emp.thresholds = [0.7, 0.25];
+  emp.thresholds = [0.7];
   emp.radius = 150;
   emp.durationMs = 900;
-  reinforcements.byPhase = [['federalAgent', 'scriptKiddie'], ['scriptKiddie']];
+  reinforcements.byPhase = [['federalAgent', 'scriptKiddie']];
   reinforcements.intervalMs = 400;
   reinforcements.hpMultiplierPerWave = 0.03;
   const session = new GameSession(balance, { tutorialCompleted: true });

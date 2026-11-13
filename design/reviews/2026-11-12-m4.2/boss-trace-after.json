@@ -1,0 +1,3732 @@
+{
+  "balanceVersion": "1.6.0",
+  "source": "Fresh production GameSession; default funds/lives; policy legal commands; authored waves; actual 60 Hz combat; read-only observers.",
+  "rows": [
+    {
+      "difficulty": "Easy",
+      "policy": "existing",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-180",
+      "spawnedAtMs": 55899.99999999759,
+      "health": 450,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 64283.333333329705,
+          "bossHealthRatio": 0.6387183333333337,
+          "bossPathDistance": 206.1250000000014,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 64299.99999999637
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 64549.99999999633
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 64799.9999999963
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 65049.99999999626
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 79183.33333333349
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "existing",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-571",
+      "spawnedAtMs": 134933.33333334635,
+      "health": 630,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 143216.66666667486,
+          "bossHealthRatio": 0.5342120634920634,
+          "bossPathDistance": 164.76740000000078,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 4
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 143233.33333334152
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 143483.33333334138
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 143733.33333334123
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 143983.33333334108
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 156766.66666666698
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "existing",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-915",
+      "spawnedAtMs": 207199.99999997095,
+      "health": 712.5,
+      "initialShield": 249,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 31.705999999965023,
+      "regenTicks": 191,
+      "firstRegenAtMs": 212749.99999996772,
+      "lastRegenAtMs": 220366.66666662996,
+      "outcome": "killed",
+      "resolvedAtMs": 223166.66666662833
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "existing",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1310",
+      "spawnedAtMs": 266866.66666661116,
+      "health": 855,
+      "initialShield": 299,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 277216.6666666232
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "existing",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1607",
+      "spawnedAtMs": 305099.999999989,
+      "health": 997.5,
+      "initialShield": 349,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 344.34666666670705,
+      "regenTicks": 1481,
+      "firstRegenAtMs": 312566.66666666436,
+      "lastRegenAtMs": 337233.33333335974,
+      "outcome": "killed",
+      "resolvedAtMs": 337733.3333333603
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "existing",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-1652",
+      "spawnedAtMs": 312083.33333333046,
+      "health": 900,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 335066.66666669055,
+          "bossHealthRatio": 0.6448888888888887,
+          "bossPathDistance": 586.0750000000018,
+          "affectedTowers": 12,
+          "affectedAttackers": 11,
+          "aliveEnemies": 3
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 335083.33333335724
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 335316.66666669084
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 335566.66666669113
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 335816.6666666914
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 335366.6666666909
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "existing",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1712",
+      "spawnedAtMs": 319100.0000000053,
+      "health": 997.5,
+      "initialShield": 349,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 342416.6666666991
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "firewall-only",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-161",
+      "spawnedAtMs": 47299.99999999884,
+      "health": 450,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 55166.666666664365,
+          "bossHealthRatio": 0.5696000000000003,
+          "bossPathDistance": 200.60000000000133,
+          "affectedTowers": 3,
+          "affectedAttackers": 3,
+          "aliveEnemies": 6
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 55183.33333333103
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 55416.66666666433
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 55666.66666666429
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 55933.33333333092
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 69433.33333333065
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "firewall-only",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-463",
+      "spawnedAtMs": 118450.00000001158,
+      "health": 630,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 123066.6666666796,
+          "bossHealthRatio": 0.5758730158730158,
+          "bossPathDistance": 117.72499999999947,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 6
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 123083.33333334627
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 123316.66666667967
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 123566.66666667974
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 123816.66666667981
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 132183.33333334795
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "firewall-only",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-792",
+      "spawnedAtMs": 190466.66666664736,
+      "health": 712.5,
+      "initialShield": 249,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 6.97199999998238,
+      "regenTicks": 42,
+      "firstRegenAtMs": 196899.99999997695,
+      "lastRegenAtMs": 197583.33333330989,
+      "outcome": "killed",
+      "resolvedAtMs": 205483.3333333053
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "firewall-only",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1141",
+      "spawnedAtMs": 254516.66666661008,
+      "health": 855,
+      "initialShield": 299,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 265899.99999994336
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "firewall-only",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1412",
+      "spawnedAtMs": 293266.6666666419,
+      "health": 997.5,
+      "initialShield": 349,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 298699.99999998155
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "firewall-only",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-1456",
+      "spawnedAtMs": 300249.99999998335,
+      "health": 900,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 319750.00000000605,
+          "bossHealthRatio": 0.6280888888888886,
+          "bossPathDistance": 497.25000000000927,
+          "affectedTowers": 11,
+          "affectedAttackers": 11,
+          "aliveEnemies": 4
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 319766.66666667274
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 320000.00000000634
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 320250.00000000664
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 320500.0000000069
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 322966.66666667646
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "firewall-only",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1512",
+      "spawnedAtMs": 307266.6666666582,
+      "health": 997.5,
+      "initialShield": 349,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 328750.00000001653
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "no-support",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-180",
+      "spawnedAtMs": 56583.333333330826,
+      "health": 450,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 66649.99999999651,
+          "bossHealthRatio": 0.6462033333333337,
+          "bossPathDistance": 242.5220000000023,
+          "affectedTowers": 3,
+          "affectedAttackers": 3,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 66666.66666666318
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 66916.66666666325
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 67166.66666666332
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 67416.6666666634
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 80233.3333333338
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "no-support",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-537",
+      "spawnedAtMs": 135300.0000000128,
+      "health": 630,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 143400.0000000081,
+          "bossHealthRatio": 0.5657720634920634,
+          "bossPathDistance": 160.8540000000007,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 4
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 143416.66666667475
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 143666.6666666746
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 143916.66666667446
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 144166.6666666743
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 159016.66666666567
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "no-support",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-882",
+      "spawnedAtMs": 209933.3333333027,
+      "health": 712.5,
+      "initialShield": 249,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 50.46399999996445,
+      "regenTicks": 304,
+      "firstRegenAtMs": 215033.33333329973,
+      "lastRegenAtMs": 223099.9999999617,
+      "outcome": "killed",
+      "resolvedAtMs": 228716.6666666251
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "no-support",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1264",
+      "spawnedAtMs": 276799.99999995605,
+      "health": 855,
+      "initialShield": 299,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 288666.66666663653
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "no-support",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1525",
+      "spawnedAtMs": 314466.66666666657,
+      "health": 997.5,
+      "initialShield": 349,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 319250.0000000055
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "no-support",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-1572",
+      "spawnedAtMs": 321450.00000000803,
+      "health": 900,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 341766.66666669835,
+          "bossHealthRatio": 0.6280888888888886,
+          "bossPathDistance": 518.075000000009,
+          "affectedTowers": 11,
+          "affectedAttackers": 11,
+          "aliveEnemies": 4
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 341783.33333336504
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 342016.66666669864
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 342266.66666669893
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 342516.6666666992
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 345233.33333336905
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "no-support",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1629",
+      "spawnedAtMs": 328466.66666668287,
+      "health": 997.5,
+      "initialShield": 349,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 350550.0000000419
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "expansion-heavy",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-247",
+      "spawnedAtMs": 44549.99999999924,
+      "health": 450,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 54649.99999999777,
+          "bossHealthRatio": 0.6533333333333333,
+          "bossPathDistance": 257.55000000000285,
+          "affectedTowers": 9,
+          "affectedAttackers": 9,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 54666.66666666444
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 54916.6666666644
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 55166.666666664365
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 55416.66666666433
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 68666.66666666376
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "expansion-heavy",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-1142",
+      "spawnedAtMs": 114516.6666666771,
+      "health": 630,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 119300.00000001183,
+          "bossHealthRatio": 0.6507936507936508,
+          "bossPathDistance": 121.97499999999944,
+          "affectedTowers": 25,
+          "affectedAttackers": 25,
+          "aliveEnemies": 6
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 119316.6666666785
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 119550.0000000119
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 119800.00000001198
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 120050.00000001205
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 132483.33333334778
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "expansion-heavy",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-2603",
+      "spawnedAtMs": 177699.99999998813,
+      "health": 712.5,
+      "initialShield": 249,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 235399.99999995454
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "expansion-heavy",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-4949",
+      "spawnedAtMs": 277349.9999999567,
+      "health": 855,
+      "initialShield": 299,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 341016.6666666975
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "expansion-heavy",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-7123",
+      "spawnedAtMs": 367333.3333333948,
+      "health": 997.5,
+      "initialShield": 349,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 452316.66666682705
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "expansion-heavy",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-7263",
+      "spawnedAtMs": 374316.66666673624,
+      "health": 900,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 401850.00000010163,
+          "bossHealthRatio": 0.6577777777777778,
+          "bossPathDistance": 702.0999999999893,
+          "affectedTowers": 40,
+          "affectedAttackers": 40,
+          "aliveEnemies": 3
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 401866.6666667683
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 402116.6666667686
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 402366.6666667689
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 402616.6666667692
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 409700.00000011077
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "expansion-heavy",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-7506",
+      "spawnedAtMs": 381333.3333334111,
+      "health": 997.5,
+      "initialShield": 349,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 474050.0000001857
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "upgrade-heavy",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-186",
+      "spawnedAtMs": 51033.33333333163,
+      "health": 450,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 59683.333333330374,
+          "bossHealthRatio": 0.6446738888888891,
+          "bossPathDistance": 208.1310000000014,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 59699.99999999704
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 59949.999999997
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 60199.999999996966
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 60449.99999999693
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 74066.66666666533
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "upgrade-heavy",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-578",
+      "spawnedAtMs": 128016.66666668103,
+      "health": 630,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 132700.00000001432,
+          "bossHealthRatio": 0.6419841269841268,
+          "bossPathDistance": 119.42499999999946,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 6
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 132716.66666668098
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 132950.00000001417
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 133200.00000001403
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 133450.00000001388
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 150750.0000000038
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "upgrade-heavy",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-964",
+      "spawnedAtMs": 197949.99999997634,
+      "health": 712.5,
+      "initialShield": 249,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 48.471999999981605,
+      "regenTicks": 292,
+      "firstRegenAtMs": 204433.3333333059,
+      "lastRegenAtMs": 209283.33333330308,
+      "outcome": "killed",
+      "resolvedAtMs": 212566.6666666345
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "upgrade-heavy",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1447",
+      "spawnedAtMs": 260833.33333327307,
+      "health": 855,
+      "initialShield": 299,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 274316.6666666198
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "upgrade-heavy",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1783",
+      "spawnedAtMs": 302433.3333333192,
+      "health": 997.5,
+      "initialShield": 349,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 153.56000000009485,
+      "regenTicks": 662,
+      "firstRegenAtMs": 311216.6666666628,
+      "lastRegenAtMs": 335633.3333333579,
+      "outcome": "killed",
+      "resolvedAtMs": 336266.66666669195
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "upgrade-heavy",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-1839",
+      "spawnedAtMs": 309416.6666666607,
+      "health": 900,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 333733.33333335567,
+          "bossHealthRatio": 0.6146666666666669,
+          "bossPathDistance": 620.0749999999981,
+          "affectedTowers": 15,
+          "affectedAttackers": 15,
+          "aliveEnemies": 3
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 333750.00000002235
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 333983.33333335596
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 334233.33333335625
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 334483.33333335654
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 334383.3333333564
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "upgrade-heavy",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1906",
+      "spawnedAtMs": 316433.3333333355,
+      "health": 997.5,
+      "initialShield": 349,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 339600.00000002916
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "counter-aware",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-180",
+      "spawnedAtMs": 55899.99999999759,
+      "health": 450,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 64283.333333329705,
+          "bossHealthRatio": 0.6387183333333337,
+          "bossPathDistance": 206.1250000000014,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 64299.99999999637
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 64549.99999999633
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 64799.9999999963
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 65049.99999999626
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 79183.33333333349
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "counter-aware",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-571",
+      "spawnedAtMs": 134933.33333334635,
+      "health": 630,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 143216.66666667486,
+          "bossHealthRatio": 0.5342120634920634,
+          "bossPathDistance": 164.76740000000078,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 4
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 143233.33333334152
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 143483.33333334138
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 143733.33333334123
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 143983.33333334108
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 156766.66666666698
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "counter-aware",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-915",
+      "spawnedAtMs": 207199.99999997095,
+      "health": 712.5,
+      "initialShield": 249,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 31.705999999965023,
+      "regenTicks": 191,
+      "firstRegenAtMs": 212749.99999996772,
+      "lastRegenAtMs": 220366.66666662996,
+      "outcome": "killed",
+      "resolvedAtMs": 223166.66666662833
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "counter-aware",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1310",
+      "spawnedAtMs": 266866.66666661116,
+      "health": 855,
+      "initialShield": 299,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 277216.6666666232
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "counter-aware",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1607",
+      "spawnedAtMs": 305099.999999989,
+      "health": 997.5,
+      "initialShield": 349,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 344.34666666670705,
+      "regenTicks": 1481,
+      "firstRegenAtMs": 312566.66666666436,
+      "lastRegenAtMs": 337233.33333335974,
+      "outcome": "killed",
+      "resolvedAtMs": 337733.3333333603
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "counter-aware",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-1652",
+      "spawnedAtMs": 312083.33333333046,
+      "health": 900,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 335066.66666669055,
+          "bossHealthRatio": 0.6448888888888887,
+          "bossPathDistance": 586.0750000000018,
+          "affectedTowers": 12,
+          "affectedAttackers": 11,
+          "aliveEnemies": 3
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 335083.33333335724
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 335316.66666669084
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 335566.66666669113
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 335816.6666666914
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 335366.6666666909
+    },
+    {
+      "difficulty": "Easy",
+      "policy": "counter-aware",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1712",
+      "spawnedAtMs": 319100.0000000053,
+      "health": 997.5,
+      "initialShield": 349,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 342416.6666666991
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "existing",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-216",
+      "spawnedAtMs": 64433.33333332968,
+      "health": 600,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 74183.33333333203,
+          "bossHealthRatio": 0.6033858333333336,
+          "bossPathDistance": 272.69999999999925,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 74199.9999999987
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 74449.99999999878
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 74699.99999999885
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 74949.99999999892
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 89083.33333333637
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "existing",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-640",
+      "spawnedAtMs": 146400.00000000634,
+      "health": 840,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 156800.0000000003,
+          "bossHealthRatio": 0.6467890476190475,
+          "bossPathDistance": 238.5280000000003,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 4
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 156816.66666666695
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 157066.6666666668
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 157316.66666666666
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 157566.6666666665
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 171366.66666665848
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "existing",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-1048",
+      "spawnedAtMs": 225733.3333332935,
+      "health": 950,
+      "initialShield": 333,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 8.657999999976617,
+      "regenTicks": 39,
+      "firstRegenAtMs": 238899.9999999525,
+      "lastRegenAtMs": 239533.33333328547,
+      "outcome": "killed",
+      "resolvedAtMs": 244633.3333332825
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "existing",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1529",
+      "spawnedAtMs": 292816.66666664137,
+      "health": 1140,
+      "initialShield": 399,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 306499.9999999906
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "existing",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1910",
+      "spawnedAtMs": 335983.3333333583,
+      "health": 1330,
+      "initialShield": 465,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 465,
+      "regenTicks": 1501,
+      "firstRegenAtMs": 343566.66666670045,
+      "lastRegenAtMs": 368566.66666672955,
+      "outcome": "killed",
+      "resolvedAtMs": 369950.0000000645
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "existing",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-1958",
+      "spawnedAtMs": 342966.66666669975,
+      "health": 1200,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 366966.6666667277,
+          "bossHealthRatio": 0.6120959999999999,
+          "bossPathDistance": 719.2440000000001,
+          "affectedTowers": 13,
+          "affectedAttackers": 12,
+          "aliveEnemies": 3
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 366983.3333333944
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 367216.666666728
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 367466.66666672827
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 367716.66666672856
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 368850.0000000632
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "existing",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2017",
+      "spawnedAtMs": 349983.3333333746,
+      "health": 1330,
+      "initialShield": 465,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 374750.0000000701
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "firewall-only",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-175",
+      "spawnedAtMs": 50816.666666665,
+      "health": 600,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 59766.666666663696,
+          "bossHealthRatio": 0.5881333333333335,
+          "bossPathDistance": 268.5,
+          "affectedTowers": 3,
+          "affectedAttackers": 3,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 59783.33333333036
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 60033.33333333032
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 60283.33333333029
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 60533.33333333025
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 73449.99999999849
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "firewall-only",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-556",
+      "spawnedAtMs": 133816.66666668034,
+      "health": 840,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 138550.0000000109,
+          "bossHealthRatio": 0.6459047619047619,
+          "bossPathDistance": 142,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 6
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 138566.66666667757
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 138800.00000001077
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 139050.00000001062
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 139300.00000001048
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 152950.00000000253
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "firewall-only",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-958",
+      "spawnedAtMs": 212833.333333301,
+      "health": 950,
+      "initialShield": 333,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 39.29399999992988,
+      "regenTicks": 177,
+      "firstRegenAtMs": 217983.333333298,
+      "lastRegenAtMs": 227433.3333332925,
+      "outcome": "killed",
+      "resolvedAtMs": 234399.99999995512
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "firewall-only",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1417",
+      "spawnedAtMs": 284666.6666666319,
+      "health": 1140,
+      "initialShield": 399,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 300599.99999998376
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "firewall-only",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1780",
+      "spawnedAtMs": 329616.6666666842,
+      "health": 1330,
+      "initialShield": 465,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 335383.3333333576
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "firewall-only",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-1827",
+      "spawnedAtMs": 336600.00000002567,
+      "health": 1200,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 360516.6666667202,
+          "bossHealthRatio": 0.6513333333333331,
+          "bossPathDistance": 717.5,
+          "affectedTowers": 12,
+          "affectedAttackers": 12,
+          "aliveEnemies": 2
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 360533.33333338686
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 360766.66666672047
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 361016.66666672076
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 361266.66666672105
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 362866.6666667229
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "firewall-only",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1891",
+      "spawnedAtMs": 343616.6666667005,
+      "health": 1330,
+      "initialShield": 465,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 368166.6666667291
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "no-support",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-215",
+      "spawnedAtMs": 64466.66666666301,
+      "health": 600,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 81100.00000000071,
+          "bossHealthRatio": 0.6558108333333337,
+          "bossPathDistance": 466.9599999999988,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 1
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 81116.66666666738
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 81350.00000000079
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 81600.00000000086
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 81850.00000000093
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 86550.0000000023
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "no-support",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-639",
+      "spawnedAtMs": 155733.33333333425,
+      "health": 840,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 164766.66666666232,
+          "bossHealthRatio": 0.5831699999999997,
+          "bossPathDistance": 215.44799999999947,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 5
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 164783.33333332898
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 165033.33333332883
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 165283.3333333287
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 165533.33333332854
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 179666.66666665365
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "no-support",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-1026",
+      "spawnedAtMs": 235649.9999999544,
+      "health": 950,
+      "initialShield": 333,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 78.1439999999754,
+      "regenTicks": 352,
+      "firstRegenAtMs": 246083.33333328165,
+      "lastRegenAtMs": 251933.33333327825,
+      "outcome": "killed",
+      "resolvedAtMs": 258249.99999994124
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "no-support",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1491",
+      "spawnedAtMs": 307949.9999999923,
+      "health": 1140,
+      "initialShield": 399,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 324383.3333333448
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "no-support",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1869",
+      "spawnedAtMs": 353066.6666667115,
+      "health": 1330,
+      "initialShield": 465,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 465,
+      "regenTicks": 1501,
+      "firstRegenAtMs": 360883.3333333873,
+      "lastRegenAtMs": 385883.3333334164,
+      "outcome": "killed",
+      "resolvedAtMs": 386550.0000000838
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "no-support",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-1915",
+      "spawnedAtMs": 360050.00000005297,
+      "health": 1200,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 383616.66666674707,
+          "bossHealthRatio": 0.6120959999999999,
+          "bossPathDistance": 706.4960000000001,
+          "affectedTowers": 12,
+          "affectedAttackers": 12,
+          "aliveEnemies": 3
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 383633.33333341376
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 383866.66666674736
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 384116.66666674765
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 384366.66666674794
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 385466.6666667492
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "no-support",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1976",
+      "spawnedAtMs": 367066.6666667278,
+      "health": 1330,
+      "initialShield": 465,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 391516.66666675627
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "expansion-heavy",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-288",
+      "spawnedAtMs": 50583.3333333317,
+      "health": 600,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 66583.33333332982,
+          "bossHealthRatio": 0.66,
+          "bossPathDistance": 480,
+          "affectedTowers": 12,
+          "affectedAttackers": 12,
+          "aliveEnemies": 1
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 66599.9999999965
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 66849.99999999657
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 67099.99999999664
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 67333.33333333004
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 76399.99999999935
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "expansion-heavy",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-1317",
+      "spawnedAtMs": 124416.66666667999,
+      "health": 840,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 132183.33333334795,
+          "bossHealthRatio": 0.6523809523809524,
+          "bossPathDistance": 233,
+          "affectedTowers": 25,
+          "affectedAttackers": 25,
+          "aliveEnemies": 6
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 132200.0000000146
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 132433.3333333478
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 132683.33333334766
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 132950.00000001417
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 145666.66666667344
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "expansion-heavy",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-2907",
+      "spawnedAtMs": 191633.33333331335,
+      "health": 950,
+      "initialShield": 333,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 259949.99999994025
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "expansion-heavy",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-5826",
+      "spawnedAtMs": 305699.9999999897,
+      "health": 1140,
+      "initialShield": 399,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 380600.0000000769
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "expansion-heavy",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-8620",
+      "spawnedAtMs": 409316.666666777,
+      "health": 1330,
+      "initialShield": 465,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "leaked",
+      "resolvedAtMs": 492316.6666668736
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "expansion-heavy",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-8773",
+      "spawnedAtMs": 416300.00000011845,
+      "health": 1200,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 444983.3333334852,
+          "bossHealthRatio": 0.6566666666666666,
+          "bossPathDistance": 860.5,
+          "affectedTowers": 34,
+          "affectedAttackers": 34,
+          "aliveEnemies": 3
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 445000.00000015186
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 445250.00000015215
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 445500.00000015245
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 445750.00000015274
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 454633.3333334964
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "expansion-heavy",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-9038",
+      "spawnedAtMs": 423316.6666667933,
+      "health": 1330,
+      "initialShield": 465,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "leaked",
+      "resolvedAtMs": 506316.6666668899
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "upgrade-heavy",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-227",
+      "spawnedAtMs": 58949.99999999715,
+      "health": 600,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 68266.66666666364,
+          "bossHealthRatio": 0.6402525000000003,
+          "bossPathDistance": 262.09999999999934,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 68283.33333333032
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 68533.33333333039
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 68783.33333333046
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 69033.33333333053
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 82800.00000000121
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "upgrade-heavy",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-688",
+      "spawnedAtMs": 141266.666666676,
+      "health": 840,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 145733.33333334007,
+          "bossHealthRatio": 0.6317871428571425,
+          "bossPathDistance": 122.82800000000012,
+          "affectedTowers": 5,
+          "affectedAttackers": 5,
+          "aliveEnemies": 5
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 145750.00000000672
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 145983.33333333992
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 146233.33333333977
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 146483.33333333963
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 164899.99999999558
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "upgrade-heavy",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-1165",
+      "spawnedAtMs": 216366.66666663229,
+      "health": 950,
+      "initialShield": 333,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 1.109999999976611,
+      "regenTicks": 5,
+      "firstRegenAtMs": 228916.66666662498,
+      "lastRegenAtMs": 228983.3333332916,
+      "outcome": "killed",
+      "resolvedAtMs": 233683.33333328887
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "upgrade-heavy",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1693",
+      "spawnedAtMs": 282716.6666666296,
+      "health": 1140,
+      "initialShield": 399,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 295749.9999999781
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "upgrade-heavy",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2088",
+      "spawnedAtMs": 325200.0000000124,
+      "health": 1330,
+      "initialShield": 465,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 456.940000000068,
+      "regenTicks": 1475,
+      "firstRegenAtMs": 332616.6666666877,
+      "lastRegenAtMs": 357183.33333338297,
+      "outcome": "killed",
+      "resolvedAtMs": 358366.6666667177
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "upgrade-heavy",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-2137",
+      "spawnedAtMs": 332183.33333335386,
+      "health": 1200,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 354800.00000004686,
+          "bossHealthRatio": 0.6572000000000002,
+          "bossPathDistance": 678.5,
+          "affectedTowers": 15,
+          "affectedAttackers": 15,
+          "aliveEnemies": 3
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 354816.66666671354
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 355050.00000004715
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 355300.00000004744
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 355550.00000004773
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 356883.3333333826
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "upgrade-heavy",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2201",
+      "spawnedAtMs": 339200.0000000287,
+      "health": 1330,
+      "initialShield": 465,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 364333.3333333913
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "counter-aware",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-216",
+      "spawnedAtMs": 64433.33333332968,
+      "health": 600,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 74183.33333333203,
+          "bossHealthRatio": 0.6033858333333336,
+          "bossPathDistance": 272.69999999999925,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 74199.9999999987
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 74449.99999999878
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 74699.99999999885
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 74949.99999999892
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 89083.33333333637
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "counter-aware",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-640",
+      "spawnedAtMs": 146400.00000000634,
+      "health": 840,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 156800.0000000003,
+          "bossHealthRatio": 0.6467890476190475,
+          "bossPathDistance": 238.5280000000003,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 4
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 156816.66666666695
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 157066.6666666668
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 157316.66666666666
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 157566.6666666665
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 171366.66666665848
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "counter-aware",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-1048",
+      "spawnedAtMs": 225733.3333332935,
+      "health": 950,
+      "initialShield": 333,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 8.657999999976617,
+      "regenTicks": 39,
+      "firstRegenAtMs": 238899.9999999525,
+      "lastRegenAtMs": 239533.33333328547,
+      "outcome": "killed",
+      "resolvedAtMs": 244633.3333332825
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "counter-aware",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1529",
+      "spawnedAtMs": 292816.66666664137,
+      "health": 1140,
+      "initialShield": 399,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 306499.9999999906
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "counter-aware",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-1910",
+      "spawnedAtMs": 335983.3333333583,
+      "health": 1330,
+      "initialShield": 465,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 465,
+      "regenTicks": 1501,
+      "firstRegenAtMs": 343566.66666670045,
+      "lastRegenAtMs": 368566.66666672955,
+      "outcome": "killed",
+      "resolvedAtMs": 369950.0000000645
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "counter-aware",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-1958",
+      "spawnedAtMs": 342966.66666669975,
+      "health": 1200,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 366966.6666667277,
+          "bossHealthRatio": 0.6120959999999999,
+          "bossPathDistance": 719.2440000000001,
+          "affectedTowers": 13,
+          "affectedAttackers": 12,
+          "aliveEnemies": 3
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 366983.3333333944
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 367216.666666728
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 367466.66666672827
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 367716.66666672856
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 368850.0000000632
+    },
+    {
+      "difficulty": "Normal",
+      "policy": "counter-aware",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2017",
+      "spawnedAtMs": 349983.3333333746,
+      "health": 1330,
+      "initialShield": 465,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 374750.0000000701
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "existing",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-234",
+      "spawnedAtMs": 67666.66666666347,
+      "health": 810,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 84500.0000000017,
+          "bossHealthRatio": 0.6445018518518522,
+          "bossPathDistance": 539.2119999999991,
+          "affectedTowers": 6,
+          "affectedAttackers": 5,
+          "aliveEnemies": 1
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 84516.66666666837
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 84750.00000000178
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 85000.00000000185
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 85250.00000000192
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 91900.00000000386
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "existing",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-735",
+      "spawnedAtMs": 157666.66666666645,
+      "health": 1134,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 171466.66666665842,
+          "bossHealthRatio": 0.5968947751322751,
+          "bossPathDistance": 378.4696000000003,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 8
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 171483.33333332508
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 171733.33333332493
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 171983.3333333248
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 172233.33333332464
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 183599.9999999847
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "existing",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-1216",
+      "spawnedAtMs": 244166.6666666161,
+      "health": 1282.5,
+      "initialShield": 449,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 150.97999999999996,
+      "regenTicks": 505,
+      "firstRegenAtMs": 249316.6666666131,
+      "lastRegenAtMs": 257716.66666660822,
+      "outcome": "killed",
+      "resolvedAtMs": 267316.6666666117
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "existing",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1806",
+      "spawnedAtMs": 319383.33333333896,
+      "health": 1539,
+      "initialShield": 539,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 336233.3333333586
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "existing",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2287",
+      "spawnedAtMs": 367416.6666667282,
+      "health": 1795.5000000000002,
+      "initialShield": 628,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 612.9280000000773,
+      "regenTicks": 1465,
+      "firstRegenAtMs": 375066.6666667371,
+      "lastRegenAtMs": 399466.6666667655,
+      "outcome": "killed",
+      "resolvedAtMs": 402533.33333343576
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "existing",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-2335",
+      "spawnedAtMs": 374400.0000000697,
+      "health": 1620,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 397300.00000009633,
+          "bossHealthRatio": 0.604582716049383,
+          "bossPathDistance": 763.6782000000136,
+          "affectedTowers": 13,
+          "affectedAttackers": 12,
+          "aliveEnemies": 5
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 397316.666666763
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 397550.0000000966
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 397800.0000000969
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 398050.0000000972
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 400716.666666767
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "existing",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2411",
+      "spawnedAtMs": 381416.6666667445,
+      "health": 1795.5000000000002,
+      "initialShield": 628,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 408100.0000001089
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "firewall-only",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-230",
+      "spawnedAtMs": 61633.33333333009,
+      "health": 810,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 78466.66666666661,
+          "bossHealthRatio": 0.6489876543209877,
+          "bossPathDistance": 580.7499999999983,
+          "affectedTowers": 5,
+          "affectedAttackers": 5,
+          "aliveEnemies": 1
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 78483.33333333328
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 78716.66666666669
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 78966.66666666676
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 79216.66666666683
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 85716.66666666872
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "firewall-only",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-673",
+      "spawnedAtMs": 152916.66666666922,
+      "health": 1134,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 157499.99999999988,
+          "bossHealthRatio": 0.6567901234567899,
+          "bossPathDistance": 158.12499999999986,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 6
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 157516.66666666654
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 157749.99999999974
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 157999.9999999996
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 158249.99999999945
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 175616.666666656
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "firewall-only",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-1145",
+      "spawnedAtMs": 240933.33333328465,
+      "health": 1282.5,
+      "initialShield": 449,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 212.0999999999999,
+      "regenTicks": 709,
+      "firstRegenAtMs": 246149.99999994828,
+      "lastRegenAtMs": 257949.9999999414,
+      "outcome": "killed",
+      "resolvedAtMs": 264849.99999994214
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "firewall-only",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1690",
+      "spawnedAtMs": 316083.3333333351,
+      "health": 1539,
+      "initialShield": 539,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 335283.33333335747
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "firewall-only",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2146",
+      "spawnedAtMs": 365033.3333333921,
+      "health": 1795.5000000000002,
+      "initialShield": 628,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 558.0826666667402,
+      "regenTicks": 1334,
+      "firstRegenAtMs": 373816.66666673566,
+      "lastRegenAtMs": 396033.3333334282,
+      "outcome": "killed",
+      "resolvedAtMs": 400416.6666667666
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "firewall-only",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-2192",
+      "spawnedAtMs": 372016.66666673357,
+      "health": 1620,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 395133.33333342714,
+          "bossHealthRatio": 0.6570864197530862,
+          "bossPathDistance": 797.5250000000154,
+          "affectedTowers": 11,
+          "affectedAttackers": 11,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 395150.00000009383
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 395383.33333342744
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 395633.3333334277
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 395883.333333428
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 402466.666666769
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "firewall-only",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2267",
+      "spawnedAtMs": 379033.3333334084,
+      "health": 1795.5000000000002,
+      "initialShield": 628,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 406933.3333334409
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "no-support",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-233",
+      "spawnedAtMs": 67616.66666666346,
+      "health": 810,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 85866.66666666877,
+          "bossHealthRatio": 0.6538104938271607,
+          "bossPathDistance": 589.0530000000007,
+          "affectedTowers": 5,
+          "affectedAttackers": 5,
+          "aliveEnemies": 1
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 85883.33333333544
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 86116.66666666884
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 86366.66666666891
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 86616.66666666899
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 93566.66666667101
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "no-support",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-728",
+      "spawnedAtMs": 164599.99999999575,
+      "health": 1134,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 179583.33333332036,
+          "bossHealthRatio": 0.6173865961199292,
+          "bossPathDistance": 395.85300000000103,
+          "affectedTowers": 5,
+          "affectedAttackers": 5,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 179599.99999998702
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 179849.99999998687
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 180099.99999998673
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 180349.99999998658
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 191466.66666664678
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "no-support",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-1228",
+      "spawnedAtMs": 256216.6666666091,
+      "health": 1282.5,
+      "initialShield": 449,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 150.97999999999996,
+      "regenTicks": 505,
+      "firstRegenAtMs": 261366.6666666061,
+      "lastRegenAtMs": 269766.66666661453,
+      "outcome": "killed",
+      "resolvedAtMs": 281133.33333329443
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "no-support",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1804",
+      "spawnedAtMs": 333600.0000000222,
+      "health": 1539,
+      "initialShield": 539,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 353250.00000004505
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "no-support",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2288",
+      "spawnedAtMs": 384483.33333341475,
+      "health": 1795.5000000000002,
+      "initialShield": 628,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 628,
+      "regenTicks": 1501,
+      "firstRegenAtMs": 392366.66666675726,
+      "lastRegenAtMs": 417366.66666678636,
+      "outcome": "killed",
+      "resolvedAtMs": 421050.000000124
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "no-support",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-2334",
+      "spawnedAtMs": 391466.6666667562,
+      "health": 1620,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 414350.0000001162,
+          "bossHealthRatio": 0.658241975308642,
+          "bossPathDistance": 755.2786000000132,
+          "affectedTowers": 12,
+          "affectedAttackers": 12,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 414366.66666678287
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 414600.0000001165
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 414850.00000011676
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 415100.00000011706
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 418800.00000012136
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "no-support",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2408",
+      "spawnedAtMs": 398483.33333343104,
+      "health": 1795.5000000000002,
+      "initialShield": 628,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 426166.6666667966
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "expansion-heavy",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-331",
+      "spawnedAtMs": 52449.999999998094,
+      "health": 810,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 71849.99999999802,
+          "bossHealthRatio": 0.654320987654321,
+          "bossPathDistance": 669.3000000000053,
+          "affectedTowers": 15,
+          "affectedAttackers": 15,
+          "aliveEnemies": 1
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 71866.66666666469
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 72099.9999999981
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 72349.99999999817
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 72599.99999999824
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 87283.33333333585
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "expansion-heavy",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-1519",
+      "spawnedAtMs": 136533.33333334542,
+      "health": 1134,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 146650.0000000062,
+          "bossHealthRatio": 0.6578483245149912,
+          "bossPathDistance": 349.0249999999961,
+          "affectedTowers": 21,
+          "affectedAttackers": 21,
+          "aliveEnemies": 5
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 146666.66666667286
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 146916.6666666727
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 147166.66666667257
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 147416.66666667242
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 161833.3333333307
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "expansion-heavy",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-3331",
+      "spawnedAtMs": 211466.66666663514,
+      "health": 1282.5,
+      "initialShield": 449,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "leaked",
+      "resolvedAtMs": 283633.33333329734
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "expansion-heavy",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-6716",
+      "spawnedAtMs": 333666.6666666889,
+      "health": 1539,
+      "initialShield": 539,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "leaked",
+      "resolvedAtMs": 405833.3333334396
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "expansion-heavy",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-9790",
+      "spawnedAtMs": 436833.3333334757,
+      "health": 1795.5000000000002,
+      "initialShield": 628,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "leaked",
+      "resolvedAtMs": 509000.00000022637
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "expansion-heavy",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-9947",
+      "spawnedAtMs": 443816.66666681715,
+      "health": 1620,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 475216.6666668537,
+          "bossHealthRatio": 0.6592592592592592,
+          "bossPathDistance": 1083.300000000038,
+          "affectedTowers": 37,
+          "affectedAttackers": 37,
+          "aliveEnemies": 3
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 475233.3333335204
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 475483.3333335207
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 475733.333333521
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 475983.33333352127
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 486116.6666668664
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "expansion-heavy",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-10241",
+      "spawnedAtMs": 450833.333333492,
+      "health": 1795.5000000000002,
+      "initialShield": 628,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "leaked",
+      "resolvedAtMs": 523000.00000024267
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "upgrade-heavy",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-242",
+      "spawnedAtMs": 63316.66666666318,
+      "health": 810,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 80850.00000000064,
+          "bossHealthRatio": 0.6542447530864199,
+          "bossPathDistance": 570.2620000000002,
+          "affectedTowers": 6,
+          "affectedAttackers": 6,
+          "aliveEnemies": 1
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 80866.66666666731
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 81100.00000000071
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 81350.00000000079
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 81600.00000000086
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 88250.0000000028
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "upgrade-heavy",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-802",
+      "spawnedAtMs": 157399.99999999994,
+      "health": 1134,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 170133.33333332586,
+          "bossHealthRatio": 0.6247552028218691,
+          "bossPathDistance": 391.7405999999977,
+          "affectedTowers": 5,
+          "affectedAttackers": 5,
+          "aliveEnemies": 7
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 170149.99999999252
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 170399.99999999237
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 170649.99999999223
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 170899.99999999208
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 183566.66666665138
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "upgrade-heavy",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-1338",
+      "spawnedAtMs": 243966.66666661622,
+      "health": 1282.5,
+      "initialShield": 449,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 127.51599999993232,
+      "regenTicks": 426,
+      "firstRegenAtMs": 249116.66666661322,
+      "lastRegenAtMs": 259333.33333327394,
+      "outcome": "killed",
+      "resolvedAtMs": 266483.3333332774
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "upgrade-heavy",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1951",
+      "spawnedAtMs": 316283.33333333535,
+      "health": 1539,
+      "initialShield": 539,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 332883.3333333547
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "upgrade-heavy",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2463",
+      "spawnedAtMs": 363866.6666667241,
+      "health": 1795.5000000000002,
+      "initialShield": 628,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 627.1626666667449,
+      "regenTicks": 1499,
+      "firstRegenAtMs": 371783.33333339996,
+      "lastRegenAtMs": 396750.0000000957,
+      "outcome": "killed",
+      "resolvedAtMs": 398633.3333334312
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "upgrade-heavy",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-2516",
+      "spawnedAtMs": 370850.00000006554,
+      "health": 1620,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 394150.00000009267,
+          "bossHealthRatio": 0.6176109104938272,
+          "bossPathDistance": 772.6804000000129,
+          "affectedTowers": 15,
+          "affectedAttackers": 15,
+          "aliveEnemies": 4
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 394166.66666675935
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 394400.00000009296
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 394650.00000009325
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 394900.00000009354
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 396900.00000009587
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "upgrade-heavy",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2592",
+      "spawnedAtMs": 377866.6666667404,
+      "health": 1795.5000000000002,
+      "initialShield": 628,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 405200.00000010553
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "counter-aware",
+      "wave": 5,
+      "type": "raidTeam",
+      "id": "enemy-234",
+      "spawnedAtMs": 67666.66666666347,
+      "health": 810,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 84500.0000000017,
+          "bossHealthRatio": 0.6445018518518522,
+          "bossPathDistance": 539.2119999999991,
+          "affectedTowers": 6,
+          "affectedAttackers": 5,
+          "aliveEnemies": 1
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 84516.66666666837
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 84750.00000000178
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 85000.00000000185
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 85250.00000000192
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 91900.00000000386
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "counter-aware",
+      "wave": 10,
+      "type": "raidTeam",
+      "id": "enemy-735",
+      "spawnedAtMs": 157666.66666666645,
+      "health": 1134,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 171466.66666665842,
+          "bossHealthRatio": 0.5968947751322751,
+          "bossPathDistance": 378.4696000000003,
+          "affectedTowers": 4,
+          "affectedAttackers": 4,
+          "aliveEnemies": 8
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 171483.33333332508
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 171733.33333332493
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 171983.3333333248
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 172233.33333332464
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 183599.9999999847
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "counter-aware",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "id": "enemy-1216",
+      "spawnedAtMs": 244166.6666666161,
+      "health": 1282.5,
+      "initialShield": 449,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 150.97999999999996,
+      "regenTicks": 505,
+      "firstRegenAtMs": 249316.6666666131,
+      "lastRegenAtMs": 257716.66666660822,
+      "outcome": "killed",
+      "resolvedAtMs": 267316.6666666117
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "counter-aware",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "id": "enemy-1806",
+      "spawnedAtMs": 319383.33333333896,
+      "health": 1539,
+      "initialShield": 539,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 336233.3333333586
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "counter-aware",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2287",
+      "spawnedAtMs": 367416.6666667282,
+      "health": 1795.5000000000002,
+      "initialShield": 628,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 612.9280000000773,
+      "regenTicks": 1465,
+      "firstRegenAtMs": 375066.6666667371,
+      "lastRegenAtMs": 399466.6666667655,
+      "outcome": "killed",
+      "resolvedAtMs": 402533.33333343576
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "counter-aware",
+      "wave": 20,
+      "type": "raidTeam",
+      "id": "enemy-2335",
+      "spawnedAtMs": 374400.0000000697,
+      "health": 1620,
+      "initialShield": 0,
+      "phases": [
+        {
+          "phase": 1,
+          "atMs": 397300.00000009633,
+          "bossHealthRatio": 0.604582716049383,
+          "bossPathDistance": 763.6782000000136,
+          "affectedTowers": 13,
+          "affectedAttackers": 12,
+          "aliveEnemies": 5
+        }
+      ],
+      "reinforcements": [
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 397316.666666763
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 397550.0000000966
+        },
+        {
+          "type": "federalAgent",
+          "spawnedAtMs": 397800.0000000969
+        },
+        {
+          "type": "scriptKiddie",
+          "spawnedAtMs": 398050.0000000972
+        }
+      ],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 400716.666666767
+    },
+    {
+      "difficulty": "Hard",
+      "policy": "counter-aware",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "id": "enemy-2411",
+      "spawnedAtMs": 381416.6666667445,
+      "health": 1795.5000000000002,
+      "initialShield": 628,
+      "phases": [],
+      "reinforcements": [],
+      "regenAmount": 0,
+      "regenTicks": 0,
+      "firstRegenAtMs": null,
+      "lastRegenAtMs": null,
+      "outcome": "killed",
+      "resolvedAtMs": 408100.0000001089
+    }
+  ]
+}

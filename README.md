@@ -11,18 +11,19 @@ completion gates, and the [2026-11-11 code review](design/CODE_REVIEW_2026-11-11
 for historical baseline evidence. M1 and M2.1–M2.6 are complete within their
 documented verification scope. M2 includes inspection, combat feedback,
 persistent wave reports, a reproducible balance report, wave-speed controls and
-[validated runtime content](design/CONTENT_SCHEMA.md). M3.1 adds authored first-five-wave spawn windows and preview timing. Balance
-`1.4.0` and snapshot schema v4 retire prior 1.3.0/v3 and older runs through the existing export/reset recovery
-flow; export before resetting. Independent preferences remain compatible.
+[validated runtime content](design/CONTENT_SCHEMA.md). M3.1 adds authored first-five-wave spawn windows and preview timing. Current balance
+`1.6.0` uses snapshot schema v4; prior runs remain available through export
+and explicit reset before new saves can be written. Independent preferences remain compatible.
 M3.3 retires Anonymity and measures earned-resource choices; Dharma funds all towers,
 while Bandwidth also constrains control/support. M3.2 specialization retention
 remains provisional. M3.4 adds one telegraphed, expiring Agent self shield with
 early damage, sustained fire and later coverage responses. Human difficulty and engagement validation remain open.
 
 Human playtest collection is [explicitly deferred](ROADMAP.md#human-validation-deferral--2026-11-12)
-so engineering can continue under provisional assumptions. M4.4 verification of
-the existing campaign is next. M3.5, specialization retention and the human M3
-gate remain open; no player validation is implied by that deferral.
+so engineering can continue under provisional assumptions. M4.1 authored the
+four-act pressure curve, M4.2 focused the boss decisions, and M4.4 verified
+complete runs within automated scope. M3.5, specialization retention, the human
+M3 gate and M4 acceptance remain open; no player validation is implied.
 
 The earlier [implementation plan](implementation.md) remains an architecture
 reference; it is not the current backlog. The

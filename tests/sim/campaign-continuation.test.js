@@ -9,7 +9,7 @@ import { loadBalance } from '../helpers/loadBalance.js';
 
 const balance = await loadBalance();
 const currentReport = JSON.parse(await readFile(new URL(
-  '../../design/reviews/2026-11-12-m4.1/results.json', import.meta.url
+  '../../design/reviews/2026-11-12-m4.2/results.json', import.meta.url
 )));
 const resourceKeys = ['dharma', 'bandwidth', 'anonymity'];
 const frameDeltas = [37, 91, 250, 19, 300, 54, 123];

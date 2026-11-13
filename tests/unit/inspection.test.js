@@ -112,8 +112,10 @@ test('enemy intel uses active damage types and only implemented abilities', () =
   }
   const raid = getEnemyInspection(balance, 'raidTeam');
   assert.match(raid.ability, /reinforcements.*EMP/);
+  assert.match(raid.ability, /66% health.*3 Script Kiddies and 1 Federal Agent/);
   const titan = getEnemyInspection(balance, 'megaCorpTitan');
   assert.match(titan.ability, /shield.*regenerates/);
+  assert.match(titan.ability, /after 3 s without hits at 4%.*35% of health/);
   assert.equal(Object.hasOwn(titan, 'phases'), false);
   assert.equal(Object.hasOwn(getWavePreview(balance, 1).enemies[0], 'ability'), false);
 });

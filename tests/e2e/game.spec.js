@@ -973,6 +973,7 @@ test('enemy details state implemented abilities without unused phase metadata', 
   });
   await page.locator('[data-enemy-type="megaCorpTitan"]').click();
   await expect(page.locator('#enemy-inspector-content')).toContainText('shield that regenerates');
+  await expect(page.locator('#enemy-inspector-content')).toContainText('after 3 s without hits at 4%');
   await expect(page.locator('#enemy-inspector-content')).not.toContainText('phase 4');
 });
 
@@ -1047,11 +1048,12 @@ for (const [width, height] of [[360,640],[390,844],[640,360],[844,390],[1280,720
     await openFresh(page, {width,height}); await enterBuildPhase(page);
     await clickWorld(page,210,210);
     await page.evaluate(() => { gameApplication.session.state.waveNumber = 5; gameApplication.ui.update(gameApplication.session); });
-    await expect(page.locator('#emp-warning')).toContainText('66% and 33%');
+    await expect(page.locator('#emp-warning')).toContainText('one burst immediately at 66%');
+    await expect(page.locator('#emp-warning')).toContainText('3 Script Kiddies and 1 Federal Agent');
     expect(await page.evaluate(() => gameApplication.session.state.enemies.size)).toBe(0);
     await combatFixture(page);
     await page.getByRole('region',{name:'Combat status'}).click();
-    await expect(page.locator('#combat-state')).toContainText('Phase 1 / 3');
+    await expect(page.locator('#combat-state')).toContainText('Disruption boss');
     await expect(page.locator('#combat-state')).toContainText('Next EMP at 66%');
     await expect(page.locator('#combat-state')).toContainText('Slow: 20% less speed');
     await expect(page.locator('#combat-state')).toContainText('Vulnerable: +12% damage before resistance/armor');
@@ -1321,7 +1323,7 @@ test('retired-economy v3 bytes export unchanged and reset preserves preferences'
   const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();expect(await readFile(await(await download).path(),'utf8')).toBe(raw);
   await page.getByRole('button',{name:'Reset saved run'}).click();await page.getByRole('button',{name:'New game',exact:true}).click();
   const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')));
-  expect(saved.schemaVersion).toBe(4);expect(saved.balanceVersion).toBe('1.5.0');expect(saved.state.resources.anonymity).toBe(0);expect(saved.state.settings).toMatchObject({showRanges:false,reducedMotion:true});
+  expect(saved.schemaVersion).toBe(4);expect(saved.balanceVersion).toBe('1.6.0');expect(saved.state.resources.anonymity).toBe(0);expect(saved.state.settings).toMatchObject({showRanges:false,reducedMotion:true});
 });
 
 for(const speed of [1,2])test(`Agent brace cue/text, pause/reload and explicit v4 state at ${speed}×`,async({page})=>{
@@ -1354,7 +1356,7 @@ test('M3.3 v3 recovery exports exact bytes before explicit reset and creates v4 
   await expect(page.locator('#save-recovery')).toBeVisible();expect(await page.evaluate(()=>localStorage.getItem('dharmapala-shield/save/v2'))).toBe(raw);
   const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();expect(await readFile(await(await download).path(),'utf8')).toBe(raw);
   await page.getByRole('button',{name:'Reset saved run'}).click();await page.getByRole('button',{name:'New game',exact:true}).click();
-  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({schemaVersion:4,balanceVersion:'1.5.0',state:{settings:{showRanges:false,reducedMotion:true}}});
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({schemaVersion:4,balanceVersion:'1.6.0',state:{settings:{showRanges:false,reducedMotion:true}}});
 });
 
 test('M4.1 old 1.4.0/v4 wave bytes export exactly before reset and retain preferences',async({page})=>{
@@ -1371,6 +1373,53 @@ test('M4.1 old 1.4.0/v4 wave bytes export exactly before reset and retain prefer
   await page.getByRole('button',{name:'Reset saved run'}).click();
   await page.getByRole('button',{name:'New game',exact:true}).click();
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({
-    schemaVersion:4,balanceVersion:'1.5.0',state:{settings:{showRanges:false,reducedMotion:true}}
+    schemaVersion:4,balanceVersion:'1.6.0',state:{settings:{showRanges:false,reducedMotion:true}}
   });
+});
+
+test('M4.2 old 1.5.0/v4 Raid bytes export exactly before explicit reset',async({page})=>{
+  const {readFile}=await import('node:fs/promises');
+  const raw=await readFile('design/reviews/2026-11-12-m4.2/old-1.5.0-v4-save.json','utf8');
+  await openFresh(page);await page.evaluate(raw=>{
+    localStorage.setItem('dharmapala-shield/save/v2',raw);
+    localStorage.setItem('dharmapala-shield/preferences/v1',JSON.stringify({tutorialCompleted:true,showRanges:false,reducedMotion:true}));
+  },raw);await page.reload();
+  await expect(page.locator('#save-recovery')).toBeVisible();
+  expect(await page.evaluate(()=>localStorage.getItem('dharmapala-shield/save/v2'))).toBe(raw);
+  const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();
+  expect(await readFile(await(await download).path(),'utf8')).toBe(raw);
+  await page.getByRole('button',{name:'Reset saved run'}).click();
+  await page.getByRole('button',{name:'New game',exact:true}).click();
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({
+    schemaVersion:4,balanceVersion:'1.6.0',state:{settings:{showRanges:false,reducedMotion:true}}
+  });
+});
+
+test('M4.2 warning names the reinforcements and clears after the single EMP', async ({page}) => {
+  await openFresh(page,{width:390,height:844});await enterBuildPhase(page);
+  await page.evaluate(()=>{gameApplication.session.state.waveNumber=5;gameApplication.ui.update(gameApplication.session);});
+  await expect(page.locator('#emp-warning')).toContainText('spaced 0.25 s apart');
+  await combatFixture(page);
+  await page.evaluate(()=>{
+    const s=gameApplication.session,boss=[...s.state.enemies.values()].find(e=>e.type==='raidTeam');
+    boss.health=boss.maxHealth*0.65;s.systems.enemy.updateBosses(s);gameApplication.ui.update(s);
+  });
+  await expect(page.locator('#emp-warning')).toHaveText('');
+  await expect(page.locator('#combat-state')).toContainText('EMP spent; reinforcements dispatched');
+});
+
+test('M4.2 live Titan text gives recovery countdown and active regeneration', async ({page}) => {
+  await openFresh(page,{width:390,height:844});await enterBuildPhase(page);
+  await page.evaluate(()=>{gameApplication.session.state.waveNumber=15;gameApplication.ui.update(gameApplication.session);});
+  await combatFixture(page,15);
+  await page.evaluate(()=>{
+    const s=gameApplication.session,boss=[...s.state.enemies.values()].find(e=>e.type==='megaCorpTitan');
+    boss.shieldCooldownUntilMs=s.state.gameTimeMs+2000;gameApplication.ui.update(s);
+  });
+  await expect(page.locator('#combat-state')).toContainText('Shield recovery in 2.0 s without hits');
+  await page.evaluate(()=>{
+    const s=gameApplication.session,boss=[...s.state.enemies.values()].find(e=>e.type==='megaCorpTitan');
+    boss.shieldCooldownUntilMs=s.state.gameTimeMs;gameApplication.ui.update(s);
+  });
+  await expect(page.locator('#combat-state')).toContainText('Shield regenerating at 4% of capacity per second until hit');
 });

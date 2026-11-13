@@ -71,7 +71,7 @@ export function validateBalance(b) {
   }
   for (const type of ACTIVE_TOWER_TYPES) {
     const branches = b.towers[type].specializations;
-    if (['1.2.0', '1.3.0', '1.4.0', '1.5.0'].includes(b.version) && type !== 'distributor') assert(branches, 'Missing tower specializations');
+    if (['1.2.0', '1.3.0', '1.4.0', '1.5.0', '1.6.0'].includes(b.version) && type !== 'distributor') assert(branches, 'Missing tower specializations');
     if (!branches) continue; // Historical linear content remains usable for comparisons.
     assert(type !== 'distributor' && b.upgrades.maxLevel >= 3, 'Invalid specialization tower');
     contentKeys(branches, `${type}.specializations`, type === 'firewall' ? ['focus', 'coverage'] : ['sustain', 'reach']);
@@ -111,11 +111,12 @@ export function validateBalance(b) {
       contentNumber(e.brace.healthRatio, 'Brace healthRatio', Number.MIN_VALUE, 1);
     }
   }
-  if (['1.4.0', '1.5.0'].includes(b.version)) assert(b.enemies.federalAgent?.brace, 'Missing Agent brace');
+  if (['1.4.0', '1.5.0', '1.6.0'].includes(b.version)) assert(b.enemies.federalAgent?.brace, 'Missing Agent brace');
   const raid = b.bosses.raidTeam.abilities, titan = b.bosses.megaCorpTitan.abilities;
   contentKeys(raid, 'balance.bosses.raidTeam.abilities', ['emp', 'reinforcements']);
   contentKeys(raid.emp, 'balance.bosses.raidTeam.abilities.emp', ['thresholds', 'radius', 'durationMs']);
-  assert(Array.isArray(raid.emp.thresholds) && raid.emp.thresholds.length === 2, 'Two EMP thresholds required');
+  assert(Array.isArray(raid.emp.thresholds) && raid.emp.thresholds.length ===
+    (b.version === '1.6.0' ? 1 : 2), 'Invalid EMP threshold count');
   raid.emp.thresholds.forEach((threshold, index) => {
     contentNumber(threshold, `EMP threshold ${index}`, Number.MIN_VALUE, 1);
     assert(index === 0 || threshold < raid.emp.thresholds[index - 1], 'EMP thresholds must descend');
@@ -139,7 +140,7 @@ export function validateBalance(b) {
   }
   contentKeys(b.economy, 'balance.economy', ['startCash', 'startBandwidth', 'startAnonymity', 'killIncomeMult', 'waveClearBonus', 'waveClearBonusPerWave', 'initialLives', 'sellRefundPct', 'distributorWaveBonus', 'distributorWaveBonusCap', 'distributorAuraCap'], ['activeResources']);
   for (const key of ['startCash', 'startBandwidth', 'startAnonymity', 'waveClearBonus', 'waveClearBonusPerWave', 'distributorWaveBonus', 'distributorWaveBonusCap']) contentInteger(b.economy[key], `balance.economy.${key}`);
-  if (['1.3.0', '1.4.0', '1.5.0'].includes(b.version) || b.economy.activeResources !== undefined) {
+  if (['1.3.0', '1.4.0', '1.5.0', '1.6.0'].includes(b.version) || b.economy.activeResources !== undefined) {
     assert(Array.isArray(b.economy.activeResources) && b.economy.activeResources.length === 2 &&
       b.economy.activeResources[0] === 'dharma' && b.economy.activeResources[1] === 'bandwidth', 'Invalid active resources');
     assert(b.economy.startAnonymity === 0 &&
@@ -201,7 +202,7 @@ export function validateSnapshot(snapshot, balance) {
   validateBalance(balance);
   const raidReinforcements = balance.bosses.raidTeam.abilities.reinforcements;
   const reinforcementTypes = raidReinforcements.byPhase.flat();
-  assert(snapshot?.schemaVersion === (['1.4.0', '1.5.0'].includes(balance.version) ? 4 : balance.version === '1.0.0' && !balance.towers.firewall.specializations ? 2 : 3) && snapshot.balanceVersion === balance.version, 'Unsupported save schema or balance version');
+  assert(snapshot?.schemaVersion === (['1.4.0', '1.5.0', '1.6.0'].includes(balance.version) ? 4 : balance.version === '1.0.0' && !balance.towers.firewall.specializations ? 2 : 3) && snapshot.balanceVersion === balance.version, 'Unsupported save schema or balance version');
   const s = snapshot.state, r = snapshot.runtime;
   const reinforcementMultiplier = 1 + s.waveNumber * raidReinforcements.hpMultiplierPerWave;
   assert(s && r && s.schemaVersion === snapshot.schemaVersion && s.balanceVersion === balance.version, 'Invalid state version');

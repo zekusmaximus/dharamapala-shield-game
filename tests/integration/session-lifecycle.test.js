@@ -30,7 +30,7 @@ test('a new session remains in building until start wave is commanded', () => {
   assert.equal(session.state.enemies.size, 0);
 });
 
-test('raid team phases schedule deterministic minions and survive round-trip saves', () => {
+test('Raid Team single EMP dispatches four deterministic minions and survives round-trip saves', () => {
   const session = createSession();
   session.state.waveNumber = 5;
   session.startWave();
@@ -42,7 +42,7 @@ test('raid team phases schedule deterministic minions and survive round-trip sav
   );
   boss.health = boss.maxHealth * 0.3;
   session.systems.enemy.updateBosses(session);
-  assert.deepEqual(boss.firedPhases, [1, 2]);
+  assert.deepEqual(boss.firedPhases, [1]);
   assert.equal(session.state.wave.scheduled, 17);
 
   // This fixture advances the scheduler directly rather than through step().

@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Run from a detached clean checkout of the implementation commit; log outside it.
+set -eu
+export CI=1
+export PLAYWRIGHT_BROWSERS_PATH=${PLAYWRIGHT_BROWSERS_PATH:-/workspace/.playwright-browsers}
+run() { echo "+ $*"; "$@"; echo 'exit=0'; }
+run git rev-parse HEAD
+run node --version
+run npm --version
+run test ! -d node_modules
+run test ! -d dist
+run npm ci --cache /tmp/dharamapala-m42-npm-cache
+run npx playwright install chromium
+run npm run build
+run npm run test:unit
+run npm run test:integration
+run npm run test:sim
+run npm run test:e2e
+run npm run test:a11y
+run node --input-type=module -e 'import {chromium} from "@playwright/test";const b=await chromium.launch();console.log(b.version());await b.close();'
+echo '+ node tools/review/baseline.mjs > /tmp/m42-baseline.json'
+node tools/review/baseline.mjs > /tmp/m42-baseline.json
+run cmp /tmp/m42-baseline.json design/reviews/2026-11-12-m4.2/baseline.json
+run npm run balance:report -- --output=/tmp/m42-results.json
+run cmp /tmp/m42-results.json design/reviews/2026-11-12-m4.2/results.json
+run node tools/balance/summary.mjs /tmp/m42-results.json /tmp/m42-summary.md
+run cmp /tmp/m42-summary.md design/reviews/2026-11-12-m4.2/summary.md
+run node tools/balance/counterplay.mjs /tmp/m42-counterplay.json
+run cmp /tmp/m42-counterplay.json design/reviews/2026-11-12-m4.2/counterplay.json
+run node tools/balance/economy.mjs /tmp/m42-economy.json
+run cmp /tmp/m42-economy.json design/reviews/2026-11-12-m3.3/economy.json
+run node tools/balance/tradeoffs.mjs /tmp/m42-tradeoffs.json
+run cmp /tmp/m42-tradeoffs.json design/reviews/2026-11-12-m3.2/tradeoffs.json
+run node design/reviews/2026-11-12-m4.2/trace-bosses.mjs /tmp/m42-bosses-before.json --old
+run cmp /tmp/m42-bosses-before.json design/reviews/2026-11-12-m4.2/boss-trace-before.json
+run node design/reviews/2026-11-12-m4.2/trace-bosses.mjs /tmp/m42-bosses-after.json
+run cmp /tmp/m42-bosses-after.json design/reviews/2026-11-12-m4.2/boss-trace-after.json
+run node design/reviews/2026-11-12-m4.2/capture-old-save.mjs /tmp/m42-old-save.json
+run cmp /tmp/m42-old-save.json design/reviews/2026-11-12-m4.2/old-1.5.0-v4-save.json
+run node design/reviews/2026-11-12-m4.2/compare.mjs
+run git diff --exit-code 601c1ea -- tools scripts .github package.json package-lock.json
+mapfile -t prior_dirs < <(find design/reviews -mindepth 1 -maxdepth 1 -type d ! -name 2026-11-12-m4.2 -print | sort)
+run git diff --exit-code 601c1ea -- "${prior_dirs[@]}"
+echo '+ verify pinned M3.5 archive SHA-256'
+echo 'c89fd1806dab103d0838be5b3678404c7b984a64e6972e8a6e3544da360f80f5  design/reviews/2026-11-12-m3.5/playtest-build-fc43adf-1.4.0.zip' | sha256sum --check -
+run git diff --check 601c1ea HEAD
+run git diff --exit-code
+run test -z "$(git status --porcelain)"

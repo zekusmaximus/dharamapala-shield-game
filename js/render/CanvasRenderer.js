@@ -238,7 +238,7 @@ export class CanvasRenderer {
       if (enemy.kind === 'boss') {
         this.drawBadge(context, enemy.x, Math.max(14, barY - 20),
           enemy.type === 'raidTeam'
-            ? `P${enemy.phase + 1}/3 · ${Math.ceil(enemy.health)} HP · ${feedback.nextEmp === null ? 'EMP spent' : '⚠ EMP ' + Math.round(feedback.nextEmp * 100) + '%'}`
+            ? `${Math.ceil(enemy.health)} HP · ${feedback.nextEmp === null ? 'EMP spent' : '⚠ EMP ' + Math.round(feedback.nextEmp * 100) + '%'}`
             : `${Math.ceil(enemy.health)} HP · Shield ${Math.ceil(enemy.shield)}/${enemy.shieldMax}`);
       }
       context.fillStyle = '#090d18';
