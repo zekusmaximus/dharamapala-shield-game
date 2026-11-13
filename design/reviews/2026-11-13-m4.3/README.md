@@ -146,14 +146,30 @@ each report, resources, typed leaks, hit accounting, deliberate starts and
 terminal freezing against the current 21-run report. [The clean-checkout
 script](verify.sh) runs locked installation, Chromium, fresh build, five test
 suites, exact current and targeted evidence regeneration, historical
-economy/tradeoff checks and pinned archive preservation. Its full result is
-retained in `validation.txt` after it runs from a detached clean checkout.
+economy/tradeoff checks and pinned archive preservation. A detached clean
+checkout at implementation commit **`d0bd766`** started without
+`node_modules` or `dist` and passed the full script. [The complete
+log](validation.txt) records Node 24.22.1, npm 11.9.0, Chromium
+149.0.7827.55 and every command/result:
+
+| Clean-checkout check | Result |
+| --- | --- |
+| Locked install, Chromium install, fresh build | Pass |
+| Unit / integration / simulation | 142 / 66 / 13 passed |
+| Browser / accessibility | 103 / 14 passed; scanned axe views reported no serious or critical findings |
+| Current 21-run report, summary, baseline, counterplay, targeted before/after and old-save regeneration | Byte-identical |
+| Historical M3.3 economy, M3.2 tradeoffs and copied 1.6.0 content | Byte-identical |
+| Prior evidence and pinned M3.5 archive SHA-256 | Preserved |
+| Diff whitespace and clean detached worktree | Pass |
+
+The hosted PR CI run is separate from this local Node 24 check.
 
 M3.2 specialization retention, M3.5 collection, the human M3 gate and M4
 human acceptance remain **open**. Fixed scripts, deterministic repeats,
 automated browser checks and activity counts establish no player
 understanding, actual difficulty, build diversity, observed play time or
-replay intent. M4.5, M5 and M6 are outside this change.
+replay intent. Chromium emulation and axe also do not establish physical-device
+or screen-reader usability. M4.5, M5 and M6 are outside this change.
 
 ## Reproduce
 
