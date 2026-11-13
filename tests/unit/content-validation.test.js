@@ -26,7 +26,7 @@ const malformed = {
   'incomplete vulnerability': (b) => { delete b.towers.encryption.status.vulnerabilityDuration; },
   'slow beyond tower cap': (b) => { b.towers.encryption.status.slowPct = 0.9; },
   'missing boss ability': (b) => { delete b.bosses.raidTeam.abilities.emp.durationMs; },
-  'invalid EMP order': (b) => { b.bosses.raidTeam.abilities.emp.thresholds = [0.33, 0.66]; },
+  'extra EMP threshold': (b) => { b.bosses.raidTeam.abilities.emp.thresholds = [0.66, 0.33]; },
   'invalid EMP radius': (b) => { b.bosses.raidTeam.abilities.emp.radius = -1; },
   'unknown reinforcement type': (b) => { b.bosses.raidTeam.abilities.reinforcements.byPhase[0][0] = 'missing'; },
   'invalid shield ratio': (b) => { b.bosses.megaCorpTitan.abilities.shield.healthRatio = NaN; },
@@ -47,14 +47,15 @@ for (const [name, mutate] of Object.entries(malformed)) {
 
 test('presentation and derived tower stats read the same validated tunables', () => {
   const candidate = clone(balance);
-  candidate.bosses.raidTeam.abilities.emp.thresholds = [0.7, 0.25];
+  candidate.bosses.raidTeam.abilities.emp.thresholds = [0.7];
   candidate.bosses.raidTeam.abilities.emp.radius = 190;
   candidate.bosses.raidTeam.abilities.emp.durationMs = 900;
   candidate.combat.status.durationPerLevel = 0.25;
   candidate.combat.status.slowPctPerLevel = 0.05;
   candidate.combat.chain.unlockLevel = 3;
   validateBalance(candidate);
-  assert.match(getEmpWarning(candidate), /70% and 25% health.*190 units for 0.9 s/);
+  assert.match(getEmpWarning(candidate), /one burst immediately at 70% health.*190 units for 0.9 s/);
+  assert.match(getEmpWarning(candidate), /3 Script Kiddies and 1 Federal Agent/);
   const boss = { type: 'raidTeam', firedPhases: [], phase: 0 };
   assert.equal(enemyCombatFeedback(candidate, boss, 0).nextEmp, 0.7);
   const encryption = getTowerStats(candidate, 'encryption', 3);

@@ -609,9 +609,11 @@ export class GameUI {
     const balance = session.balance;
     const enemies = [...session.state.enemies.values()].filter((enemy) => !enemy.resolution);
     const raidIncoming = model.preview?.enemies.some((enemy) => enemy.id === 'raidTeam');
+    const raidScheduled = session.scheduler.events.slice(session.scheduler.cursor)
+      .some((event) => event.enemyType === 'raidTeam');
     const pending = enemies.some((enemy) => enemyCombatFeedback(balance, enemy, now).nextEmp !== null);
-    const warning = raidIncoming && (model.phase === PHASES.BUILDING ||
-      [PHASES.WAVE, PHASES.PAUSED].includes(model.phase)) || pending;
+    const warning = (raidIncoming && model.phase === PHASES.BUILDING) ||
+      ([PHASES.WAVE, PHASES.PAUSED].includes(model.phase) && raidScheduled) || pending;
     const warningNode = byId('emp-warning');
     const warningText = warning ? getEmpWarning(balance) : '';
     if (warningNode.textContent !== warningText) warningNode.textContent = warningText;
@@ -623,9 +625,9 @@ export class GameUI {
       const parts = [`${enemy.name} (${enemy.id})`];
       if (enemy.kind === 'boss') {
         parts.push(`Health ${Math.ceil(Math.max(0, enemy.health))} / ${Math.ceil(enemy.maxHealth)}; ${info.phase}`);
-        if (enemy.shieldMax > 0) parts.push(`Shield ${Math.ceil(enemy.shield)} / ${enemy.shieldMax}; recovers after ${balance.bosses.megaCorpTitan.abilities.shield.recoveryDelayMs / 1000} s without hits`);
+        if (enemy.shieldMax > 0) parts.push(`Shield ${Math.ceil(enemy.shield)} / ${enemy.shieldMax}; ${info.shieldRecovery || `recovers after ${balance.bosses.megaCorpTitan.abilities.shield.recoveryDelayMs / 1000} s without hits`}`);
         if (info.nextEmp !== null) parts.push(`⚠ Next EMP at ${Math.round(info.nextEmp * 100)}% health; dashed circle = ${balance.bosses.raidTeam.abilities.emp.radius}-unit burst range`);
-        else if (enemy.type === 'raidTeam') parts.push('Both EMP bursts spent');
+        else if (enemy.type === 'raidTeam') parts.push('EMP spent; reinforcements dispatched');
       }
       if (info.brace) parts.push(info.brace.text);
       if (status) parts.push(status);

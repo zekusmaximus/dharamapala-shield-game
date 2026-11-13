@@ -79,11 +79,11 @@ test('actual full campaigns reconcile M2.3 ledgers, natural bosses/leaks and det
   }
 });
 
-test('fresh production scenarios and repeat hashes match M4.1 evidence; content hash matches current bytes', async () => {
+test('fresh production scenarios and repeat hashes match M4.2 evidence; content hash matches current bytes', async () => {
   const { buildReport } = await import('../../tools/balance/report.mjs');
   const { createHash } = await import('node:crypto');
   const { readFile } = await import('node:fs/promises');
-  const recorded = JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m4.1/results.json',import.meta.url)));
+  const recorded = JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m4.2/results.json',import.meta.url)));
   const current = await buildReport();
   const bytes = await readFile(new URL('../../design/balance.json', import.meta.url));
   assert.equal(current.balanceSha256, createHash('sha256').update(bytes).digest('hex'));
@@ -102,9 +102,13 @@ test('earned-resource policy and marginal evidence regenerates deterministically
 });
 
 
-test('M3.4 earned counterplay evidence repeats with shared production combat and constrained purchases',async()=>{
+test('M4.2 first-five counterplay repeats; historical wave-3 forks and pre-Raid waves remain exact',async()=>{
   const {buildCounterplayReport}=await import('../../tools/balance/counterplay.mjs');
   const {readFile}=await import('node:fs/promises');
-  const recorded=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.4/counterplay.json',import.meta.url)));
+  const recorded=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m4.2/counterplay.json',import.meta.url)));
+  const historical=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.4/counterplay.json',import.meta.url)));
   assert.deepEqual(JSON.parse(JSON.stringify(await buildCounterplayReport())),recorded);
+  assert.deepEqual(recorded.forks,historical.forks);
+  for(let i=0;i<recorded.runs.length;i++)
+    assert.deepEqual(recorded.runs[i].waves.slice(0,4),historical.runs[i].waves.slice(0,4));
 });

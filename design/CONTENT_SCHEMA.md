@@ -23,11 +23,12 @@ whether a numeric choice is fun or balanced.
   default. Wave groups name these IDs and define count, interval and HP
   multiplier. Wave rewards, difficulty, economy and upgrades keep their existing
   production meanings.
-- `bosses.raidTeam.abilities.emp` defines the two existing health thresholds,
+- `bosses.raidTeam.abilities.emp` defines the current single health threshold,
   radius and disable duration. `reinforcements` defines the existing phase
   minion lists, spacing and per-wave HP multiplier. The runtime, save validator,
   canvas range marker and text warning read these same definitions. There is
-  no timed wind-up. `bosses.megaCorpTitan.abilities.shield` defines initial
+  no timed wind-up. Historical 1.5.0 and earlier content retains its two
+  thresholds for matching-build replay. `bosses.megaCorpTitan.abilities.shield` defines initial
   shield-to-health ratio, regeneration rate and hit-free recovery delay. No
   health-triggered Titan phases exist.
 - `migration.deferredTowerRefunds` is still read only while importing legacy
@@ -261,3 +262,44 @@ version strings is not a migration: pending wave events must match the 1.5.0
 schedule and fail validation otherwise. The pinned 1.4.0 M3.5 build and all
 historical evidence remain on their own content version. Level-3 specialization
 retention and human M3/M4 acceptance remain open.
+
+## M4.2 focused bosses (balance 1.6.0, schema v4)
+
+Raid Team has one immediate EMP at **66% health**, with the existing 260-unit
+radius and 1.5-second tower disable. It dispatches the same four minions as
+before, now as one packet: Script Kiddie, Script Kiddie, Federal Agent, Script
+Kiddie at 0/250/500/750 ms after the health trigger. Each reinforcement still
+uses `1 + waveNumber × hpMultiplierPerWave`; the Agent still has its one-use
+three-second warning and four-second 60%-health brace. The second 33% EMP and
+misleading three-phase presentation are removed. The shared scheduler still
+registers dynamic minions with its stable order and serializable events; no
+authored wave group, reward, tower, economy or difficulty value changes.
+
+Before Start Wave, the EMP warning names the one health trigger, range,
+disable duration, exact reinforcement types and 250 ms spacing. It has no
+wind-up; building and spreading coverage are preparation decisions. During a
+wave, the warning remains while a Raid is pending or its EMP is unspent, then
+clears after the trigger. Live status and the canvas say EMP spent rather than
+implying more health phases. Titan's 35%-health shield, 4%-of-capacity-per-second
+regeneration and three-second hit-free cooldown are unchanged. Its live status
+now shows the countdown while recovery is delayed and a regenerating label
+afterward; the amount bar remains visible. Wave 20 retains the staggered two
+Titans and Raid under the M4.1 authored schedule.
+
+Changing Raid's trigger and minion timing changes combat meaning, so current
+content is balance **1.6.0**. New wrapper/state snapshots remain **schema v4**:
+the existing `phase`, `firedPhases`, scheduler and shield fields already encode
+the changed behavior. The storage discovery key remains
+`dharmapala-shield/save/v2`; retired Anonymity is still numeric and zero in
+current active supply. Exact balance-version validation rejects 1.5.0/v4 and
+older bytes before session replacement, retaining the raw run, blocking
+overwrite, permitting export and requiring explicit Reset saved run.
+Preferences and the latest recovery archive survive reset; export before reset
+for a durable copy. Relabeling old second-phase Raid bytes fails state
+validation, not migration. Continue an old run only in its matching old build.
+The pinned M3.5 1.4.0 archive and all earlier evidence remain unchanged.
+
+The [M4.2 production comparison](reviews/2026-11-12-m4.2/comparison.md) pairs
+all 21 fresh policy/difficulty runs and [boss trace](reviews/2026-11-12-m4.2/CURRENT_DESIGN.md)
+shows the observed overlap that prompted this change. Repeats and automated
+activity do not establish player understanding, challenge or build diversity.

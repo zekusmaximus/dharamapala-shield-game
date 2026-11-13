@@ -1,9 +1,22 @@
 import { bracePhase } from './brace.js';
 // Presentation derives from combat state; no timers or mutations.
+export function raidReinforcementSummary(balance) {
+  return balance.bosses.raidTeam.abilities.reinforcements.byPhase.map((types) => {
+    const counts = new Map();
+    for (const type of types) counts.set(type, (counts.get(type) || 0) + 1);
+    return [...counts].map(([type, count]) =>
+      `${count} ${balance.enemies[type].name}${count === 1 ? '' : 's'}`).join(' and ');
+  });
+}
+
 export function getEmpWarning(balance) {
   const { emp } = balance.bosses.raidTeam.abilities;
   const thresholds = emp.thresholds.map((threshold) => `${Math.round(threshold * 100)}%`).join(' and ');
-  return `EMP warning: bursts immediately at ${thresholds} health, disabling towers within ${emp.radius} units for ${emp.durationMs / 1000} s and calling reinforcements. No timed wind-up.`;
+  const groups = raidReinforcementSummary(balance);
+  const reinforcements = groups.map((group, index) =>
+    `${Math.round(emp.thresholds[index] * 100)}% calls ${group}`).join('; ');
+  const spacing = balance.bosses.raidTeam.abilities.reinforcements.intervalMs / 1000;
+  return `EMP warning: ${emp.thresholds.length === 1 ? 'one burst' : 'bursts'} immediately at ${thresholds} health, disabling towers within ${emp.radius} units for ${emp.durationMs / 1000} s. ${reinforcements}, spaced ${spacing} s apart. No timed wind-up.`;
 }
 
 export function enemyCombatFeedback(balance, enemy, nowMs) {
@@ -30,8 +43,13 @@ export function enemyCombatFeedback(balance, enemy, nowMs) {
     })(),
     nextEmp: nextPhase < 0 ? null : emp.thresholds[nextPhase],
     phase: enemy.type === 'raidTeam'
-      ? `Phase ${enemy.phase + 1} / ${emp.thresholds.length + 1}`
-      : enemy.type === 'megaCorpTitan' ? 'Shield boss · no health-triggered phases' : null
+      ? emp.thresholds.length === 1 ? 'Disruption boss'
+        : `Phase ${enemy.phase + 1} / ${emp.thresholds.length + 1}`
+      : enemy.type === 'megaCorpTitan' ? 'Shield boss · no health-triggered phases' : null,
+    shieldRecovery: enemy.type !== 'megaCorpTitan' || enemy.shield >= enemy.shieldMax ? null
+      : enemy.shieldCooldownUntilMs > nowMs
+        ? `Shield recovery in ${((enemy.shieldCooldownUntilMs - nowMs) / 1000).toFixed(1)} s without hits`
+        : `Shield regenerating at ${Math.round(balance.bosses.megaCorpTitan.abilities.shield.regenRatioPerSec * 100)}% of capacity per second until hit`
   };
 }
 

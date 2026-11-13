@@ -1,4 +1,5 @@
 import { braceDescription } from './brace.js';
+import { raidReinforcementSummary } from './combatFeedback.js';
 import { getEnemyDefinition } from '../../entities/createEnemy.js';
 import { ACTIVE_TOWER_TYPES } from '../commands.js';
 import {
@@ -162,9 +163,9 @@ export function getEnemyInspection(balance, type) {
     definition.resists?.[damageType] ?? 1
   ]));
   const ability = braceDescription(definition) || (type === 'raidTeam'
-    ? 'At health thresholds, calls reinforcements and emits EMP that briefly disables nearby towers.'
+    ? `At ${balance.bosses.raidTeam.abilities.emp.thresholds.map(value => `${Math.round(value * 100)}%`).join(' and ')} health, calls ${raidReinforcementSummary(balance).join('; then ')} reinforcements and emits EMP that briefly disables nearby towers.`
     : type === 'megaCorpTitan'
-      ? 'Starts with a shield that regenerates after a pause without taking hits.'
+      ? `Starts with a shield that regenerates after ${balance.bosses.megaCorpTitan.abilities.shield.recoveryDelayMs / 1000} s without hits at ${Math.round(balance.bosses.megaCorpTitan.abilities.shield.regenRatioPerSec * 100)}% of shield capacity per second; initial shield capacity is ${Math.round(balance.bosses.megaCorpTitan.abilities.shield.healthRatio * 100)}% of health.`
       : null);
   const counterHint = definition.brace
     ? 'Front-load damage before the brace, sustain fire through its finite shield, or use slow and later coverage after it expires. No tower is required.'

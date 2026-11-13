@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0",
+  "version": "1.6.0",
   "towers": {
     "firewall": {
       "name": "Firewall Fortress",
@@ -250,7 +250,7 @@
   "bosses": {
     "raidTeam": {
       "name": "Raid Team",
-      "description": "Spawns minions and uses EMP bursts",
+      "description": "At 66% health, disables nearby towers and calls fast runners plus a Federal Agent.",
       "icon": "🚀",
       "baseHP": 600,
       "armor": 20,
@@ -268,9 +268,9 @@
       "color": "#ff6b35",
       "size": 40,
       "abilities": {
-        "emp": { "thresholds": [0.66, 0.33], "radius": 260, "durationMs": 1500 },
+        "emp": { "thresholds": [0.66], "radius": 260, "durationMs": 1500 },
         "reinforcements": {
-          "byPhase": [["scriptKiddie", "scriptKiddie"], ["federalAgent", "scriptKiddie"]],
+          "byPhase": [["scriptKiddie", "scriptKiddie", "federalAgent", "scriptKiddie"]],
           "intervalMs": 250,
           "hpMultiplierPerWave": 0.02
         }
