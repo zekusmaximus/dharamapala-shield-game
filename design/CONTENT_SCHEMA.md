@@ -303,3 +303,37 @@ The [M4.2 production comparison](reviews/2026-11-12-m4.2/comparison.md) pairs
 all 21 fresh policy/difficulty runs and [boss trace](reviews/2026-11-12-m4.2/CURRENT_DESIGN.md)
 shows the observed overlap that prompted this change. Repeats and automated
 activity do not establish player understanding, challenge or build diversity.
+
+## M4.3 provisional difficulty calibration (balance 1.7.0, schema v4)
+
+Only four existing difficulty values change: Normal `hpMult` 1.00 → 1.10 and
+`speedMult` 1.00 → 1.04; Hard `hpMult` 1.35 → 1.38 and
+`damageToPlayerMult` 1.25 → 1.40. Easy remains 0.75 HP / 0.85 speed / 1.15
+bounty / 0.80 leak damage. Normal and Hard bounty multipliers remain 1.00 and
+0.85. The leak rule still rounds `base leak damage × difficulty multiplier`
+to the nearest integer, with a minimum of one: a default regular leak costs
+one life on every difficulty, while a default boss leak now costs 4/5/7 lives
+on Easy/Normal/Hard. Starting resources/lives, prices, bounties, wave-clear
+rewards, support income and all other economy rules are unchanged.
+
+Every M4.1 authored group, count, offset, interval, HP group multiplier and
+reward remains byte-identical. Runtime, preview, simulator and save validation
+continue to use the same schedule compiler. Agent's one-use three-second
+warning and four-second shield at 60% health, Raid's single warned 66% EMP and
+four reinforcements, Titan's hit-free shield recovery, the tower roster and
+explicit level-3 choices retain their 1.6.0 rules. The larger Normal/Hard HP
+affects derived enemy and shield capacity as prescribed by the existing
+formula; no ability timing or saved field shape changes. Deliberate starts,
+pause/Continue and the 1×/2× fixed clock are unchanged.
+
+Changing enemy HP/speed and Hard leak damage changes combat meaning, so new
+runs use balance **1.7.0**. Wrapper and state remain **schema v4** in the same
+`dharmapala-shield/save/v2` discovery slot. Exact-version validation rejects
+1.6.0/v4 and older runs before session replacement. The original raw bytes
+remain available for export, overwrite is blocked, and Reset saved run is
+explicit. Preferences and the latest recovery archive survive reset; export
+before reset for durable retention. Relabeling an old mid-wave 1.6.0 snapshot
+cannot migrate its enemy HP/speed. Retired Anonymity remains a numeric save
+key, with zero active supply and prices. The pinned M3.5 1.4.0 archive and
+historical evidence are unchanged. [M4.3 evidence](reviews/2026-11-13-m4.3/README.md)
+records scripted outcomes and open human gates.

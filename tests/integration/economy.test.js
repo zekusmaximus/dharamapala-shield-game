@@ -10,7 +10,8 @@ for(const speed of [1,2])test(`earned five-wave economies at ${speed}× reconcil
   for(const plan of Object.keys(ECONOMY_PLANS)) {
     const run=runEconomy(balance,plan,'Normal',{speed});
     assert.deepEqual(run,runEconomy(balance,plan,'Normal',{speed,restore:true}));
-    assert.equal(run.waves.length,5);assert.equal(run.lives,20);
+    assert.equal(run.waves.length,5);
+    assert.equal(run.lives,plan==='saving'?18:20);
     for(const w of run.waves)for(const k of Object.keys(w.before)) {
       assert.equal(w.start[k],w.before[k]-w.report.spent[k]+w.report.refunds[k]);
       assert.equal(w.after[k],w.start[k]+w.report.bounty[k]+w.report.clear[k]);

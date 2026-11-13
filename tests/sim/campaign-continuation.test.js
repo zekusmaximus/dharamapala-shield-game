@@ -9,7 +9,7 @@ import { loadBalance } from '../helpers/loadBalance.js';
 
 const balance = await loadBalance();
 const currentReport = JSON.parse(await readFile(new URL(
-  '../../design/reviews/2026-11-12-m4.2/results.json', import.meta.url
+  '../../design/reviews/2026-11-13-m4.3/results.json', import.meta.url
 )));
 const resourceKeys = ['dharma', 'bandwidth', 'anonymity'];
 const frameDeltas = [37, 91, 250, 19, 300, 54, 123];
@@ -136,7 +136,7 @@ function checkWave(lanes, before, atStart, livesBefore, steps, expected, totals)
   const report = state.reports.pending.at(-1);
   assert.equal(report.waveNumber, expected.wave);
   assert.equal(report.partial, false);
-  assert.deepEqual(report, expected.accounting, 'tick campaign must match M4.1 production report');
+  assert.deepEqual(report, expected.accounting, 'tick campaign must match M4.3 production report');
   assert.deepEqual(before, expected.resourcesBefore);
   assert.deepEqual(atStart, expected.resourcesAtStart);
   assert.deepEqual(state.resources, expected.resourcesAfter);

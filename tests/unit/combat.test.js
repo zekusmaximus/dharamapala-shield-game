@@ -99,12 +99,14 @@ test('MegaCorp Titan shield recovery waits three seconds after the latest shield
   assert.equal(titan.health, startingHealth);
   assert.equal(titan.shieldCooldownUntilMs, 3000);
 
-  hit(500); // 345 effective damage depletes the remaining 288 shield.
+  hit(500); // 345 effective damage depletes the HP-scaled shield.
+  const overflow = 345 - (startingShield - 45);
+  assert.ok(overflow > 0);
   assert.equal(titan.shield, 0);
-  assert.equal(titan.health, startingHealth - 57);
+  assert.equal(titan.health, startingHealth - overflow);
   session.state.gameTimeMs = 2000;
   hit(100); // Direct health damage must postpone shield recovery too.
-  assert.equal(titan.health, startingHealth - 102);
+  assert.equal(titan.health, startingHealth - overflow - 45);
   assert.equal(titan.shieldCooldownUntilMs, 5000);
 
   session.state.gameTimeMs = 4000;

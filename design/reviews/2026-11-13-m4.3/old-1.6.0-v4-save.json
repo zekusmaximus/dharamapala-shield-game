@@ -1,0 +1,1519 @@
+{
+  "schemaVersion": 4,
+  "balanceVersion": "1.6.0",
+  "savedAt": "2026-11-13T12:00:00.000Z",
+  "state": {
+    "schemaVersion": 4,
+    "balanceVersion": "1.6.0",
+    "sessionId": "session-1337",
+    "seed": 1337,
+    "difficulty": "Hard",
+    "phase": "PAUSED",
+    "resumePhase": "WAVE",
+    "gameTimeMs": 188116.66666664873,
+    "waveSpeed": 1,
+    "waveNumber": 11,
+    "maxWaves": 20,
+    "lives": 20,
+    "resources": {
+      "dharma": 143,
+      "bandwidth": 421,
+      "anonymity": 0
+    },
+    "score": 15400,
+    "statistics": {
+      "kills": 136,
+      "leaks": 0,
+      "bossesKilled": 2,
+      "wavesCompleted": 10
+    },
+    "wave": {
+      "scheduled": 8,
+      "spawned": 5,
+      "resolved": 3,
+      "killed": 3,
+      "leaked": 0,
+      "spawnCursor": 5,
+      "startedAtMs": 183599.9999999847
+    },
+    "defenses": [
+      {
+        "id": "defense-1",
+        "type": "encryption",
+        "x": 270,
+        "y": 270,
+        "radius": 20,
+        "level": 4,
+        "specialization": "sustain",
+        "cooldownMs": 53.20378151260725,
+        "disabledUntilMs": 172966.66666665842,
+        "totalDamage": 3768.8863000000033,
+        "kills": 27
+      },
+      {
+        "id": "defense-2",
+        "type": "firewall",
+        "x": 510,
+        "y": 270,
+        "radius": 20,
+        "level": 4,
+        "specialization": "focus",
+        "cooldownMs": 0,
+        "disabledUntilMs": 86000.0000000017,
+        "totalDamage": 1888.1491999999996,
+        "kills": 12
+      },
+      {
+        "id": "defense-3",
+        "type": "firewall",
+        "x": 210,
+        "y": 210,
+        "radius": 20,
+        "level": 3,
+        "specialization": "focus",
+        "cooldownMs": 735.176651305693,
+        "disabledUntilMs": 172966.66666665842,
+        "totalDamage": 6637.718949999997,
+        "kills": 42
+      },
+      {
+        "id": "defense-90",
+        "type": "firewall",
+        "x": 210,
+        "y": 270,
+        "radius": 20,
+        "level": 3,
+        "specialization": "focus",
+        "cooldownMs": 485.17665130569344,
+        "disabledUntilMs": 172966.66666665842,
+        "totalDamage": 5593.190599999998,
+        "kills": 29
+      },
+      {
+        "id": "defense-157",
+        "type": "distributor",
+        "x": 450,
+        "y": 270,
+        "radius": 20,
+        "level": 1,
+        "specialization": null,
+        "cooldownMs": 0,
+        "disabledUntilMs": 86000.0000000017,
+        "totalDamage": 0,
+        "kills": 0
+      },
+      {
+        "id": "defense-233",
+        "type": "firewall",
+        "x": 270,
+        "y": 210,
+        "radius": 20,
+        "level": 3,
+        "specialization": "focus",
+        "cooldownMs": 345.30392802282284,
+        "disabledUntilMs": 172966.66666665842,
+        "totalDamage": 5008.0223000000005,
+        "kills": 20
+      },
+      {
+        "id": "defense-454",
+        "type": "firewall",
+        "x": 450,
+        "y": 210,
+        "radius": 20,
+        "level": 3,
+        "specialization": "focus",
+        "cooldownMs": 0,
+        "disabledUntilMs": 0,
+        "totalDamage": 1512.3438999999996,
+        "kills": 5
+      },
+      {
+        "id": "defense-636",
+        "type": "firewall",
+        "x": 450,
+        "y": 330,
+        "radius": 20,
+        "level": 3,
+        "specialization": "focus",
+        "cooldownMs": 0,
+        "disabledUntilMs": 0,
+        "totalDamage": 236.40359999999998,
+        "kills": 1
+      },
+      {
+        "id": "defense-877",
+        "type": "firewall",
+        "x": 510,
+        "y": 330,
+        "radius": 20,
+        "level": 3,
+        "specialization": "focus",
+        "cooldownMs": 0,
+        "disabledUntilMs": 0,
+        "totalDamage": 0,
+        "kills": 0
+      }
+    ],
+    "enemies": [
+      {
+        "id": "enemy-893",
+        "type": "aiSurveillance",
+        "kind": "regular",
+        "name": "AI Surveillance",
+        "x": 37.979166666666686,
+        "y": 270,
+        "radius": 10,
+        "pathDistance": 57.979166666666686,
+        "health": 270,
+        "maxHealth": 270,
+        "speed": 63.24999999999999,
+        "resolution": null,
+        "spawnedAtMs": 187216.66666664925,
+        "slowPct": 0,
+        "slowUntilMs": 0,
+        "vulnerabilityPct": 0,
+        "vulnerabilityUntilMs": 0,
+        "phase": 0,
+        "firedPhases": [],
+        "empUntilMs": 0,
+        "shield": 0,
+        "shieldMax": 0,
+        "shieldCooldownUntilMs": 0,
+        "shieldRegenPerSec": 0
+      },
+      {
+        "id": "enemy-898",
+        "type": "quantumHacker",
+        "kind": "regular",
+        "name": "Quantum Hacker",
+        "x": -18.179166666666667,
+        "y": 270,
+        "radius": 11,
+        "pathDistance": 1.820833333333333,
+        "health": 290.25,
+        "maxHealth": 290.25,
+        "speed": 109.24999999999999,
+        "resolution": null,
+        "spawnedAtMs": 188116.66666664873,
+        "slowPct": 0,
+        "slowUntilMs": 0,
+        "vulnerabilityPct": 0,
+        "vulnerabilityUntilMs": 0,
+        "phase": 0,
+        "firedPhases": [],
+        "empUntilMs": 0,
+        "shield": 0,
+        "shieldMax": 0,
+        "shieldCooldownUntilMs": 0,
+        "shieldRegenPerSec": 0
+      }
+    ],
+    "projectiles": [],
+    "effects": [],
+    "selectedDefenseId": "defense-877",
+    "selectedTowerType": "firewall",
+    "settings": {
+      "tutorialCompleted": true,
+      "reducedMotion": false,
+      "showRanges": true
+    },
+    "reports": {
+      "pending": [
+        {
+          "partial": false,
+          "passiveDharma": 0,
+          "spent": {
+            "dharma": 110,
+            "bandwidth": 35,
+            "anonymity": 0
+          },
+          "refunds": {
+            "dharma": 0,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "bounty": {
+            "dharma": 32,
+            "bandwidth": 16,
+            "anonymity": 0
+          },
+          "clear": {
+            "dharma": 50,
+            "bandwidth": 15,
+            "anonymity": 0
+          },
+          "towers": {
+            "defense-1": {
+              "type": "encryption",
+              "x": 270,
+              "y": 270,
+              "level": 1,
+              "health": 200.4,
+              "shield": 0,
+              "kills": 2,
+              "shots": 12,
+              "slowHits": 10,
+              "vulnerabilityHits": 10,
+              "auraShots": 0
+            },
+            "defense-2": {
+              "type": "firewall",
+              "x": 510,
+              "y": 270,
+              "level": 1,
+              "health": 30,
+              "shield": 0,
+              "kills": 0,
+              "shots": 2,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-3": {
+              "type": "firewall",
+              "x": 210,
+              "y": 210,
+              "level": 1,
+              "health": 417.6,
+              "shield": 0,
+              "kills": 6,
+              "shots": 16,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            }
+          },
+          "leaks": [],
+          "coverage": {},
+          "waveNumber": 1,
+          "killed": 8,
+          "leaked": 0,
+          "outcome": "cleared"
+        },
+        {
+          "partial": false,
+          "passiveDharma": 0,
+          "spent": {
+            "dharma": 59,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "refunds": {
+            "dharma": 0,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "bounty": {
+            "dharma": 40,
+            "bandwidth": 20,
+            "anonymity": 0
+          },
+          "clear": {
+            "dharma": 65,
+            "bandwidth": 20,
+            "anonymity": 0
+          },
+          "towers": {
+            "defense-1": {
+              "type": "encryption",
+              "x": 270,
+              "y": 270,
+              "level": 1,
+              "health": 224.05,
+              "shield": 0,
+              "kills": 1,
+              "shots": 12,
+              "slowHits": 11,
+              "vulnerabilityHits": 11,
+              "auraShots": 0
+            },
+            "defense-2": {
+              "type": "firewall",
+              "x": 510,
+              "y": 270,
+              "level": 2,
+              "health": 273.46000000000004,
+              "shield": 0,
+              "kills": 2,
+              "shots": 11,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-3": {
+              "type": "firewall",
+              "x": 210,
+              "y": 210,
+              "level": 1,
+              "health": 352.99000000000007,
+              "shield": 0,
+              "kills": 7,
+              "shots": 15,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            }
+          },
+          "leaks": [],
+          "coverage": {},
+          "waveNumber": 2,
+          "killed": 10,
+          "leaked": 0,
+          "outcome": "cleared"
+        },
+        {
+          "partial": false,
+          "passiveDharma": 0,
+          "spent": {
+            "dharma": 128,
+            "bandwidth": 68,
+            "anonymity": 0
+          },
+          "refunds": {
+            "dharma": 0,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "bounty": {
+            "dharma": 56,
+            "bandwidth": 25,
+            "anonymity": 0
+          },
+          "clear": {
+            "dharma": 80,
+            "bandwidth": 24,
+            "anonymity": 0
+          },
+          "towers": {
+            "defense-1": {
+              "type": "encryption",
+              "x": 270,
+              "y": 270,
+              "level": 2,
+              "health": 342.3930000000001,
+              "shield": 0,
+              "kills": 5,
+              "shots": 14,
+              "slowHits": 12,
+              "vulnerabilityHits": 12,
+              "auraShots": 0
+            },
+            "defense-2": {
+              "type": "firewall",
+              "x": 510,
+              "y": 270,
+              "level": 2,
+              "health": 180.12699999999998,
+              "shield": 0,
+              "kills": 1,
+              "shots": 9,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-3": {
+              "type": "firewall",
+              "x": 210,
+              "y": 210,
+              "level": 1,
+              "health": 299.95000000000005,
+              "shield": 22,
+              "kills": 2,
+              "shots": 16,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-90": {
+              "type": "firewall",
+              "x": 210,
+              "y": 270,
+              "level": 1,
+              "health": 335.83000000000004,
+              "shield": 44,
+              "kills": 3,
+              "shots": 16,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            }
+          },
+          "leaks": [],
+          "coverage": {},
+          "waveNumber": 3,
+          "killed": 11,
+          "leaked": 0,
+          "outcome": "cleared"
+        },
+        {
+          "partial": false,
+          "passiveDharma": 6,
+          "spent": {
+            "dharma": 129,
+            "bandwidth": 60,
+            "anonymity": 0
+          },
+          "refunds": {
+            "dharma": 0,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "bounty": {
+            "dharma": 64,
+            "bandwidth": 27,
+            "anonymity": 0
+          },
+          "clear": {
+            "dharma": 101,
+            "bandwidth": 29,
+            "anonymity": 0
+          },
+          "towers": {
+            "defense-1": {
+              "type": "encryption",
+              "x": 270,
+              "y": 270,
+              "level": 2,
+              "health": 277.1585000000001,
+              "shield": 31.032499999999995,
+              "kills": 2,
+              "shots": 17,
+              "slowHits": 11,
+              "vulnerabilityHits": 11,
+              "auraShots": 0
+            },
+            "defense-2": {
+              "type": "firewall",
+              "x": 510,
+              "y": 270,
+              "level": 2,
+              "health": 224.53,
+              "shield": 0,
+              "kills": 4,
+              "shots": 10,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-3": {
+              "type": "firewall",
+              "x": 210,
+              "y": 210,
+              "level": 2,
+              "health": 507.7615,
+              "shield": 36.9175,
+              "kills": 4,
+              "shots": 20,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-90": {
+              "type": "firewall",
+              "x": 210,
+              "y": 270,
+              "level": 1,
+              "health": 329.07500000000005,
+              "shield": 26.05,
+              "kills": 1,
+              "shots": 17,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-157": {
+              "type": "distributor",
+              "x": 450,
+              "y": 270,
+              "level": 1,
+              "health": 0,
+              "shield": 0,
+              "kills": 0,
+              "shots": 0,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 27
+            }
+          },
+          "leaks": [],
+          "coverage": {},
+          "waveNumber": 4,
+          "killed": 11,
+          "leaked": 0,
+          "outcome": "cleared"
+        },
+        {
+          "partial": false,
+          "passiveDharma": 6,
+          "spent": {
+            "dharma": 148,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "refunds": {
+            "dharma": 0,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "bounty": {
+            "dharma": 160,
+            "bandwidth": 79,
+            "anonymity": 0
+          },
+          "clear": {
+            "dharma": 126,
+            "bandwidth": 36,
+            "anonymity": 0
+          },
+          "towers": {
+            "defense-1": {
+              "type": "encryption",
+              "x": 270,
+              "y": 270,
+              "level": 2,
+              "health": 250.659,
+              "shield": 0,
+              "kills": 7,
+              "shots": 26,
+              "slowHits": 20,
+              "vulnerabilityHits": 20,
+              "auraShots": 0
+            },
+            "defense-2": {
+              "type": "firewall",
+              "x": 510,
+              "y": 270,
+              "level": 2,
+              "health": 218.73749999999998,
+              "shield": 0,
+              "kills": 1,
+              "shots": 16,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-3": {
+              "type": "firewall",
+              "x": 210,
+              "y": 210,
+              "level": 2,
+              "health": 761.2135000000006,
+              "shield": 0,
+              "kills": 2,
+              "shots": 29,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-90": {
+              "type": "firewall",
+              "x": 210,
+              "y": 270,
+              "level": 2,
+              "health": 509.1299999999999,
+              "shield": 0,
+              "kills": 3,
+              "shots": 30,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-157": {
+              "type": "distributor",
+              "x": 450,
+              "y": 270,
+              "level": 1,
+              "health": 0,
+              "shield": 0,
+              "kills": 0,
+              "shots": 0,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 74
+            },
+            "defense-233": {
+              "type": "firewall",
+              "x": 270,
+              "y": 210,
+              "level": 2,
+              "health": 667.31,
+              "shield": 0,
+              "kills": 4,
+              "shots": 32,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            }
+          },
+          "leaks": [],
+          "coverage": {},
+          "waveNumber": 5,
+          "killed": 17,
+          "leaked": 0,
+          "outcome": "cleared"
+        },
+        {
+          "partial": false,
+          "passiveDharma": 6,
+          "spent": {
+            "dharma": 304,
+            "bandwidth": 133,
+            "anonymity": 0
+          },
+          "refunds": {
+            "dharma": 0,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "bounty": {
+            "dharma": 89,
+            "bandwidth": 36,
+            "anonymity": 0
+          },
+          "clear": {
+            "dharma": 126,
+            "bandwidth": 36,
+            "anonymity": 0
+          },
+          "towers": {
+            "defense-1": {
+              "type": "encryption",
+              "x": 270,
+              "y": 270,
+              "level": 3,
+              "health": 380.1667999999999,
+              "shield": 72.28,
+              "kills": 1,
+              "shots": 14,
+              "slowHits": 12,
+              "vulnerabilityHits": 12,
+              "auraShots": 0
+            },
+            "defense-2": {
+              "type": "firewall",
+              "x": 510,
+              "y": 270,
+              "level": 3,
+              "health": 0,
+              "shield": 0,
+              "kills": 0,
+              "shots": 0,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-3": {
+              "type": "firewall",
+              "x": 210,
+              "y": 210,
+              "level": 2,
+              "health": 444.8349999999999,
+              "shield": 31.450000000000003,
+              "kills": 1,
+              "shots": 15,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-90": {
+              "type": "firewall",
+              "x": 210,
+              "y": 270,
+              "level": 2,
+              "health": 318.3622,
+              "shield": 44.2515,
+              "kills": 4,
+              "shots": 15,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-157": {
+              "type": "distributor",
+              "x": 450,
+              "y": 270,
+              "level": 1,
+              "health": 0,
+              "shield": 0,
+              "kills": 0,
+              "shots": 0,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 30
+            },
+            "defense-233": {
+              "type": "firewall",
+              "x": 270,
+              "y": 210,
+              "level": 2,
+              "health": 436.8109999999999,
+              "shield": 56.018499999999996,
+              "kills": 4,
+              "shots": 16,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            }
+          },
+          "leaks": [],
+          "coverage": {},
+          "waveNumber": 6,
+          "killed": 10,
+          "leaked": 0,
+          "outcome": "cleared"
+        },
+        {
+          "partial": false,
+          "passiveDharma": 6,
+          "spent": {
+            "dharma": 203,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "refunds": {
+            "dharma": 0,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "bounty": {
+            "dharma": 124,
+            "bandwidth": 55,
+            "anonymity": 0
+          },
+          "clear": {
+            "dharma": 141,
+            "bandwidth": 41,
+            "anonymity": 0
+          },
+          "towers": {
+            "defense-1": {
+              "type": "encryption",
+              "x": 270,
+              "y": 270,
+              "level": 3,
+              "health": 351.4676,
+              "shield": 72.28,
+              "kills": 5,
+              "shots": 21,
+              "slowHits": 14,
+              "vulnerabilityHits": 14,
+              "auraShots": 0
+            },
+            "defense-2": {
+              "type": "firewall",
+              "x": 510,
+              "y": 270,
+              "level": 3,
+              "health": 275.06250000000006,
+              "shield": 0,
+              "kills": 3,
+              "shots": 7,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-3": {
+              "type": "firewall",
+              "x": 210,
+              "y": 210,
+              "level": 2,
+              "health": 540.2729999999999,
+              "shield": 70.67150000000001,
+              "kills": 2,
+              "shots": 21,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-90": {
+              "type": "firewall",
+              "x": 210,
+              "y": 270,
+              "level": 2,
+              "health": 433.9051,
+              "shield": 31.450000000000003,
+              "kills": 6,
+              "shots": 21,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-157": {
+              "type": "distributor",
+              "x": 450,
+              "y": 270,
+              "level": 1,
+              "health": 0,
+              "shield": 0,
+              "kills": 0,
+              "shots": 0,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 61
+            },
+            "defense-233": {
+              "type": "firewall",
+              "x": 270,
+              "y": 210,
+              "level": 3,
+              "health": 605.9088,
+              "shield": 182.73850000000002,
+              "kills": 3,
+              "shots": 18,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-454": {
+              "type": "firewall",
+              "x": 450,
+              "y": 210,
+              "level": 2,
+              "health": 276.033,
+              "shield": 0,
+              "kills": 0,
+              "shots": 15,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            }
+          },
+          "leaks": [],
+          "coverage": {},
+          "waveNumber": 7,
+          "killed": 19,
+          "leaked": 0,
+          "outcome": "cleared"
+        },
+        {
+          "partial": false,
+          "passiveDharma": 6,
+          "spent": {
+            "dharma": 228,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "refunds": {
+            "dharma": 0,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "bounty": {
+            "dharma": 120,
+            "bandwidth": 56,
+            "anonymity": 0
+          },
+          "clear": {
+            "dharma": 156,
+            "bandwidth": 45,
+            "anonymity": 0
+          },
+          "towers": {
+            "defense-1": {
+              "type": "encryption",
+              "x": 270,
+              "y": 270,
+              "level": 3,
+              "health": 213.59965,
+              "shield": 0,
+              "kills": 2,
+              "shots": 13,
+              "slowHits": 8,
+              "vulnerabilityHits": 8,
+              "auraShots": 0
+            },
+            "defense-2": {
+              "type": "firewall",
+              "x": 510,
+              "y": 270,
+              "level": 3,
+              "health": 0,
+              "shield": 0,
+              "kills": 0,
+              "shots": 0,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-3": {
+              "type": "firewall",
+              "x": 210,
+              "y": 210,
+              "level": 3,
+              "health": 613.3555999999999,
+              "shield": 0,
+              "kills": 3,
+              "shots": 11,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-90": {
+              "type": "firewall",
+              "x": 210,
+              "y": 270,
+              "level": 2,
+              "health": 295.2369999999999,
+              "shield": 0,
+              "kills": 3,
+              "shots": 14,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-157": {
+              "type": "distributor",
+              "x": 450,
+              "y": 270,
+              "level": 1,
+              "health": 0,
+              "shield": 0,
+              "kills": 0,
+              "shots": 0,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 24
+            },
+            "defense-233": {
+              "type": "firewall",
+              "x": 270,
+              "y": 210,
+              "level": 3,
+              "health": 489.70775000000003,
+              "shield": 0,
+              "kills": 2,
+              "shots": 11,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-454": {
+              "type": "firewall",
+              "x": 450,
+              "y": 210,
+              "level": 3,
+              "health": 0,
+              "shield": 0,
+              "kills": 0,
+              "shots": 0,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            }
+          },
+          "leaks": [],
+          "coverage": {},
+          "waveNumber": 8,
+          "killed": 10,
+          "leaked": 0,
+          "outcome": "cleared"
+        },
+        {
+          "partial": false,
+          "passiveDharma": 6,
+          "spent": {
+            "dharma": 317,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "refunds": {
+            "dharma": 0,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "bounty": {
+            "dharma": 178,
+            "bandwidth": 78,
+            "anonymity": 0
+          },
+          "clear": {
+            "dharma": 171,
+            "bandwidth": 50,
+            "anonymity": 0
+          },
+          "towers": {
+            "defense-1": {
+              "type": "encryption",
+              "x": 270,
+              "y": 270,
+              "level": 3,
+              "health": 451.15999999999985,
+              "shield": 0,
+              "kills": 0,
+              "shots": 19,
+              "slowHits": 13,
+              "vulnerabilityHits": 13,
+              "auraShots": 0
+            },
+            "defense-2": {
+              "type": "firewall",
+              "x": 510,
+              "y": 270,
+              "level": 3,
+              "health": 114.04190000000001,
+              "shield": 0,
+              "kills": 1,
+              "shots": 5,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-3": {
+              "type": "firewall",
+              "x": 210,
+              "y": 210,
+              "level": 3,
+              "health": 590.2293,
+              "shield": 76.75999999999999,
+              "kills": 4,
+              "shots": 15,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-90": {
+              "type": "firewall",
+              "x": 210,
+              "y": 270,
+              "level": 3,
+              "health": 851.8252000000002,
+              "shield": 38.379999999999995,
+              "kills": 6,
+              "shots": 15,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-157": {
+              "type": "distributor",
+              "x": 450,
+              "y": 270,
+              "level": 1,
+              "health": 0,
+              "shield": 0,
+              "kills": 0,
+              "shots": 0,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 51
+            },
+            "defense-233": {
+              "type": "firewall",
+              "x": 270,
+              "y": 210,
+              "level": 3,
+              "health": 749.1736,
+              "shield": 232.86,
+              "kills": 3,
+              "shots": 16,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-454": {
+              "type": "firewall",
+              "x": 450,
+              "y": 210,
+              "level": 3,
+              "health": 369.06,
+              "shield": 0,
+              "kills": 2,
+              "shots": 7,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-636": {
+              "type": "firewall",
+              "x": 450,
+              "y": 330,
+              "level": 3,
+              "health": 22.710000000000008,
+              "shield": 0,
+              "kills": 1,
+              "shots": 4,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            }
+          },
+          "leaks": [],
+          "coverage": {},
+          "waveNumber": 9,
+          "killed": 17,
+          "leaked": 0,
+          "outcome": "cleared"
+        },
+        {
+          "partial": false,
+          "passiveDharma": 6,
+          "spent": {
+            "dharma": 371,
+            "bandwidth": 260,
+            "anonymity": 0
+          },
+          "refunds": {
+            "dharma": 0,
+            "bandwidth": 0,
+            "anonymity": 0
+          },
+          "bounty": {
+            "dharma": 302,
+            "bandwidth": 145,
+            "anonymity": 0
+          },
+          "clear": {
+            "dharma": 206,
+            "bandwidth": 60,
+            "anonymity": 0
+          },
+          "towers": {
+            "defense-1": {
+              "type": "encryption",
+              "x": 270,
+              "y": 270,
+              "level": 4,
+              "health": 539.7940499999999,
+              "shield": 0,
+              "kills": 1,
+              "shots": 29,
+              "slowHits": 17,
+              "vulnerabilityHits": 17,
+              "auraShots": 0
+            },
+            "defense-2": {
+              "type": "firewall",
+              "x": 510,
+              "y": 270,
+              "level": 3,
+              "health": 168.3736,
+              "shield": 0,
+              "kills": 0,
+              "shots": 9,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-3": {
+              "type": "firewall",
+              "x": 210,
+              "y": 210,
+              "level": 3,
+              "health": 853.6259500000001,
+              "shield": 0,
+              "kills": 9,
+              "shots": 21,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-90": {
+              "type": "firewall",
+              "x": 210,
+              "y": 270,
+              "level": 3,
+              "health": 1152.2561499999997,
+              "shield": 0,
+              "kills": 3,
+              "shots": 21,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-157": {
+              "type": "distributor",
+              "x": 450,
+              "y": 270,
+              "level": 1,
+              "health": 0,
+              "shield": 0,
+              "kills": 0,
+              "shots": 0,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 80
+            },
+            "defense-233": {
+              "type": "firewall",
+              "x": 270,
+              "y": 210,
+              "level": 3,
+              "health": 990.77305,
+              "shield": 0,
+              "kills": 4,
+              "shots": 22,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-454": {
+              "type": "firewall",
+              "x": 450,
+              "y": 210,
+              "level": 3,
+              "health": 693.8536000000001,
+              "shield": 0,
+              "kills": 3,
+              "shots": 12,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            },
+            "defense-636": {
+              "type": "firewall",
+              "x": 450,
+              "y": 330,
+              "level": 3,
+              "health": 168.3736,
+              "shield": 0,
+              "kills": 0,
+              "shots": 8,
+              "slowHits": 0,
+              "vulnerabilityHits": 0,
+              "auraShots": 0
+            }
+          },
+          "leaks": [],
+          "coverage": {},
+          "waveNumber": 10,
+          "killed": 20,
+          "leaked": 0,
+          "outcome": "cleared"
+        }
+      ],
+      "active": {
+        "partial": false,
+        "passiveDharma": 0,
+        "spent": {
+          "dharma": 425,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 48,
+          "bandwidth": 24,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "encryption",
+            "x": 270,
+            "y": 270,
+            "level": 4,
+            "health": 102.51055,
+            "shield": 0,
+            "kills": 1,
+            "shots": 5,
+            "slowHits": 4,
+            "vulnerabilityHits": 4,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "firewall",
+            "x": 210,
+            "y": 210,
+            "level": 3,
+            "health": 200.99165000000005,
+            "shield": 0,
+            "kills": 2,
+            "shots": 4,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-90": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 3,
+            "health": 321.27889999999996,
+            "shield": 0,
+            "kills": 0,
+            "shots": 4,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-157": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 8
+          },
+          "defense-233": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 3,
+            "health": 185.21889999999996,
+            "shield": 0,
+            "kills": 0,
+            "shots": 3,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-454": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-636": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-877": {
+            "type": "firewall",
+            "x": 510,
+            "y": 330,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {
+          "enemy-893": 56.92500000000002
+        }
+      }
+    },
+    "lastWaveResult": {
+      "waveNumber": 10,
+      "killed": 20,
+      "leaked": 0,
+      "reward": {
+        "dharma": 206,
+        "bandwidth": 60,
+        "anonymity": 0
+      }
+    },
+    "finalStatistics": null
+  },
+  "runtime": {
+    "scheduler": {
+      "events": [
+        {
+          "dueAtMs": 0,
+          "enemyType": "aiSurveillance",
+          "hpMultiplier": 1.25,
+          "dynamic": false,
+          "order": 0
+        },
+        {
+          "dueAtMs": 1200,
+          "enemyType": "aiSurveillance",
+          "hpMultiplier": 1.25,
+          "dynamic": false,
+          "order": 1
+        },
+        {
+          "dueAtMs": 2400,
+          "enemyType": "aiSurveillance",
+          "hpMultiplier": 1.25,
+          "dynamic": false,
+          "order": 2
+        },
+        {
+          "dueAtMs": 3600,
+          "enemyType": "aiSurveillance",
+          "hpMultiplier": 1.25,
+          "dynamic": false,
+          "order": 3
+        },
+        {
+          "dueAtMs": 4500,
+          "enemyType": "quantumHacker",
+          "hpMultiplier": 1,
+          "dynamic": false,
+          "order": 4
+        },
+        {
+          "dueAtMs": 4800,
+          "enemyType": "aiSurveillance",
+          "hpMultiplier": 1.25,
+          "dynamic": false,
+          "order": 5
+        },
+        {
+          "dueAtMs": 6000,
+          "enemyType": "aiSurveillance",
+          "hpMultiplier": 1.25,
+          "dynamic": false,
+          "order": 6
+        },
+        {
+          "dueAtMs": 6500,
+          "enemyType": "quantumHacker",
+          "hpMultiplier": 1,
+          "dynamic": false,
+          "order": 7
+        }
+      ],
+      "cursor": 5,
+      "elapsedMs": 4516.66666666666,
+      "generation": 22
+    },
+    "clock": {
+      "accumulatorMs": 0
+    },
+    "randomState": 481781763,
+    "ids": {
+      "prefix": "entity",
+      "nextValue": 899
+    },
+    "generation": 22
+  }
+}
