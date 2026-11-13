@@ -124,6 +124,9 @@ test('old 1.0.0 game-over saves with extra same-tick leaks are recovered on load
   // content retires these saves through recovery, tested separately.
   const oldBalance = structuredClone(balance); oldBalance.version = '1.0.0';
   delete oldBalance.towers.firewall.specializations; delete oldBalance.towers.encryption.specializations;
+  oldBalance.bosses.raidTeam.abilities.emp.thresholds = [0.66, 0.33];
+  oldBalance.bosses.raidTeam.abilities.reinforcements.byPhase =
+    [['scriptKiddie', 'scriptKiddie'], ['federalAgent', 'scriptKiddie']];
   oldSnapshot.schemaVersion = oldSnapshot.state.schemaVersion = 2;
   oldSnapshot.balanceVersion = oldSnapshot.state.balanceVersion = '1.0.0';
   const repository = new BrowserSaveRepository(memoryStorage());
