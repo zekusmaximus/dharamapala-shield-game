@@ -1,0 +1,283 @@
++ git rev-parse HEAD
+95a9f6ed4753969e8edab80a99fccaba8924ef91
+exit=0
++ node --version
+v24.22.1
+exit=0
++ npm --version
+11.9.0
+exit=0
++ test ! -d node_modules
+exit=0
++ test ! -d dist
+exit=0
++ npm ci --cache /tmp/dharamapala-m42-npm-cache
+
+added 5 packages in 833ms
+exit=0
++ npx playwright install chromium
+exit=0
++ npm run build
+
+> dharmapala-shield-game@1.0.0 build
+> node scripts/build.mjs
+
+Built client application in /tmp/dharamapala-m42-clean/dist
+exit=0
++ npm run test:unit
+
+> dharmapala-shield-game@1.0.0 test:unit
+> node --test "tests/unit/*.test.js"
+
+✔ brace has exact one-use boundaries, finite capacity, no refill and large-step expiry (1.630627ms)
+✔ brace content rejects b=>delete b.enemies.federalAgent.brace (4.402073ms)
+✔ brace content rejects b=>b.enemies.federalAgent.brace.windupMs=0 (0.662619ms)
+✔ brace content rejects b=>b.enemies.federalAgent.brace.durationMs=Infinity (0.686885ms)
+✔ brace content rejects b=>b.enemies.federalAgent.brace.healthRatio=1.1 (0.415567ms)
+✔ brace content rejects b=>b.enemies.federalAgent.brace.radius=50 (0.897373ms)
+✔ brace content rejects b=>b.enemies.scriptKiddie.brace=b.enemies.federalAgent.brace (1.322593ms)
+✔ brace content rejects b=>delete b.towers.firewall.specializations (0.830722ms)
+✔ brace content rejects b=>delete b.economy.activeResources (1.895927ms)
+✔ static cue labels and semantic equivalents follow warning, active, broken and spent with both motion preferences (2.053464ms)
+✔ broken brace glyph and text remain distinct from active capacity and never refill (0.48452ms)
+✔ wave speed scales clamped wall time, never the fixed combat step (2.65419ms)
+✔ a speed change retains fractional simulated time and a stopped step clears it (0.336266ms)
+✔ status text obeys expiry and actual speed cap without mutating combat state (1.421943ms)
+✔ single warned EMP fires once at threshold, including an over-threshold hit (5.538486ms)
+✔ Titan reports shield behavior rather than unused phase metadata (0.297939ms)
+✔ canvas draws distinct static markers, shield fill, and pending EMP range from live state (2.726207ms)
+✔ a non-piercing projectile resolves exactly one collision (6.096547ms)
+✔ piercing hit IDs prevent repeat damage and splash is applied once per target (5.760339ms)
+✔ MegaCorp Titan shield recovery waits three seconds after the latest shield or health hit (4.337086ms)
+✔ shipped content satisfies the explicit runtime schema (7.934596ms)
+✔ reject content fixture: unused top-level balance metadata (4.249553ms)
+✔ reject content fixture: unused special label (5.297864ms)
+✔ reject content fixture: unused boss phase count (0.88929ms)
+✔ reject content fixture: unused burn damage (4.175913ms)
+✔ reject content fixture: unused interest rate (3.031028ms)
+✔ reject content fixture: missing display label (0.733956ms)
+✔ reject content fixture: invalid icon (0.916371ms)
+✔ reject content fixture: invalid color (1.437446ms)
+✔ reject content fixture: noninteger bounty (0.962361ms)
+✔ reject content fixture: unknown status property (1.38045ms)
+✔ reject content fixture: inactive slow metadata (1.206097ms)
+✔ reject content fixture: incomplete vulnerability (0.559023ms)
+✔ reject content fixture: slow beyond tower cap (0.828158ms)
+✔ reject content fixture: missing boss ability (0.703541ms)
+✔ reject content fixture: extra EMP threshold (0.888289ms)
+✔ reject content fixture: invalid EMP radius (1.435122ms)
+✔ reject content fixture: unknown reinforcement type (0.870752ms)
+✔ reject content fixture: invalid shield ratio (0.863291ms)
+✔ reject content fixture: invalid chain radius (0.77029ms)
+✔ reject content fixture: unreachable chain level (0.992606ms)
+✔ reject content fixture: unknown spawn property (0.999566ms)
+✔ reject content fixture: noninteger wave reward (0.806986ms)
+✔ presentation and derived tower stats read the same validated tunables (1.371888ms)
+✔ retired currency retains ledger shape; current supply, costs and earned rewards are zero (1.836658ms)
+✔ active-resource contract rejects ambiguous currencies, retired supply/cost, and missing specialization (6.120162ms)
+✔ matching historical content retains its original three-resource rewards (5.233706ms)
+✔ unplaced blueprints use the same level, cost and refund rules (2.474168ms)
+✔ attacker comparison uses combat stats, active aura, upgrade cost and refund rules (0.947028ms)
+✔ max-level direct attacker has no invented status or next upgrade (0.305781ms)
+✔ Distributor shows actual marginal support, EMP expiry and passive capped income (2.781622ms)
+✔ enemy intel uses active damage types and only implemented abilities (1.794424ms)
+✔ three active towers have distinct tested roles (1.757108ms)
+✔ upgrades never invent status effects without an application duration (0.96273ms)
+✔ only enabled nearby Distributors supply aura, including at the expiry boundary (0.458741ms)
+✔ upgrade and sell values share economy rules (1.514832ms)
+✔ wave schedules are deterministic and zero intervals stay finite (0.807207ms)
+✔ reject malformed save: resource (14.632579ms)
+✔ reject malformed save: lives (3.498793ms)
+✔ reject malformed save: wave (1.90433ms)
+✔ reject malformed save: level (1.981666ms)
+✔ reject malformed save: position (1.675175ms)
+✔ reject malformed save: overlap (2.5946ms)
+✔ reject malformed save: enemyPosition (1.730858ms)
+✔ reject malformed save: health (1.41385ms)
+✔ reject malformed save: phases (1.976538ms)
+✔ reject malformed save: projectileId (1.653892ms)
+✔ reject malformed save: source (1.689295ms)
+✔ reject malformed save: target (1.627934ms)
+✔ reject malformed save: hitIds (1.666371ms)
+✔ reject malformed save: enemyType (1.758109ms)
+✔ reject malformed save: schedule (1.496896ms)
+✔ reject malformed save: cursor (1.881225ms)
+✔ reject malformed save: waveCursor (1.73178ms)
+✔ reject malformed save: count (2.118914ms)
+✔ reject malformed save: gameOver (1.938571ms)
+✔ reject malformed save: victory (1.444276ms)
+✔ reject malformed save: phase (1.681734ms)
+✔ reject malformed save: resume (1.382574ms)
+✔ reject malformed save: clock (1.927334ms)
+✔ reject malformed save: generation (1.496395ms)
+✔ reject malformed save: random (1.711729ms)
+✔ reject malformed save: sequence (1.372468ms)
+✔ reject malformed save: settings (1.558939ms)
+✔ reject malformed save: result (1.816597ms)
+✔ reject malformed save: balanceVersion (1.55255ms)
+✔ reject malformed balance: cost (0.615658ms)
+✔ reject malformed balance: damage (0.329957ms)
+✔ reject malformed balance: resistance (0.565472ms)
+✔ reject malformed balance: wave (1.119267ms)
+✔ reject malformed balance: group (0.94245ms)
+✔ reject malformed balance: difficulty (0.491711ms)
+✔ reject malformed balance: economy (0.627285ms)
+✔ reject malformed balance: upgrades (0.326542ms)
+✔ denied storage never throws, including acquisition/read/write/reset (0.973046ms)
+✔ invalid payload cannot be overwritten before explicit reset (1.769316ms)
+✔ v2 repository round-trips paused state and runtime cursors (10.481694ms)
+✔ corrupt saves are preserved without mutating a live session (0.733435ms)
+✔ old 1.4.0/v4 wave bytes remain exportable until explicit reset; preferences survive (8.673089ms)
+✔ M4.1 1.5.0/v4 Raid phase bytes remain exportable until explicit reset (5.968724ms)
+✔ historical legacy removed towers are refunded and active towers are reconstructed (4.331888ms)
+✔ scheduler preserves stable ordering and accepts zero intervals (1.424477ms)
+✔ scheduler rejects stale generations and clear invalidates pending work (0.155243ms)
+✔ phase transitions are explicit and rejected commands do not mutate state (5.332346ms)
+✔ pause freezes game time and spawning (1.867504ms)
+✔ restart invalidates a partially released schedule (1.476925ms)
+✔ leaks never grant kill rewards and kills reward exactly once (1.557587ms)
+✔ placement, upgrades, and selling use one authoritative defense Map (1.976428ms)
+✔ wave inspection can select a tower without opening build commands (0.68328ms)
+✔ focus and coverage trade hit size, cadence and range under production armor rules (1.429274ms)
+✔ control branches override late chain; caps and branch multipliers persist through level 5 (0.32486ms)
+✔ level-3 choice is explicit, atomic, affordable and irrevocable through later upgrades (6.441577ms)
+✔ reject malformed specialization b=>b.towers.firewall.specializations.focus.rateMultiplier=0 (0.65042ms)
+✔ reject malformed specialization b=>b.towers.firewall.specializations.focus.rangeMultiplier=Infinity (0.347023ms)
+✔ reject malformed specialization b=>b.towers.firewall.specializations.coverage.extraEffect=1 (0.513573ms)
+✔ reject malformed specialization b=>delete b.towers.firewall.specializations.focus (0.35778ms)
+✔ reject malformed specialization b=>b.towers.encryption.specializations.reach.chainTargets=1.5 (0.410118ms)
+✔ reject malformed specialization b=>b.towers.distributor.specializations=b.towers.firewall.specializations (0.979716ms)
+✔ reject malformed specialization b=>b.towers.encryption.specializations.sustain.description='' (0.439463ms)
+✔ specialization inspection includes the actual capped aura rate for each alternative (1.369073ms)
+✔ wave keyboard inspection cursor is drawn at its world position (1.401361ms)
+✔ catalog covers every active tower, enemy, and boss exactly once (0.297799ms)
+✔ catalog normalizes human and file-style entity IDs (0.164788ms)
+✔ asset loader makes ready sheets available without loading in draw calls (0.502317ms)
+✔ asset loader resolves failures and leaves entities on fallback rendering (0.238319ms)
+✔ renderer uses catalog frames when a sprite is ready (0.519934ms)
+✔ renderer falls back to shapes for missing and undrawable sprites (0.721887ms)
+✔ wave 1 has exact deterministic pressure, preview windows and serializable release order (3.493425ms)
+✔ wave 2 has exact deterministic pressure, preview windows and serializable release order (0.646895ms)
+✔ wave 3 has exact deterministic pressure, preview windows and serializable release order (0.503529ms)
+✔ wave 4 has exact deterministic pressure, preview windows and serializable release order (6.951635ms)
+✔ wave 5 has exact deterministic pressure, preview windows and serializable release order (0.525853ms)
+✔ overlapping, zero and fractional offsets use stable authored ties; omitted offsets retain trailing intervals (3.175625ms)
+✔ invalid spawn offset -1 rejects (1.156843ms)
+✔ invalid spawn offset null rejects (0.979977ms)
+✔ invalid spawn offset 100 rejects (0.719925ms)
+✔ invalid spawn offset NaN rejects (0.718352ms)
+✔ invalid spawn offset Infinity rejects (0.645453ms)
+✔ overflowing derived times reject before session construction (0.65745ms)
+✔ M4.1 act packets have exact count/end, cross-type overlap and preview parity (1.661664ms)
+✔ established first act remains exactly the M3.4 schedule (17.341572ms)
+ℹ tests 141
+ℹ suites 0
+ℹ pass 141
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1248.875741
+exit=0
++ npm run test:integration
+
+> dharmapala-shield-game@1.0.0 test:integration
+> node --test "tests/integration/*.test.js"
+
+✔ 1× brace activation/expiry, paused JSON and production impact boundary (skipped-wave fixture) (17.63273ms)
+✔ 2× brace activation/expiry, paused JSON and production impact boundary (skipped-wave fixture) (7.22005ms)
+✔ shield absorbs after armor, overflows, permits statuses and accounts capped shield/health without Titan cooldown (1.38686ms)
+✔ pending brace saves reject malformed deadlines, phases, capacities and foreign state before replacement (9.082726ms)
+✔ 1× earned wave-3 responses reconcile combat ledgers and continuation (237.469857ms)
+✔ 2× earned wave-3 responses reconcile combat ledgers and continuation (156.423721ms)
+✔ M3.3 v3 run bytes recover explicitly in all phases and preferences survive reset (19.238604ms)
+✔ terminal freezes pending behavior, restart clears it, and expiry is not credited as shield damage (1.17478ms)
+✔ production projectile collision sees activation and expiry before impacts on the boundary tick (1.110694ms)
+✔ a lethal hit is fully resolved before an enemy-hit listener can enter results (9.875701ms)
+✔ configured slow and vulnerability reach actual projectiles and enemy movement (6.630221ms)
+✔ configured Raid Team threshold, radius, duration and minions drive production phase handling and a valid save (9.173683ms)
+✔ configured Titan shield ratio, recovery delay and rate drive production hit and recovery (1.176212ms)
+✔ configured chain radius and secondary multiplier drive the production impact path (0.974839ms)
+✔ earned five-wave economies at 1× reconcile ledgers and paused JSON continuation (437.871086ms)
+✔ earned five-wave economies at 2× reconcile ledgers and paused JSON continuation (311.89582ms)
+✔ earned wave-2 choices expose a Bandwidth constraint independently of Dharma; failure is atomic (25.235115ms)
+✔ earned-checkpoint marginal comparisons retain production status, aura activity and passive accounting (214.384625ms)
+✔ M3.2 v3 and pre-v2 runs use retained-byte recovery, never a silent economy conversion (10.124016ms)
+✔ Raid Team EMP suspends the support aura in actual tower fire and restores it at expiry (6.664703ms)
+✔ EMP-disabled support and its recovery continue identically after save/restore (61.588584ms)
+✔ a Distributor disabled at wave clear still earns its passive income (14.266177ms)
+✔ continued combat parity through wave 1, including nested isolation (28.104189ms)
+✔ continued combat parity through wave 5, including nested isolation (60.611393ms)
+✔ continued combat parity through wave 15, including nested isolation (84.474751ms)
+✔ a new session remains in building until start wave is commanded (3.833857ms)
+✔ Raid Team single EMP dispatches four deterministic minions and survives round-trip saves (6.923122ms)
+✔ twenty waves reach victory exactly once and never schedule wave 21 (5.062878ms)
+✔ game over is immediate and subsequent ticks are inert (1.07475ms)
+✔ focus 1× production Raid combat survives JSON pause/continue through clearance (46.039585ms)
+✔ focus 2× production Raid combat survives JSON pause/continue through clearance (22.489689ms)
+✔ coverage 1× production Raid combat survives JSON pause/continue through clearance (24.260126ms)
+✔ coverage 2× production Raid combat survives JSON pause/continue through clearance (22.156877ms)
+✔ sustain 1× production Raid combat survives JSON pause/continue through clearance (52.723266ms)
+✔ sustain 2× production Raid combat survives JSON pause/continue through clearance (29.11346ms)
+✔ reach 1× production Raid combat survives JSON pause/continue through clearance (31.365093ms)
+✔ reach 2× production Raid combat survives JSON pause/continue through clearance (36.848085ms)
+✔ controlled comparisons show scenario-dependent damage/control choices and aura activity (61.203485ms)
+✔ save validator rejects absent, foreign, early, support and malformed branches before restoration (20.461873ms)
+✔ M3.1 v2 exact bytes survive version rejection, export and reset; preferences stay compatible (13.914467ms)
+✔ legacy level-3 attacker is rejected rather than assigned an invented branch (0.401555ms)
+✔ same-tick exits stop at game over and live, captured, persisted results agree (14.026737ms)
+✔ restored continuing combat reaches the same terminal result (5.186359ms)
+✔ a resolution listener can enter terminal and save before resolution returns (3.394395ms)
+✔ terminal saves reject any disagreement in captured statistics (3.020101ms)
+✖ old 1.0.0 game-over saves with extra same-tick leaks are recovered on load (2.897966ms)
+✔ a terminal transition during an achievement stops later resolution events (2.15673ms)
+✔ a saved Titan fight retains health-hit cooldown and identical later recovery (12.275607ms)
+✔ fresh five-wave production slice at 1× preserves schedules, overlap, recovery, accounting and continuation (712.297076ms)
+✔ fresh five-wave production slice at 2× preserves schedules, overlap, recovery, accounting and continuation (634.671746ms)
+✔ old production 1.0.0 v2 save is retained for export/reset; preferences remain compatible (12.005756ms)
+✔ modified overlapping base due times reject before restore (2.348109ms)
+✔ reordered simultaneous escorts reject instead of changing deterministic tie order (1.311266ms)
+✔ real wave combat accounts spending, refunds, bounties, clear income and tower work; reports survive starts and restore (43.668302ms)
+✔ natural leaks record enemy types, no coverage and sampled last coverage, including defeat (22.453584ms)
+✔ production impact path records shield absorption, capped health, and control applications without inventing assistance damage (0.991074ms)
+✔ production firing records overlapping capped aura presence but excludes EMP-disabled support (1.959152ms)
+✔ legacy v2 reports are optional and explicitly partial; malformed tracking is rejected (13.173771ms)
+✔ a disabled Distributor reports passive clear income independently of active aura (12.438513ms)
+✔ invalid report counts, types, coverage and resource payloads fail before restoration (7.427262ms)
+✔ 1× and 2× reach identical production combat and reports on wave 5 (75.775072ms)
+✔ 1× and 2× reach identical production combat and reports on wave 15 (102.102679ms)
+✔ switching during a Raid Team fight and while paused preserves fractional time across save/continue (73.605022ms)
+✔ natural defeat and victory stop further 2× advancement and lock speed changes (149.075635ms)
+✔ old v2 saves default to 1×, reject invalid speeds, and restart resets speed (4.840654ms)
+✔ 2× selection persists across a real clear, while the next wave waits for Start Wave (2.967672ms)
+ℹ tests 66
+ℹ suites 0
+ℹ pass 65
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4834.074392
+
+✖ failing tests:
+
+test at tests/integration/terminal-transition.test.js:112:1
+✖ old 1.0.0 game-over saves with extra same-tick leaks are recovered on load (2.897966ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  false !== true
+
+      at TestContext.<anonymous> (file:///tmp/dharamapala-m42-clean/tests/integration/terminal-transition.test.js:132:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

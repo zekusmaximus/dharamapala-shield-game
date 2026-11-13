@@ -127,6 +127,26 @@ prior-artifact preservation and pinned M3.5 archive hash. Its complete log is
 retained in [validation.txt](validation.txt); hosted PR results are recorded
 separately in [ci.txt](ci.txt).
 
+A detached clean checkout at implementation commit `f1bb06a`, with no
+`node_modules` or `dist`, passed the full pipeline on Node 24.22.1, npm 11.9.0,
+Playwright 1.61.1 and Chromium 149.0.7827.55:
+
+| Clean-checkout check | Result |
+| --- | --- |
+| Locked install, Chromium install, fresh build | Pass |
+| Unit / integration / simulation | 141 / 66 / 13 passed |
+| Browser / accessibility | 102 / 14 passed; no serious/critical axe findings in scanned semantic UI |
+| Current baseline, 21 campaigns, summary, counterplay, before/after boss traces, old-v4 fixture, comparison | Byte-identical regeneration |
+| Historical M3.3 economy and M3.2 tradeoffs | Byte-identical regeneration |
+| All earlier evidence, pinned M3.5 archive SHA-256, scope and clean worktree | Pass |
+
+The [first clean attempt](initial-validation.txt) passed unit checks but found
+a historical terminal-save fixture that relabeled current boss content as
+1.0.0. With 1.6.0's one threshold, that fixture no longer represented valid
+old content. The fixture now supplies its original two Raid thresholds and
+phase lists; focused integration and the entire clean pipeline pass. No
+production rule changed for that test repair.
+
 From the repository root, the evidence commands are:
 
 ```bash
