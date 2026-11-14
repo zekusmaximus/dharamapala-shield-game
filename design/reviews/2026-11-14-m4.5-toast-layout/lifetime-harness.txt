@@ -1,0 +1,178 @@
+[WebServer] (node:1559) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 1 worker
+
+(node:1571) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 360x640 › keeps live notification and primary controls clear through input and rotation (6.6s)
+(node:1644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 390x844 › keeps live notification and primary controls clear through input and rotation (6.3s)
+(node:1723) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 640x360 › keeps live notification and primary controls clear through input and rotation (6.0s)
+(node:1799) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 844x390 › keeps live notification and primary controls clear through input and rotation (6.7s)
+(node:1937) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  5 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 1280x720 › keeps live notification and primary controls clear through input and rotation (5.6s)
+
+
+  1) [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 360x640 › keeps live notification and primary controls clear through input and rotation
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   -5995
+
+      537 |       await capture('started-wave-2');
+      538 |       const remaining = await page.evaluate(() => 3199 - (performance.now() - toastObservations[0].now));
+    > 539 |       expect(remaining).toBeGreaterThan(0);
+          |                         ^
+      540 |       await page.clock.runFor(remaining);
+      541 |       await expect(toast).toBeVisible();
+      542 |       await page.clock.runFor(1);
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:539:25
+
+    attachment #6: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-002db--through-input-and-rotation-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-toast-layo-002db--through-input-and-rotation-e2e/error-context.md
+
+    attachment #8: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-002db--through-input-and-rotation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-toast-layo-002db--through-input-and-rotation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 390x844 › keeps live notification and primary controls clear through input and rotation
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   -5995
+
+      537 |       await capture('started-wave-2');
+      538 |       const remaining = await page.evaluate(() => 3199 - (performance.now() - toastObservations[0].now));
+    > 539 |       expect(remaining).toBeGreaterThan(0);
+          |                         ^
+      540 |       await page.clock.runFor(remaining);
+      541 |       await expect(toast).toBeVisible();
+      542 |       await page.clock.runFor(1);
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:539:25
+
+    attachment #6: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-4a11b--through-input-and-rotation-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-toast-layo-4a11b--through-input-and-rotation-e2e/error-context.md
+
+    attachment #8: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-4a11b--through-input-and-rotation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-toast-layo-4a11b--through-input-and-rotation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 640x360 › keeps live notification and primary controls clear through input and rotation
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   -5995
+
+      537 |       await capture('started-wave-2');
+      538 |       const remaining = await page.evaluate(() => 3199 - (performance.now() - toastObservations[0].now));
+    > 539 |       expect(remaining).toBeGreaterThan(0);
+          |                         ^
+      540 |       await page.clock.runFor(remaining);
+      541 |       await expect(toast).toBeVisible();
+      542 |       await page.clock.runFor(1);
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:539:25
+
+    attachment #6: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-8c3e7--through-input-and-rotation-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-toast-layo-8c3e7--through-input-and-rotation-e2e/error-context.md
+
+    attachment #8: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-8c3e7--through-input-and-rotation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-toast-layo-8c3e7--through-input-and-rotation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 844x390 › keeps live notification and primary controls clear through input and rotation
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   -5995
+
+      537 |       await capture('started-wave-2');
+      538 |       const remaining = await page.evaluate(() => 3199 - (performance.now() - toastObservations[0].now));
+    > 539 |       expect(remaining).toBeGreaterThan(0);
+          |                         ^
+      540 |       await page.clock.runFor(remaining);
+      541 |       await expect(toast).toBeVisible();
+      542 |       await page.clock.runFor(1);
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:539:25
+
+    attachment #6: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-2be1b--through-input-and-rotation-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-toast-layo-2be1b--through-input-and-rotation-e2e/error-context.md
+
+    attachment #8: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-2be1b--through-input-and-rotation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-toast-layo-2be1b--through-input-and-rotation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 1280x720 › keeps live notification and primary controls clear through input and rotation
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   -5549
+
+      537 |       await capture('started-wave-2');
+      538 |       const remaining = await page.evaluate(() => 3199 - (performance.now() - toastObservations[0].now));
+    > 539 |       expect(remaining).toBeGreaterThan(0);
+          |                         ^
+      540 |       await page.clock.runFor(remaining);
+      541 |       await expect(toast).toBeVisible();
+      542 |       await page.clock.runFor(1);
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:539:25
+
+    attachment #4: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-e54af--through-input-and-rotation-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-toast-layo-e54af--through-input-and-rotation-e2e/error-context.md
+
+    attachment #6: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-e54af--through-input-and-rotation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-toast-layo-e54af--through-input-and-rotation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 360x640 › keeps live notification and primary controls clear through input and rotation
+    [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 390x844 › keeps live notification and primary controls clear through input and rotation
+    [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 640x360 › keeps live notification and primary controls clear through input and rotation
+    [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 844x390 › keeps live notification and primary controls clear through input and rotation
+    [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 1280x720 › keeps live notification and primary controls clear through input and rotation

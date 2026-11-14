@@ -1,0 +1,14 @@
+[WebServer] (node:2065) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 1 worker
+
+(node:2077) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 360x640 › keeps live notification and primary controls clear through input and rotation (6.5s)
+  ✓  2 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 390x844 › keeps live notification and primary controls clear through input and rotation (6.3s)
+  ✓  3 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 640x360 › keeps live notification and primary controls clear through input and rotation (6.1s)
+  ✓  4 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 844x390 › keeps live notification and primary controls clear through input and rotation (6.1s)
+  ✓  5 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 1280x720 › keeps live notification and primary controls clear through input and rotation (5.8s)
+
+  5 passed (31.8s)

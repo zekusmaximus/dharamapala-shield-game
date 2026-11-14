@@ -1,0 +1,539 @@
++ git rev-parse HEAD
+7ec826335fbe15074450aba5d0ef9ce044a05b3a
+exit=0
++ node --version
+v24.22.1
+exit=0
++ npm --version
+11.9.0
+exit=0
++ test ! -d node_modules
+exit=0
++ test ! -d dist
+exit=0
++ npm ci --cache /tmp/dharamapala-m45-toast-npm-cache
+
+added 5 packages in 756ms
+exit=0
++ npx playwright install chromium
+exit=0
++ npm run build
+
+> dharmapala-shield-game@1.0.0 build
+> node scripts/build.mjs
+
+Built client application in /tmp/dharamapala-m45-toast-clean/dist
+exit=0
++ npm run test:unit
+
+> dharmapala-shield-game@1.0.0 test:unit
+> node --test "tests/unit/*.test.js"
+
+✔ brace has exact one-use boundaries, finite capacity, no refill and large-step expiry (1.433062ms)
+✔ brace content rejects b=>delete b.enemies.federalAgent.brace (2.560533ms)
+✔ brace content rejects b=>b.enemies.federalAgent.brace.windupMs=0 (0.556139ms)
+✔ brace content rejects b=>b.enemies.federalAgent.brace.durationMs=Infinity (0.471801ms)
+✔ brace content rejects b=>b.enemies.federalAgent.brace.healthRatio=1.1 (0.355196ms)
+✔ brace content rejects b=>b.enemies.federalAgent.brace.radius=50 (0.389487ms)
+✔ brace content rejects b=>b.enemies.scriptKiddie.brace=b.enemies.federalAgent.brace (0.407144ms)
+✔ brace content rejects b=>delete b.towers.firewall.specializations (0.312151ms)
+✔ brace content rejects b=>delete b.economy.activeResources (0.665354ms)
+✔ static cue labels and semantic equivalents follow warning, active, broken and spent with both motion preferences (1.304328ms)
+✔ broken brace glyph and text remain distinct from active capacity and never refill (0.181203ms)
+✔ wave speed scales clamped wall time, never the fixed combat step (1.741957ms)
+✔ a speed change retains fractional simulated time and a stopped step clears it (0.207053ms)
+✔ status text obeys expiry and actual speed cap without mutating combat state (1.520163ms)
+✔ single warned EMP fires once at threshold, including an over-threshold hit (5.012621ms)
+✔ Titan reports shield behavior rather than unused phase metadata (0.2117ms)
+✔ canvas draws distinct static markers, shield fill, and pending EMP range from live state (2.815807ms)
+✔ a non-piercing projectile resolves exactly one collision (4.947554ms)
+✔ piercing hit IDs prevent repeat damage and splash is applied once per target (1.875939ms)
+✔ MegaCorp Titan shield recovery waits three seconds after the latest shield or health hit (1.58497ms)
+✔ shipped content satisfies the explicit runtime schema (4.362019ms)
+✔ reject content fixture: unused top-level balance metadata (1.241132ms)
+✔ reject content fixture: unused special label (1.416056ms)
+✔ reject content fixture: unused boss phase count (0.725354ms)
+✔ reject content fixture: unused burn damage (0.82214ms)
+✔ reject content fixture: unused interest rate (1.035552ms)
+✔ reject content fixture: missing display label (0.712966ms)
+✔ reject content fixture: invalid icon (0.759396ms)
+✔ reject content fixture: invalid color (0.931275ms)
+✔ reject content fixture: noninteger bounty (1.00069ms)
+✔ reject content fixture: unknown status property (0.995112ms)
+✔ reject content fixture: inactive slow metadata (0.76232ms)
+✔ reject content fixture: incomplete vulnerability (0.588718ms)
+✔ reject content fixture: slow beyond tower cap (0.959427ms)
+✔ reject content fixture: missing boss ability (0.630791ms)
+✔ reject content fixture: extra EMP threshold (0.737552ms)
+✔ reject content fixture: invalid EMP radius (0.844414ms)
+✔ reject content fixture: unknown reinforcement type (0.914249ms)
+✔ reject content fixture: invalid shield ratio (1.222915ms)
+✔ reject content fixture: invalid chain radius (0.650871ms)
+✔ reject content fixture: unreachable chain level (0.615188ms)
+✔ reject content fixture: unknown spawn property (1.25284ms)
+✔ reject content fixture: noninteger wave reward (0.858225ms)
+✔ presentation and derived tower stats read the same validated tunables (1.226129ms)
+✔ retired currency retains ledger shape; current supply, costs and earned rewards are zero (1.844172ms)
+✔ active-resource contract rejects ambiguous currencies, retired supply/cost, and missing specialization (4.964429ms)
+✔ matching historical content retains its original three-resource rewards (4.206846ms)
+✔ unplaced blueprints use the same level, cost and refund rules (2.139337ms)
+✔ attacker comparison uses combat stats, active aura, upgrade cost and refund rules (0.535017ms)
+✔ max-level direct attacker has no invented status or next upgrade (0.200693ms)
+✔ Distributor shows actual marginal support, EMP expiry and passive capped income (1.522206ms)
+✔ enemy intel uses active damage types and only implemented abilities (1.050404ms)
+✔ periodic live inspector retains selected tower metadata across support changes (1.402526ms)
+✔ three active towers have distinct tested roles (1.354282ms)
+✔ upgrades never invent status effects without an application duration (0.413303ms)
+✔ only enabled nearby Distributors supply aura, including at the expiry boundary (0.37808ms)
+✔ upgrade and sell values share economy rules (1.001621ms)
+✔ wave schedules are deterministic and zero intervals stay finite (0.59036ms)
+✔ reject malformed save: resource (8.944662ms)
+✔ reject malformed save: lives (1.803721ms)
+✔ reject malformed save: wave (2.004474ms)
+✔ reject malformed save: level (1.849219ms)
+✔ reject malformed save: position (1.913196ms)
+✔ reject malformed save: overlap (1.671802ms)
+✔ reject malformed save: enemyPosition (1.450889ms)
+✔ reject malformed save: health (1.338349ms)
+✔ reject malformed save: phases (1.502897ms)
+✔ reject malformed save: projectileId (1.59775ms)
+✔ reject malformed save: source (1.108272ms)
+✔ reject malformed save: target (1.255293ms)
+✔ reject malformed save: hitIds (1.381424ms)
+✔ reject malformed save: enemyType (1.439992ms)
+✔ reject malformed save: schedule (1.260011ms)
+✔ reject malformed save: cursor (1.203706ms)
+✔ reject malformed save: waveCursor (1.0943ms)
+✔ reject malformed save: count (1.349506ms)
+✔ reject malformed save: gameOver (1.131807ms)
+✔ reject malformed save: victory (0.918115ms)
+✔ reject malformed save: phase (1.105367ms)
+✔ reject malformed save: resume (0.84222ms)
+✔ reject malformed save: clock (1.234192ms)
+✔ reject malformed save: generation (0.988602ms)
+✔ reject malformed save: random (1.177416ms)
+✔ reject malformed save: sequence (0.880088ms)
+✔ reject malformed save: settings (1.070085ms)
+✔ reject malformed save: result (1.349095ms)
+✔ reject malformed save: balanceVersion (0.805205ms)
+✔ reject malformed balance: cost (0.378862ms)
+✔ reject malformed balance: damage (0.21893ms)
+✔ reject malformed balance: resistance (0.368446ms)
+✔ reject malformed balance: wave (0.613696ms)
+✔ reject malformed balance: group (0.706466ms)
+✔ reject malformed balance: difficulty (0.393043ms)
+✔ reject malformed balance: economy (0.319972ms)
+✔ reject malformed balance: upgrades (0.204148ms)
+✔ denied storage never throws, including acquisition/read/write/reset (1.096383ms)
+✔ invalid payload cannot be overwritten before explicit reset (1.377237ms)
+✔ v2 repository round-trips paused state and runtime cursors (10.051521ms)
+✔ corrupt saves are preserved without mutating a live session (1.287462ms)
+✔ old 1.4.0/v4 wave bytes remain exportable until explicit reset; preferences survive (9.943869ms)
+✔ M4.1 1.5.0/v4 Raid phase bytes remain exportable until explicit reset (6.672124ms)
+✔ M4.2 1.6.0/v4 Hard mid-wave bytes remain exact until export and explicit reset (4.623895ms)
+✔ historical legacy removed towers are refunded and active towers are reconstructed (2.808636ms)
+✔ scheduler preserves stable ordering and accepts zero intervals (1.150194ms)
+✔ scheduler rejects stale generations and clear invalidates pending work (0.151448ms)
+✔ phase transitions are explicit and rejected commands do not mutate state (8.354693ms)
+✔ pause freezes game time and spawning (1.930912ms)
+✔ restart invalidates a partially released schedule (1.302695ms)
+✔ leaks never grant kill rewards and kills reward exactly once (1.578691ms)
+✔ placement, upgrades, and selling use one authoritative defense Map (1.646914ms)
+✔ wave inspection can select a tower without opening build commands (0.635889ms)
+✔ focus and coverage trade hit size, cadence and range under production armor rules (1.371369ms)
+✔ control branches override late chain; caps and branch multipliers persist through level 5 (0.249626ms)
+✔ level-3 choice is explicit, atomic, affordable and irrevocable through later upgrades (8.828095ms)
+✔ reject malformed specialization b=>b.towers.firewall.specializations.focus.rateMultiplier=0 (1.034761ms)
+✔ reject malformed specialization b=>b.towers.firewall.specializations.focus.rangeMultiplier=Infinity (0.651042ms)
+✔ reject malformed specialization b=>b.towers.firewall.specializations.coverage.extraEffect=1 (0.704783ms)
+✔ reject malformed specialization b=>delete b.towers.firewall.specializations.focus (0.594917ms)
+✔ reject malformed specialization b=>b.towers.encryption.specializations.reach.chainTargets=1.5 (0.743772ms)
+✔ reject malformed specialization b=>b.towers.distributor.specializations=b.towers.firewall.specializations (1.181653ms)
+✔ reject malformed specialization b=>b.towers.encryption.specializations.sustain.description='' (0.479534ms)
+✔ specialization inspection includes the actual capped aura rate for each alternative (1.692483ms)
+✔ wave keyboard inspection cursor is drawn at its world position (1.441434ms)
+✔ catalog covers every active tower, enemy, and boss exactly once (0.341345ms)
+✔ catalog normalizes human and file-style entity IDs (0.170267ms)
+✔ asset loader makes ready sheets available without loading in draw calls (0.463308ms)
+✔ asset loader resolves failures and leaves entities on fallback rendering (0.27849ms)
+✔ renderer uses catalog frames when a sprite is ready (0.422988ms)
+✔ renderer falls back to shapes for missing and undrawable sprites (0.746436ms)
+✔ wave 1 has exact deterministic pressure, preview windows and serializable release order (3.63332ms)
+✔ wave 2 has exact deterministic pressure, preview windows and serializable release order (0.610741ms)
+✔ wave 3 has exact deterministic pressure, preview windows and serializable release order (0.63698ms)
+✔ wave 4 has exact deterministic pressure, preview windows and serializable release order (6.701138ms)
+✔ wave 5 has exact deterministic pressure, preview windows and serializable release order (0.446514ms)
+✔ overlapping, zero and fractional offsets use stable authored ties; omitted offsets retain trailing intervals (3.064412ms)
+✔ invalid spawn offset -1 rejects (1.299941ms)
+✔ invalid spawn offset null rejects (0.964946ms)
+✔ invalid spawn offset 100 rejects (0.819106ms)
+✔ invalid spawn offset NaN rejects (0.732605ms)
+✔ invalid spawn offset Infinity rejects (0.624582ms)
+✔ overflowing derived times reject before session construction (1.608887ms)
+✔ M4.1 act packets have exact count/end, cross-type overlap and preview parity (2.154931ms)
+✔ established first act remains exactly the M3.4 schedule (27.842697ms)
+ℹ tests 143
+ℹ suites 0
+ℹ pass 143
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1122.174529
+exit=0
++ npm run test:integration
+
+> dharmapala-shield-game@1.0.0 test:integration
+> node --test "tests/integration/*.test.js"
+
+✔ 1× brace activation/expiry, paused JSON and production impact boundary (skipped-wave fixture) (15.566028ms)
+✔ 2× brace activation/expiry, paused JSON and production impact boundary (skipped-wave fixture) (6.751824ms)
+✔ shield absorbs after armor, overflows, permits statuses and accounts capped shield/health without Titan cooldown (1.698572ms)
+✔ pending brace saves reject malformed deadlines, phases, capacities and foreign state before replacement (7.523889ms)
+✔ 1× earned wave-3 responses reconcile combat ledgers and continuation (252.851092ms)
+✔ 2× earned wave-3 responses reconcile combat ledgers and continuation (170.771816ms)
+✔ M3.3 v3 run bytes recover explicitly in all phases and preferences survive reset (25.259441ms)
+✔ terminal freezes pending behavior, restart clears it, and expiry is not credited as shield damage (1.668867ms)
+✔ production projectile collision sees activation and expiry before impacts on the boundary tick (1.474695ms)
+✔ a lethal hit is fully resolved before an enemy-hit listener can enter results (9.671399ms)
+✔ configured slow and vulnerability reach actual projectiles and enemy movement (6.770032ms)
+✔ configured Raid Team threshold, radius, duration and minions drive production phase handling and a valid save (11.275678ms)
+✔ configured Titan shield ratio, recovery delay and rate drive production hit and recovery (1.114121ms)
+✔ configured chain radius and secondary multiplier drive the production impact path (0.940209ms)
+✔ earned five-wave economies at 1× reconcile ledgers and paused JSON continuation (442.211507ms)
+✔ earned five-wave economies at 2× reconcile ledgers and paused JSON continuation (262.369488ms)
+✔ earned wave-2 choices expose a Bandwidth constraint independently of Dharma; failure is atomic (26.63122ms)
+✔ earned-checkpoint marginal comparisons retain production status, aura activity and passive accounting (209.397418ms)
+✔ M3.2 v3 and pre-v2 runs use retained-byte recovery, never a silent economy conversion (12.697793ms)
+✔ Raid Team EMP suspends the support aura in actual tower fire and restores it at expiry (6.877635ms)
+✔ EMP-disabled support and its recovery continue identically after save/restore (66.787931ms)
+✔ a Distributor disabled at wave clear still earns its passive income (12.100832ms)
+✔ continued combat parity through wave 1, including nested isolation (32.048982ms)
+✔ continued combat parity through wave 5, including nested isolation (42.700077ms)
+✔ continued combat parity through wave 15, including nested isolation (60.806829ms)
+✔ a new session remains in building until start wave is commanded (3.475422ms)
+✔ Raid Team single EMP dispatches four deterministic minions and survives round-trip saves (6.223939ms)
+✔ twenty waves reach victory exactly once and never schedule wave 21 (4.372205ms)
+✔ game over is immediate and subsequent ticks are inert (1.053609ms)
+✔ focus 1× production Raid combat survives JSON pause/continue through clearance (44.577961ms)
+✔ focus 2× production Raid combat survives JSON pause/continue through clearance (30.577041ms)
+✔ coverage 1× production Raid combat survives JSON pause/continue through clearance (31.98474ms)
+✔ coverage 2× production Raid combat survives JSON pause/continue through clearance (23.166013ms)
+✔ sustain 1× production Raid combat survives JSON pause/continue through clearance (50.512541ms)
+✔ sustain 2× production Raid combat survives JSON pause/continue through clearance (36.915373ms)
+✔ reach 1× production Raid combat survives JSON pause/continue through clearance (27.677186ms)
+✔ reach 2× production Raid combat survives JSON pause/continue through clearance (27.48653ms)
+✔ controlled comparisons show scenario-dependent damage/control choices and aura activity (66.859378ms)
+✔ save validator rejects absent, foreign, early, support and malformed branches before restoration (21.576516ms)
+✔ M3.1 v2 exact bytes survive version rejection, export and reset; preferences stay compatible (8.980325ms)
+✔ legacy level-3 attacker is rejected rather than assigned an invented branch (0.398982ms)
+✔ same-tick exits stop at game over and live, captured, persisted results agree (13.579733ms)
+✔ restored continuing combat reaches the same terminal result (3.97812ms)
+✔ a resolution listener can enter terminal and save before resolution returns (4.675301ms)
+✔ terminal saves reject any disagreement in captured statistics (3.915466ms)
+✔ old 1.0.0 game-over saves with extra same-tick leaks are recovered on load (4.79297ms)
+✔ a terminal transition during an achievement stops later resolution events (2.070763ms)
+✔ a saved Titan fight retains health-hit cooldown and identical later recovery (11.892989ms)
+✔ fresh five-wave production slice at 1× preserves schedules, overlap, recovery, accounting and continuation (659.469146ms)
+✔ fresh five-wave production slice at 2× preserves schedules, overlap, recovery, accounting and continuation (609.060395ms)
+✔ old production 1.0.0 v2 save is retained for export/reset; preferences remain compatible (11.576702ms)
+✔ modified overlapping base due times reject before restore (1.736189ms)
+✔ reordered simultaneous escorts reject instead of changing deterministic tie order (1.248823ms)
+✔ real wave combat accounts spending, refunds, bounties, clear income and tower work; reports survive starts and restore (49.954849ms)
+✔ natural leaks record enemy types, no coverage and sampled last coverage, including defeat (18.339774ms)
+✔ production impact path records shield absorption, capped health, and control applications without inventing assistance damage (0.743862ms)
+✔ production firing records overlapping capped aura presence but excludes EMP-disabled support (0.710401ms)
+✔ legacy v2 reports are optional and explicitly partial; malformed tracking is rejected (10.877417ms)
+✔ a disabled Distributor reports passive clear income independently of active aura (6.136806ms)
+✔ invalid report counts, types, coverage and resource payloads fail before restoration (7.81656ms)
+✔ 1× and 2× reach identical production combat and reports on wave 5 (84.122107ms)
+✔ 1× and 2× reach identical production combat and reports on wave 15 (85.233353ms)
+✔ switching during a Raid Team fight and while paused preserves fractional time across save/continue (79.582309ms)
+✔ natural defeat and victory stop further 2× advancement and lock speed changes (100.140618ms)
+✔ old v2 saves default to 1×, reject invalid speeds, and restart resets speed (4.624816ms)
+✔ 2× selection persists across a real clear, while the next wave waits for Start Wave (3.238345ms)
+ℹ tests 66
+ℹ suites 0
+ℹ pass 66
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4642.1973
+exit=0
++ npm run test:sim
+
+> dharmapala-shield-game@1.0.0 test:sim
+> node --test "tests/sim/*.test.js"
+
+✔ scenarios use three distinct production difficulties and full authored campaigns (1.267773ms)
+✔ policy restrictions and ordering apply through production purchase commands (23.364281ms)
+✔ counter heuristic responds to incoming armor/resistance rather than a fixed purchase sequence (1.174802ms)
+✔ actual full campaigns reconcile M2.3 ledgers, natural bosses/leaks and deterministic repeats (2371.598632ms)
+✔ fresh production scenarios and repeat hashes match M4.3 evidence; content hash matches current bytes (6036.965173ms)
+✔ earned-resource policy and marginal evidence regenerates deterministically with shared production rules (1683.540422ms)
+✔ M4.3 first-five counterplay repeats; preserved M4.2 and M3.4 evidence remains separate (1630.10338ms)
+M4.4 Easy/existing: VICTORY, waves=20, commands=59, checkpoints=build-3,raid-5, speedChanges=81, pauses=3, creditedMs=344421, consumedMs=342850.00000003295, kills=320, leaks=0, shield=2838.052666666672, slowHits=191, auraShots=712
+M4.4 checkpoints Easy/existing: [{"id":"build-3","wave":3,"resumePhase":"BUILDING","gameTimeMs":27100.000000000542,"lives":20,"resources":{"dharma":166,"bandwidth":96,"anonymity":0},"reports":2,"spawned":10,"resolved":10,"bosses":[]},{"id":"raid-5","wave":5,"resumePhase":"WAVE","gameTimeMs":64499.99999999634,"lives":20,"resources":{"dharma":122,"bandwidth":93,"anonymity":0},"reports":4,"spawned":14,"resolved":6,"bosses":[{"type":"raidTeam","health":287.42325000000017,"shield":0,"shieldMax":0,"firedPhases":[1]}]}]
+M4.4 Normal/existing: VICTORY, waves=20, commands=57, checkpoints=raid-10,titan-15,build-16, speedChanges=81, pauses=4, creditedMs=383412, consumedMs=381100.0000000775, kills=320, leaks=0, shield=3781.023999999949, slowHits=261, auraShots=1002
+M4.4 checkpoints Normal/existing: [{"id":"raid-10","wave":10,"resumePhase":"WAVE","gameTimeMs":160049.9999999984,"lives":20,"resources":{"dharma":300,"bandwidth":303,"anonymity":0},"reports":9,"spawned":13,"resolved":7,"bosses":[{"type":"raidTeam","health":550.7292000000002,"shield":0,"shieldMax":0,"firedPhases":[1]}]},{"id":"titan-15","wave":15,"resumePhase":"WAVE","gameTimeMs":231116.6666666237,"lives":20,"resources":{"dharma":84,"bandwidth":1267,"anonymity":0},"reports":14,"spawned":1,"resolved":0,"bosses":[{"type":"megaCorpTitan","health":1045,"shield":312.975,"shieldMax":366,"firedPhases":[]}]},{"id":"build-16","wave":16,"resumePhase":"BUILDING","gameTimeMs":249966.66666661273,"lives":20,"resources":{"dharma":949,"bandwidth":1648,"anonymity":0},"reports":15,"spawned":12,"resolved":12,"bosses":[]}]
+M4.4 Hard/existing: VICTORY, waves=20, commands=55, checkpoints=titan-20, speedChanges=81, pauses=2, creditedMs=414700, consumedMs=413133.3333334481, kills=320, leaks=0, shield=4551.112000000086, slowHits=309, auraShots=1328
+M4.4 checkpoints Hard/existing: [{"id":"titan-20","wave":20,"resumePhase":"WAVE","gameTimeMs":372883.33333340124,"lives":20,"resources":{"dharma":266,"bandwidth":2556,"anonymity":0},"reports":19,"spawned":1,"resolved":0,"bosses":[{"type":"megaCorpTitan","health":1835.3999999999999,"shield":574.8,"shieldMax":642,"firedPhases":[]}]}]
+M4.4 Hard/weak-placement: GAME_OVER, waves=3, commands=5, checkpoints=build-3,weak-3, speedChanges=13, pauses=3, creditedMs=67556, consumedMs=67466.66666666341, kills=0, leaks=20, shield=0, slowHits=0, auraShots=0
+M4.4 checkpoints Hard/weak-placement: [{"id":"build-3","wave":3,"resumePhase":"BUILDING","gameTimeMs":49283.33333333189,"lives":2,"resources":{"dharma":76,"bandwidth":60,"anonymity":0},"reports":2,"spawned":10,"resolved":10,"bosses":[]},{"id":"weak-3","wave":3,"resumePhase":"WAVE","gameTimeMs":50099.999999998436,"lives":2,"resources":{"dharma":46,"bandwidth":60,"anonymity":0},"reports":2,"spawned":2,"resolved":0,"bosses":[]}]
+✔ M4.4 Easy existing: full clock and JSON continuation (853.651289ms)
+✔ M4.4 Normal existing: full clock and JSON continuation (867.224837ms)
+✔ M4.4 Hard existing: full clock and JSON continuation (971.859724ms)
+✔ M4.4 Hard weak-placement: full clock and JSON continuation (132.396079ms)
+✔ runtime and simulator consume the same balance and pure rules (7.544792ms)
+✔ headless policy executes the real GameSession deterministically (85.184431ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14892.738707
+exit=0
++ npm run test:e2e
+
+> dharmapala-shield-game@1.0.0 test:e2e
+> playwright test --project=e2e
+
+[WebServer] (node:2878) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 112 tests using 1 worker
+
+(node:2890) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    1 [e2e] › tests/e2e/campaign.spec.js:372:1 › earned Normal UI mistake recovers through all twenty combat waves (1.7m)
+  ✓    2 [e2e] › tests/e2e/campaign.spec.js:378:3 › portrait touch campaign › earned Normal recovery uses taps, scrolling and rotation through twenty waves (1.9m)
+  ✓    3 [e2e] › tests/e2e/campaign.spec.js:388:1 › natural Normal UI defeat explains coverage and permits a concrete retry (20.9s)
+  ✓    4 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 360x640 › keeps live notification and primary controls clear through input and rotation (6.3s)
+  ✓    5 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 390x844 › keeps live notification and primary controls clear through input and rotation (6.5s)
+  ✓    6 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 640x360 › keeps live notification and primary controls clear through input and rotation (6.1s)
+  ✓    7 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 844x390 › keeps live notification and primary controls clear through input and rotation (6.3s)
+  ✓    8 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 1280x720 › keeps live notification and primary controls clear through input and rotation (5.8s)
+  ✓    9 [e2e] › tests/e2e/game.spec.js:4:1 › loads the real game without console errors and keeps wave 1 idle (709ms)
+  ✓   10 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 360×640 (640ms)
+  ✓   11 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 390×844 (639ms)
+  ✓   12 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 640×360 (588ms)
+  ✓   13 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 844×390 (692ms)
+  ✓   14 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 1280×720 (813ms)
+  ✓   15 [e2e] › tests/e2e/game.spec.js:65:1 › keyboard speed choice, pause, settings and Continue retain the chosen wave speed (1.3s)
+  ✓   16 [e2e] › tests/e2e/game.spec.js:110:1 › loads the sprite sheet and maps every active rendered entity (354ms)
+  ✓   17 [e2e] › tests/e2e/game.spec.js:158:1 › keeps the sprite canvas sharp at device scale factor 2 (557ms)
+  ✓   18 [e2e] › tests/e2e/game.spec.js:194:1 › places, selects, upgrades, sells, and restores a tower save (880ms)
+  ✓   19 [e2e] › tests/e2e/game.spec.js:224:1 › upgraded Firewall inspector describes only its applied combat status (694ms)
+  ✓   20 [e2e] › tests/e2e/game.spec.js:238:1 › Distributor inspector explains support and EMP without a targeting claim (687ms)
+  ✓   21 [e2e] › tests/e2e/game.spec.js:254:1 › pause freezes simulation and restart removes all old state (1.1s)
+  ✓   22 [e2e] › tests/e2e/game.spec.js:289:1 › keyboard-only build flow can place a tower and start a wave (577ms)
+  ✓   23 [e2e] › tests/e2e/game.spec.js:316:3 › desktop layout keeps battlefield and primary controls in the viewport (553ms)
+  ✓   24 [e2e] › tests/e2e/game.spec.js:316:3 › small portrait layout keeps battlefield and primary controls in the viewport (447ms)
+  ✓   25 [e2e] › tests/e2e/game.spec.js:316:3 › portrait layout keeps battlefield and primary controls in the viewport (611ms)
+  ✓   26 [e2e] › tests/e2e/game.spec.js:316:3 › small landscape layout keeps battlefield and primary controls in the viewport (389ms)
+  ✓   27 [e2e] › tests/e2e/game.spec.js:316:3 › landscape layout keeps battlefield and primary controls in the viewport (477ms)
+  ✓   28 [e2e] › tests/e2e/game.spec.js:355:1 › terminal dialogs block play and expose final results (557ms)
+  ✓   29 [e2e] › tests/e2e/game.spec.js:363:1 › same-tick game over persists matching live and final results (647ms)
+  ✓   30 [e2e] › tests/e2e/game.spec.js:398:1 › zoom is not disabled and interactive elements have accessible names (346ms)
+  ✓   31 [e2e] › tests/e2e/game.spec.js:414:1 › portrait preview does not intercept palette selection (567ms)
+  ✓   32 [e2e] › tests/e2e/game.spec.js:463:5 › 360x640 click: open panels allow building and waves (1.4s)
+  ✓   33 [e2e] › tests/e2e/game.spec.js:463:5 › 360x640 tap: open panels allow building and waves (1.8s)
+  ✓   34 [e2e] › tests/e2e/game.spec.js:463:5 › 390x844 click: open panels allow building and waves (1.5s)
+  ✓   35 [e2e] › tests/e2e/game.spec.js:463:5 › 390x844 tap: open panels allow building and waves (1.8s)
+  ✓   36 [e2e] › tests/e2e/game.spec.js:463:5 › 640x360 click: open panels allow building and waves (1.3s)
+  ✓   37 [e2e] › tests/e2e/game.spec.js:463:5 › 640x360 tap: open panels allow building and waves (1.5s)
+  ✓   38 [e2e] › tests/e2e/game.spec.js:463:5 › 844x390 click: open panels allow building and waves (1.5s)
+  ✓   39 [e2e] › tests/e2e/game.spec.js:463:5 › 844x390 tap: open panels allow building and waves (1.9s)
+  ✓   40 [e2e] › tests/e2e/game.spec.js:463:5 › 1280x720 click: open panels allow building and waves (1.7s)
+  ✓   41 [e2e] › tests/e2e/game.spec.js:463:5 › 1280x720 tap: open panels allow building and waves (2.2s)
+  ✓   42 [e2e] › tests/e2e/game.spec.js:514:3 › touch rotation from 360x640 preserves open panel access (1.1s)
+  ✓   43 [e2e] › tests/e2e/game.spec.js:514:3 › touch rotation from 390x844 preserves open panel access (1.2s)
+  ✓   44 [e2e] › tests/e2e/game.spec.js:547:1 › portrait disclosures and building work with real Tab navigation (1.1s)
+  ✓   45 [e2e] › tests/e2e/game.spec.js:582:1 › Escape skips tutorial without stranding TUTORIAL (R03) (523ms)
+  ✓   46 [e2e] › tests/e2e/game.spec.js:609:3 › 1280 keyboard tutorial skip, replay and guided exit (2.1s)
+  ✓   47 [e2e] › tests/e2e/game.spec.js:640:3 › 1280 keyboard settings, pause and sale cancellation preserve play (5.1s)
+  ✓   48 [e2e] › tests/e2e/game.spec.js:609:3 › 360 keyboard tutorial skip, replay and guided exit (1.7s)
+  ✓   49 [e2e] › tests/e2e/game.spec.js:640:3 › 360 keyboard settings, pause and sale cancellation preserve play (4.2s)
+  ✓   50 [e2e] › tests/e2e/game.spec.js:706:3 › GAME_OVER keyboard terminal navigation and menu settings cancellation (1.6s)
+  ✓   51 [e2e] › tests/e2e/game.spec.js:706:3 › VICTORY keyboard terminal navigation and menu settings cancellation (1.6s)
+  ✓   52 [e2e] › tests/e2e/game.spec.js:731:1 › Escape closes settings and restores build phase (R03) (882ms)
+  ✓   53 [e2e] › tests/e2e/game.spec.js:743:1 › restart, new run and terminal results are durable and preferences survive navigation (2.4s)
+  ✓   54 [e2e] › tests/e2e/game.spec.js:772:1 › unreadable saves reject without swapping live play and export/reset through real controls (1.2s)
+  ✓   55 [e2e] › tests/e2e/game.spec.js:799:1 › storage denial leaves menu and play usable with visible recovery status (543ms)
+  ✓   56 [e2e] › tests/e2e/game.spec.js:812:1 › completed wave persists a finished clock frame and reloads into deliberate building (855ms)
+  ✓   57 [e2e] › tests/e2e/game.spec.js:831:1 › menu preferences and an uncompleted tutorial survive reload before first placement (855ms)
+  ✓   58 [e2e] › tests/e2e/game.spec.js:846:1 › tower comparison shows rule-derived status, chain, investment and refund (523ms)
+  ✓   59 [e2e] › tests/e2e/game.spec.js:865:1 › Distributor support inspector shows actual benefit and passive income (692ms)
+  ✓   60 [e2e] › tests/e2e/game.spec.js:886:1 › keyboard can inspect towers and enemy roster in build and wave phases (1.2s)
+  ✓   61 [e2e] › tests/e2e/game.spec.js:918:1 › pointer inspects live wave enemies and towers without building or selling (1.6s)
+  ✓   62 [e2e] › tests/e2e/game.spec.js:948:1 › enemy details state implemented abilities without unused phase metadata (830ms)
+  ✓   63 [e2e] › tests/e2e/game.spec.js:980:1 › unaffordable and wave-locked tower blueprints remain inspectable without build actions (853ms)
+  ✓   64 [e2e] › tests/e2e/game.spec.js:1007:1 › wave keyboard cursor visibly moves to and selects another placed tower (863ms)
+  ✓   65 [e2e] › tests/e2e/game.spec.js:1026:1 › wave support benefit refreshes when EMP suppression expires (2.7s)
+  ✓   66 [e2e] › tests/e2e/game.spec.js:1047:3 › combat cues and text stay accessible during waves at 360x640 (1.2s)
+  ✓   67 [e2e] › tests/e2e/game.spec.js:1047:3 › combat cues and text stay accessible during waves at 390x844 (1.1s)
+  ✓   68 [e2e] › tests/e2e/game.spec.js:1047:3 › combat cues and text stay accessible during waves at 640x360 (1.2s)
+  ✓   69 [e2e] › tests/e2e/game.spec.js:1047:3 › combat cues and text stay accessible during waves at 844x390 (1.2s)
+  ✓   70 [e2e] › tests/e2e/game.spec.js:1047:3 › combat cues and text stay accessible during waves at 1280x720 (1.3s)
+  ✓   71 [e2e] › tests/e2e/game.spec.js:1078:1 › combat text follows boss phase, shield damage and status expiry without live-region spam (625ms)
+  ✓   72 [e2e] › tests/e2e/game.spec.js:1098:3 › wave reports persist and allow pointer and keyboard dismissal at 360x640 (1.2s)
+  ✓   73 [e2e] › tests/e2e/game.spec.js:1098:3 › wave reports persist and allow pointer and keyboard dismissal at 390x844 (1.2s)
+  ✓   74 [e2e] › tests/e2e/game.spec.js:1098:3 › wave reports persist and allow pointer and keyboard dismissal at 640x360 (1.2s)
+  ✓   75 [e2e] › tests/e2e/game.spec.js:1098:3 › wave reports persist and allow pointer and keyboard dismissal at 844x390 (1.2s)
+  ✓   76 [e2e] › tests/e2e/game.spec.js:1098:3 › wave reports persist and allow pointer and keyboard dismissal at 1280x720 (1.3s)
+  ✓   77 [e2e] › tests/e2e/game.spec.js:1130:1 › defeat reports remain accessible inside the terminal dialog (572ms)
+  ✓   78 [e2e] › tests/e2e/game.spec.js:1143:4 › authored overlap timing remains inspectable with deliberate starts at 360×640 (661ms)
+  ✓   79 [e2e] › tests/e2e/game.spec.js:1143:4 › authored overlap timing remains inspectable with deliberate starts at 390×844 (859ms)
+  ✓   80 [e2e] › tests/e2e/game.spec.js:1143:4 › authored overlap timing remains inspectable with deliberate starts at 640×360 (690ms)
+  ✓   81 [e2e] › tests/e2e/game.spec.js:1143:4 › authored overlap timing remains inspectable with deliberate starts at 844×390 (757ms)
+  ✓   82 [e2e] › tests/e2e/game.spec.js:1143:4 › authored overlap timing remains inspectable with deliberate starts at 1280×720 (944ms)
+  ✓   83 [e2e] › tests/e2e/game.spec.js:1173:1 › keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts (731ms)
+  ✓   84 [e2e] › tests/e2e/game.spec.js:1191:1 › later act previews expose mixed packets and final boss timing before Start Wave (663ms)
+  ✓   85 [e2e] › tests/e2e/game.spec.js:1208:1 › new schedule pause/reload/Continue retains pending arrivals, 2× and preferences (859ms)
+  ✓   86 [e2e] › tests/e2e/game.spec.js:1229:1 › prior balance save exports exact original and reset preserves independent preferences (558ms)
+  ✓   87 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice firewall at 360×640 is visible, permanent and saved (1.0s)
+  ✓   88 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice encryption at 360×640 is visible, permanent and saved (938ms)
+  ✓   89 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice firewall at 390×844 is visible, permanent and saved (1.0s)
+  ✓   90 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice encryption at 390×844 is visible, permanent and saved (1.0s)
+  ✓   91 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice firewall at 640×360 is visible, permanent and saved (995ms)
+  ✓   92 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice encryption at 640×360 is visible, permanent and saved (993ms)
+  ✓   93 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice firewall at 844×390 is visible, permanent and saved (1.0s)
+  ✓   94 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice encryption at 844×390 is visible, permanent and saved (994ms)
+  ✓   95 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice firewall at 1280×720 is visible, permanent and saved (1.2s)
+  ✓   96 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice encryption at 1280×720 is visible, permanent and saved (1.1s)
+  ✓   97 [e2e] › tests/e2e/game.spec.js:1277:78 › firewall specialization uses actual Tab/Enter with useful focus after choice (594ms)
+  ✓   98 [e2e] › tests/e2e/game.spec.js:1277:78 › encryption specialization uses actual Tab/Enter with useful focus after choice (741ms)
+  ✓   99 [e2e] › tests/e2e/game.spec.js:1285:1 › unaffordable and wave-locked level-3 choices explain costs without permitting purchases (732ms)
+  ✓  100 [e2e] › tests/e2e/game.spec.js:1293:1 › M3.1 save version rejection exports exact bytes and preserves independent preferences (597ms)
+  ✓  101 [e2e] › tests/e2e/game.spec.js:1305:72 › two-resource economy, saving guidance and exact Bandwidth deficit at 360 (726ms)
+  ✓  102 [e2e] › tests/e2e/game.spec.js:1305:72 › two-resource economy, saving guidance and exact Bandwidth deficit at 1280 (961ms)
+  ✓  103 [e2e] › tests/e2e/game.spec.js:1318:1 › retired-economy v3 bytes export unchanged and reset preserves preferences (585ms)
+  ✓  104 [e2e] › tests/e2e/game.spec.js:1329:26 › Agent brace cue/text, pause/reload and explicit v4 state at 1× (2.1s)
+  ✓  105 [e2e] › tests/e2e/game.spec.js:1329:26 › Agent brace cue/text, pause/reload and explicit v4 state at 2× (2.2s)
+  ✓  106 [e2e] › tests/e2e/game.spec.js:1353:1 › M3.3 v3 recovery exports exact bytes before explicit reset and creates v4 with preferences (589ms)
+  ✓  107 [e2e] › tests/e2e/game.spec.js:1362:1 › M4.1 old 1.4.0/v4 wave bytes export exactly before reset and retain preferences (570ms)
+  ✓  108 [e2e] › tests/e2e/game.spec.js:1380:1 › M4.2 old 1.5.0/v4 Raid bytes export exactly before explicit reset (692ms)
+  ✓  109 [e2e] › tests/e2e/game.spec.js:1398:1 › M4.3 old 1.6.0/v4 Hard wave bytes export exactly before explicit reset (639ms)
+  ✓  110 [e2e] › tests/e2e/game.spec.js:1415:1 › M4.2 warning names the reinforcements and clears after the single EMP (527ms)
+  ✓  111 [e2e] › tests/e2e/game.spec.js:1428:1 › M4.2 live Titan text gives recovery countdown and active regeneration (471ms)
+  ✓  112 [e2e] › tests/e2e/inspector.spec.js:6:1 › identical tower stats do not reuse another tower specialization handler (961ms)
+
+  112 passed (6.3m)
+exit=0
++ cmp /tmp/m45-toast-clean-ui/recovery.json design/reviews/2026-11-14-m4.5-ui-audit/recovery.json
+exit=0
++ cmp /tmp/m45-toast-clean-ui/defeat-retry.json design/reviews/2026-11-14-m4.5-ui-audit/defeat-retry.json
+exit=0
++ node design/reviews/2026-11-14-m4.5-toast-layout/compare-campaign.mjs /tmp/m45-toast-clean-ui/touch-recovery.json
+Touch gameplay matches exactly; sampled checkpoint times within one fixed tick. All commands, waves, ledgers, bosses, spawns and terminal equal merged desktop. Three native scrolls moved.
+exit=0
++ node design/reviews/2026-11-14-m4.5-toast-layout/compare-layout.mjs /tmp/m45-toast-clean-ui/toast-360x640.json
+Earned wave-1 gameplay exactly matches merged desktop; live toast/control bounds separated, scroll moved, lifetime 3200 ms.
+exit=0
++ node design/reviews/2026-11-14-m4.5-toast-layout/compare-layout.mjs /tmp/m45-toast-clean-ui/toast-390x844.json
+Earned wave-1 gameplay exactly matches merged desktop; live toast/control bounds separated, scroll moved, lifetime 3200 ms.
+exit=0
++ node design/reviews/2026-11-14-m4.5-toast-layout/compare-layout.mjs /tmp/m45-toast-clean-ui/toast-640x360.json
+Earned wave-1 gameplay exactly matches merged desktop; live toast/control bounds separated, scroll moved, lifetime 3200 ms.
+exit=0
++ node design/reviews/2026-11-14-m4.5-toast-layout/compare-layout.mjs /tmp/m45-toast-clean-ui/toast-844x390.json
+Earned wave-1 gameplay exactly matches merged desktop; live toast/control bounds separated, scroll moved, lifetime 3200 ms.
+exit=0
++ node design/reviews/2026-11-14-m4.5-toast-layout/compare-layout.mjs /tmp/m45-toast-clean-ui/toast-1280x720.json
+Earned wave-1 gameplay exactly matches merged desktop; live toast/control bounds separated, scroll moved, lifetime 3200 ms.
+exit=0
++ npm run test:a11y
+
+> dharmapala-shield-game@1.0.0 test:a11y
+> playwright test --project=a11y
+
+[WebServer] (node:4829) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 14 tests using 1 worker
+
+(node:4841) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [a11y] › tests/e2e/a11y.spec.js:13:3 › desktop menu and build phase with open inspector have no serious accessibility violations (2.2s)
+  ✓   2 [a11y] › tests/e2e/a11y.spec.js:13:3 › small portrait menu and build phase with open inspector have no serious accessibility violations (1.6s)
+  ✓   3 [a11y] › tests/e2e/a11y.spec.js:13:3 › portrait menu and build phase with open inspector have no serious accessibility violations (1.5s)
+  ✓   4 [a11y] › tests/e2e/a11y.spec.js:13:3 › small landscape menu and build phase with open inspector have no serious accessibility violations (1.5s)
+  ✓   5 [a11y] › tests/e2e/a11y.spec.js:13:3 › landscape menu and build phase with open inspector have no serious accessibility violations (1.6s)
+  ✓   6 [a11y] › tests/e2e/a11y.spec.js:37:1 › tutorial, settings, pause, sale and terminal dialogs have no serious accessibility violations (3.9s)
+  ✓   7 [a11y] › tests/e2e/a11y.spec.js:63:1 › save recovery controls have no serious accessibility violations (948ms)
+  ✓   8 [a11y] › tests/e2e/a11y.spec.js:72:1 › portrait support and enemy inspectors remain accessible during a wave (1.4s)
+  ✓   9 [a11y] › tests/e2e/a11y.spec.js:88:1 › combat boss warnings and status text have no serious accessibility violations (1.8s)
+  ✓  10 [a11y] › tests/e2e/a11y.spec.js:104:1 › wave report semantic UI passes axe in building and terminal portrait states (1.8s)
+  ✓  11 [a11y] › tests/e2e/a11y.spec.js:116:1 › first-act and later mixed timing previews pass axe with both reduced-motion preferences (6.7s)
+  ✓  12 [a11y] › tests/e2e/a11y.spec.js:131:1 › level-3 alternatives and chosen branches have no serious axe findings in portrait at both motion settings (7.2s)
+  ✓  13 [a11y] › tests/e2e/a11y.spec.js:141:1 › two-resource guide, affordability deficits and support capacity caveat pass axe in portrait (1.9s)
+  ✓  14 [a11y] › tests/e2e/a11y.spec.js:153:1 › Agent brace inspection and all live phases pass portrait axe with both motion preferences (4.9s)
+
+  14 passed (40.0s)
+exit=0
++ node --input-type=module -e import {chromium} from "@playwright/test";const b=await chromium.launch();console.log(b.version());await b.close();
+149.0.7827.55
+exit=0
++ node tools/review/baseline.mjs > /tmp/m45-toast-baseline.json
++ cmp /tmp/m45-toast-baseline.json design/reviews/2026-11-13-m4.3/baseline.json
+exit=0
++ npm run balance:report -- --output=/tmp/m45-toast-results.json
+
+> dharmapala-shield-game@1.0.0 balance:report
+> node tools/balance/report.mjs --output=/tmp/m45-toast-results.json
+
+exit=0
++ cmp /tmp/m45-toast-results.json design/reviews/2026-11-13-m4.3/results.json
+exit=0
++ node tools/balance/summary.mjs /tmp/m45-toast-results.json /tmp/m45-toast-summary.md
+exit=0
++ cmp /tmp/m45-toast-summary.md design/reviews/2026-11-13-m4.3/summary.md
+exit=0
++ node tools/balance/counterplay.mjs /tmp/m45-toast-counterplay.json
+exit=0
++ cmp /tmp/m45-toast-counterplay.json design/reviews/2026-11-13-m4.3/counterplay.json
+exit=0
++ node design/reviews/2026-11-13-m4.3/scenarios.mjs --old /tmp/m45-toast-scenarios-before.json
+Recorded 18 earned forks and 6 full recoveries for 1.6.0.
+exit=0
++ cmp /tmp/m45-toast-scenarios-before.json design/reviews/2026-11-13-m4.3/scenarios-before.json
+exit=0
++ node design/reviews/2026-11-13-m4.3/scenarios.mjs --current /tmp/m45-toast-scenarios-after.json
+Recorded 18 earned forks and 6 full recoveries for 1.7.0.
+exit=0
++ cmp /tmp/m45-toast-scenarios-after.json design/reviews/2026-11-13-m4.3/scenarios-after.json
+exit=0
++ node design/reviews/2026-11-13-m4.3/capture-old-save.mjs /tmp/m45-toast-old-save.json
+Captured earned Hard wave 11 after 271 production steps.
+exit=0
++ cmp /tmp/m45-toast-old-save.json design/reviews/2026-11-13-m4.3/old-1.6.0-v4-save.json
+exit=0
++ node design/reviews/2026-11-13-m4.3/compare.mjs
+Compared 21 policy/difficulty runs and 369 reached waves.
+exit=0
++ node tools/balance/economy.mjs /tmp/m45-toast-economy.json
+exit=0
++ cmp /tmp/m45-toast-economy.json design/reviews/2026-11-12-m3.3/economy.json
+exit=0
++ node tools/balance/tradeoffs.mjs /tmp/m45-toast-tradeoffs.json
+exit=0
++ cmp /tmp/m45-toast-tradeoffs.json design/reviews/2026-11-12-m3.2/tradeoffs.json
+exit=0
++ verify baseline copy equals merged 1.6.0 content
++ cmp /tmp/m45-toast-merged-balance.json design/reviews/2026-11-13-m4.3/baseline-1.6.0.json
+exit=0
++ git diff --exit-code 9ea7564 -- js index.html tools scripts .github package.json package-lock.json design/balance.json design/CONTENT_SCHEMA.md tests/unit tests/sim tests/integration tests/e2e/game.spec.js tests/e2e/helpers.js tests/e2e/inspector.spec.js tests/e2e/a11y.spec.js playwright.config.js
+exit=0
++ git diff --exit-code 9ea7564 -- design/reviews/2026-11-11 design/reviews/2026-11-11-m1.1 design/reviews/2026-11-11-m1.2 design/reviews/2026-11-11-m1.3 design/reviews/2026-11-11-m1.4 design/reviews/2026-11-11-m1.5 design/reviews/2026-11-11-m2.1 design/reviews/2026-11-11-m2.2 design/reviews/2026-11-11-m2.3 design/reviews/2026-11-11-m2.4 design/reviews/2026-11-11-m2.5 design/reviews/2026-11-11-m2.6 design/reviews/2026-11-12-human-validation-deferral design/reviews/2026-11-12-m3.1 design/reviews/2026-11-12-m3.2 design/reviews/2026-11-12-m3.3 design/reviews/2026-11-12-m3.4 design/reviews/2026-11-12-m3.5 design/reviews/2026-11-12-m3.5-follow-up design/reviews/2026-11-12-m4.1 design/reviews/2026-11-12-m4.2 design/reviews/2026-11-12-m4.4 design/reviews/2026-11-13-m4.3 design/reviews/2026-11-14-m4.5-touch-audit design/reviews/2026-11-14-m4.5-ui-audit
+exit=0
++ verify pinned M3.5 archive SHA-256
+design/reviews/2026-11-12-m3.5/playtest-build-fc43adf-1.4.0.zip: OK
++ git diff --check 9ea7564 HEAD
+exit=0
++ git diff --exit-code
+exit=0
++ test -z
+exit=0

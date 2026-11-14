@@ -1,0 +1,223 @@
+[WebServer] (node:1117) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 1 worker
+
+(node:1129) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 360x640 › keeps live notification and primary controls clear through input and rotation (11.3s)
+(node:1208) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 390x844 › keeps live notification and primary controls clear through input and rotation (11.1s)
+(node:1283) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 640x360 › keeps live notification and primary controls clear through input and rotation (11.0s)
+(node:1360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 844x390 › keeps live notification and primary controls clear through input and rotation (11.3s)
+(node:1443) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  5 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 1280x720 › keeps live notification and primary controls clear through input and rotation (10.4s)
+
+
+  1) [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 360x640 › keeps live notification and primary controls clear through input and rotation
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  locator('#start-wave-button')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" with timeout 5000ms
+      - waiting for locator('#start-wave-button')
+        14 × locator resolved to <button disabled type="button" id="start-wave-button" class="primary start-wave">Wave active</button>
+           - unexpected value "inactive"
+
+
+      531 |       await expect(toast).toBeVisible();
+      532 |       await expect(page.locator('#phase-label')).toHaveText('Wave active');
+    > 533 |       await expect(page.locator('#start-wave-button')).toBeFocused();
+          |                                                        ^
+      534 |       await capture('started-wave-2');
+      535 |       const remaining = await page.evaluate(() => 3199 - (performance.now() - toastObservations[0].now));
+      536 |       expect(remaining).toBeGreaterThan(0);
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:533:56
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-002db--through-input-and-rotation-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-toast-layo-002db--through-input-and-rotation-e2e/error-context.md
+
+    attachment #7: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-002db--through-input-and-rotation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-toast-layo-002db--through-input-and-rotation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 390x844 › keeps live notification and primary controls clear through input and rotation
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  locator('#start-wave-button')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" with timeout 5000ms
+      - waiting for locator('#start-wave-button')
+        14 × locator resolved to <button disabled type="button" id="start-wave-button" class="primary start-wave">Wave active</button>
+           - unexpected value "inactive"
+
+
+      531 |       await expect(toast).toBeVisible();
+      532 |       await expect(page.locator('#phase-label')).toHaveText('Wave active');
+    > 533 |       await expect(page.locator('#start-wave-button')).toBeFocused();
+          |                                                        ^
+      534 |       await capture('started-wave-2');
+      535 |       const remaining = await page.evaluate(() => 3199 - (performance.now() - toastObservations[0].now));
+      536 |       expect(remaining).toBeGreaterThan(0);
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:533:56
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-4a11b--through-input-and-rotation-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-toast-layo-4a11b--through-input-and-rotation-e2e/error-context.md
+
+    attachment #7: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-4a11b--through-input-and-rotation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-toast-layo-4a11b--through-input-and-rotation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 640x360 › keeps live notification and primary controls clear through input and rotation
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  locator('#start-wave-button')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" with timeout 5000ms
+      - waiting for locator('#start-wave-button')
+        14 × locator resolved to <button disabled type="button" id="start-wave-button" class="primary start-wave">Wave active</button>
+           - unexpected value "inactive"
+
+
+      531 |       await expect(toast).toBeVisible();
+      532 |       await expect(page.locator('#phase-label')).toHaveText('Wave active');
+    > 533 |       await expect(page.locator('#start-wave-button')).toBeFocused();
+          |                                                        ^
+      534 |       await capture('started-wave-2');
+      535 |       const remaining = await page.evaluate(() => 3199 - (performance.now() - toastObservations[0].now));
+      536 |       expect(remaining).toBeGreaterThan(0);
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:533:56
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-8c3e7--through-input-and-rotation-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-toast-layo-8c3e7--through-input-and-rotation-e2e/error-context.md
+
+    attachment #7: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-8c3e7--through-input-and-rotation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-toast-layo-8c3e7--through-input-and-rotation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 844x390 › keeps live notification and primary controls clear through input and rotation
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  locator('#start-wave-button')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" with timeout 5000ms
+      - waiting for locator('#start-wave-button')
+        14 × locator resolved to <button disabled type="button" id="start-wave-button" class="primary start-wave">Wave active</button>
+           - unexpected value "inactive"
+
+
+      531 |       await expect(toast).toBeVisible();
+      532 |       await expect(page.locator('#phase-label')).toHaveText('Wave active');
+    > 533 |       await expect(page.locator('#start-wave-button')).toBeFocused();
+          |                                                        ^
+      534 |       await capture('started-wave-2');
+      535 |       const remaining = await page.evaluate(() => 3199 - (performance.now() - toastObservations[0].now));
+      536 |       expect(remaining).toBeGreaterThan(0);
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:533:56
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-2be1b--through-input-and-rotation-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-toast-layo-2be1b--through-input-and-rotation-e2e/error-context.md
+
+    attachment #7: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-2be1b--through-input-and-rotation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-toast-layo-2be1b--through-input-and-rotation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 1280x720 › keeps live notification and primary controls clear through input and rotation
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  locator('#start-wave-button')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" with timeout 5000ms
+      - waiting for locator('#start-wave-button')
+        14 × locator resolved to <button disabled type="button" id="start-wave-button" class="primary start-wave">Wave active</button>
+           - unexpected value "inactive"
+
+
+      531 |       await expect(toast).toBeVisible();
+      532 |       await expect(page.locator('#phase-label')).toHaveText('Wave active');
+    > 533 |       await expect(page.locator('#start-wave-button')).toBeFocused();
+          |                                                        ^
+      534 |       await capture('started-wave-2');
+      535 |       const remaining = await page.evaluate(() => 3199 - (performance.now() - toastObservations[0].now));
+      536 |       expect(remaining).toBeGreaterThan(0);
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:533:56
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-e54af--through-input-and-rotation-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-toast-layo-e54af--through-input-and-rotation-e2e/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-e54af--through-input-and-rotation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-toast-layo-e54af--through-input-and-rotation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 360x640 › keeps live notification and primary controls clear through input and rotation
+    [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 390x844 › keeps live notification and primary controls clear through input and rotation
+    [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 640x360 › keeps live notification and primary controls clear through input and rotation
+    [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 844x390 › keeps live notification and primary controls clear through input and rotation
+    [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 1280x720 › keeps live notification and primary controls clear through input and rotation

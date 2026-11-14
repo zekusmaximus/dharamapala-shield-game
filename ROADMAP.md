@@ -706,6 +706,28 @@ M3.2 retention, M3.5 collection, human M3/M4.5 and M4 acceptance stay open.
 No player understanding, difficulty, build diversity, confusion or observed
 play time is established; M5/M6 are not started.
 
+
+**M4.5 passive-toast visual fix (2026-11-14; automated scope):** Fresh earned
+wave-1 reproduction on PR #36 main confirmed that the visible passive toast
+still covered portrait 2×/Start labels. A CSS-only responsive offset now places
+it above the portrait build panel and over the battlefield in short landscape;
+control sizes, text, polite status, 3200 ms lifetime, passive input and focus
+behavior remain. Five bounded earned wave-1 checks at 360×640, 390×844,
+640×360, 844×390 and 1280×720 pass rendered bounds/capture, ordinary tap/click,
+scroll and paired phone rotation checks while the notification is visible.
+[Reproduction, implementation, captures and validation](design/reviews/2026-11-14-m4.5-toast-layout/README.md)
+record automated findings only. Existing desktop recovery, natural-defeat/retry,
+390×844 full touch campaign and exact clock/JSON guarantees are retained.
+Human M3/M4.5 collection and M4 acceptance remain open; no player understanding,
+difficulty, build diversity, confusion or observed play time is established.
+A detached clean checkout passed 143 unit, 66 integration, 13 simulation,
+112 browser and 14 accessibility checks. Desktop JSON is byte-identical;
+touch gameplay and full-campaign clock/JSON guarantees remain exact. Only sampled
+touch checkpoint/rotation instants retain the existing one-fixed-tick allowance.
+M4.3 and historical evidence regenerated exactly, with the pinned M3.5 archive
+unchanged.
+Touch emulation is not physical-device validation. M5/M6 are not started.
+
 **Acceptance gate:** two distinct strategies can complete Normal; a documented
 skilled strategy completes Hard; ignoring introduced threats demonstrably costs
 performance. Difficulty results separate both policy/scenario tests and observed

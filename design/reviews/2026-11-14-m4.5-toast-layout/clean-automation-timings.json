@@ -1,0 +1,34 @@
+{
+  "recovery": {
+    "automationWallMs": 102212.651311,
+    "note": "Host elapsed test time, not player time. Browser RAF/timers virtualized via Playwright clock.runFor; combat time is production gameTimeMs."
+  },
+  "touch-recovery": {
+    "automationWallMs": 111006.83295300002,
+    "note": "Host elapsed test time, not player time. Browser RAF/timers virtualized via Playwright clock.runFor; combat time is production gameTimeMs."
+  },
+  "defeat-retry": {
+    "automationWallMs": 20743.972949000017,
+    "note": "Host elapsed test time, not player time. Browser RAF/timers virtualized via Playwright clock.runFor; combat time is production gameTimeMs."
+  },
+  "toast-360x640": {
+    "automationWallMs": 6223.750287000003,
+    "note": "Host elapsed test time, not player time. Browser RAF/timers virtualized via Playwright clock.runFor; combat time is production gameTimeMs."
+  },
+  "toast-390x844": {
+    "automationWallMs": 6456.386242000008,
+    "note": "Host elapsed test time, not player time. Browser RAF/timers virtualized via Playwright clock.runFor; combat time is production gameTimeMs."
+  },
+  "toast-640x360": {
+    "automationWallMs": 6038.054029999999,
+    "note": "Host elapsed test time, not player time. Browser RAF/timers virtualized via Playwright clock.runFor; combat time is production gameTimeMs."
+  },
+  "toast-844x390": {
+    "automationWallMs": 6193.022667000012,
+    "note": "Host elapsed test time, not player time. Browser RAF/timers virtualized via Playwright clock.runFor; combat time is production gameTimeMs."
+  },
+  "toast-1280x720": {
+    "automationWallMs": 5673.1361700000125,
+    "note": "Host elapsed test time, not player time. Browser RAF/timers virtualized via Playwright clock.runFor; combat time is production gameTimeMs."
+  }
+}

@@ -1,0 +1,46 @@
+[WebServer] (node:965) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:977) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 390x844 › keeps live notification and primary controls clear through input and rotation (5.1s)
+
+
+  1) [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 390x844 › keeps live notification and primary controls clear through input and rotation
+
+    Error: toast visually overlaps Wave speed 2×
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 611.1875
+
+      463 |     const overlap = Math.max(0, Math.min(t.x + t.width, c.x + c.width) - Math.max(t.x, c.x)) *
+      464 |       Math.max(0, Math.min(t.y + t.height, c.y + c.height) - Math.max(t.y, c.y));
+    > 465 |     expect(overlap, `toast visually overlaps ${c.name}`).toBe(0);
+          |                                                          ^
+      466 |   }
+      467 | }
+      468 | for (const viewport of toastViews) {
+        at clearBounds (/workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:465:58)
+        at capture (/workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:505:9)
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:507:7
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-4a11b--through-input-and-rotation-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-toast-layo-4a11b--through-input-and-rotation-e2e/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-toast-layo-4a11b--through-input-and-rotation-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-toast-layo-4a11b--through-input-and-rotation-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [e2e] › tests/e2e/campaign.spec.js:472:5 › earned toast layout 390x844 › keeps live notification and primary controls clear through input and rotation

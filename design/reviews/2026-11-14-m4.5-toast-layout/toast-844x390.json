@@ -1,0 +1,415 @@
+{
+  "commands": [
+    {
+      "wave": 1,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 270,
+          "y": 270,
+          "coverage": 18
+        }
+      ]
+    },
+    {
+      "wave": 1,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 510,
+          "y": 270,
+          "coverage": 18
+        }
+      ]
+    },
+    {
+      "wave": 1,
+      "name": "placeDefense",
+      "args": [
+        "encryption",
+        {
+          "x": 210,
+          "y": 210,
+          "coverage": 17
+        }
+      ]
+    }
+  ],
+  "wave": {
+    "wave": 1,
+    "durationMs": 16299.999999999765,
+    "livesBefore": 20,
+    "livesAfter": 20,
+    "atStart": {
+      "dharma": 20,
+      "bandwidth": 25,
+      "anonymity": 0
+    },
+    "after": {
+      "dharma": 110,
+      "bandwidth": 56,
+      "anonymity": 0
+    },
+    "report": {
+      "partial": false,
+      "passiveDharma": 0,
+      "spent": {
+        "dharma": 110,
+        "bandwidth": 35,
+        "anonymity": 0
+      },
+      "refunds": {
+        "dharma": 0,
+        "bandwidth": 0,
+        "anonymity": 0
+      },
+      "bounty": {
+        "dharma": 40,
+        "bandwidth": 16,
+        "anonymity": 0
+      },
+      "clear": {
+        "dharma": 50,
+        "bandwidth": 15,
+        "anonymity": 0
+      },
+      "towers": {
+        "defense-1": {
+          "type": "firewall",
+          "x": 270,
+          "y": 270,
+          "level": 1,
+          "health": 317.2,
+          "shield": 0,
+          "kills": 5,
+          "shots": 16,
+          "slowHits": 0,
+          "vulnerabilityHits": 0,
+          "auraShots": 0
+        },
+        "defense-2": {
+          "type": "firewall",
+          "x": 510,
+          "y": 270,
+          "level": 1,
+          "health": 30,
+          "shield": 0,
+          "kills": 0,
+          "shots": 2,
+          "slowHits": 0,
+          "vulnerabilityHits": 0,
+          "auraShots": 0
+        },
+        "defense-3": {
+          "type": "encryption",
+          "x": 210,
+          "y": 210,
+          "level": 1,
+          "health": 180.8,
+          "shield": 0,
+          "kills": 3,
+          "shots": 13,
+          "slowHits": 10,
+          "vulnerabilityHits": 10,
+          "auraShots": 0
+        }
+      },
+      "leaks": [],
+      "coverage": {},
+      "waveNumber": 1,
+      "killed": 8,
+      "leaked": 0,
+      "outcome": "cleared"
+    }
+  },
+  "views": [
+    {
+      "label": "earned-wave-1",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "toast": {
+        "x": 159.09375,
+        "y": 324.40625,
+        "width": 289.40625,
+        "height": 49.59375
+      },
+      "text": "Wave 1 held: 8 defeated, 0 leaked.",
+      "pointerEvents": "none",
+      "overflow": false,
+      "controls": [
+        {
+          "name": "Pause game",
+          "x": 645.921875,
+          "y": 1,
+          "width": 81.640625,
+          "height": 46.375
+        },
+        {
+          "name": "Settings",
+          "x": 735.5625,
+          "y": 1,
+          "width": 99.640625,
+          "height": 46.375
+        },
+        {
+          "name": "Wave speed 1×",
+          "x": 616.609375,
+          "y": 308.390625,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Wave speed 2×",
+          "x": 666.203125,
+          "y": 308.390625,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Start wave 2",
+          "x": 715.796875,
+          "y": 284.015625,
+          "width": 112.8125,
+          "height": 68.375
+        }
+      ]
+    },
+    {
+      "label": "scrolled",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "toast": {
+        "x": 159.09375,
+        "y": 324.40625,
+        "width": 289.40625,
+        "height": 49.59375
+      },
+      "text": "Wave 1 held: 8 defeated, 0 leaked.",
+      "pointerEvents": "none",
+      "overflow": false,
+      "controls": [
+        {
+          "name": "Pause game",
+          "x": 645.921875,
+          "y": 1,
+          "width": 81.640625,
+          "height": 46.375
+        },
+        {
+          "name": "Settings",
+          "x": 735.5625,
+          "y": 1,
+          "width": 99.640625,
+          "height": 46.375
+        },
+        {
+          "name": "Wave speed 1×",
+          "x": 616.609375,
+          "y": 308.390625,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Wave speed 2×",
+          "x": 666.203125,
+          "y": 308.390625,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Start wave 2",
+          "x": 715.796875,
+          "y": 284.015625,
+          "width": 112.8125,
+          "height": 68.375
+        }
+      ]
+    },
+    {
+      "label": "rotation-390x844",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "toast": {
+        "x": 97.5,
+        "y": 516.40625,
+        "width": 195,
+        "height": 71.59375
+      },
+      "text": "Wave 1 held: 8 defeated, 0 leaked.",
+      "pointerEvents": "none",
+      "overflow": false,
+      "controls": [
+        {
+          "name": "Pause game",
+          "x": 243.953125,
+          "y": 7.1875,
+          "width": 57.390625,
+          "height": 44
+        },
+        {
+          "name": "Settings",
+          "x": 309.34375,
+          "y": 7.1875,
+          "width": 71.0625,
+          "height": 44
+        },
+        {
+          "name": "Wave speed 1×",
+          "x": 17.796875,
+          "y": 757.765625,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Wave speed 2×",
+          "x": 67.390625,
+          "y": 757.765625,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Start wave 2",
+          "x": 116.984375,
+          "y": 747.765625,
+          "width": 255.21875,
+          "height": 54
+        }
+      ]
+    },
+    {
+      "label": "rotation-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "toast": {
+        "x": 159.09375,
+        "y": 324.40625,
+        "width": 289.40625,
+        "height": 49.59375
+      },
+      "text": "Wave 1 held: 8 defeated, 0 leaked.",
+      "pointerEvents": "none",
+      "overflow": false,
+      "controls": [
+        {
+          "name": "Pause game",
+          "x": 645.921875,
+          "y": 4,
+          "width": 81.640625,
+          "height": 46.375
+        },
+        {
+          "name": "Settings",
+          "x": 735.5625,
+          "y": 4,
+          "width": 99.640625,
+          "height": 46.375
+        },
+        {
+          "name": "Wave speed 1×",
+          "x": 616.609375,
+          "y": 311.390625,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Wave speed 2×",
+          "x": 666.203125,
+          "y": 311.390625,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Start wave 2",
+          "x": 715.796875,
+          "y": 287.015625,
+          "width": 112.8125,
+          "height": 68.375
+        }
+      ]
+    },
+    {
+      "label": "started-wave-2",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "toast": {
+        "x": 159.09375,
+        "y": 324.40625,
+        "width": 289.40625,
+        "height": 49.59375
+      },
+      "text": "Wave 1 held: 8 defeated, 0 leaked.",
+      "pointerEvents": "none",
+      "overflow": false,
+      "controls": [
+        {
+          "name": "Pause game",
+          "x": 645.921875,
+          "y": 4,
+          "width": 81.640625,
+          "height": 46.375
+        },
+        {
+          "name": "Settings",
+          "x": 735.5625,
+          "y": 4,
+          "width": 99.640625,
+          "height": 46.375
+        },
+        {
+          "name": "Wave speed 1×",
+          "x": 616.609375,
+          "y": 311.390625,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Wave speed 2×",
+          "x": 666.203125,
+          "y": 311.390625,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Wave active",
+          "x": 715.796875,
+          "y": 287.015625,
+          "width": 112.8125,
+          "height": 68.375
+        }
+      ]
+    }
+  ],
+  "scrolls": [
+    {
+      "wave": 1,
+      "before": 1072,
+      "after": 897,
+      "max": 1072
+    }
+  ],
+  "lifetime": [
+    {
+      "visible": true,
+      "now": 10816,
+      "text": "Wave 1 held: 8 defeated, 0 leaked."
+    },
+    {
+      "visible": false,
+      "now": 14016,
+      "text": "Wave 1 held: 8 defeated, 0 leaked."
+    }
+  ],
+  "errors": []
+}

@@ -54,12 +54,12 @@ async function observe(page, previous = { bosses: [], spawns: [] }) {
   }, previous);
 }
 
-async function fresh(page, touch = false) {
+async function fresh(page, touch = false, viewport = null) {
   if (touch) {
     touchPages.add(page);
     page.setDefaultTimeout(10_000);
   }
-  await page.setViewportSize(touch ? portrait : { width: 1280, height: 720 });
+  await page.setViewportSize(viewport || (touch ? portrait : { width: 1280, height: 720 }));
   // Virtual browser time schedules every RAF. Production frame -> tick -> GameClock
   // -> fixed steps, rendering, UI refresh and autosave remain installed and unmodified.
   await page.clock.install({ time: new Date('2026-11-14T00:00:00Z') });
@@ -423,3 +423,130 @@ test('natural Normal UI defeat explains coverage and permits a concrete retry', 
     retry: { durationMs: retry.durationMs, lives: retry.end.state.lives, resources: retry.end.state.resources,
       report: retry.end.state.reports.pending.at(-1) } }, wallStart);
 });
+
+// Bounded layout checkpoints reuse the earned campaign opening/driver, not a
+// full campaign per viewport. No synthetic toast or combat fixture is used.
+const toastViews = [
+  { width: 360, height: 640 }, portrait,
+  { width: 640, height: 360 }, landscape,
+  { width: 1280, height: 720 }
+];
+async function toastBounds(page) {
+  return page.evaluate(() => {
+    const rect = e => {
+      const { x, y, width, height } = e.getBoundingClientRect();
+      return { x, y, width, height };
+    };
+    const toast = document.querySelector('#toast');
+    return { viewport: { width: innerWidth, height: innerHeight },
+      toast: rect(toast), text: toast.textContent,
+      pointerEvents: getComputedStyle(toast).pointerEvents,
+      overflow: toast.scrollWidth > toast.clientWidth || toast.scrollHeight > toast.clientHeight,
+      controls: [...document.querySelectorAll('.header-actions button, .wave-actions button')].map(e =>
+        ({ name: e.getAttribute('aria-label') || e.textContent.trim(), ...rect(e) })) };
+  });
+}
+function clearBounds(view) {
+  const { toast: t, viewport: v } = view;
+  expect(t.x).toBeGreaterThanOrEqual(0);
+  expect(t.y).toBeGreaterThanOrEqual(0);
+  expect(t.x + t.width).toBeLessThanOrEqual(v.width);
+  expect(t.y + t.height).toBeLessThanOrEqual(v.height);
+  expect(view.pointerEvents).toBe('none');
+  expect(view.overflow).toBe(false);
+  for (const c of view.controls) {
+    expect(c.height, c.name).toBeGreaterThanOrEqual(44);
+    expect(c.x, c.name).toBeGreaterThanOrEqual(0);
+    expect(c.y, c.name).toBeGreaterThanOrEqual(0);
+    expect(c.x + c.width, c.name).toBeLessThanOrEqual(v.width);
+    expect(c.y + c.height, c.name).toBeLessThanOrEqual(v.height);
+    const overlap = Math.max(0, Math.min(t.x + t.width, c.x + c.width) - Math.max(t.x, c.x)) *
+      Math.max(0, Math.min(t.y + t.height, c.y + c.height) - Math.max(t.y, c.y));
+    expect(overlap, `toast visually overlaps ${c.name}`).toBe(0);
+  }
+}
+for (const viewport of toastViews) {
+  test.describe(`earned toast layout ${viewport.width}x${viewport.height}`, () => {
+    const touch = viewport.width !== 1280;
+    test.use({ hasTouch: touch, viewport });
+    test('keeps live notification and primary controls clear through input and rotation', async ({ page }, testInfo) => {
+      test.setTimeout(90_000);
+      const wallStart = performance.now(), views = [], scrolls = [], errors = [];
+      page.on('pageerror', e => errors.push(e.message));
+      page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
+      await fresh(page, touch, viewport);
+      await preview(page, 1);
+      const commands = recovery.commands.filter(c => c.wave === 1);
+      for (const c of commands) await purchase(page, c);
+      await page.evaluate(() => {
+        globalThis.toastObservations = [];
+        new MutationObserver(records => {
+          for (const r of records) if (r.attributeName === 'hidden') {
+            const e = r.target;
+            toastObservations.push({ visible: !e.hidden, now: performance.now(), text: e.textContent });
+          }
+        }).observe(document.querySelector('#toast'), { attributes: true, attributeFilter: ['hidden'] });
+      });
+      const row = await waveRun(page, 1, []);
+      const wave = reconcile(row, recovery.waves[0]);
+      const toast = page.locator('#toast');
+      await expect(toast).toBeVisible();
+      await expect(toast).toHaveText('Wave 1 held: 8 defeated, 0 leaked.');
+      await expect(toast).toHaveAttribute('role', 'status');
+      await expect(toast).toHaveAttribute('aria-live', 'polite');
+      await expect(page.locator('[data-wave-speed-context="game"]').getByRole('button', { name: 'Wave speed 2×' })).toBeFocused();
+      const capture = async label => {
+        await expect(toast).toBeVisible();
+        const view = { label, ...await toastBounds(page) };
+        views.push(view);
+        await page.screenshot({ path: testInfo.outputPath(`${label}.png`) });
+        // Retain reproduction even when the first geometric assertion fails.
+        await artifact(testInfo, `toast-${viewport.width}x${viewport.height}`, { commands, wave, views, scrolls, errors }, wallStart);
+        clearBounds(view);
+      };
+      await capture('earned-wave-1');
+      if (touch) await swipeScroll(page, page.locator('.build-content'), 1, scrolls);
+      else {
+        const scroller = page.locator('.build-content');
+        const before = await scroller.evaluate(e => e.scrollTop);
+        await scroller.hover();
+        await page.mouse.wheel(0, -180);
+        await expect.poll(() => scroller.evaluate(e => e.scrollTop)).not.toBe(before);
+        scrolls.push({ before, after: await scroller.evaluate(e => e.scrollTop) });
+      }
+      await capture('scrolled');
+      if (touch) {
+        for (const size of [{ width: viewport.height, height: viewport.width }, viewport]) {
+          await page.setViewportSize(size);
+          await page.clock.runFor(96); // normal RAF/camera/ResizeObserver paint
+          await capture(`rotation-${size.width}x${size.height}`);
+        }
+        expect(withoutDate(await snapshot(page))).toEqual(withoutDate(row.end));
+      }
+      // Access is established while visible, without waiting out the lifetime.
+      await speed(page, 1);
+      await expect(toast).toBeVisible();
+      await speed(page, 2);
+      await activate(page, page.getByRole('button', { name: 'Start wave 2', exact: true }));
+      await expect(toast).toBeVisible();
+      await expect(page.locator('#phase-label')).toHaveText('Wave active');
+      // Starting disables the button and Chromium releases its focus. The toast
+      // must neither take focus nor change the resulting focus on dismissal.
+      const focusAfterStart = await page.evaluate(() => ({ tag: document.activeElement.tagName, id: document.activeElement.id }));
+      expect(focusAfterStart.id).not.toBe('toast');
+      await capture('started-wave-2');
+      const remaining = await page.evaluate(() => 3199 - (performance.now() - toastObservations.findLast(e => e.visible && e.text.startsWith('Wave 1 held:')).now));
+      expect(remaining).toBeGreaterThan(0);
+      await page.clock.runFor(remaining);
+      await expect(toast).toBeVisible();
+      await page.clock.runFor(1);
+      await expect(toast).toBeHidden();
+      expect(await page.evaluate(() => ({ tag: document.activeElement.tagName, id: document.activeElement.id }))).toEqual(focusAfterStart);
+      const lifetime = await page.evaluate(() => toastObservations.filter(e => e.text.startsWith('Wave 1 held:')));
+      expect(lifetime.map(e => e.visible)).toEqual([true, false]);
+      expect(lifetime[1].now - lifetime[0].now).toBe(3200);
+      expect(errors).toEqual([]);
+      await artifact(testInfo, `toast-${viewport.width}x${viewport.height}`, { commands, wave, views, scrolls, lifetime, errors }, wallStart);
+    });
+  });
+}
