@@ -211,7 +211,7 @@ npx playwright install chromium
 npm run build
 CI=1 CAMPAIGN_AUDIT_OUTPUT=/tmp/m45-touch-refined npx playwright test tests/e2e/campaign.spec.js --project=e2e --grep 'portrait touch' --workers=1
 # From a new detached checkout, initially without node_modules or dist:
-bash design/reviews/2026-11-14-m4.5-touch-audit/verify.sh > /tmp/m45-touch-final-validation.txt 2>&1
+bash design/reviews/2026-11-14-m4.5-touch-audit/verify.sh > /tmp/m45-touch-validated.txt 2>&1
 ```
 
 The new verify.sh runs the complete clean-checkout CI pipeline, original
@@ -238,3 +238,41 @@ and the preexisting simulation clock/JSON parity remain unchanged. Native
 compositor scroll offsets remain measured observations. The corrected comparator
 passes against the captured clean result as well as the focused reference.
 No production/test driver change was made for this correction.
+
+## Completed clean validation
+
+A new detached checkout at **`1e4c6d4`**, initially without node_modules or dist,
+passed the complete [verify.sh](verify.sh). Exact commands:
+
+```bash
+git worktree add --detach /tmp/dharamapala-m45-touch-validated 1e4c6d4
+cd /tmp/dharamapala-m45-touch-validated
+bash design/reviews/2026-11-14-m4.5-touch-audit/verify.sh > /tmp/m45-touch-validated.txt 2>&1
+```
+
+[validation.txt](validation.txt) records the full successful run: Node 24.22.1,
+npm 11.9.0 and Chromium 149.0.7827.55. [Clean replay observations](clean-touch-observations.json)
+retain the actual checkpoint/rotation samples and native scroll positions;
+[its wall timing](clean-touch-recovery-timing.json) is distinct from the
+focused timing and from production combat time. Captured text logs have trailing
+whitespace normalized; commands/results are unchanged.
+
+| Check | Result |
+| --- | --- |
+| No dependencies/build output; locked install, Chromium install, fresh build | Pass |
+| Unit / integration / simulation | 143 / 66 / 13 passed |
+| Browser / accessibility | 107 / 14 passed |
+| Original desktop recovery and natural-defeat/retry JSON | Byte-identical to PR #35 |
+| Touch gameplay, complete per-wave reports and final combat time | Exact vs focused and merged desktop |
+| Observed touch checkpoints/rotation | All non-time fields exact; sampled times within one fixed tick |
+| Existing M4.4 full-campaign clock/JSON matrix | All four cases pass; invariants unchanged |
+| M4.3 baseline, 21-run report/summary, counterplay, old/current scenarios, old-save capture/comparison | Byte-identical |
+| Historical economy/tradeoffs; production/content/tooling; all prior evidence | Preserved / pass |
+| Pinned M3.5 archive SHA-256 | Unchanged / pass |
+| Whitespace and detached worktree cleanliness | Pass |
+
+The 107 browser checks are the existing 106 plus one earned touch campaign.
+Other suite counts are unchanged. This final validation record and roadmap note
+change documentation only after the tested commit; production, test driver,
+reference gameplay and comparator bytes are unchanged. Hosted PR checks are a
+separate pipeline and do not close any human gate.

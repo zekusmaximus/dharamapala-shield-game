@@ -698,7 +698,10 @@ announcement/lifetime. Brief visual overlap remains documented. The desktop
 natural-defeat/retry and full-campaign clock/JSON guarantees are retained.
 [Evidence, ledgers, checkpoints, timings and limits](design/reviews/2026-11-14-m4.5-touch-audit/README.md)
 record automated findings only. Balance 1.7.0, schema v4 and PR #35's inspector
-fixes remain. Touch emulation is not physical-device or human validation;
+fixes remain. A detached clean checkout passed 143 unit, 66 integration,
+13 simulation, 107 browser and 14 accessibility checks, exact gameplay/evidence
+comparisons and historical/pinned-build preservation. Touch emulation is not
+physical-device or human validation;
 M3.2 retention, M3.5 collection, human M3/M4.5 and M4 acceptance stay open.
 No player understanding, difficulty, build diversity, confusion or observed
 play time is established; M5/M6 are not started.
