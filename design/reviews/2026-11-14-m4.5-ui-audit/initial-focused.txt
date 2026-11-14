@@ -11,7 +11,7 @@ Running 2 tests using 1 worker
   ✘  2 [e2e] › tests/e2e/campaign.spec.js:263:1 › natural Normal UI defeat explains coverage and permits a concrete retry (21.1s)
 
 
-  1) [e2e] › tests/e2e/campaign.spec.js:208:1 › earned Normal UI mistake recovers through all twenty combat waves 
+  1) [e2e] › tests/e2e/campaign.spec.js:208:1 › earned Normal UI mistake recovers through all twenty combat waves
 
     Error: clock.runFor: TypeError: Cannot read properties of undefined (reading 'specializations')
         at GameUI.renderInspector (http://127.0.0.1:3000/js/ui/GameUI.js:752:20)
@@ -51,7 +51,7 @@ Running 2 tests using 1 worker
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  2) [e2e] › tests/e2e/campaign.spec.js:263:1 › natural Normal UI defeat explains coverage and permits a concrete retry 
+  2) [e2e] › tests/e2e/campaign.spec.js:263:1 › natural Normal UI defeat explains coverage and permits a concrete retry
 
     Error: expect(locator).toBeVisible() failed
 
@@ -89,5 +89,5 @@ Running 2 tests using 1 worker
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
   2 failed
-    [e2e] › tests/e2e/campaign.spec.js:208:1 › earned Normal UI mistake recovers through all twenty combat waves 
-    [e2e] › tests/e2e/campaign.spec.js:263:1 › natural Normal UI defeat explains coverage and permits a concrete retry 
+    [e2e] › tests/e2e/campaign.spec.js:208:1 › earned Normal UI mistake recovers through all twenty combat waves
+    [e2e] › tests/e2e/campaign.spec.js:263:1 › natural Normal UI defeat explains coverage and permits a concrete retry

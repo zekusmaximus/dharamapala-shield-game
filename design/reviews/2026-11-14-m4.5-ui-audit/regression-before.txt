@@ -19,14 +19,14 @@ test at tests/unit/live-inspection.test.js:7:1
 ✖ periodic live inspector retains selected tower metadata across support changes (2.132876ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
   + actual - expected
-  
+
     {
       id: 'defense-1',
   -   level: 3,
   -   specialization: 'sustain',
   -   type: 'encryption'
     }
-  
+
       at TestContext.<anonymous> (file:///tmp/dharamapala-m45-before/tests/unit/live-inspection.test.js:16:10)
       at Test.runInAsyncScope (node:async_hooks:227:14)
       at Test.run (node:internal/test_runner/test:1402:25)
@@ -50,7 +50,7 @@ Running 1 test using 1 worker
   ✘  1 [e2e] › tests/e2e/inspector.spec.js:6:1 › identical tower stats do not reuse another tower specialization handler (2.0s)
 
 
-  1) [e2e] › tests/e2e/inspector.spec.js:6:1 › identical tower stats do not reuse another tower specialization handler 
+  1) [e2e] › tests/e2e/inspector.spec.js:6:1 › identical tower stats do not reuse another tower specialization handler
 
     Error: expect(received).toMatchObject(expected)
 
@@ -88,5 +88,5 @@ Running 1 test using 1 worker
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
   1 failed
-    [e2e] › tests/e2e/inspector.spec.js:6:1 › identical tower stats do not reuse another tower specialization handler 
+    [e2e] › tests/e2e/inspector.spec.js:6:1 › identical tower stats do not reuse another tower specialization handler
 browser exit=1 (expected failure before fix)
