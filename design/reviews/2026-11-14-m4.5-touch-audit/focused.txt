@@ -1,10 +1,10 @@
-[WebServer] (node:1630) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:2551) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 [WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
 
 Running 1 test using 1 worker
 
-(node:1642) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:2563) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
-  ✓  1 [e2e] › tests/e2e/campaign.spec.js:373:3 › portrait touch campaign › earned Normal recovery uses taps, scrolling and rotation through twenty waves (1.7m)
+  ✓  1 [e2e] › tests/e2e/campaign.spec.js:378:3 › portrait touch campaign › earned Normal recovery uses taps, scrolling and rotation through twenty waves (1.7m)
 
   1 passed (1.7m)

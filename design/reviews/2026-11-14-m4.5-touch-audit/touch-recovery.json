@@ -31,14 +31,14 @@
     {
       "label": "active wave 10 spent Raid EMP",
       "wave": 10,
-      "combatMsBefore": 173366.66666665731,
+      "combatMsBefore": 173349.99999999066,
       "views": [
         {
           "viewport": {
             "width": 844,
             "height": 390
           },
-          "combatMs": 173483.3333333239,
+          "combatMs": 173549.99999999054,
           "phase": "WAVE"
         },
         {
@@ -46,7 +46,7 @@
             "width": 390,
             "height": 844
           },
-          "combatMs": 173616.66666665717,
+          "combatMs": 173733.33333332377,
           "phase": "WAVE"
         }
       ]
@@ -56,19 +56,19 @@
     {
       "wave": 3,
       "before": 2648,
-      "after": 2528,
+      "after": 2555,
       "max": 5089
     },
     {
       "wave": 16,
       "before": 2963,
-      "after": 2864,
+      "after": 2872,
       "max": 6386
     },
     {
       "wave": 20,
       "before": 278,
-      "after": 147,
+      "after": 149,
       "max": 3189
     }
   ],
@@ -603,7 +603,7 @@
       "label": "spent Raid EMP",
       "wave": 10,
       "resume": "WAVE",
-      "combatMs": 173616.66666665717,
+      "combatMs": 173733.33333332377,
       "speed": 2,
       "reports": 9,
       "resources": {
@@ -655,6 +655,18 @@
           "health": 145.20000000000002,
           "shield": 0,
           "firedPhases": []
+        },
+        {
+          "type": "corporateSaboteur",
+          "health": 135.85000000000002,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "scriptKiddie",
+          "health": 79.2,
+          "shield": 0,
+          "firedPhases": []
         }
       ]
     },
@@ -662,7 +674,7 @@
       "label": "damaged Titan shield",
       "wave": 15,
       "resume": "WAVE",
-      "combatMs": 238716.66666661928,
+      "combatMs": 238699.99999995262,
       "speed": 2,
       "reports": 14,
       "resources": {

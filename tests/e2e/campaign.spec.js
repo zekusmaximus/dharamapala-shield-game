@@ -259,6 +259,11 @@ async function rotate(page, label, rotations, testInfo) {
     const start = page.locator('#start-wave-button');
     await expect(start).toBeInViewport({ ratio: 1 });
     await expect(start).toBeEnabled({ enabled: before.state.phase === 'BUILDING' });
+    // ResizeObserver can clear the bitmap after the earlier frame. Allow the
+    // next ordinary production frames to paint, then verify visible canvas ink.
+    await page.clock.runFor(32);
+    expect(await page.locator('#game-canvas').evaluate(canvas =>
+      canvas.getContext('2d').getImageData(0, 0, 1, 1).data[3])).toBe(255);
     const current = await snapshot(page);
     expect(current.state.phase).toBe(before.state.phase);
     if (before.state.phase === 'BUILDING') expect(current.state.resources).toEqual(before.state.resources);

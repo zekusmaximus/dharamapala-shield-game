@@ -78,6 +78,19 @@ than an enabled generic Upgrade button, and reinspection must retain the
 already selected tower when comparing full build snapshots. These were test
 assumption corrections, not further product defects.
 
+An initial [portrait rotation capture](rotation-before-render.png) was taken
+after a ResizeObserver callback cleared the canvas bitmap and before the next
+paint while browser time was paused. The final driver advances another 32 ms
+of ordinary RAF after UI interaction and asserts an opaque painted canvas
+pixel before each rotation capture. It never calls resize/render manually.
+This is a harness scheduling correction, not a persistent blank battlefield
+reproduced under freely running frames. A clean-pipeline attempt at `367379c`
+was stopped during its first browser scenario to include this stronger
+checkpoint; unit/integration/simulation had passed, but that interrupted run
+is not the completed clean pipeline. One immediate focused restart reused the
+stopping server and failed reload with connection refused; the final focused
+run uses CI=1 and its own server, and passes.
+
 ## Checks and checkpoints
 
 Every wave verifies authored preview counts/windows, boss warning, roster
@@ -97,7 +110,7 @@ run at earned build before wave 4 and during active spent-EMP combat in wave
 10. They inspect the earned tower and roster in both orientations and verify
 that Start Wave stays in the viewport with the correct enabled state.
 Build rotation leaves full state/runtime unchanged. Combat rotation advances
-ordinary RAFs (64 browser ms in each orientation), retains tower identity,
+ordinary RAFs (64 browser ms after resize plus 32 ms after interaction in each orientation), retains tower identity,
 branches, lives and pending reports, and allows production combat to proceed.
 Rotation snapshots/captures are observations, not claims of physical orientation
 sensor or device testing. Natural victory freezes, survives reload/Continue,
@@ -126,7 +139,7 @@ lives, duration and summed tower activity. No historical artifact was refreshed.
 | Earned bounty | 7380 / 3677 / 0 |
 | Clear income, including passive Dharma | 3932 / 1153 / 0 |
 | Production combat time | 385733.3333334162 ms (385.733 s) |
-| Focused automation wall time | 103696.154 ms (103.696 s); machine-dependent |
+| Focused automation wall time | 100853.487 ms (100.853 s); machine-dependent |
 
 The whole-campaign ledger is `130 + 7380 + 3932 - 9215 = 2227` Dharma,
 `60 + 3677 + 1153 - 1062 = 3828` Bandwidth, and zero numeric Anonymity.
@@ -134,17 +147,17 @@ This is M4.3's `save` recovery, not its different `existing` opening.
 
 | Paused reload checkpoint | Combat ms | Reports | Resources D/B/A | Retained combat state |
 | --- | ---: | ---: | --- | --- |
-| Build before wave 4 | 62516.667 | 3 | 85/84/0 | Earned towers/explicit branches |
-| Wave-10 spent EMP, after rotation | 173616.667 | 9 | 217/559/0 | Live Raid 400.8276 health, phase 1 fired; minions/schedule retained |
-| Wave-15 damaged Titan | 238716.667 | 14 | 74/1263/0 | Live Titan 1045 health, 359.92 shield |
+| Build before wave 4 | 62516.667 | 3 | 85/84/0 | Earned tower levels (no level-3 choice yet) |
+| Wave-10 spent EMP, after rotation | 173733.333 | 9 | 217/559/0 | Live Raid 400.8276 health, phase 1 fired; minions/schedule retained |
+| Wave-15 damaged Titan | 238700.000 | 14 | 74/1263/0 | Live Titan 1045 health, 359.92 shield |
 | Build before wave 16 | 256533.333 | 15 | 71/1644/0 | Earned towers/explicit branches; subsequent purchases succeed |
 
 All four keep 2× and pass complete snapshot/state/runtime equality on
 reload/Continue. Build rotation keeps 62516.667 combat ms exactly. Active
-rotation advances 173366.667 → 173483.333 → 173616.667 combat ms through
+rotation advances 173350.000 → 173550.000 → 173733.333 combat ms through
 ordinary scheduled frames at 2×; wave duration and all later gameplay still
-match the desktop run. Native scrolls moved 2648→2528 and 2963→2864 in the
-build scroller, and 278→147 in Victory. These are captured positions, not
+match the desktop run. Native scrolls moved 2648→2555 and 2963→2872 in the
+build scroller, and 278→149 in Victory. These are captured positions, not
 portable pixel expectations.
 
 The inspected [build portrait](build-portrait.png) /
@@ -161,7 +174,7 @@ Browser time uses the merged Playwright clock installation. `clock.runFor`
 executes the normal scheduled RAF/timer sequence rather than emitting one
 large delta or replacing a combat method. Combat slices remain 256 ms initially,
 1024 ms normally and 256 ms while seeking boss checkpoints; rotations add
-64 ms per orientation. Swipe settling advances 256 ms in building/terminal
+64 ms after resize plus 32 ms for post-interaction paint per orientation. Swipe settling advances 256 ms in building/terminal
 phases, which cannot add combat time. Build, paused and terminal frame slices
 are checked separately.
 
