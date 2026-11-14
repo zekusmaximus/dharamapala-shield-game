@@ -196,3 +196,35 @@ byte-identically, checks historical economy/tradeoffs, verifies all prior
 evidence/content/tooling bytes and the pinned archive hash, and finishes with
 whitespace and worktree cleanliness checks. Host timing files and screenshots
 are observations, not byte-stable expectations.
+
+
+The first detached run at `0499319` passed all five suites, browser evidence
+byte comparisons, headless evidence regeneration and preservation checks,
+then stopped at `git diff --check` because the captured failure logs had
+trailing whitespace. [Its log](initial-clean-validation.txt) is retained.
+Commit `17a0e05` normalizes only those three log files; production, tests and
+result JSON are byte-identical to `0499319`. A second fresh detached checkout
+at `17a0e05` passed the complete script against the corrected evidence commit. Stored text
+logs have trailing whitespace normalized; no reported command/result is removed.
+
+
+[Complete clean-checkout validation](validation.txt) used Node 24.22.1,
+npm 11.9.0 and Chromium 149.0.7827.55, initially without installed dependencies
+or build output:
+
+| Check | Result |
+| --- | --- |
+| Locked install, Chromium install, current build | Pass |
+| Unit / integration / simulation | 143 / 66 / 13 passed |
+| Browser / accessibility | 106 / 14 passed |
+| New browser result JSON | Byte-identical to focused-run evidence |
+| M4.3 diagnostics, 21-run report/summary, counterplay, targeted old/current scenarios, old-save capture and comparison | Byte-identical |
+| M4.4 full-run clock/JSON continuation | All four cases pass, invariants unchanged |
+| Historical economy/tradeoffs, content, prior evidence, pinned M3.5 archive | Preserved / pass |
+| Whitespace, regenerated tracked files and detached worktree cleanliness | Pass |
+
+The 106 browser checks include the original 103, two earned UI scenarios and
+one separate synthetic inspector regression. The 143 unit checks include the
+new metadata regression. Existing integration, simulation and accessibility
+suites are unchanged. Hosted PR checks are separate from this detached local
+pipeline and can be inspected on the PR; neither closes a human gate.

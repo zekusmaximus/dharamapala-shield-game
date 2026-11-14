@@ -675,7 +675,10 @@ natural results and restart. It exposed and narrowly fixed periodic inspector
 metadata and same-stat tower specialization-handler identity defects. Outcomes
 and accounts match the relevant M4.3 runs; the 21-run reporter and M4.4
 clock/JSON matrix remain separate existing guarantees. Balance stays 1.7.0,
-schema v4. [Evidence, timings, regressions and limits](design/reviews/2026-11-14-m4.5-ui-audit/README.md)
+schema v4. A detached clean checkout passed 143 unit, 66 integration,
+13 simulation, 106 browser and 14 accessibility checks; browser outcomes and
+existing M4.3 evidence regenerate byte-identically, with historical artifacts
+and the pinned M3.5 build preserved. [Evidence, timings, regressions and limits](design/reviews/2026-11-14-m4.5-ui-audit/README.md)
 record automated findings only. Human M4.5 collection and M4 acceptance remain
 open, along with M3.2 retention, M3.5 collection and the human M3 gate. No
 player understanding, difficulty, build diversity, confusion or observed play
