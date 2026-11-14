@@ -99,7 +99,7 @@ current reports, deliberate Start Wave, and the 1×/2× controls. Build frames
 cannot start a wave. Pause → Save now → reload → Continue → Resume compares
 the entire earned snapshot/state/runtime except savedAt, freezes paused
 frames, retains reports and branches, and permits subsequent legal purchases.
-The four checkpoint kinds are inherited from the merged driver:
+The four checkpoints are inherited from the merged driver:
 
 - Earned build before waves 4 and 16.
 - Wave-10 Raid after its single EMP is spent.
@@ -110,8 +110,8 @@ run at earned build before wave 4 and during active spent-EMP combat in wave
 10. They inspect the earned tower and roster in both orientations and verify
 that Start Wave stays in the viewport with the correct enabled state.
 Build rotation leaves full state/runtime unchanged. Combat rotation advances
-ordinary RAFs (64 browser ms after resize plus 32 ms after interaction in each orientation), retains tower identity,
-branches, lives and pending reports, and allows production combat to proceed.
+ordinary RAFs (64 browser ms after resize plus 32 ms after interaction in each
+orientation), retains tower identity, branches, lives and pending reports, and allows production combat to proceed.
 Rotation snapshots/captures are observations, not claims of physical orientation
 sensor or device testing. Natural victory freezes, survives reload/Continue,
 retains the wave-3 leak report and permits Play again with default funds/lives,
@@ -182,9 +182,12 @@ Production gameTimeMs counts simulated combat only. The timing artifact records
 host automation wall time, including rendering, assertions, taps and accelerated
 browser scheduling. Neither measures player deliberation or observed play time.
 Native compositor scroll offsets and host timings are retained observations,
-not deterministic expectations. The comparison script excludes only scrolls
-from touch replay byte comparison; it compares every other evidence field and
-all gameplay fields against the merged desktop result. Each run must still
+not deterministic expectations. The comparison script keeps every gameplay field exact, including all per-wave
+combat times and the final combat time. It excludes scroll positions and allows
+only one production fixed tick (16.667 ms) of variation in sampled checkpoint/
+rotation instants; all other checkpoint/rotation fields stay exact. Within each
+run, full snapshot/state/runtime equality on pause/reload remains exact except
+savedAt. The existing full-campaign simulation clock/JSON matrix is unchanged. Each run must still
 assert all three native swipes actually scroll.
 
 Touch emulation is not physical-device, human or screen-reader validation.
@@ -206,9 +209,9 @@ Historical artifacts and the pinned M3.5 build are preserved.
 npm ci
 npx playwright install chromium
 npm run build
-CAMPAIGN_AUDIT_OUTPUT=/tmp/m45-touch-focused npx playwright test tests/e2e/campaign.spec.js --project=e2e --workers=1
+CI=1 CAMPAIGN_AUDIT_OUTPUT=/tmp/m45-touch-refined npx playwright test tests/e2e/campaign.spec.js --project=e2e --grep 'portrait touch' --workers=1
 # From a new detached checkout, initially without node_modules or dist:
-bash design/reviews/2026-11-14-m4.5-touch-audit/verify.sh > /tmp/m45-touch-validation.txt 2>&1
+bash design/reviews/2026-11-14-m4.5-touch-audit/verify.sh > /tmp/m45-touch-final-validation.txt 2>&1
 ```
 
 The new verify.sh runs the complete clean-checkout CI pipeline, original
@@ -216,3 +219,22 @@ pointer evidence byte comparisons, touch comparisons, existing full-run
 clock/JSON matrix and M4.3 evidence regeneration, historical economy/tradeoffs,
 production/content/tooling and prior-evidence preservation, pinned archive hash,
 whitespace and clean-worktree checks. Hosted PR checks are separate.
+
+## Clean-pipeline comparison correction
+
+The first completed browser suite at `5846a63` passed 143 unit, 66 integration,
+13 simulation and all 107 browser tests. Both original desktop JSON files
+matched exactly. Its next check, cross-run touch artifact comparison, was too
+strict about *sampled checkpoint instants*: Raid and Titan samples differed
+by one fixed tick (16.667 ms), while their retained entity fields and every
+command, wave/report, ledger, spawn, boss and final value were exact.
+[The initial log](initial-clean-validation.txt) retains this failed check; it
+stopped before accessibility and the remaining evidence regeneration.
+
+The comparator now bounds only those observational instants to one production
+fixed tick. It does not normalize a report, combat duration, final time, entity,
+resource, command, branch or outcome. Every run's paused snapshot/reload equality
+and the preexisting simulation clock/JSON parity remain unchanged. Native
+compositor scroll offsets remain measured observations. The corrected comparator
+passes against the captured clean result as well as the focused reference.
+No production/test driver change was made for this correction.
