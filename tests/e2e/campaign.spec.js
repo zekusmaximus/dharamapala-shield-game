@@ -1,7 +1,7 @@
 // Earned UI campaigns. Keep synthetic lifecycle/presentation fixtures in game.spec.js.
 import { test, expect } from '@playwright/test';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { clickWorld, enterBuildPhase } from './helpers.js';
+import { clickWorld } from './helpers.js';
 import { getWavePreview } from '../../js/core/rules/waves.js';
 
 const json = async path => JSON.parse(await readFile(new URL(path, import.meta.url)));
@@ -12,6 +12,26 @@ const report = await json('../../design/reviews/2026-11-13-m4.3/results.json');
 const weak = report.runs.find(r => r.scenario === 'normal-campaign' && r.policy === 'weak-placement');
 const snapshot = page => page.evaluate(() => gameApplication.session.toSnapshot());
 const withoutDate = ({ savedAt, ...rest }) => rest;
+
+// The same earned driver serves pointer and touch. Synthetic fixtures stay separate.
+const touchPages = new WeakSet();
+const portrait = { width: 390, height: 844 };
+const landscape = { width: 844, height: 390 };
+const activate = (page, locator) => touchPages.has(page) ? locator.tap() : locator.click();
+async function world(page, x, y) {
+  if (!touchPages.has(page)) return clickWorld(page, x, y);
+  await page.locator('#game-canvas').scrollIntoViewIfNeeded();
+  await expect.poll(() => page.evaluate(() => {
+    const { camera } = gameApplication;
+    return Math.abs(camera.cssWidth - camera.canvas.getBoundingClientRect().width);
+  })).toBeLessThan(1);
+  const point = await page.evaluate(({ x, y }) => {
+    const { camera } = gameApplication, rect = camera.canvas.getBoundingClientRect();
+    return { x: rect.left + camera.offsetX + x * camera.scale,
+      y: rect.top + camera.offsetY + y * camera.scale };
+  }, { x, y });
+  await page.touchscreen.tap(point.x, point.y);
+}
 
 async function observe(page, previous = { bosses: [], spawns: [] }) {
   // Subscribers only read production events/entities; they never wrap commands or combat.
@@ -34,15 +54,23 @@ async function observe(page, previous = { bosses: [], spawns: [] }) {
   }, previous);
 }
 
-async function fresh(page) {
-  await page.setViewportSize({ width: 1280, height: 720 });
+async function fresh(page, touch = false) {
+  if (touch) {
+    touchPages.add(page);
+    page.setDefaultTimeout(10_000);
+  }
+  await page.setViewportSize(touch ? portrait : { width: 1280, height: 720 });
   // Virtual browser time schedules every RAF. Production frame -> tick -> GameClock
   // -> fixed steps, rendering, UI refresh and autosave remain installed and unmodified.
   await page.clock.install({ time: new Date('2026-11-14T00:00:00Z') });
   await page.clock.pauseAt(new Date('2026-11-14T00:00:01Z'));
   await page.goto('/');
   await expect(page.getByRole('button', { name: 'New game', exact: true })).toBeVisible();
-  await enterBuildPhase(page);
+  await activate(page, page.getByRole('button', { name: 'New game', exact: true }));
+  await expect(page.getByRole('dialog', { name: 'Protect the endpoint' })).toBeVisible();
+  await activate(page, page.getByRole('button', { name: 'Skip tutorial' }));
+  await expect(page.getByRole('button', { name: 'Start wave 1', exact: true })).toBeEnabled();
+  if (touch) expect(await page.evaluate(() => navigator.maxTouchPoints)).toBeGreaterThan(0);
   const initial = await snapshot(page);
   expect(initial.balanceVersion).toBe('1.7.0');
   expect(initial.schemaVersion).toBe(4);
@@ -56,8 +84,8 @@ async function purchase(page, command) {
   const before = await snapshot(page);
   const [arg, choice] = command.args;
   if (command.name === 'placeDefense') {
-    await page.locator(`[data-tower-type="${arg}"]`).click();
-    await clickWorld(page, choice.x, choice.y);
+    await activate(page, page.locator(`[data-tower-type="${arg}"]`));
+    await world(page, choice.x, choice.y);
     const after = await snapshot(page);
     expect(after.state.defenses).toHaveLength(before.state.defenses.length + 1);
     expect(after.state.defenses.at(-1)).toMatchObject({ type: arg, x: choice.x, y: choice.y, level: 1 });
@@ -65,26 +93,26 @@ async function purchase(page, command) {
     expect(command.name).toBe('upgradeDefense');
     const tower = before.state.defenses.find(t => t.id === arg);
     expect(tower, `earned tower ${arg}`).toBeTruthy();
-    await clickWorld(page, tower.x, tower.y);
+    await world(page, tower.x, tower.y);
     if (choice) {
       expect(tower.level).toBe(2);
-      await page.locator(`[data-specialization="${choice}"]`).click();
-    } else await page.locator('#upgrade-button').click();
+      await activate(page, page.locator(`[data-specialization="${choice}"]`));
+    } else await activate(page, page.locator('#upgrade-button'));
     const after = (await snapshot(page)).state.defenses.find(t => t.id === arg);
     expect(after.level).toBe(tower.level + 1);
     expect(after.specialization).toBe(choice || tower.specialization);
   }
 }
 
-async function preview(page, wave) {
+async function preview(page, wave, active = false) {
   const model = getWavePreview(balance, wave);
   const panel = page.locator('#wave-preview-section');
-  if (await panel.getAttribute('open') === null) await panel.locator('summary').click();
-  await expect(page.locator('#start-wave-button')).toHaveText(`Start wave ${wave}`);
+  if (await panel.getAttribute('open') === null) await activate(page, panel.locator('summary'));
+  await expect(page.locator('#start-wave-button')).toHaveText(active ? 'Wave active' : `Start wave ${wave}`);
   await expect(page.locator('#boss-warning')).toBeVisible({ visible: model.isBossWave });
   for (const enemy of model.enemies) {
     const button = page.locator(`#wave-preview-list [data-enemy-type="${enemy.id}"]`);
-    await expect(button).toHaveAccessibleName(`Inspect ${enemy.name}, ${enemy.count} incoming`);
+    await expect(button).toHaveAccessibleName(`Inspect ${enemy.name}, ${enemy.count} ${active ? 'in this wave' : 'incoming'}`);
     for (const [i, window] of enemy.windows.entries()) {
       const seconds = ms => `${Number((ms / 1000).toFixed(3))} s`;
       const text = window.count === 1 ? `1 at ${seconds(window.startMs)}`
@@ -93,20 +121,20 @@ async function preview(page, wave) {
     }
   }
   const enemy = model.enemies.find(e => balance.bosses[e.id]) || model.enemies[0];
-  await page.locator(`#wave-preview-list [data-enemy-type="${enemy.id}"]`).click();
+  await activate(page, page.locator(`#wave-preview-list [data-enemy-type="${enemy.id}"]`));
   await expect(page.locator('#enemy-inspector-content')).toContainText(enemy.name);
-  if (model.enemies.some(e => e.id === 'raidTeam')) {
+  if (!active && model.enemies.some(e => e.id === 'raidTeam')) {
     await expect(page.locator('#emp-warning')).toContainText('66%');
     await expect(page.locator('#emp-warning')).toContainText('spaced 0.25 s apart');
   }
-  await page.locator('#close-enemy-inspector-button').click();
+  await activate(page, page.locator('#close-enemy-inspector-button'));
   return model;
 }
 
 async function readReport(page, wave, terminal = false) {
   const host = page.locator(terminal ? '#terminal-reports' : '#wave-reports');
   const details = host.locator(`details[data-wave="${wave}"]`);
-  if (await details.getAttribute('open') === null) await details.locator('summary').click();
+  if (await details.getAttribute('open') === null) await activate(page, details.locator('summary'));
   await expect(details).toContainText('Build/upgrade spent');
   await expect(details).toContainText('Kill income');
   await expect(details).toContainText('Leaks and coverage');
@@ -115,14 +143,14 @@ async function readReport(page, wave, terminal = false) {
 }
 
 async function reloadCheckpoint(page, label, checkpoints) {
-  await page.getByRole('button', { name: 'Pause game' }).click();
-  await page.getByRole('button', { name: 'Save now', exact: true }).click();
+  await activate(page, page.getByRole('button', { name: 'Pause game' }));
+  await activate(page, page.getByRole('button', { name: 'Save now', exact: true }));
   const saved = await snapshot(page);
   const observer = await page.evaluate(() => campaignAudit);
   await page.clock.runFor(1000);
   expect(withoutDate(await snapshot(page))).toEqual(withoutDate(saved));
   await page.reload();
-  await page.getByRole('button', { name: 'Continue', exact: true }).click();
+  await activate(page, page.getByRole('button', { name: 'Continue', exact: true }));
   await expect(page.getByRole('dialog', { name: 'Paused', exact: true })).toBeVisible();
   expect(withoutDate(await snapshot(page))).toEqual(withoutDate(saved));
   await observe(page, observer);
@@ -130,32 +158,34 @@ async function reloadCheckpoint(page, label, checkpoints) {
     combatMs: saved.state.gameTimeMs, speed: saved.state.waveSpeed,
     reports: saved.state.reports.pending.length, resources: saved.state.resources,
     enemies: saved.state.enemies.map(e => ({ type: e.type, health: e.health, shield: e.shield, firedPhases: e.firedPhases })) });
-  await page.getByRole('button', { name: 'Resume', exact: true }).click();
+  await activate(page, page.getByRole('button', { name: 'Resume', exact: true }));
 }
 
 async function speed(page, n) {
-  await page.locator('[data-wave-speed-context="game"]').getByRole('button', { name: `Wave speed ${n}×` }).click();
+  await activate(page, page.locator('[data-wave-speed-context="game"]').getByRole('button', { name: `Wave speed ${n}×` }));
 }
 
-async function waveRun(page, wave, checkpoints, combatCheckpoint = false) {
+async function waveRun(page, wave, checkpoints, combatCheckpoint = false, touchAudit = null) {
   const start = await snapshot(page);
   await page.clock.runFor(1000);
   expect(withoutDate(await snapshot(page))).toEqual(withoutDate(start)); // deliberate start
-  await page.getByRole('button', { name: `Start wave ${wave}`, exact: true }).click();
+  // Regression: the noninteractive wave-clear toast must not block a quick tap.
+  if (touchPages.has(page) && wave === 2) await expect(page.locator('#toast')).toBeVisible();
+  await activate(page, page.getByRole('button', { name: `Start wave ${wave}`, exact: true }));
   await page.clock.runFor(256);
   await expect(page.locator('#phase-label')).toHaveText('Wave active');
   const tower = start.state.defenses[0];
-  await clickWorld(page, tower.x, tower.y);
+  await world(page, tower.x, tower.y);
   await expect(page.locator('#inspector-content')).toContainText(balance.towers[tower.type].name);
   await expect(page.locator('#upgrade-button')).toBeDisabled();
   await expect(page.locator('#sell-button')).toBeDisabled();
   await expect(page.locator('#inspector-content')).toContainText(`Level ${tower.level}`);
-  await page.locator('#close-inspector-button').click();
+  await activate(page, page.locator('#close-inspector-button'));
   const enemy = page.locator('#wave-preview-list [data-enemy-type]').first();
-  await enemy.click();
+  await activate(page, enemy);
   await expect(enemy).toHaveAccessibleName(/in this wave/);
   await expect(page.locator('#enemy-inspector-content')).toBeVisible();
-  await page.locator('#close-enemy-inspector-button').click();
+  await activate(page, page.locator('#close-enemy-inspector-button'));
   if (wave > 1) {
     await readReport(page, wave - 1);
   }
@@ -167,6 +197,7 @@ async function waveRun(page, wave, checkpoints, combatCheckpoint = false) {
       wave === 10 ? e.type === 'raidTeam' && e.firedPhases.length === 1
         : e.type === 'megaCorpTitan' && e.shield < e.shieldMax)) {
       await expect(page.locator('#combat-state')).toContainText(wave === 10 ? 'EMP spent' : 'Shield');
+      if (touchAudit && wave === 10) await rotate(page, 'active wave 10 spent Raid EMP', touchAudit.rotations, touchAudit.testInfo);
       await reloadCheckpoint(page, wave === 10 ? 'spent Raid EMP' : 'damaged Titan shield', checkpoints);
       didCheckpoint = true;
     }
@@ -208,6 +239,64 @@ function reconcile(row, expected) {
     atStart: start.state.resources, after: end.state.resources, report: r };
 }
 
+async function rotate(page, label, rotations, testInfo) {
+  const before = await snapshot(page), views = [];
+  for (const viewport of [landscape, portrait]) {
+    await page.setViewportSize(viewport);
+    // Ordinary scheduled RAF also updates camera size. Combat keeps running.
+    await page.clock.runFor(64);
+    const tower = before.state.defenses.find(t => t.id === before.state.selectedDefenseId);
+    expect(tower).toBeTruthy();
+    await world(page, tower.x, tower.y);
+    await expect(page.locator('#inspector-content')).toContainText(`Level ${tower.level}`);
+    await expect(page.locator('#inspector-content')).toContainText(balance.towers[tower.type].name);
+    if (before.state.phase === 'WAVE') {
+      await expect(page.locator('#upgrade-button')).toBeDisabled();
+      await expect(page.locator('#sell-button')).toBeDisabled();
+    } else await expect(page.locator('#sell-button')).toBeEnabled();
+    await activate(page, page.locator('#close-inspector-button'));
+    await preview(page, before.state.waveNumber, before.state.phase === 'WAVE');
+    const start = page.locator('#start-wave-button');
+    await expect(start).toBeInViewport({ ratio: 1 });
+    await expect(start).toBeEnabled({ enabled: before.state.phase === 'BUILDING' });
+    const current = await snapshot(page);
+    expect(current.state.phase).toBe(before.state.phase);
+    if (before.state.phase === 'BUILDING') expect(current.state.resources).toEqual(before.state.resources);
+    expect(current.state.lives).toBe(before.state.lives);
+    const identity = towers => towers.map(({ id, type, x, y, level, specialization }) => ({ id, type, x, y, level, specialization }));
+    expect(identity(current.state.defenses)).toEqual(identity(before.state.defenses));
+    expect(current.state.reports.pending).toEqual(before.state.reports.pending);
+    await page.screenshot({ path: testInfo.outputPath(`${label}-${viewport.width}.png`) });
+    views.push({ viewport, combatMs: current.state.gameTimeMs, phase: current.state.phase });
+  }
+  const after = await snapshot(page);
+  if (before.state.phase === 'BUILDING') expect(withoutDate(after)).toEqual(withoutDate(before));
+  else expect(after.state.gameTimeMs).toBeGreaterThan(before.state.gameTimeMs);
+  rotations.push({ label, wave: before.state.waveNumber, combatMsBefore: before.state.gameTimeMs, views });
+}
+
+async function swipeScroll(page, scroller, wave, scrolls) {
+  // Native Chromium touch gesture in the scrolling content, never the canvas
+  // (which intentionally has touch-action:none). No DOM scrollTop mutation.
+  const before = await scroller.evaluate(e => ({ top: e.scrollTop, max: e.scrollHeight - e.clientHeight }));
+  expect(before.max).toBeGreaterThan(0);
+  const box = await scroller.boundingBox();
+  const distance = Math.min(120, box.height * 0.6);
+  const direction = before.top > distance ? 1 : -1;
+  const x = box.x + box.width / 2, y = box.y + box.height / 2 - direction * distance / 2;
+  const client = await page.context().newCDPSession(page);
+  try {
+    await client.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+    for (let i = 1; i <= 8; i++) {
+      await client.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x, y: y + direction * distance * i / 8 }] });
+    }
+    await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await page.clock.runFor(256);
+    await expect.poll(() => scroller.evaluate(e => e.scrollTop)).not.toBe(before.top);
+    scrolls.push({ wave, before: before.top, after: await scroller.evaluate(e => e.scrollTop), max: before.max });
+  } finally { await client.detach(); }
+}
+
 async function artifact(testInfo, name, value, wallStart) {
   const bytes = JSON.stringify(value, null, 2) + '\n';
   await testInfo.attach(`${name}.json`, { body: bytes, contentType: 'application/json' });
@@ -220,13 +309,13 @@ async function artifact(testInfo, name, value, wallStart) {
   }
 }
 
-test('earned Normal UI mistake recovers through all twenty combat waves', async ({ page }, testInfo) => {
-  test.setTimeout(240_000);
-  const wallStart = performance.now(), checkpoints = [], waves = [], commands = [];
+async function runRecovery(page, testInfo, touch = false) {
+  test.setTimeout(touch ? 360_000 : 240_000);
+  const wallStart = performance.now(), checkpoints = [], waves = [], commands = [], rotations = [], scrolls = [];
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
   page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
-  await fresh(page);
+  await fresh(page, touch);
   for (let wave = 1; wave <= 20; wave++) {
     await preview(page, wave);
     const before = (await snapshot(page)).state.resources;
@@ -234,11 +323,15 @@ test('earned Normal UI mistake recovers through all twenty combat waves', async 
       await purchase(page, command); commands.push(command);
     }
     expect(before).toEqual(recovery.waves[wave - 1].before);
+    if (touch && wave === 4) await rotate(page, 'earned build before wave 4', rotations, testInfo);
     if ([4, 16].includes(wave)) await reloadCheckpoint(page, 'earned build', checkpoints);
-    const row = await waveRun(page, wave, checkpoints, [10, 15].includes(wave));
+    const row = await waveRun(page, wave, checkpoints, [10, 15].includes(wave), touch ? { rotations, testInfo } : null);
     waves.push(reconcile(row, recovery.waves[wave - 1]));
     expect(row.end.state.reports.pending).toHaveLength(wave);
     const details = await readReport(page, wave, wave === 20);
+    if (touch && [3, 16, 20].includes(wave)) {
+      await swipeScroll(page, wave === 20 ? page.getByRole('dialog', { name: 'Victory', exact: true }) : page.locator('.build-content'), wave, scrolls);
+    }
     if (wave === 3) {
       await expect(details).toContainText('Script Kiddie: 2 escaped; 2 configured life damage');
       await expect(details).toContainText('Last observed attacking range');
@@ -253,21 +346,33 @@ test('earned Normal UI mistake recovers through all twenty combat waves', async 
   await expect(page.getByRole('dialog', { name: 'Victory', exact: true })).toBeVisible();
   await page.clock.runFor(1000);
   expect(withoutDate(await snapshot(page))).toEqual(withoutDate(final));
-  await page.reload(); await page.getByRole('button', { name: 'Continue', exact: true }).click();
+  await page.reload();
+  await activate(page, page.getByRole('button', { name: 'Continue', exact: true }));
   await expect(page.getByRole('dialog', { name: 'Victory', exact: true })).toBeVisible();
   expect(withoutDate(await snapshot(page))).toEqual(withoutDate(final));
   await readReport(page, 3, true);
-  await page.screenshot({ path: testInfo.outputPath('earned-victory.png') });
-  await page.getByRole('button', { name: 'Play again', exact: true }).click();
+  await page.screenshot({ path: testInfo.outputPath(touch ? 'touch-earned-victory.png' : 'earned-victory.png') });
+  await activate(page, page.getByRole('button', { name: 'Play again', exact: true }));
   const restart = await snapshot(page);
   expect(restart.state).toMatchObject({ phase: 'BUILDING', waveNumber: 1, lives: 20, resources: recovery.firstFunds });
   expect(restart.state.defenses).toEqual([]);
   expect(restart.state.reports.pending).toEqual([]);
   expect(errors).toEqual([]);
-  await artifact(testInfo, 'recovery', { balanceVersion: final.balanceVersion, schemaVersion: final.schemaVersion,
+  await artifact(testInfo, touch ? 'touch-recovery' : 'recovery', { ...(touch ? { viewport: portrait, hasTouch: true, rotations, scrolls } : {}), balanceVersion: final.balanceVersion, schemaVersion: final.schemaVersion,
     commands, checkpoints, waves, bosses: observer.bosses, spawns: observer.spawns,
     phase: final.state.phase, lives: final.state.lives, resources: final.state.resources,
     combatMs: final.state.gameTimeMs, errors }, wallStart);
+}
+
+test('earned Normal UI mistake recovers through all twenty combat waves', async ({ page }, testInfo) => {
+  await runRecovery(page, testInfo);
+});
+
+test.describe('portrait touch campaign', () => {
+  test.use({ hasTouch: true, viewport: portrait });
+  test('earned Normal recovery uses taps, scrolling and rotation through twenty waves', async ({ page }, testInfo) => {
+    await runRecovery(page, testInfo, true);
+  });
 });
 
 // Exactly the existing Normal weak-placement plan, followed by a bounded UI retry.
@@ -296,9 +401,10 @@ test('natural Normal UI defeat explains coverage and permits a concrete retry', 
   await page.screenshot({ path: testInfo.outputPath('natural-defeat.png') });
   await page.clock.runFor(1000);
   expect(withoutDate(await snapshot(page))).toEqual(withoutDate(final));
-  await page.reload(); await page.getByRole('button', { name: 'Continue', exact: true }).click();
+  await page.reload();
+  await activate(page, page.getByRole('button', { name: 'Continue', exact: true }));
   expect(withoutDate(await snapshot(page))).toEqual(withoutDate(final));
-  await page.getByRole('button', { name: 'Play again', exact: true }).click();
+  await activate(page, page.getByRole('button', { name: 'Play again', exact: true }));
   // Retry the same wave-1 tower roster and spend, moving only the three placements
   // into the already documented strong coverage cells. No new strategy matrix.
   for (const c of [place(1, 'encryption', 270, 270), place(1, 'firewall', 510, 270), place(1, 'firewall', 210, 210)]) await purchase(page, c);

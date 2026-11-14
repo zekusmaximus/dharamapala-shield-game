@@ -1,0 +1,68 @@
+[WebServer] (node:1233) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:1245) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [e2e] › tests/e2e/campaign.spec.js:370:3 › portrait touch campaign › earned Normal recovery uses taps, scrolling and rotation through twenty waves (15.6s)
+
+
+  1) [e2e] › tests/e2e/campaign.spec.js:370:3 › portrait touch campaign › earned Normal recovery uses taps, scrolling and rotation through twenty waves
+
+    TimeoutError: locator.tap: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Start wave 2', exact: true })
+        - locator resolved to <button type="button" id="start-wave-button" class="primary start-wave">Start wave 2</button>
+      - attempting tap action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div id="toast" class="toast" role="status" aria-live="polite">Wave 1 held: 8 defeated, 0 leaked.</div> intercepts pointer events
+        - retrying tap action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div id="toast" class="toast" role="status" aria-live="polite">Wave 1 held: 8 defeated, 0 leaked.</div> intercepts pointer events
+        - retrying tap action
+          - waiting 100ms
+        19 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div id="toast" class="toast" role="status" aria-live="polite">Wave 1 held: 8 defeated, 0 leaked.</div> intercepts pointer events
+         - retrying tap action
+           - waiting 500ms
+
+
+      18 | const portrait = { width: 390, height: 844 };
+      19 | const landscape = { width: 844, height: 390 };
+    > 20 | const activate = (page, locator) => touchPages.has(page) ? locator.tap() : locator.click();
+         |                                                                    ^
+      21 | async function world(page, x, y) {
+      22 |   if (!touchPages.has(page)) return clickWorld(page, x, y);
+      23 |   await page.locator('#game-canvas').scrollIntoViewIfNeeded();
+        at activate (/workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:20:68)
+        at waveRun (/workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:172:9)
+        at runRecovery (/workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:325:17)
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:371:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-portrait-touch-ca-2692c-tation-through-twenty-waves-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-portrait-touch-ca-2692c-tation-through-twenty-waves-e2e/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-portrait-touch-ca-2692c-tation-through-twenty-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-portrait-touch-ca-2692c-tation-through-twenty-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [e2e] › tests/e2e/campaign.spec.js:370:3 › portrait touch campaign › earned Normal recovery uses taps, scrolling and rotation through twenty waves

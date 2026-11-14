@@ -28,7 +28,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
 | M2 · Make decisions readable and measurable | P1 | Complete within documented scope: M2.1–M2.6 | M1 | M2.6 clean checkout passes 100 unit, 35 integration, 7 simulation, 69 browser and 10 accessibility checks; corrected M1.4 diagnostics match byte-for-byte and M2.4 policy outcomes match apart from the content-file hash |
 | M3 · Prove an engaging five-wave game | P1 | Partial: M3.1/M3.3/M3.4 automated scope complete; M3.2 retention provisional; M3.5 human collection deferred, gate open | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
-| M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: M4.1–M4.4 have bounded automated evidence; M4.5 has supporting automated UI audit; human M4.5 and M4 acceptance remain open | M3 for acceptance; engineering may proceed provisionally | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
+| M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: M4.1–M4.4 have bounded automated evidence; M4.5 has supporting desktop and portrait/touch automated UI audits; human M4.5 and M4 acceptance remain open | M3 for acceptance; engineering may proceed provisionally | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
 | M6 · Release and maintain confidently | P2 | Partial: build and test tools exist | M4; M5 for replay-content release | Device/browser checks, performance evidence, hosting/recovery documentation, release checklist |
 
@@ -683,6 +683,25 @@ record automated findings only. Human M4.5 collection and M4 acceptance remain
 open, along with M3.2 retention, M3.5 collection and the human M3 gate. No
 player understanding, difficulty, build diversity, confusion or observed play
 time is established; M5/M6 remain outside this work.
+
+**M4.5 supporting portrait/touch audit (2026-11-14):** One added fresh
+Chromium touch-emulated 390×844 Normal recovery reuses the merged campaign
+driver and immutable M4.3 scenario. Unforced taps, native scrolls and bounded
+844×390 rotations at earned build and active Raid combat checkpoints pass.
+Every wave's previews, inspection, reports, deliberate starts, speeds,
+pause/reload/Continue, subsequent legal purchases, natural victory and restart
+remain accessible. The run matches desktop gameplay: 18 lives, two wave-3
+Script Kiddie leaks, all seven bosses killed, 2227/3828/0 final resources and
+385.733 simulated combat seconds. The passive clear toast intercepted a quick
+Start tap in portrait; a narrow CSS fix lets input through while retaining its
+announcement/lifetime. Brief visual overlap remains documented. The desktop
+natural-defeat/retry and full-campaign clock/JSON guarantees are retained.
+[Evidence, ledgers, checkpoints, timings and limits](design/reviews/2026-11-14-m4.5-touch-audit/README.md)
+record automated findings only. Balance 1.7.0, schema v4 and PR #35's inspector
+fixes remain. Touch emulation is not physical-device or human validation;
+M3.2 retention, M3.5 collection, human M3/M4.5 and M4 acceptance stay open.
+No player understanding, difficulty, build diversity, confusion or observed
+play time is established; M5/M6 are not started.
 
 **Acceptance gate:** two distinct strategies can complete Normal; a documented
 skilled strategy completes Hard; ignoring introduced threats demonstrably costs
