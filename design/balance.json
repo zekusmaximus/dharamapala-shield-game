@@ -1,5 +1,5 @@
 {
-  "version": "1.6.0",
+  "version": "1.7.0",
   "towers": {
     "firewall": {
       "name": "Firewall Fortress",
@@ -508,16 +508,16 @@
       "damageToPlayerMult": 0.8
     },
     "Normal": {
-      "hpMult": 1.0,
-      "speedMult": 1.0,
+      "hpMult": 1.1,
+      "speedMult": 1.04,
       "bountyMult": 1.0,
       "damageToPlayerMult": 1.0
     },
     "Hard": {
-      "hpMult": 1.35,
+      "hpMult": 1.38,
       "speedMult": 1.15,
       "bountyMult": 0.85,
-      "damageToPlayerMult": 1.25
+      "damageToPlayerMult": 1.4
     }
   },
   "upgrades": {

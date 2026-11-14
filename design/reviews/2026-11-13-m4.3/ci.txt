@@ -1,0 +1,22 @@
+PR #34: https://github.com/zekusmaximus/dharamapala-shield-game/pull/34
+Checked head: d1686613ad6648ce288727eb470819f7f47366b0
+
+Command: gh run view 43447954379 --json status,conclusion,workflowName,headSha,url,jobs
+Workflow: CI
+Run: https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43447954379
+Job: https://github.com/zekusmaximus/dharamapala-shield-game/actions/runs/43447954379/job/131962285825
+Started: 2026-11-13T14:59:02Z
+Completed: 2026-11-13T15:02:14Z
+Status: completed
+Conclusion: success
+Passed steps: checkout, Node 22 setup, npm ci, Chromium with system dependencies,
+  fresh build, unit, integration, simulation, end-to-end and accessibility suites.
+Browser failure artifact step: skipped because no failure occurred.
+
+Command: gh pr checks 34
+GitGuardian Security Checks: pass
+validate: pass (3m12s)
+
+This is automated CI for the implementation and local-validation evidence
+head. The subsequent hosted-result documentation commit changes evidence text
+only; its own PR checks must be observed separately.

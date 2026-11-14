@@ -61,7 +61,7 @@ test('old 1.4.0/v4 wave bytes remain exportable until explicit reset; preference
   assert.equal(old.balanceVersion, '1.4.0');
   assert.throws(() => GameSession.fromSnapshot(balance, old), /Unsupported save schema or balance version/);
   const relabeled = structuredClone(old);
-  relabeled.balanceVersion = relabeled.state.balanceVersion = '1.6.0';
+  relabeled.balanceVersion = relabeled.state.balanceVersion = '1.7.0';
   assert.throws(() => GameSession.fromSnapshot(balance, relabeled),
     'old pending wave-7 events cannot be smuggled through by changing version strings');
   const storage = new MemoryStorage();
@@ -80,7 +80,7 @@ test('old 1.4.0/v4 wave bytes remain exportable until explicit reset; preference
   fresh.newGame({ tutorialCompleted: true });
   assert.equal(repository.save(fresh).ok, true);
   assert.equal(JSON.parse(storage.getItem(SAVE_KEY)).schemaVersion, 4);
-  assert.equal(JSON.parse(storage.getItem(SAVE_KEY)).balanceVersion, '1.6.0');
+  assert.equal(JSON.parse(storage.getItem(SAVE_KEY)).balanceVersion, '1.7.0');
 });
 
 test('M4.1 1.5.0/v4 Raid phase bytes remain exportable until explicit reset', async () => {
@@ -89,9 +89,39 @@ test('M4.1 1.5.0/v4 Raid phase bytes remain exportable until explicit reset', as
   assert.equal(old.balanceVersion, '1.5.0');
   assert.equal(old.schemaVersion, 4);
   assert.throws(() => GameSession.fromSnapshot(balance, old), /Unsupported save schema or balance version/);
+  const m42 = JSON.parse(await readFile(new URL('../../design/reviews/2026-11-13-m4.3/baseline-1.6.0.json', import.meta.url), 'utf8'));
+  const relabeledM42 = structuredClone(old);
+  relabeledM42.balanceVersion = relabeledM42.state.balanceVersion = '1.6.0';
+  assert.throws(() => GameSession.fromSnapshot(m42, relabeledM42), /Invalid boss phases/);
   const relabeled = structuredClone(old);
-  relabeled.balanceVersion = relabeled.state.balanceVersion = '1.6.0';
-  assert.throws(() => GameSession.fromSnapshot(balance, relabeled), /Invalid boss phases/);
+  relabeled.balanceVersion = relabeled.state.balanceVersion = '1.7.0';
+  assert.throws(() => GameSession.fromSnapshot(balance, relabeled), /Enemy disagrees with balance/);
+  const storage = new MemoryStorage();
+  storage.setItem(SAVE_KEY, raw);
+  storage.setItem(PREFERENCES_KEY, JSON.stringify({tutorialCompleted:true,showRanges:false,reducedMotion:true}));
+  const repository = new BrowserSaveRepository(storage);
+  assert.equal(repository.load(balance).ok, false);
+  assert.equal(repository.save(new GameSession(balance)).ok, false);
+  assert.equal(storage.getItem(SAVE_KEY), raw);
+  assert.equal(repository.exportCorrupt(), raw);
+  assert.equal(repository.clear().ok, true);
+  assert.equal(storage.getItem(SAVE_KEY), null);
+  assert.equal(repository.exportCorrupt(), raw);
+  assert.deepEqual(repository.preferences(), {tutorialCompleted:true,showRanges:false,reducedMotion:true});
+});
+
+test('M4.2 1.6.0/v4 Hard mid-wave bytes remain exact until export and explicit reset', async () => {
+  const raw = await readFile(new URL('../../design/reviews/2026-11-13-m4.3/old-1.6.0-v4-save.json', import.meta.url), 'utf8');
+  const old = JSON.parse(raw);
+  assert.equal(old.balanceVersion, '1.6.0');
+  assert.equal(old.schemaVersion, 4);
+  assert.equal(old.state.difficulty, 'Hard');
+  assert.equal(old.state.waveNumber, 11);
+  assert.ok(old.state.enemies.some(enemy => enemy.type === 'quantumHacker'));
+  assert.throws(() => GameSession.fromSnapshot(balance, old), /Unsupported save schema or balance version/);
+  const relabeled = structuredClone(old);
+  relabeled.balanceVersion = relabeled.state.balanceVersion = '1.7.0';
+  assert.throws(() => GameSession.fromSnapshot(balance, relabeled), /Enemy disagrees with balance/);
   const storage = new MemoryStorage();
   storage.setItem(SAVE_KEY, raw);
   storage.setItem(PREFERENCES_KEY, JSON.stringify({tutorialCompleted:true,showRanges:false,reducedMotion:true}));

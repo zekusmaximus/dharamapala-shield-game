@@ -79,11 +79,11 @@ test('actual full campaigns reconcile M2.3 ledgers, natural bosses/leaks and det
   }
 });
 
-test('fresh production scenarios and repeat hashes match M4.2 evidence; content hash matches current bytes', async () => {
+test('fresh production scenarios and repeat hashes match M4.3 evidence; content hash matches current bytes', async () => {
   const { buildReport } = await import('../../tools/balance/report.mjs');
   const { createHash } = await import('node:crypto');
   const { readFile } = await import('node:fs/promises');
-  const recorded = JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m4.2/results.json',import.meta.url)));
+  const recorded = JSON.parse(await readFile(new URL('../../design/reviews/2026-11-13-m4.3/results.json',import.meta.url)));
   const current = await buildReport();
   const bytes = await readFile(new URL('../../design/balance.json', import.meta.url));
   assert.equal(current.balanceSha256, createHash('sha256').update(bytes).digest('hex'));
@@ -102,13 +102,16 @@ test('earned-resource policy and marginal evidence regenerates deterministically
 });
 
 
-test('M4.2 first-five counterplay repeats; historical wave-3 forks and pre-Raid waves remain exact',async()=>{
+test('M4.3 first-five counterplay repeats; preserved M4.2 and M3.4 evidence remains separate',async()=>{
   const {buildCounterplayReport}=await import('../../tools/balance/counterplay.mjs');
   const {readFile}=await import('node:fs/promises');
-  const recorded=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m4.2/counterplay.json',import.meta.url)));
+  const recorded=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-13-m4.3/counterplay.json',import.meta.url)));
+  const m42=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m4.2/counterplay.json',import.meta.url)));
   const historical=JSON.parse(await readFile(new URL('../../design/reviews/2026-11-12-m3.4/counterplay.json',import.meta.url)));
   assert.deepEqual(JSON.parse(JSON.stringify(await buildCounterplayReport())),recorded);
-  assert.deepEqual(recorded.forks,historical.forks);
-  for(let i=0;i<recorded.runs.length;i++)
-    assert.deepEqual(recorded.runs[i].waves.slice(0,4),historical.runs[i].waves.slice(0,4));
+  assert.deepEqual(m42.forks,historical.forks);
+  for(let i=0;i<m42.runs.length;i++)
+    assert.deepEqual(m42.runs[i].waves.slice(0,4),historical.runs[i].waves.slice(0,4));
+  assert.deepEqual(recorded.forks.filter(row=>row.difficulty==='Easy'),
+    m42.forks.filter(row=>row.difficulty==='Easy'));
 });

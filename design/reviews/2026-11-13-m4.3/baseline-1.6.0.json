@@ -1,0 +1,560 @@
+{
+  "version": "1.6.0",
+  "towers": {
+    "firewall": {
+      "name": "Firewall Fortress",
+      "description": "Reliable single-target damage that prioritizes threats closest to the endpoint.",
+      "icon": "🛡️",
+      "cost": {
+        "dharma": 30,
+        "bandwidth": 0,
+        "anonymity": 0
+      },
+      "baseDamage": 30,
+      "ratePerSec": 1.0,
+      "projectileSpeed": 28,
+      "range": 200,
+      "aoeRadius": 0,
+      "critChance": 0,
+      "critMult": 1.0,
+      "status": {
+        "slowPct": 0,
+        "slowDuration": 0
+      },
+      "damageType": "physical",
+      "color": "#e94560",
+      "specializations": {
+        "focus": {
+          "name": "Focus",
+          "description": "Larger hits lose less to armor, but shorter range and slower shots sacrifice coverage.",
+          "damageMultiplier": 1.8,
+          "rangeMultiplier": 0.8,
+          "rateMultiplier": 0.7,
+          "slowMultiplier": 1,
+          "durationMultiplier": 1,
+          "vulnerabilityMultiplier": 1,
+          "chainTargets": 0
+        },
+        "coverage": {
+          "name": "Coverage",
+          "description": "Longer reach and faster shots cover more route, but smaller hits lose more to armor.",
+          "damageMultiplier": 0.85,
+          "rangeMultiplier": 1.25,
+          "rateMultiplier": 1.45,
+          "slowMultiplier": 1,
+          "durationMultiplier": 1,
+          "vulnerabilityMultiplier": 1,
+          "chainTargets": 0
+        }
+      }
+    },
+    "encryption": {
+      "name": "Encryption Monastery",
+      "description": "Controls attackers with deterministic slow and vulnerability effects.",
+      "icon": "🔐",
+      "cost": {
+        "dharma": 50,
+        "bandwidth": 35,
+        "anonymity": 0
+      },
+      "baseDamage": 22,
+      "ratePerSec": 0.8,
+      "projectileSpeed": 24,
+      "range": 180,
+      "aoeRadius": 0,
+      "critChance": 0,
+      "critMult": 1.0,
+      "status": {
+        "slowPct": 0.2,
+        "slowDuration": 1800,
+        "vulnerabilityPct": 0.12,
+        "vulnerabilityDuration": 1800
+      },
+      "damageType": "shock",
+      "color": "#0f3460",
+      "specializations": {
+        "sustain": {
+          "name": "Sustained control",
+          "description": "Stronger, longer slow and vulnerability on one target; gives up all chain hits.",
+          "damageMultiplier": 1,
+          "rangeMultiplier": 1,
+          "rateMultiplier": 1,
+          "slowMultiplier": 1.4,
+          "durationMultiplier": 1.5,
+          "vulnerabilityMultiplier": 1.5,
+          "chainTargets": 0
+        },
+        "reach": {
+          "name": "Chain reach",
+          "description": "Hits two extra nearby enemies from level 3, with longer range but weaker, shorter control and smaller hits.",
+          "damageMultiplier": 0.85,
+          "rangeMultiplier": 1.15,
+          "rateMultiplier": 1,
+          "slowMultiplier": 0.75,
+          "durationMultiplier": 0.75,
+          "vulnerabilityMultiplier": 0.75,
+          "chainTargets": 2
+        }
+      }
+    },
+    "distributor": {
+      "name": "Dharma Distributor",
+      "description": "Boosts nearby attacking towers' fire rate while active. EMP pauses the aura, not the capped wave-clear bonus.",
+      "icon": "📡",
+      "cost": {
+        "dharma": 70,
+        "bandwidth": 60,
+        "anonymity": 0
+      },
+      "baseDamage": 0,
+      "ratePerSec": 0,
+      "projectileSpeed": 0,
+      "range": 210,
+      "aoeRadius": 0,
+      "critChance": 0,
+      "critMult": 1.0,
+      "status": {
+        "slowPct": 0,
+        "slowDuration": 0
+      },
+      "support": {
+        "fireRatePct": 0.12,
+        "fireRatePctPerLevel": 0.04
+      },
+      "color": "#10b981"
+    }
+  },
+  "enemies": {
+    "scriptKiddie": {
+      "name": "Script Kiddie",
+      "description": "Fast and lightly protected; punish gaps in path coverage.",
+      "icon": "👾",
+      "baseHP": 60,
+      "armor": 0,
+      "resists": {
+        "physical": 1.0,
+        "fire": 1.0,
+        "shock": 1.0
+      },
+      "moveSpeed": 85,
+      "bounty": {
+        "dharma": 5,
+        "bandwidth": 2,
+        "anonymity": 0
+      },
+      "color": "#ff6b6b",
+      "size": 15
+    },
+    "federalAgent": {
+      "name": "Federal Agent",
+      "description": "Armored and resistant to physical damage.",
+      "icon": "🕵️",
+      "baseHP": 110,
+      "armor": 5,
+      "resists": {
+        "physical": 0.9,
+        "fire": 1.0,
+        "shock": 1.1
+      },
+      "moveSpeed": 65,
+      "bounty": {
+        "dharma": 10,
+        "bandwidth": 4,
+        "anonymity": 0
+      },
+      "color": "#4ecdc4",
+      "size": 18,
+      "brace": { "windupMs": 3000, "durationMs": 4000, "healthRatio": 0.6 }
+    },
+    "corporateSaboteur": {
+      "name": "Corporate Saboteur",
+      "description": "Quick attacker with strong fire resistance.",
+      "icon": "💼",
+      "baseHP": 95,
+      "armor": 0,
+      "resists": {
+        "physical": 1.0,
+        "fire": 0.8,
+        "shock": 1.0
+      },
+      "moveSpeed": 75,
+      "bounty": {
+        "dharma": 15,
+        "bandwidth": 7,
+        "anonymity": 0
+      },
+      "color": "#95e77e",
+      "size": 16
+    },
+    "aiSurveillance": {
+      "name": "AI Surveillance",
+      "description": "Slow, heavily armored, and resistant to shock damage.",
+      "icon": "🤖",
+      "baseHP": 160,
+      "armor": 10,
+      "resists": {
+        "physical": 0.85,
+        "fire": 1.0,
+        "shock": 0.9
+      },
+      "moveSpeed": 55,
+      "bounty": {
+        "dharma": 21,
+        "bandwidth": 10,
+        "anonymity": 0
+      },
+      "color": "#ffe66d",
+      "size": 20
+    },
+    "quantumHacker": {
+      "name": "Quantum Hacker",
+      "description": "Very fast with broad damage resistance.",
+      "icon": "⚛️",
+      "baseHP": 215,
+      "armor": 0,
+      "resists": {
+        "physical": 0.75,
+        "fire": 0.9,
+        "shock": 0.8
+      },
+      "moveSpeed": 95,
+      "bounty": {
+        "dharma": 30,
+        "bandwidth": 17,
+        "anonymity": 0
+      },
+      "color": "#a8e6cf",
+      "size": 22
+    },
+    "corruptedMonk": {
+      "name": "Corrupted Monk",
+      "description": "Slow, highly armored, and resistant to fire.",
+      "icon": "👹",
+      "baseHP": 270,
+      "armor": 15,
+      "resists": {
+        "physical": 0.8,
+        "fire": 0.7,
+        "shock": 1.0
+      },
+      "moveSpeed": 45,
+      "bounty": {
+        "dharma": 51,
+        "bandwidth": 26,
+        "anonymity": 0
+      },
+      "color": "#ff8b94",
+      "size": 25
+    }
+  },
+  "bosses": {
+    "raidTeam": {
+      "name": "Raid Team",
+      "description": "At 66% health, disables nearby towers and calls fast runners plus a Federal Agent.",
+      "icon": "🚀",
+      "baseHP": 600,
+      "armor": 20,
+      "resists": {
+        "physical": 0.8,
+        "fire": 0.9,
+        "shock": 0.85
+      },
+      "moveSpeed": 30,
+      "bounty": {
+        "dharma": 120,
+        "bandwidth": 60,
+        "anonymity": 0
+      },
+      "color": "#ff6b35",
+      "size": 40,
+      "abilities": {
+        "emp": { "thresholds": [0.66], "radius": 260, "durationMs": 1500 },
+        "reinforcements": {
+          "byPhase": [["scriptKiddie", "scriptKiddie", "federalAgent", "scriptKiddie"]],
+          "intervalMs": 250,
+          "hpMultiplierPerWave": 0.02
+        }
+      }
+    },
+    "megaCorpTitan": {
+      "name": "MegaCorp Titan",
+      "description": "Regenerates a protective shield after avoiding damage.",
+      "icon": "🏢",
+      "baseHP": 950,
+      "armor": 30,
+      "resists": {
+        "physical": 0.75,
+        "fire": 0.8,
+        "shock": 0.8
+      },
+      "moveSpeed": 20,
+      "bounty": {
+        "dharma": 250,
+        "bandwidth": 120,
+        "anonymity": 0
+      },
+      "color": "#c77dff",
+      "size": 50,
+      "abilities": {
+        "shield": { "healthRatio": 0.35, "regenRatioPerSec": 0.04, "recoveryDelayMs": 3000 }
+      }
+    }
+  },
+  "waves": [
+    {
+      "wave": 1,
+      "enemies": [
+        {"id": "scriptKiddie", "count": 4, "interval": 1000, "hpMult": 1, "offsetMs": 0},
+        {"id": "scriptKiddie", "count": 4, "interval": 700, "hpMult": 1, "offsetMs": 6500}
+      ],
+      "rewardBonus": 0
+    },
+    {
+      "wave": 2,
+      "enemies": [
+        {"id": "scriptKiddie", "count": 4, "interval": 700, "hpMult": 1.05, "offsetMs": 0},
+        {"id": "scriptKiddie", "count": 6, "interval": 350, "hpMult": 1.05, "offsetMs": 5000}
+      ],
+      "rewardBonus": 5
+    },
+    {
+      "wave": 3,
+      "enemies": [
+        {"id": "federalAgent", "count": 3, "interval": 1400, "hpMult": 1, "offsetMs": 0},
+        {"id": "scriptKiddie", "count": 4, "interval": 500, "hpMult": 1.1, "offsetMs": 700},
+        {"id": "scriptKiddie", "count": 4, "interval": 400, "hpMult": 1.1, "offsetMs": 6500}
+      ],
+      "rewardBonus": 10
+    },
+    {
+      "wave": 4,
+      "enemies": [
+        {"id": "federalAgent", "count": 3, "interval": 900, "hpMult": 1.05, "offsetMs": 0},
+        {"id": "scriptKiddie", "count": 3, "interval": 300, "hpMult": 1.15, "offsetMs": 900},
+        {"id": "federalAgent", "count": 2, "interval": 900, "hpMult": 1.05, "offsetMs": 6000},
+        {"id": "scriptKiddie", "count": 3, "interval": 300, "hpMult": 1.15, "offsetMs": 6600}
+      ],
+      "rewardBonus": 15
+    },
+    {
+      "wave": 5,
+      "enemies": [
+        {"id": "raidTeam", "count": 1, "interval": 0, "hpMult": 1, "offsetMs": 0},
+        {"id": "scriptKiddie", "count": 6, "interval": 400, "hpMult": 1.2, "offsetMs": 600},
+        {"id": "scriptKiddie", "count": 6, "interval": 300, "hpMult": 1.2, "offsetMs": 6500}
+      ],
+      "rewardBonus": 30
+    },
+    {
+      "wave": 6,
+      "enemies": [
+        {"id": "federalAgent", "count": 7, "interval": 1100, "hpMult": 1.15, "offsetMs": 0},
+        {"id": "corporateSaboteur", "count": 3, "interval": 1300, "hpMult": 1.0, "offsetMs": 5000}
+      ],
+      "rewardBonus": 20
+    },
+    {
+      "wave": 7,
+      "enemies": [
+        {"id": "scriptKiddie", "count": 5, "interval": 450, "hpMult": 1.3, "offsetMs": 0},
+        {"id": "federalAgent", "count": 5, "interval": 1100, "hpMult": 1.2, "offsetMs": 900},
+        {"id": "corporateSaboteur", "count": 4, "interval": 1100, "hpMult": 1.05, "offsetMs": 5600},
+        {"id": "scriptKiddie", "count": 5, "interval": 450, "hpMult": 1.3, "offsetMs": 6100}
+      ],
+      "rewardBonus": 25
+    },
+    {
+      "wave": 8,
+      "enemies": [
+        {"id": "corporateSaboteur", "count": 4, "interval": 900, "hpMult": 1.15, "offsetMs": 0},
+        {"id": "aiSurveillance", "count": 2, "interval": 2000, "hpMult": 1.0, "offsetMs": 2200},
+        {"id": "corporateSaboteur", "count": 4, "interval": 900, "hpMult": 1.15, "offsetMs": 7000}
+      ],
+      "rewardBonus": 30
+    },
+    {
+      "wave": 9,
+      "enemies": [
+        {"id": "federalAgent", "count": 8, "interval": 900, "hpMult": 1.3, "offsetMs": 0},
+        {"id": "aiSurveillance", "count": 3, "interval": 2000, "hpMult": 1.05, "offsetMs": 3500},
+        {"id": "corporateSaboteur", "count": 6, "interval": 1000, "hpMult": 1.2, "offsetMs": 5000}
+      ],
+      "rewardBonus": 35
+    },
+    {
+      "wave": 10,
+      "enemies": [
+        {"id": "raidTeam", "count": 1, "interval": 0, "hpMult": 1.4, "offsetMs": 0},
+        {"id": "corporateSaboteur", "count": 5, "interval": 800, "hpMult": 1.3, "offsetMs": 1200},
+        {"id": "aiSurveillance", "count": 5, "interval": 1500, "hpMult": 1.2, "offsetMs": 3000},
+        {"id": "corporateSaboteur", "count": 5, "interval": 800, "hpMult": 1.3, "offsetMs": 10500}
+      ],
+      "rewardBonus": 60
+    },
+    {
+      "wave": 11,
+      "enemies": [
+        {"id": "aiSurveillance", "count": 6, "interval": 1200, "hpMult": 1.25, "offsetMs": 0},
+        {"id": "quantumHacker", "count": 2, "interval": 2000, "hpMult": 1.0, "offsetMs": 4500}
+      ],
+      "rewardBonus": 40
+    },
+    {
+      "wave": 12,
+      "enemies": [
+        {"id": "corporateSaboteur", "count": 10, "interval": 800, "hpMult": 1.4, "offsetMs": 0},
+        {"id": "aiSurveillance", "count": 5, "interval": 1300, "hpMult": 1.3, "offsetMs": 2800},
+        {"id": "quantumHacker", "count": 3, "interval": 1800, "hpMult": 1.05, "offsetMs": 7000}
+      ],
+      "rewardBonus": 45
+    },
+    {
+      "wave": 13,
+      "enemies": [
+        {"id": "quantumHacker", "count": 5, "interval": 1400, "hpMult": 1.15, "offsetMs": 0},
+        {"id": "corruptedMonk", "count": 2, "interval": 2500, "hpMult": 1.0, "offsetMs": 4200}
+      ],
+      "rewardBonus": 50
+    },
+    {
+      "wave": 14,
+      "enemies": [
+        {"id": "federalAgent", "count": 3, "interval": 1100, "hpMult": 1.3, "offsetMs": 0},
+        {"id": "aiSurveillance", "count": 6, "interval": 1100, "hpMult": 1.4, "offsetMs": 1800},
+        {"id": "quantumHacker", "count": 4, "interval": 1500, "hpMult": 1.2, "offsetMs": 4000},
+        {"id": "corruptedMonk", "count": 2, "interval": 2200, "hpMult": 1.05, "offsetMs": 7000}
+      ],
+      "rewardBonus": 55
+    },
+    {
+      "wave": 15,
+      "enemies": [
+        {"id": "megaCorpTitan", "count": 1, "interval": 0, "hpMult": 1.0, "offsetMs": 0},
+        {"id": "quantumHacker", "count": 8, "interval": 1000, "hpMult": 1.3, "offsetMs": 1600},
+        {"id": "corruptedMonk", "count": 3, "interval": 2000, "hpMult": 1.15, "offsetMs": 5400}
+      ],
+      "rewardBonus": 90
+    },
+    {
+      "wave": 16,
+      "enemies": [
+        {"id": "corruptedMonk", "count": 5, "interval": 1800, "hpMult": 1.2, "offsetMs": 0},
+        {"id": "quantumHacker", "count": 10, "interval": 900, "hpMult": 1.4, "offsetMs": 4000}
+      ],
+      "rewardBonus": 60
+    },
+    {
+      "wave": 17,
+      "enemies": [
+        {"id": "quantumHacker", "count": 12, "interval": 800, "hpMult": 1.45, "offsetMs": 0},
+        {"id": "corruptedMonk", "count": 5, "interval": 1600, "hpMult": 1.25, "offsetMs": 2800},
+        {"id": "aiSurveillance", "count": 6, "interval": 1000, "hpMult": 1.5, "offsetMs": 5500},
+        {"id": "corporateSaboteur", "count": 2, "interval": 1200, "hpMult": 1.5, "offsetMs": 8000}
+      ],
+      "rewardBonus": 65
+    },
+    {
+      "wave": 18,
+      "enemies": [
+        {"id": "corruptedMonk", "count": 6, "interval": 1500, "hpMult": 1.3, "offsetMs": 0},
+        {"id": "quantumHacker", "count": 8, "interval": 900, "hpMult": 1.5, "offsetMs": 2500},
+        {"id": "federalAgent", "count": 2, "interval": 1300, "hpMult": 1.5, "offsetMs": 5200},
+        {"id": "megaCorpTitan", "count": 1, "interval": 5000, "hpMult": 1.2, "offsetMs": 7000}
+      ],
+      "rewardBonus": 70
+    },
+    {
+      "wave": 19,
+      "enemies": [
+        {"id": "quantumHacker", "count": 14, "interval": 900, "hpMult": 1.55, "offsetMs": 0},
+        {"id": "corruptedMonk", "count": 7, "interval": 1700, "hpMult": 1.35, "offsetMs": 4500},
+        {"id": "aiSurveillance", "count": 8, "interval": 1200, "hpMult": 1.6, "offsetMs": 8500},
+        {"id": "corporateSaboteur", "count": 4, "interval": 900, "hpMult": 1.6, "offsetMs": 16000}
+      ],
+      "rewardBonus": 75
+    },
+    {
+      "wave": 20,
+      "enemies": [
+        {"id": "megaCorpTitan", "count": 2, "interval": 14000, "hpMult": 1.4, "offsetMs": 0},
+        {"id": "corruptedMonk", "count": 10, "interval": 1200, "hpMult": 1.4, "offsetMs": 3000},
+        {"id": "quantumHacker", "count": 8, "interval": 600, "hpMult": 1.6, "offsetMs": 4500},
+        {"id": "raidTeam", "count": 1, "interval": 4000, "hpMult": 2.0, "offsetMs": 7000},
+        {"id": "federalAgent", "count": 4, "interval": 1000, "hpMult": 1.6, "offsetMs": 10500},
+        {"id": "quantumHacker", "count": 8, "interval": 600, "hpMult": 1.6, "offsetMs": 14500}
+      ],
+      "rewardBonus": 150
+    }
+  ],
+  "economy": {
+    "startCash": 130,
+    "startBandwidth": 60,
+    "startAnonymity": 0,
+    "activeResources": ["dharma", "bandwidth"],
+    "killIncomeMult": 0.9,
+    "waveClearBonus": 40,
+    "waveClearBonusPerWave": 10,
+    "initialLives": 20,
+    "sellRefundPct": 0.7,
+    "distributorWaveBonus": 6,
+    "distributorWaveBonusCap": 30,
+    "distributorAuraCap": 0.35
+  },
+  "difficulty": {
+    "Easy": {
+      "hpMult": 0.75,
+      "speedMult": 0.85,
+      "bountyMult": 1.15,
+      "damageToPlayerMult": 0.8
+    },
+    "Normal": {
+      "hpMult": 1.0,
+      "speedMult": 1.0,
+      "bountyMult": 1.0,
+      "damageToPlayerMult": 1.0
+    },
+    "Hard": {
+      "hpMult": 1.35,
+      "speedMult": 1.15,
+      "bountyMult": 0.85,
+      "damageToPlayerMult": 1.25
+    }
+  },
+  "upgrades": {
+    "costMultiplierPerLevel": 1.95,
+    "damagePerLevel": 0.35,
+    "rangePerLevel": 0.15,
+    "fireRatePerLevel": 0.12,
+    "maxLevel": 5
+  },
+  "combat": {
+    "status": {
+      "durationPerLevel": 0.15,
+      "slowPctPerLevel": 0.04,
+      "slowTowerCap": 0.65,
+      "slowSpeedCap": 0.8,
+      "vulnerabilityPctPerLevel": 0.03,
+      "vulnerabilityTowerCap": 0.5
+    },
+    "chain": { "unlockLevel": 4, "targets": 1, "radius": 120, "damageMultiplier": 0.6 }
+  },
+  "migration": {
+    "deferredTowerRefunds": {
+      "decoy": {
+        "dharma": 30,
+        "bandwidth": 15,
+        "anonymity": 5
+      },
+      "mirror": {
+        "dharma": 75,
+        "bandwidth": 40,
+        "anonymity": 20
+      },
+      "anonymity": {
+        "dharma": 60,
+        "bandwidth": 30,
+        "anonymity": 40
+      }
+    }
+  }
+}

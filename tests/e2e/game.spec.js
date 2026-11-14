@@ -1323,7 +1323,7 @@ test('retired-economy v3 bytes export unchanged and reset preserves preferences'
   const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();expect(await readFile(await(await download).path(),'utf8')).toBe(raw);
   await page.getByRole('button',{name:'Reset saved run'}).click();await page.getByRole('button',{name:'New game',exact:true}).click();
   const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')));
-  expect(saved.schemaVersion).toBe(4);expect(saved.balanceVersion).toBe('1.6.0');expect(saved.state.resources.anonymity).toBe(0);expect(saved.state.settings).toMatchObject({showRanges:false,reducedMotion:true});
+  expect(saved.schemaVersion).toBe(4);expect(saved.balanceVersion).toBe('1.7.0');expect(saved.state.resources.anonymity).toBe(0);expect(saved.state.settings).toMatchObject({showRanges:false,reducedMotion:true});
 });
 
 for(const speed of [1,2])test(`Agent brace cue/text, pause/reload and explicit v4 state at ${speed}×`,async({page})=>{
@@ -1356,7 +1356,7 @@ test('M3.3 v3 recovery exports exact bytes before explicit reset and creates v4 
   await expect(page.locator('#save-recovery')).toBeVisible();expect(await page.evaluate(()=>localStorage.getItem('dharmapala-shield/save/v2'))).toBe(raw);
   const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();expect(await readFile(await(await download).path(),'utf8')).toBe(raw);
   await page.getByRole('button',{name:'Reset saved run'}).click();await page.getByRole('button',{name:'New game',exact:true}).click();
-  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({schemaVersion:4,balanceVersion:'1.6.0',state:{settings:{showRanges:false,reducedMotion:true}}});
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({schemaVersion:4,balanceVersion:'1.7.0',state:{settings:{showRanges:false,reducedMotion:true}}});
 });
 
 test('M4.1 old 1.4.0/v4 wave bytes export exactly before reset and retain preferences',async({page})=>{
@@ -1373,7 +1373,7 @@ test('M4.1 old 1.4.0/v4 wave bytes export exactly before reset and retain prefer
   await page.getByRole('button',{name:'Reset saved run'}).click();
   await page.getByRole('button',{name:'New game',exact:true}).click();
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({
-    schemaVersion:4,balanceVersion:'1.6.0',state:{settings:{showRanges:false,reducedMotion:true}}
+    schemaVersion:4,balanceVersion:'1.7.0',state:{settings:{showRanges:false,reducedMotion:true}}
   });
 });
 
@@ -1391,7 +1391,24 @@ test('M4.2 old 1.5.0/v4 Raid bytes export exactly before explicit reset',async({
   await page.getByRole('button',{name:'Reset saved run'}).click();
   await page.getByRole('button',{name:'New game',exact:true}).click();
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({
-    schemaVersion:4,balanceVersion:'1.6.0',state:{settings:{showRanges:false,reducedMotion:true}}
+    schemaVersion:4,balanceVersion:'1.7.0',state:{settings:{showRanges:false,reducedMotion:true}}
+  });
+});
+
+test('M4.3 old 1.6.0/v4 Hard wave bytes export exactly before explicit reset',async({page})=>{
+  const {readFile}=await import('node:fs/promises');
+  const raw=await readFile('design/reviews/2026-11-13-m4.3/old-1.6.0-v4-save.json','utf8');
+  await openFresh(page);await page.evaluate(raw=>{
+    localStorage.setItem('dharmapala-shield/save/v2',raw);
+    localStorage.setItem('dharmapala-shield/preferences/v1',JSON.stringify({tutorialCompleted:true,showRanges:false,reducedMotion:true}));
+  },raw);await page.reload();
+  await expect(page.locator('#save-recovery')).toBeVisible();
+  expect(await page.evaluate(()=>localStorage.getItem('dharmapala-shield/save/v2'))).toBe(raw);
+  const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export recovery save'}).click();
+  expect(await readFile(await(await download).path(),'utf8')).toBe(raw);
+  await page.getByRole('button',{name:'Reset saved run'}).click();await page.getByRole('button',{name:'New game',exact:true}).click();
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dharmapala-shield/save/v2')))).toMatchObject({
+    schemaVersion:4,balanceVersion:'1.7.0',state:{settings:{showRanges:false,reducedMotion:true}}
   });
 });
 

@@ -22,7 +22,7 @@ test('a saved Titan fight retains health-hit cooldown and identical later recove
     critical: false
   }, titan, 1);
 
-  hit(500); // Depletes the shield, with a little overflow into health.
+  hit(600); // Depletes the HP-scaled shield, with overflow into health.
   assert.equal(titan.shield, 0);
   live.step(2000);
   hit(100); // Health damage refreshes the recovery deadline.
