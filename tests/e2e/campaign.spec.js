@@ -1,0 +1,314 @@
+// Earned UI campaigns. Keep synthetic lifecycle/presentation fixtures in game.spec.js.
+import { test, expect } from '@playwright/test';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { clickWorld, enterBuildPhase } from './helpers.js';
+import { getWavePreview } from '../../js/core/rules/waves.js';
+
+const json = async path => JSON.parse(await readFile(new URL(path, import.meta.url)));
+const balance = await json('../../design/balance.json');
+const m43 = await json('../../design/reviews/2026-11-13-m4.3/scenarios-after.json');
+const recovery = m43.recovery.find(r => r.difficulty === 'Normal' && r.response === 'save');
+const report = await json('../../design/reviews/2026-11-13-m4.3/results.json');
+const weak = report.runs.find(r => r.scenario === 'normal-campaign' && r.policy === 'weak-placement');
+const snapshot = page => page.evaluate(() => gameApplication.session.toSnapshot());
+const withoutDate = ({ savedAt, ...rest }) => rest;
+
+async function observe(page, previous = { bosses: [], spawns: [] }) {
+  // Subscribers only read production events/entities; they never wrap commands or combat.
+  await page.evaluate(previous => {
+    globalThis.campaignAudit = previous;
+    const s = gameApplication.session;
+    s.events.on('enemy-spawned', event => {
+      const e = s.state.enemies.get(event.enemyId);
+      campaignAudit.spawns.push({ wave: s.state.waveNumber, type: e.type, time: s.state.gameTimeMs });
+      if (e.kind === 'boss') campaignAudit.bosses.push({ id: e.id, wave: s.state.waveNumber,
+        type: e.type, outcome: 'unresolved', phases: [] });
+    });
+    s.events.on('boss-phase', event => campaignAudit.bosses.find(b => b.id === event.enemyId)?.phases.push(event.phase));
+    for (const [event, outcome] of [['enemy-killed', 'killed'], ['enemy-leaked', 'leaked']]) {
+      s.events.on(event, e => {
+        const boss = campaignAudit.bosses.find(b => b.id === e.enemyId);
+        if (boss) boss.outcome = outcome;
+      });
+    }
+  }, previous);
+}
+
+async function fresh(page) {
+  await page.setViewportSize({ width: 1280, height: 720 });
+  // Virtual browser time schedules every RAF. Production frame -> tick -> GameClock
+  // -> fixed steps, rendering, UI refresh and autosave remain installed and unmodified.
+  await page.clock.install({ time: new Date('2026-11-14T00:00:00Z') });
+  await page.clock.pauseAt(new Date('2026-11-14T00:00:01Z'));
+  await page.goto('/');
+  await expect(page.getByRole('button', { name: 'New game', exact: true })).toBeVisible();
+  await enterBuildPhase(page);
+  const initial = await snapshot(page);
+  expect(initial.balanceVersion).toBe('1.7.0');
+  expect(initial.schemaVersion).toBe(4);
+  expect(initial.state.resources).toEqual({ dharma: 130, bandwidth: 60, anonymity: 0 });
+  expect(initial.state.lives).toBe(20);
+  expect(initial.state.difficulty).toBe('Normal');
+  await observe(page);
+}
+
+async function purchase(page, command) {
+  const before = await snapshot(page);
+  const [arg, choice] = command.args;
+  if (command.name === 'placeDefense') {
+    await page.locator(`[data-tower-type="${arg}"]`).click();
+    await clickWorld(page, choice.x, choice.y);
+    const after = await snapshot(page);
+    expect(after.state.defenses).toHaveLength(before.state.defenses.length + 1);
+    expect(after.state.defenses.at(-1)).toMatchObject({ type: arg, x: choice.x, y: choice.y, level: 1 });
+  } else {
+    expect(command.name).toBe('upgradeDefense');
+    const tower = before.state.defenses.find(t => t.id === arg);
+    expect(tower, `earned tower ${arg}`).toBeTruthy();
+    await clickWorld(page, tower.x, tower.y);
+    if (choice) {
+      expect(tower.level).toBe(2);
+      await page.locator(`[data-specialization="${choice}"]`).click();
+    } else await page.locator('#upgrade-button').click();
+    const after = (await snapshot(page)).state.defenses.find(t => t.id === arg);
+    expect(after.level).toBe(tower.level + 1);
+    expect(after.specialization).toBe(choice || tower.specialization);
+  }
+}
+
+async function preview(page, wave) {
+  const model = getWavePreview(balance, wave);
+  const panel = page.locator('#wave-preview-section');
+  if (await panel.getAttribute('open') === null) await panel.locator('summary').click();
+  await expect(page.locator('#start-wave-button')).toHaveText(`Start wave ${wave}`);
+  await expect(page.locator('#boss-warning')).toBeVisible({ visible: model.isBossWave });
+  for (const enemy of model.enemies) {
+    const button = page.locator(`#wave-preview-list [data-enemy-type="${enemy.id}"]`);
+    await expect(button).toHaveAccessibleName(`Inspect ${enemy.name}, ${enemy.count} incoming`);
+    for (const [i, window] of enemy.windows.entries()) {
+      const seconds = ms => `${Number((ms / 1000).toFixed(3))} s`;
+      const text = window.count === 1 ? `1 at ${seconds(window.startMs)}`
+        : `${window.count} from ${seconds(window.startMs)} to ${seconds(window.endMs)}; every ${seconds(window.intervalMs)}`;
+      await expect(page.locator(`#spawn-timing-${wave}-${enemy.id}-${i}`)).toHaveText(text);
+    }
+  }
+  const enemy = model.enemies.find(e => balance.bosses[e.id]) || model.enemies[0];
+  await page.locator(`#wave-preview-list [data-enemy-type="${enemy.id}"]`).click();
+  await expect(page.locator('#enemy-inspector-content')).toContainText(enemy.name);
+  if (model.enemies.some(e => e.id === 'raidTeam')) {
+    await expect(page.locator('#emp-warning')).toContainText('66%');
+    await expect(page.locator('#emp-warning')).toContainText('spaced 0.25 s apart');
+  }
+  await page.locator('#close-enemy-inspector-button').click();
+  return model;
+}
+
+async function readReport(page, wave, terminal = false) {
+  const host = page.locator(terminal ? '#terminal-reports' : '#wave-reports');
+  const details = host.locator(`details[data-wave="${wave}"]`);
+  if (await details.getAttribute('open') === null) await details.locator('summary').click();
+  await expect(details).toContainText('Build/upgrade spent');
+  await expect(details).toContainText('Kill income');
+  await expect(details).toContainText('Leaks and coverage');
+  await expect(details).toContainText('Tower contributions');
+  return details;
+}
+
+async function reloadCheckpoint(page, label, checkpoints) {
+  await page.getByRole('button', { name: 'Pause game' }).click();
+  await page.getByRole('button', { name: 'Save now', exact: true }).click();
+  const saved = await snapshot(page);
+  const observer = await page.evaluate(() => campaignAudit);
+  await page.clock.runFor(1000);
+  expect(withoutDate(await snapshot(page))).toEqual(withoutDate(saved));
+  await page.reload();
+  await page.getByRole('button', { name: 'Continue', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: 'Paused', exact: true })).toBeVisible();
+  expect(withoutDate(await snapshot(page))).toEqual(withoutDate(saved));
+  await observe(page, observer);
+  checkpoints.push({ label, wave: saved.state.waveNumber, resume: saved.state.resumePhase,
+    combatMs: saved.state.gameTimeMs, speed: saved.state.waveSpeed,
+    reports: saved.state.reports.pending.length, resources: saved.state.resources,
+    enemies: saved.state.enemies.map(e => ({ type: e.type, health: e.health, shield: e.shield, firedPhases: e.firedPhases })) });
+  await page.getByRole('button', { name: 'Resume', exact: true }).click();
+}
+
+async function speed(page, n) {
+  await page.locator('[data-wave-speed-context="game"]').getByRole('button', { name: `Wave speed ${n}×` }).click();
+}
+
+async function waveRun(page, wave, checkpoints, combatCheckpoint = false) {
+  const start = await snapshot(page);
+  await page.clock.runFor(1000);
+  expect(withoutDate(await snapshot(page))).toEqual(withoutDate(start)); // deliberate start
+  await page.getByRole('button', { name: `Start wave ${wave}`, exact: true }).click();
+  await page.clock.runFor(256);
+  await expect(page.locator('#phase-label')).toHaveText('Wave active');
+  const tower = start.state.defenses[0];
+  await clickWorld(page, tower.x, tower.y);
+  await expect(page.locator('#inspector-content')).toContainText(balance.towers[tower.type].name);
+  await expect(page.locator('#upgrade-button')).toBeDisabled();
+  await expect(page.locator('#sell-button')).toBeDisabled();
+  await expect(page.locator('#inspector-content')).toContainText(`Level ${tower.level}`);
+  await page.locator('#close-inspector-button').click();
+  const enemy = page.locator('#wave-preview-list [data-enemy-type]').first();
+  await enemy.click();
+  await expect(enemy).toHaveAccessibleName(/in this wave/);
+  await expect(page.locator('#enemy-inspector-content')).toBeVisible();
+  await page.locator('#close-enemy-inspector-button').click();
+  if (wave > 1) {
+    await readReport(page, wave - 1);
+  }
+  let didCheckpoint = false;
+  for (let i = 0; i < 150; i++) {
+    const current = await snapshot(page);
+    if (current.state.phase !== 'WAVE') break;
+    if (combatCheckpoint && !didCheckpoint && current.state.enemies.some(e =>
+      wave === 10 ? e.type === 'raidTeam' && e.firedPhases.length === 1
+        : e.type === 'megaCorpTitan' && e.shield < e.shieldMax)) {
+      await expect(page.locator('#combat-state')).toContainText(wave === 10 ? 'EMP spent' : 'Shield');
+      await reloadCheckpoint(page, wave === 10 ? 'spent Raid EMP' : 'damaged Titan shield', checkpoints);
+      didCheckpoint = true;
+    }
+    if (i === 1) await speed(page, 2);
+    if (i === 3) await speed(page, 1);
+    if (i === 5) await speed(page, 2);
+    await page.clock.runFor(combatCheckpoint ? 256 : 1024);
+  }
+  const end = await snapshot(page);
+  expect(end.state.phase).not.toBe('WAVE');
+  if (combatCheckpoint) expect(didCheckpoint).toBe(true);
+  return { start, end, durationMs: end.state.gameTimeMs - start.state.gameTimeMs };
+}
+
+function reconcile(row, expected) {
+  const { start, end, durationMs } = row;
+  const r = end.state.reports.pending.at(-1);
+  expect(end.state.lives).toBe(expected.livesAfter);
+  expect(durationMs).toBeCloseTo(expected.durationMs, 6);
+  expect(end.state.resources).toEqual(expected.after || expected.resourcesAfter);
+  expect(start.state.resources).toEqual(expected.atStart || expected.resourcesAtStart);
+  for (const key of ['spent', 'bounty', 'clear', 'leaks']) {
+    const actual = key === 'leaks' ? r.leaks.map(({ type, damage }) => ({ type, damage })) : r[key];
+    const wanted = expected.accounting?.[key] || expected[key];
+    expect(actual).toEqual(key === 'leaks' ? wanted.map(({ type, damage }) => ({ type, damage })) : wanted);
+  }
+  for (const key of ['dharma', 'bandwidth', 'anonymity']) {
+    expect(end.state.resources[key]).toBe(start.state.resources[key] + r.bounty[key] + r.clear[key]);
+    if (key === 'anonymity') expect(end.state.resources[key]).toBe(0);
+  }
+  if (expected.accounting) expect(r).toEqual(expected.accounting);
+  if (expected.activity) {
+    const activity = { health: 0, shield: 0, shots: 0, slowHits: 0, vulnerabilityHits: 0, auraShots: 0, passiveDharma: r.passiveDharma };
+    for (const t of Object.values(r.towers)) for (const key of ['health', 'shield', 'shots', 'slowHits', 'vulnerabilityHits', 'auraShots']) activity[key] += t[key];
+    expect(activity).toEqual(expected.activity);
+  }
+  expect(r.partial).toBe(false);
+  return { wave: r.waveNumber, durationMs, livesBefore: start.state.lives, livesAfter: end.state.lives,
+    atStart: start.state.resources, after: end.state.resources, report: r };
+}
+
+async function artifact(testInfo, name, value, wallStart) {
+  const bytes = JSON.stringify(value, null, 2) + '\n';
+  await testInfo.attach(`${name}.json`, { body: bytes, contentType: 'application/json' });
+  const dir = process.env.CAMPAIGN_AUDIT_OUTPUT;
+  if (dir) {
+    await mkdir(dir, { recursive: true });
+    await writeFile(`${dir}/${name}.json`, bytes);
+    await writeFile(`${dir}/${name}-timing.json`, JSON.stringify({ automationWallMs: performance.now() - wallStart,
+      note: 'Host elapsed test time, not player time. Browser RAF/timers virtualized via Playwright clock.runFor; combat time is production gameTimeMs.' }, null, 2) + '\n');
+  }
+}
+
+test('earned Normal UI mistake recovers through all twenty combat waves', async ({ page }, testInfo) => {
+  test.setTimeout(240_000);
+  const wallStart = performance.now(), checkpoints = [], waves = [], commands = [];
+  const errors = [];
+  page.on('pageerror', e => errors.push(e.message));
+  page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
+  await fresh(page);
+  for (let wave = 1; wave <= 20; wave++) {
+    await preview(page, wave);
+    const before = (await snapshot(page)).state.resources;
+    for (const command of recovery.commands.filter(c => c.wave === wave)) {
+      await purchase(page, command); commands.push(command);
+    }
+    expect(before).toEqual(recovery.waves[wave - 1].before);
+    if ([4, 16].includes(wave)) await reloadCheckpoint(page, 'earned build', checkpoints);
+    const row = await waveRun(page, wave, checkpoints, [10, 15].includes(wave));
+    waves.push(reconcile(row, recovery.waves[wave - 1]));
+    expect(row.end.state.reports.pending).toHaveLength(wave);
+    const details = await readReport(page, wave, wave === 20);
+    if (wave === 3) {
+      await expect(details).toContainText('Script Kiddie: 2 escaped; 2 configured life damage');
+      await expect(details).toContainText('Last observed attacking range');
+    }
+  }
+  const final = await snapshot(page);
+  expect(final.state.phase).toBe('VICTORY');
+  expect(final.state.lives).toBe(18);
+  expect(commands).toEqual(recovery.commands);
+  const observer = await page.evaluate(() => campaignAudit);
+  expect(observer.bosses.map(({ id, ...b }) => b)).toEqual(recovery.bosses);
+  await expect(page.getByRole('dialog', { name: 'Victory', exact: true })).toBeVisible();
+  await page.clock.runFor(1000);
+  expect(withoutDate(await snapshot(page))).toEqual(withoutDate(final));
+  await page.reload(); await page.getByRole('button', { name: 'Continue', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: 'Victory', exact: true })).toBeVisible();
+  expect(withoutDate(await snapshot(page))).toEqual(withoutDate(final));
+  await readReport(page, 3, true);
+  await page.screenshot({ path: testInfo.outputPath('earned-victory.png') });
+  await page.getByRole('button', { name: 'Play again', exact: true }).click();
+  const restart = await snapshot(page);
+  expect(restart.state).toMatchObject({ phase: 'BUILDING', waveNumber: 1, lives: 20, resources: recovery.firstFunds });
+  expect(restart.state.defenses).toEqual([]);
+  expect(restart.state.reports.pending).toEqual([]);
+  expect(errors).toEqual([]);
+  await artifact(testInfo, 'recovery', { balanceVersion: final.balanceVersion, schemaVersion: final.schemaVersion,
+    commands, checkpoints, waves, bosses: observer.bosses, spawns: observer.spawns,
+    phase: final.state.phase, lives: final.state.lives, resources: final.state.resources,
+    combatMs: final.state.gameTimeMs, errors }, wallStart);
+});
+
+// Exactly the existing Normal weak-placement plan, followed by a bounded UI retry.
+const place = (wave, type, x, y) => ({ wave, name: 'placeDefense', args: [type, { x, y }] });
+const weakCommands = [place(1, 'encryption', 30, 510), place(1, 'firewall', 90, 510),
+  place(1, 'firewall', 150, 510), { wave: 2, name: 'upgradeDefense', args: ['defense-2', null] },
+  place(3, 'firewall', 810, 450)];
+test('natural Normal UI defeat explains coverage and permits a concrete retry', async ({ page }, testInfo) => {
+  test.setTimeout(120_000);
+  const wallStart = performance.now(), waves = [], checkpoints = [];
+  await fresh(page);
+  for (let wave = 1; wave <= 3; wave++) {
+    await preview(page, wave);
+    for (const c of weakCommands.filter(c => c.wave === wave)) await purchase(page, c);
+    const row = await waveRun(page, wave, checkpoints);
+    waves.push(reconcile(row, weak.waves[wave - 1]));
+  }
+  const final = await snapshot(page);
+  expect(final.state.phase).toBe('GAME_OVER');
+  expect(final.state.lives).toBe(0);
+  await expect(page.getByRole('dialog', { name: 'Game over', exact: true })).toBeVisible();
+  const details = await readReport(page, 1, true);
+  await expect(details).toContainText('No attacking tower range observed');
+  await expect(details).toContainText('Script Kiddie: 8 escaped');
+  await readReport(page, 3, true);
+  await page.screenshot({ path: testInfo.outputPath('natural-defeat.png') });
+  await page.clock.runFor(1000);
+  expect(withoutDate(await snapshot(page))).toEqual(withoutDate(final));
+  await page.reload(); await page.getByRole('button', { name: 'Continue', exact: true }).click();
+  expect(withoutDate(await snapshot(page))).toEqual(withoutDate(final));
+  await page.getByRole('button', { name: 'Play again', exact: true }).click();
+  // Retry the same wave-1 tower roster and spend, moving only the three placements
+  // into the already documented strong coverage cells. No new strategy matrix.
+  for (const c of [place(1, 'encryption', 270, 270), place(1, 'firewall', 510, 270), place(1, 'firewall', 210, 210)]) await purchase(page, c);
+  const retry = await waveRun(page, 1, checkpoints);
+  expect(retry.end.state.lives).toBe(20);
+  expect(retry.end.state.reports.pending.at(-1).leaked).toBe(0);
+  expect(retry.start.state.resources).toEqual(weak.waves[0].resourcesAtStart);
+  await readReport(page, 1);
+  await artifact(testInfo, 'defeat-retry', { commands: weakCommands, waves, phase: final.state.phase,
+    lives: final.state.lives, resources: final.state.resources, combatMs: final.state.gameTimeMs,
+    retry: { durationMs: retry.durationMs, lives: retry.end.state.lives, resources: retry.end.state.resources,
+      report: retry.end.state.reports.pending.at(-1) } }, wallStart);
+});

@@ -1,0 +1,4 @@
+{
+  "automationWallMs": 105480.115175,
+  "note": "Host elapsed test time, not player time. Browser RAF/timers virtualized via Playwright clock.runFor; combat time is production gameTimeMs."
+}

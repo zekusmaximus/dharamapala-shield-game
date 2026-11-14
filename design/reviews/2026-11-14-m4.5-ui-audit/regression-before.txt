@@ -1,0 +1,92 @@
+
+> dharmapala-shield-game@1.0.0 build
+> node scripts/build.mjs
+
+Built client application in /tmp/dharamapala-m45-before/dist
+✖ periodic live inspector retains selected tower metadata across support changes (2.132876ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 94.64202
+
+✖ failing tests:
+
+test at tests/unit/live-inspection.test.js:7:1
+✖ periodic live inspector retains selected tower metadata across support changes (2.132876ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      id: 'defense-1',
+  -   level: 3,
+  -   specialization: 'sustain',
+  -   type: 'encryption'
+    }
+  
+      at TestContext.<anonymous> (file:///tmp/dharamapala-m45-before/tests/unit/live-inspection.test.js:16:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'defense-1' },
+    expected: { id: 'defense-1', type: 'encryption', level: 3, specialization: 'sustain' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+unit exit=1 (expected failure before fix)
+[WebServer] (node:1697) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:1709) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [e2e] › tests/e2e/inspector.spec.js:6:1 › identical tower stats do not reuse another tower specialization handler (2.0s)
+
+
+  1) [e2e] › tests/e2e/inspector.spec.js:6:1 › identical tower stats do not reuse another tower specialization handler 
+
+    Error: expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "level": 3,
+    -   "specialization": "focus",
+    +   "level": 2,
+    +   "specialization": null,
+      }
+
+      15 |   await page.locator('[data-specialization="focus"]').click();
+      16 |   const after = await page.evaluate(() => [...gameApplication.session.state.defenses.values()]);
+    > 17 |   expect(after[0]).toMatchObject({ level: 3, specialization: 'focus' });
+         |                    ^
+      18 |   expect(after[1]).toMatchObject({ level: 2, specialization: null });
+      19 |   await expect(page.locator('#inspector-content')).toContainText('Chosen: Focus');
+      20 | });
+        at /tmp/dharamapala-m45-before/tests/e2e/inspector.spec.js:17:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/inspector-identical-tower--9b241-ower-specialization-handler-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/inspector-identical-tower--9b241-ower-specialization-handler-e2e/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/inspector-identical-tower--9b241-ower-specialization-handler-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/inspector-identical-tower--9b241-ower-specialization-handler-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [e2e] › tests/e2e/inspector.spec.js:6:1 › identical tower stats do not reuse another tower specialization handler 
+browser exit=1 (expected failure before fix)

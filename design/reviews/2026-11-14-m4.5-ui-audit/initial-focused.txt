@@ -1,0 +1,93 @@
+[WebServer] (node:1009) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:1021) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [e2e] › tests/e2e/campaign.spec.js:208:1 › earned Normal UI mistake recovers through all twenty combat waves (23.0s)
+(node:1097) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [e2e] › tests/e2e/campaign.spec.js:263:1 › natural Normal UI defeat explains coverage and permits a concrete retry (21.1s)
+
+
+  1) [e2e] › tests/e2e/campaign.spec.js:208:1 › earned Normal UI mistake recovers through all twenty combat waves 
+
+    Error: clock.runFor: TypeError: Cannot read properties of undefined (reading 'specializations')
+        at GameUI.renderInspector (http://127.0.0.1:3000/js/ui/GameUI.js:752:20)
+        at GameUI.refreshLiveInspection (http://127.0.0.1:3000/js/ui/GameUI.js:651:10)
+        at GameApplication.frame (http://127.0.0.1:3000/js/bootstrap.js:67:15)
+        at http://127.0.0.1:3000/js/bootstrap.js:78:46
+        at ClockController._callFirstTimer (<anonymous>:285:20)
+        at ClockController._runTo (<anonymous>:120:33)
+        at async <anonymous>:111:7
+        at async ClockController._runWithDisabledRealTimeSync (<anonymous>:184:7)
+        at async ClockController.runFor (<anonymous>:110:5)
+        at async <anonymous>:329:30
+        at GameUI.renderInspector (http://127.0.0.1:3000/js/ui/GameUI.js:752:20)
+        at GameUI.refreshLiveInspection (http://127.0.0.1:3000/js/ui/GameUI.js:651:10)
+        at GameApplication.frame (http://127.0.0.1:3000/js/bootstrap.js:67:15)
+        at http://127.0.0.1:3000/js/bootstrap.js:78:46
+        at ClockController._callFirstTimer (<anonymous>:285:20)
+        at ClockController._runTo (<anonymous>:120:33)
+        at async <anonymous>:111:7
+        at async ClockController._runWithDisabledRealTimeSync (<anonymous>:184:7)
+        at async ClockController.runFor (<anonymous>:110:5)
+        at async <anonymous>:329:30
+        at waveRun (/workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:167:22)
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:223:17
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-Normal-UI--fca9b-ugh-all-twenty-combat-waves-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-Normal-UI--fca9b-ugh-all-twenty-combat-waves-e2e/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-Normal-UI--fca9b-ugh-all-twenty-combat-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-Normal-UI--fca9b-ugh-all-twenty-combat-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [e2e] › tests/e2e/campaign.spec.js:263:1 › natural Normal UI defeat explains coverage and permits a concrete retry 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'Endpoint lost', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'Endpoint lost', exact: true })
+
+
+      274 |   expect(final.state.phase).toBe('GAME_OVER');
+      275 |   expect(final.state.lives).toBe(0);
+    > 276 |   await expect(page.getByRole('dialog', { name: 'Endpoint lost', exact: true })).toBeVisible();
+          |                                                                                  ^
+      277 |   const details = await readReport(page, 1, true);
+      278 |   await expect(details).toContainText('No attacking tower range observed');
+      279 |   await expect(details).toContainText('Script Kiddie: 8 escaped');
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:276:82
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-natural-Normal-UI-42020-nd-permits-a-concrete-retry-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-natural-Normal-UI-42020-nd-permits-a-concrete-retry-e2e/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-natural-Normal-UI-42020-nd-permits-a-concrete-retry-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-natural-Normal-UI-42020-nd-permits-a-concrete-retry-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [e2e] › tests/e2e/campaign.spec.js:208:1 › earned Normal UI mistake recovers through all twenty combat waves 
+    [e2e] › tests/e2e/campaign.spec.js:263:1 › natural Normal UI defeat explains coverage and permits a concrete retry 

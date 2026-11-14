@@ -28,7 +28,7 @@ challenge. P2 adds replay value and release polish after the core works.
 | M1 · Make every run trustworthy | P0, plus related P1 fixes | Complete: M1.1–M1.5 | M0 | Clean checkout and PR #18 CI pass 63 unit, 18 integration, 2 simulation, 43 end-to-end and 7 accessibility checks |
 | M2 · Make decisions readable and measurable | P1 | Complete within documented scope: M2.1–M2.6 | M1 | M2.6 clean checkout passes 100 unit, 35 integration, 7 simulation, 69 browser and 10 accessibility checks; corrected M1.4 diagnostics match byte-for-byte and M2.4 policy outcomes match apart from the content-file hash |
 | M3 · Prove an engaging five-wave game | P1 | Partial: M3.1/M3.3/M3.4 automated scope complete; M3.2 retention provisional; M3.5 human collection deferred, gate open | M2 | Several viable approaches, meaningful counterplay, first-boss playtest gate |
-| M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: M4.1–M4.4 have bounded automated evidence; M4.5 and human acceptance remain open | M3 for acceptance; engineering may proceed provisionally | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
+| M4 · Deliver a challenging twenty-wave campaign | P1 | Partial: M4.1–M4.4 have bounded automated evidence; M4.5 has supporting automated UI audit; human M4.5 and M4 acceptance remain open | M3 for acceptance; engineering may proceed provisionally | Complete redesigned pressure curve, distinct bosses, real campaign tests, player validation |
 | M5 · Give players a reason to return | P2 | Planned | M4 | Second map, curated challenges, local records, coherent theme and audiovisual feedback |
 | M6 · Release and maintain confidently | P2 | Partial: build and test tools exist | M4; M5 for replay-content release | Device/browser checks, performance evidence, hosting/recovery documentation, release checklist |
 
@@ -661,6 +661,25 @@ scopes documented below, with the current design remaining provisional.
 - [ ] **M4.5 · Test the full experience.** Record completion, leaks, losses by wave,
   retries, build diversity, confusion, and run time for new and returning players.
   Verify a recoverable mistake does not automatically become an unavoidable loss.
+
+**M4.5 supporting automated UI audit (2026-11-14):** A fresh Normal
+browser run replays M4.3's earned wave-3 saving mistake through real combat
+to wave-20 victory at 18 lives; two Script Kiddies leak, and later legal
+purchases recover without further leaks. A separate default-lives Normal
+weak-placement run naturally loses on wave 3; restarting with the same wave-1
+roster/spend in established coverage cells clears that wave without leaks.
+The bounded audit drives purchases and explicit level-3 choices through UI,
+checks every preview/report, boss warnings, live inspection, deliberate
+starts, pause, 1×/2×, earned build/combat reload/Continue, retained reports,
+natural results and restart. It exposed and narrowly fixed periodic inspector
+metadata and same-stat tower specialization-handler identity defects. Outcomes
+and accounts match the relevant M4.3 runs; the 21-run reporter and M4.4
+clock/JSON matrix remain separate existing guarantees. Balance stays 1.7.0,
+schema v4. [Evidence, timings, regressions and limits](design/reviews/2026-11-14-m4.5-ui-audit/README.md)
+record automated findings only. Human M4.5 collection and M4 acceptance remain
+open, along with M3.2 retention, M3.5 collection and the human M3 gate. No
+player understanding, difficulty, build diversity, confusion or observed play
+time is established; M5/M6 remain outside this work.
 
 **Acceptance gate:** two distinct strategies can complete Normal; a documented
 skilled strategy completes Hard; ignoring introduced threats demonstrably costs
