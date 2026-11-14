@@ -720,6 +720,11 @@ record automated findings only. Existing desktop recovery, natural-defeat/retry,
 390×844 full touch campaign and exact clock/JSON guarantees are retained.
 Human M3/M4.5 collection and M4 acceptance remain open; no player understanding,
 difficulty, build diversity, confusion or observed play time is established.
+A detached clean checkout passed 143 unit, 66 integration, 13 simulation,
+112 browser and 14 accessibility checks. Desktop JSON is byte-identical;
+touch gameplay and all full-campaign clocks/JSON guarantees remain exact within
+the existing sampled-instant allowance. M4.3 and historical evidence regenerated
+exactly, with the pinned M3.5 archive unchanged.
 Touch emulation is not physical-device validation. M5/M6 are not started.
 
 **Acceptance gate:** two distinct strategies can complete Normal; a documented

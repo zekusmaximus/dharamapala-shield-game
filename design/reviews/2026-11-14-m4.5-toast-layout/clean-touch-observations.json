@@ -1,0 +1,192 @@
+{
+  "checkpoints": [
+    {
+      "label": "earned build",
+      "wave": 4,
+      "resume": "BUILDING",
+      "combatMs": 62516.666666663295,
+      "speed": 2,
+      "reports": 3,
+      "resources": {
+        "dharma": 85,
+        "bandwidth": 84,
+        "anonymity": 0
+      },
+      "enemies": []
+    },
+    {
+      "label": "spent Raid EMP",
+      "wave": 10,
+      "resume": "WAVE",
+      "combatMs": 173749.99999999042,
+      "speed": 2,
+      "reports": 9,
+      "resources": {
+        "dharma": 217,
+        "bandwidth": 559,
+        "anonymity": 0
+      },
+      "enemies": [
+        {
+          "type": "raidTeam",
+          "health": 400.8276000000003,
+          "shield": 0,
+          "firedPhases": [
+            1
+          ]
+        },
+        {
+          "type": "aiSurveillance",
+          "health": 211.20000000000002,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "aiSurveillance",
+          "health": 211.20000000000002,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "aiSurveillance",
+          "health": 211.20000000000002,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "scriptKiddie",
+          "health": 79.2,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "scriptKiddie",
+          "health": 79.2,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "federalAgent",
+          "health": 145.20000000000002,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "corporateSaboteur",
+          "health": 135.85000000000002,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "scriptKiddie",
+          "health": 79.2,
+          "shield": 0,
+          "firedPhases": []
+        }
+      ]
+    },
+    {
+      "label": "damaged Titan shield",
+      "wave": 15,
+      "resume": "WAVE",
+      "combatMs": 238716.66666661928,
+      "speed": 2,
+      "reports": 14,
+      "resources": {
+        "dharma": 74,
+        "bandwidth": 1263,
+        "anonymity": 0
+      },
+      "enemies": [
+        {
+          "type": "megaCorpTitan",
+          "health": 1045,
+          "shield": 359.92,
+          "firedPhases": []
+        }
+      ]
+    },
+    {
+      "label": "earned build",
+      "wave": 16,
+      "resume": "BUILDING",
+      "combatMs": 256533.33333327557,
+      "speed": 2,
+      "reports": 15,
+      "resources": {
+        "dharma": 71,
+        "bandwidth": 1644,
+        "anonymity": 0
+      },
+      "enemies": []
+    }
+  ],
+  "rotations": [
+    {
+      "label": "earned build before wave 4",
+      "wave": 4,
+      "combatMsBefore": 62516.666666663295,
+      "views": [
+        {
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "combatMs": 62516.666666663295,
+          "phase": "BUILDING"
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "combatMs": 62516.666666663295,
+          "phase": "BUILDING"
+        }
+      ]
+    },
+    {
+      "label": "active wave 10 spent Raid EMP",
+      "wave": 10,
+      "combatMsBefore": 173366.66666665731,
+      "views": [
+        {
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "combatMs": 173549.99999999054,
+          "phase": "WAVE"
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "combatMs": 173749.99999999042,
+          "phase": "WAVE"
+        }
+      ]
+    }
+  ],
+  "scrolls": [
+    {
+      "wave": 3,
+      "before": 2648,
+      "after": 2546,
+      "max": 5089
+    },
+    {
+      "wave": 16,
+      "before": 2963,
+      "after": 2876,
+      "max": 6386
+    },
+    {
+      "wave": 20,
+      "before": 278,
+      "after": 138,
+      "max": 3189
+    }
+  ]
+}

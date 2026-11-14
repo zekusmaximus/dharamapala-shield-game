@@ -94,6 +94,7 @@ achievement notifications continue unchanged.
 ## Commands and preservation
 
 ```bash
+# Before the CSS change, with main production bytes and the added regression:
 npm run build
 CI=1 CAMPAIGN_AUDIT_OUTPUT=/tmp/m45-toast-before npx playwright test tests/e2e/campaign.spec.js --project=e2e --grep 'earned toast layout 390' --workers=1
 # After the CSS presentation change and harness corrections:
@@ -124,6 +125,56 @@ fixes and PR #36's passive hit testing remain. Explicit branches, Agent's one-us
 3-second warning / 4-second 60%-health shield, Raid's single warned 66% EMP and
 four reinforcements, Titan recovery, numeric retired Anonymity, shared scheduling,
 clock/save behavior, historical evidence and pinned M3.5 build are preserved.
+
+## Completed clean-checkout validation
+
+A new detached checkout at **`7ec826335fbe15074450aba5d0ef9ce044a05b3a`**
+started without dependencies or build output and passed the entire script:
+
+```bash
+git worktree add --detach /tmp/dharamapala-m45-toast-clean 7ec8263
+cd /tmp/dharamapala-m45-toast-clean
+bash design/reviews/2026-11-14-m4.5-toast-layout/verify.sh > /tmp/m45-toast-validation.txt 2>&1
+```
+
+[Full validation log](validation.txt): Node 24.22.1, npm 11.9.0,
+Chromium 149.0.7827.55. Hosted PR CI is a separate Node 22 pipeline.
+
+| Clean-checkout check | Result |
+| --- | --- |
+| Locked install, Chromium install, fresh build | Pass |
+| Unit / integration / simulation | 143 / 66 / 13 passed |
+| Browser / accessibility | 112 / 14 passed |
+| Desktop recovery and natural-defeat/retry JSON | Byte-identical to PR #35 |
+| Full touch gameplay, reports, ledgers, commands, spawns, bosses, per-wave/final combat time | Exact vs PR #36 and merged desktop |
+| Sampled touch checkpoint/rotation instants | Within the existing one-fixed-tick allowance; all other fields exact |
+| Within-run pause/reload snapshots and existing full-campaign clock/JSON matrix | Exact / all four cases pass |
+| Five regenerated focused earned layout results | Exact wave-1 gameplay; no toast/control intersections, scroll moved, lifetime 3200 ms |
+| M4.3 diagnostics, 21-run report/summary, counterplay, targeted old/current scenarios, old save and comparison | Byte-identical |
+| Historical economy/tradeoffs, prior evidence, content/runtime/tooling, pinned M3.5 archive | Preserved / pass |
+| Whitespace and detached worktree cleanliness | Pass |
+
+[Clean layout observations](clean-layout-observations.json) retain live bounds,
+lifetime and native scroll samples; [clean touch observations](clean-touch-observations.json)
+retain campaign checkpoint/rotation/scroll samples. [Automation timings](clean-automation-timings.json)
+are machine-dependent host wall times, separate from simulated combat and
+unmeasured player time. The five added browser tests are bounded wave-1 layout
+cases; the existing three full/defeat campaign tests remain intact.
+
+The initial earned captures have these toast rectangles (CSS px); every header
+and speed/Start intersection is zero, and all text remains inside its box:
+
+| Viewport | Toast x / y / width / height |
+| --- | --- |
+| 360×640 | 90 / 312.40625 / 180 / 71.59375 |
+| 390×844 | 97.5 / 516.40625 / 195 / 71.59375 |
+| 640×360 | 57.09375 / 294.40625 / 289.40625 / 49.59375 |
+| 844×390 | 159.09375 / 324.40625 / 289.40625 / 49.59375 |
+| 1280×720 | 495.296875 / 654.40625 / 289.40625 / 49.59375 |
+
+The subsequent validation-record commit changes only this evidence directory
+and the roadmap. Production CSS, tests and comparator/verification bytes stay
+at the tested implementation commit. All human gates remain open.
 
 ## Limits
 
