@@ -13,6 +13,8 @@
   --hot: #e94560;
   --gold: #ffe66d;
   --good: #53e6a8;
+  --portrait-build-height: 240px;
+  --landscape-build-width: 230px;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
@@ -667,6 +669,11 @@ dialog::backdrop {
 }
 
 @media (max-width: 1023px) and (orientation: portrait) {
+  /* Keep the passive notification above the build panel, including its actions. */
+  .toast {
+    bottom: calc(var(--portrait-build-height) + 1rem + var(--safe-bottom));
+  }
+
   .app-shell {
     grid-template-rows: auto minmax(0, 1fr);
   }
@@ -704,7 +711,7 @@ dialog::backdrop {
   .game-layout {
     height: calc(100dvh - 116px);
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(180px, 1fr) minmax(0, 240px);
+    grid-template-rows: minmax(180px, 1fr) minmax(0, var(--portrait-build-height));
     gap: 0.5rem;
     padding: 0.5rem 0.5rem calc(0.5rem + var(--safe-bottom));
   }
@@ -762,6 +769,12 @@ dialog::backdrop {
 }
 
 @media (max-height: 639px) and (orientation: landscape) {
+  /* Center over the battlefield, leaving the side-panel controls unobscured. */
+  .toast {
+    left: calc((100vw - var(--landscape-build-width) - 0.4rem) / 2);
+    max-width: min(560px, calc(100vw - var(--landscape-build-width) - 3rem));
+  }
+
   .app-shell {
     grid-template-rows: auto minmax(0, 1fr);
   }
@@ -792,7 +805,7 @@ dialog::backdrop {
 
   .game-layout {
     height: calc(100dvh - 52px);
-    grid-template-columns: minmax(0, 1fr) 230px;
+    grid-template-columns: minmax(0, 1fr) var(--landscape-build-width);
     gap: 0.4rem;
     padding: 0.4rem;
   }
