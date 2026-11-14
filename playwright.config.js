@@ -23,7 +23,7 @@ export default defineConfig({
   projects: [
     {
       name: 'e2e',
-      testMatch: /game\.spec\.js/
+      testMatch: /(?:game|campaign|inspector)\.spec\.js/
     },
     {
       name: 'a11y',

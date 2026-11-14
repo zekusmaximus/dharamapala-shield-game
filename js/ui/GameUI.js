@@ -649,7 +649,8 @@ export class GameUI {
     const id = session.state.selectedDefenseId;
     if (!id || !session.state.defenses.has(id)) return;
     this.renderInspector(session, {
-      selectedTower: { id },
+      // Live refresh needs the same identity/type/level as event-driven updates.
+      selectedTower: { ...session.state.defenses.get(id) },
       phase: session.state.phase,
       resources: session.state.resources
     });
@@ -692,7 +693,7 @@ export class GameUI {
       session.state.gameTimeMs,
       session.state.waveNumber
     );
-    const signature = JSON.stringify({ tower, resources: model.resources, phase: model.phase });
+    const signature = JSON.stringify({ id: selected.id, tower, resources: model.resources, phase: model.phase });
     if (this.lastSignatures.get('inspector') === signature) return;
     this.lastSignatures.set('inspector', signature);
     const { current, next } = tower;

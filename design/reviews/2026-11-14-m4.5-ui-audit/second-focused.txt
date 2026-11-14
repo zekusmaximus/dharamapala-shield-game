@@ -1,0 +1,47 @@
+[WebServer] (node:1269) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:1281) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [e2e] › tests/e2e/campaign.spec.js:223:1 › earned Normal UI mistake recovers through all twenty combat waves (30.9s)
+(node:1360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [e2e] › tests/e2e/campaign.spec.js:278:1 › natural Normal UI defeat explains coverage and permits a concrete retry (19.4s)
+
+
+  1) [e2e] › tests/e2e/campaign.spec.js:223:1 › earned Normal UI mistake recovers through all twenty combat waves
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 2
+
+      72 |     } else await page.locator('#upgrade-button').click();
+      73 |     const after = (await snapshot(page)).state.defenses.find(t => t.id === arg);
+    > 74 |     expect(after.level).toBe(tower.level + 1);
+         |                         ^
+      75 |     expect(after.specialization).toBe(choice || tower.specialization);
+      76 |   }
+      77 | }
+        at purchase (/workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:74:25)
+        at /workspace/dharamapala-shield-game/tests/e2e/campaign.spec.js:234:7
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-earned-Normal-UI--fca9b-ugh-all-twenty-combat-waves-e2e/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-earned-Normal-UI--fca9b-ugh-all-twenty-combat-waves-e2e/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/campaign-earned-Normal-UI--fca9b-ugh-all-twenty-combat-waves-e2e/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/campaign-earned-Normal-UI--fca9b-ugh-all-twenty-combat-waves-e2e/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [e2e] › tests/e2e/campaign.spec.js:223:1 › earned Normal UI mistake recovers through all twenty combat waves
+  1 passed (54.6s)
