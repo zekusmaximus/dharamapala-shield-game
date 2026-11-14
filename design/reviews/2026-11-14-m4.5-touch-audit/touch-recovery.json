@@ -1,0 +1,5508 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "hasTouch": true,
+  "rotations": [
+    {
+      "label": "earned build before wave 4",
+      "wave": 4,
+      "combatMsBefore": 62516.666666663295,
+      "views": [
+        {
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "combatMs": 62516.666666663295,
+          "phase": "BUILDING"
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "combatMs": 62516.666666663295,
+          "phase": "BUILDING"
+        }
+      ]
+    },
+    {
+      "label": "active wave 10 spent Raid EMP",
+      "wave": 10,
+      "combatMsBefore": 173349.99999999066,
+      "views": [
+        {
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "combatMs": 173549.99999999054,
+          "phase": "WAVE"
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "combatMs": 173733.33333332377,
+          "phase": "WAVE"
+        }
+      ]
+    }
+  ],
+  "scrolls": [
+    {
+      "wave": 3,
+      "before": 2648,
+      "after": 2555,
+      "max": 5089
+    },
+    {
+      "wave": 16,
+      "before": 2963,
+      "after": 2872,
+      "max": 6386
+    },
+    {
+      "wave": 20,
+      "before": 278,
+      "after": 149,
+      "max": 3189
+    }
+  ],
+  "balanceVersion": "1.7.0",
+  "schemaVersion": 4,
+  "commands": [
+    {
+      "wave": 1,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 270,
+          "y": 270,
+          "coverage": 18
+        }
+      ]
+    },
+    {
+      "wave": 1,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 510,
+          "y": 270,
+          "coverage": 18
+        }
+      ]
+    },
+    {
+      "wave": 1,
+      "name": "placeDefense",
+      "args": [
+        "encryption",
+        {
+          "x": 210,
+          "y": 210,
+          "coverage": 17
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 210,
+          "y": 270,
+          "coverage": 17
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "name": "placeDefense",
+      "args": [
+        "distributor",
+        {
+          "x": 450,
+          "y": 270,
+          "coverage": 17
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1",
+        null
+      ]
+    },
+    {
+      "wave": 4,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-147",
+        null
+      ]
+    },
+    {
+      "wave": 4,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-2",
+        null
+      ]
+    },
+    {
+      "wave": 5,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 270,
+          "y": 210,
+          "coverage": 16
+        }
+      ]
+    },
+    {
+      "wave": 5,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-218",
+        null
+      ]
+    },
+    {
+      "wave": 5,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-3",
+        null
+      ]
+    },
+    {
+      "wave": 6,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1",
+        "focus"
+      ]
+    },
+    {
+      "wave": 6,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-147",
+        "focus"
+      ]
+    },
+    {
+      "wave": 6,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-2",
+        "focus"
+      ]
+    },
+    {
+      "wave": 7,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 450,
+          "y": 210,
+          "coverage": 16
+        }
+      ]
+    },
+    {
+      "wave": 7,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-410",
+        null
+      ]
+    },
+    {
+      "wave": 7,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-218",
+        "focus"
+      ]
+    },
+    {
+      "wave": 8,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-3",
+        "sustain"
+      ]
+    },
+    {
+      "wave": 8,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-410",
+        "focus"
+      ]
+    },
+    {
+      "wave": 9,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 450,
+          "y": 330,
+          "coverage": 16
+        }
+      ]
+    },
+    {
+      "wave": 9,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-556",
+        null
+      ]
+    },
+    {
+      "wave": 9,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-556",
+        "focus"
+      ]
+    },
+    {
+      "wave": 10,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1",
+        null
+      ]
+    },
+    {
+      "wave": 10,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-147",
+        null
+      ]
+    },
+    {
+      "wave": 11,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 510,
+          "y": 330,
+          "coverage": 16
+        }
+      ]
+    },
+    {
+      "wave": 11,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-780",
+        null
+      ]
+    },
+    {
+      "wave": 11,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-780",
+        "focus"
+      ]
+    },
+    {
+      "wave": 11,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-2",
+        null
+      ]
+    },
+    {
+      "wave": 11,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-218",
+        null
+      ]
+    },
+    {
+      "wave": 12,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-3",
+        null
+      ]
+    },
+    {
+      "wave": 13,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 510,
+          "y": 210,
+          "coverage": 15
+        }
+      ]
+    },
+    {
+      "wave": 13,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-910",
+        null
+      ]
+    },
+    {
+      "wave": 13,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-910",
+        "focus"
+      ]
+    },
+    {
+      "wave": 13,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-410",
+        null
+      ]
+    },
+    {
+      "wave": 14,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-556",
+        null
+      ]
+    },
+    {
+      "wave": 14,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-780",
+        null
+      ]
+    },
+    {
+      "wave": 15,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 210,
+          "y": 150,
+          "coverage": 14
+        }
+      ]
+    },
+    {
+      "wave": 15,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1032",
+        null
+      ]
+    },
+    {
+      "wave": 15,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1032",
+        "focus"
+      ]
+    },
+    {
+      "wave": 15,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1032",
+        null
+      ]
+    },
+    {
+      "wave": 15,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-910",
+        null
+      ]
+    },
+    {
+      "wave": 16,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1",
+        null
+      ]
+    },
+    {
+      "wave": 16,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1032",
+        null
+      ]
+    },
+    {
+      "wave": 17,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 270,
+          "y": 150,
+          "coverage": 14
+        }
+      ]
+    },
+    {
+      "wave": 17,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1264",
+        null
+      ]
+    },
+    {
+      "wave": 17,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1264",
+        "focus"
+      ]
+    },
+    {
+      "wave": 17,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1264",
+        null
+      ]
+    },
+    {
+      "wave": 18,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1264",
+        null
+      ]
+    },
+    {
+      "wave": 18,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-147",
+        null
+      ]
+    },
+    {
+      "wave": 18,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-2",
+        null
+      ]
+    },
+    {
+      "wave": 19,
+      "name": "placeDefense",
+      "args": [
+        "firewall",
+        {
+          "x": 570,
+          "y": 330,
+          "coverage": 13
+        }
+      ]
+    },
+    {
+      "wave": 19,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1593",
+        null
+      ]
+    },
+    {
+      "wave": 19,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1593",
+        "focus"
+      ]
+    },
+    {
+      "wave": 19,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1593",
+        null
+      ]
+    },
+    {
+      "wave": 19,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-1593",
+        null
+      ]
+    },
+    {
+      "wave": 20,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-218",
+        null
+      ]
+    },
+    {
+      "wave": 20,
+      "name": "upgradeDefense",
+      "args": [
+        "defense-3",
+        null
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "label": "earned build",
+      "wave": 4,
+      "resume": "BUILDING",
+      "combatMs": 62516.666666663295,
+      "speed": 2,
+      "reports": 3,
+      "resources": {
+        "dharma": 85,
+        "bandwidth": 84,
+        "anonymity": 0
+      },
+      "enemies": []
+    },
+    {
+      "label": "spent Raid EMP",
+      "wave": 10,
+      "resume": "WAVE",
+      "combatMs": 173733.33333332377,
+      "speed": 2,
+      "reports": 9,
+      "resources": {
+        "dharma": 217,
+        "bandwidth": 559,
+        "anonymity": 0
+      },
+      "enemies": [
+        {
+          "type": "raidTeam",
+          "health": 400.8276000000003,
+          "shield": 0,
+          "firedPhases": [
+            1
+          ]
+        },
+        {
+          "type": "aiSurveillance",
+          "health": 211.20000000000002,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "aiSurveillance",
+          "health": 211.20000000000002,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "aiSurveillance",
+          "health": 211.20000000000002,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "scriptKiddie",
+          "health": 79.2,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "scriptKiddie",
+          "health": 79.2,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "federalAgent",
+          "health": 145.20000000000002,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "corporateSaboteur",
+          "health": 135.85000000000002,
+          "shield": 0,
+          "firedPhases": []
+        },
+        {
+          "type": "scriptKiddie",
+          "health": 79.2,
+          "shield": 0,
+          "firedPhases": []
+        }
+      ]
+    },
+    {
+      "label": "damaged Titan shield",
+      "wave": 15,
+      "resume": "WAVE",
+      "combatMs": 238699.99999995262,
+      "speed": 2,
+      "reports": 14,
+      "resources": {
+        "dharma": 74,
+        "bandwidth": 1263,
+        "anonymity": 0
+      },
+      "enemies": [
+        {
+          "type": "megaCorpTitan",
+          "health": 1045,
+          "shield": 359.92,
+          "firedPhases": []
+        }
+      ]
+    },
+    {
+      "label": "earned build",
+      "wave": 16,
+      "resume": "BUILDING",
+      "combatMs": 256533.33333327557,
+      "speed": 2,
+      "reports": 15,
+      "resources": {
+        "dharma": 71,
+        "bandwidth": 1644,
+        "anonymity": 0
+      },
+      "enemies": []
+    }
+  ],
+  "waves": [
+    {
+      "wave": 1,
+      "durationMs": 16299.999999999765,
+      "livesBefore": 20,
+      "livesAfter": 20,
+      "atStart": {
+        "dharma": 20,
+        "bandwidth": 25,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 110,
+        "bandwidth": 56,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 0,
+        "spent": {
+          "dharma": 110,
+          "bandwidth": 35,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 40,
+          "bandwidth": 16,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 50,
+          "bandwidth": 15,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 1,
+            "health": 317.2,
+            "shield": 0,
+            "kills": 5,
+            "shots": 16,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 1,
+            "health": 30,
+            "shield": 0,
+            "kills": 0,
+            "shots": 2,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 1,
+            "health": 180.8,
+            "shield": 0,
+            "kills": 3,
+            "shots": 13,
+            "slowHits": 10,
+            "vulnerabilityHits": 10,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 1,
+        "killed": 8,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 2,
+      "durationMs": 19383.3333333341,
+      "livesBefore": 20,
+      "livesAfter": 20,
+      "atStart": {
+        "dharma": 110,
+        "bandwidth": 56,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 225,
+        "bandwidth": 96,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 0,
+        "spent": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 50,
+          "bandwidth": 20,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 65,
+          "bandwidth": 20,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 1,
+            "health": 349,
+            "shield": 0,
+            "kills": 2,
+            "shots": 16,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 1,
+            "health": 166.00000000000006,
+            "shield": 0,
+            "kills": 4,
+            "shots": 9,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 1,
+            "health": 178.00000000000006,
+            "shield": 0,
+            "kills": 4,
+            "shots": 12,
+            "slowHits": 10,
+            "vulnerabilityHits": 10,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 2,
+        "killed": 10,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 3,
+      "durationMs": 26833.33333332943,
+      "livesBefore": 20,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 225,
+        "bandwidth": 96,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 362,
+        "bandwidth": 144,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 0,
+        "spent": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 57,
+          "bandwidth": 24,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 80,
+          "bandwidth": 24,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 1,
+            "health": 387.12,
+            "shield": 0,
+            "kills": 3,
+            "shots": 17,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 1,
+            "health": 283.96000000000004,
+            "shield": 0,
+            "kills": 4,
+            "shots": 16,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 1,
+            "health": 209.51999999999998,
+            "shield": 0,
+            "kills": 2,
+            "shots": 13,
+            "slowHits": 11,
+            "vulnerabilityHits": 11,
+            "auraShots": 0
+          }
+        },
+        "leaks": [
+          {
+            "type": "scriptKiddie",
+            "damage": 1,
+            "lastCovered": 1373.1466666666845
+          },
+          {
+            "type": "scriptKiddie",
+            "damage": 1,
+            "lastCovered": 1371.9680000000178
+          }
+        ],
+        "coverage": {},
+        "waveNumber": 3,
+        "killed": 9,
+        "leaked": 2,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 4,
+      "durationMs": 16833.33333333691,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 85,
+        "bandwidth": 84,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 261,
+        "bandwidth": 145,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 277,
+          "bandwidth": 60,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 75,
+          "bandwidth": 32,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 101,
+          "bandwidth": 29,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 2,
+            "health": 447.72,
+            "shield": 31.450000000000003,
+            "kills": 3,
+            "shots": 20,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 2,
+            "health": 120.92600000000002,
+            "shield": 0,
+            "kills": 3,
+            "shots": 6,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 1,
+            "health": 149.296,
+            "shield": 13.099999999999994,
+            "kills": 3,
+            "shots": 13,
+            "slowHits": 10,
+            "vulnerabilityHits": 10,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 2,
+            "health": 372.7080000000001,
+            "shield": 94.35000000000001,
+            "kills": 2,
+            "shots": 19,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 26
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 4,
+        "killed": 11,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 5,
+      "durationMs": 24500.00000000713,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 74,
+        "bandwidth": 77,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 392,
+        "bandwidth": 201,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 187,
+          "bandwidth": 68,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 192,
+          "bandwidth": 88,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 126,
+          "bandwidth": 36,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 2,
+            "health": 542.9162500000004,
+            "shield": 0,
+            "kills": 13,
+            "shots": 28,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 2,
+            "health": 342.34999999999997,
+            "shield": 0,
+            "kills": 2,
+            "shots": 15,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 2,
+            "health": 233.84874999999994,
+            "shield": 0,
+            "kills": 0,
+            "shots": 20,
+            "slowHits": 13,
+            "vulnerabilityHits": 13,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 2,
+            "health": 435.00499999999994,
+            "shield": 0,
+            "kills": 1,
+            "shots": 26,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 71
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 2,
+            "health": 407.1799999999999,
+            "shield": 0,
+            "kills": 1,
+            "shots": 28,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 5,
+        "killed": 17,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 6,
+      "durationMs": 12250.000000003565,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 50,
+        "bandwidth": 201,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 281,
+        "bandwidth": 283,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 342,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 105,
+          "bandwidth": 46,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 126,
+          "bandwidth": 36,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 3,
+            "health": 584.4000000000001,
+            "shield": 77.62,
+            "kills": 1,
+            "shots": 11,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 2,
+            "health": 100.61050000000003,
+            "shield": 27.67000000000001,
+            "kills": 1,
+            "shots": 11,
+            "slowHits": 5,
+            "vulnerabilityHits": 5,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 3,
+            "health": 351.27,
+            "shield": 55.32999999999999,
+            "kills": 5,
+            "shots": 11,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 25
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 2,
+            "health": 251.2695,
+            "shield": 5.3799999999999955,
+            "kills": 3,
+            "shots": 14,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 6,
+        "killed": 10,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 7,
+      "durationMs": 17350.000000002983,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 78,
+        "bandwidth": 283,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 370,
+        "bandwidth": 388,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 203,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 151,
+          "bandwidth": 64,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 141,
+          "bandwidth": 41,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 3,
+            "health": 525.7395,
+            "shield": 0,
+            "kills": 3,
+            "shots": 16,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 3,
+            "health": 114.52500000000002,
+            "shield": 0,
+            "kills": 2,
+            "shots": 5,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 2,
+            "health": 166.79000000000002,
+            "shield": 97.29050000000001,
+            "kills": 0,
+            "shots": 16,
+            "slowHits": 9,
+            "vulnerabilityHits": 9,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 3,
+            "health": 346.04200000000003,
+            "shield": 77.62,
+            "kills": 6,
+            "shots": 15,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 46
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 3,
+            "health": 626.8035,
+            "shield": 173.0895,
+            "kills": 8,
+            "shots": 16,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 2,
+            "health": 243,
+            "shield": 0,
+            "kills": 0,
+            "shots": 9,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 7,
+        "killed": 19,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 8,
+      "durationMs": 11499.999999993306,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 66,
+        "bandwidth": 255,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 372,
+        "bandwidth": 366,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 304,
+          "bandwidth": 133,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 150,
+          "bandwidth": 66,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 156,
+          "bandwidth": 45,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 3,
+            "health": 233.0918,
+            "shield": 0,
+            "kills": 5,
+            "shots": 9,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 3,
+            "health": 202.5932,
+            "shield": 0,
+            "kills": 3,
+            "shots": 11,
+            "slowHits": 7,
+            "vulnerabilityHits": 7,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 3,
+            "health": 877.7149999999998,
+            "shield": 0,
+            "kills": 2,
+            "shots": 10,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 18
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 9,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 8,
+        "killed": 10,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 9,
+      "durationMs": 18199.999999989406,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 169,
+        "bandwidth": 366,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 553,
+        "bandwidth": 511,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 203,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 213,
+          "bandwidth": 95,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 171,
+          "bandwidth": 50,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 3,
+            "health": 737.1648,
+            "shield": 135.48000000000002,
+            "kills": 3,
+            "shots": 17,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 3,
+            "health": 33.60000000000001,
+            "shield": 0,
+            "kills": 1,
+            "shots": 3,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 3,
+            "health": 164.5278,
+            "shield": 88.66,
+            "kills": 3,
+            "shots": 18,
+            "slowHits": 9,
+            "vulnerabilityHits": 9,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 3,
+            "health": 944.3974000000001,
+            "shield": 0,
+            "kills": 3,
+            "shots": 15,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 45
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 3,
+            "health": 467.11000000000007,
+            "shield": 0,
+            "kills": 5,
+            "shots": 17,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 3,
+            "health": 218.4,
+            "shield": 0,
+            "kills": 2,
+            "shots": 6,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-556": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 2,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 9,
+        "killed": 17,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 10,
+      "durationMs": 24099.999999985972,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 109,
+        "bandwidth": 511,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 682,
+        "bandwidth": 740,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 444,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 367,
+          "bandwidth": 169,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 206,
+          "bandwidth": 60,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 4,
+            "health": 1355.2143000000003,
+            "shield": 0,
+            "kills": 8,
+            "shots": 23,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 3,
+            "health": 71.76880000000031,
+            "shield": 0,
+            "kills": 1,
+            "shots": 6,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 3,
+            "health": 253.16000000000003,
+            "shield": 0,
+            "kills": 2,
+            "shots": 22,
+            "slowHits": 12,
+            "vulnerabilityHits": 12,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 4,
+            "health": 886.2450000000001,
+            "shield": 0,
+            "kills": 5,
+            "shots": 22,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 64
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 3,
+            "health": 541.1638,
+            "shield": 0,
+            "kills": 3,
+            "shots": 20,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 3,
+            "health": 284.9081,
+            "shield": 0,
+            "kills": 1,
+            "shots": 9,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-556": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 3,
+            "health": 328.84,
+            "shield": 0,
+            "kills": 0,
+            "shots": 6,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 10,
+        "killed": 20,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 11,
+      "durationMs": 8983.333333328104,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 35,
+        "bandwidth": 740,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 399,
+        "bandwidth": 881,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 647,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 168,
+          "bandwidth": 84,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 196,
+          "bandwidth": 57,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 4,
+            "health": 742.2387499999999,
+            "shield": 0,
+            "kills": 1,
+            "shots": 8,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 3,
+            "health": 151.04819999999998,
+            "shield": 0,
+            "kills": 0,
+            "shots": 9,
+            "slowHits": 6,
+            "vulnerabilityHits": 6,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 4,
+            "health": 433.91,
+            "shield": 0,
+            "kills": 2,
+            "shots": 8,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 16
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 4,
+            "health": 465.80305000000016,
+            "shield": 0,
+            "kills": 5,
+            "shots": 8,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-556": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-780": {
+            "type": "firewall",
+            "x": 510,
+            "y": 330,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 11,
+        "killed": 8,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 12,
+      "durationMs": 16383.333333323797,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 28,
+        "bandwidth": 621,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 555,
+        "bandwidth": 833,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 371,
+          "bandwidth": 260,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 316,
+          "bandwidth": 150,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 211,
+          "bandwidth": 62,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 4,
+            "health": 779.6678,
+            "shield": 0,
+            "kills": 5,
+            "shots": 17,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 4,
+            "health": 391.04,
+            "shield": 0,
+            "kills": 4,
+            "shots": 18,
+            "slowHits": 11,
+            "vulnerabilityHits": 11,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 4,
+            "health": 1189.0972000000002,
+            "shield": 0,
+            "kills": 6,
+            "shots": 16,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 36
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 4,
+            "health": 992.1700000000001,
+            "shield": 0,
+            "kills": 3,
+            "shots": 16,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 3,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-556": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-780": {
+            "type": "firewall",
+            "x": 510,
+            "y": 330,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 12,
+        "killed": 18,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 13,
+      "durationMs": 9233.333333327959,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 130,
+        "bandwidth": 833,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 583,
+        "bandwidth": 1020,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 425,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 227,
+          "bandwidth": 121,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 226,
+          "bandwidth": 66,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 4,
+            "health": 614.5507499999999,
+            "shield": 0,
+            "kills": 0,
+            "shots": 8,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 4,
+            "health": 227.42,
+            "shield": 0,
+            "kills": 1,
+            "shots": 10,
+            "slowHits": 7,
+            "vulnerabilityHits": 7,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 4,
+            "health": 634.617875,
+            "shield": 0,
+            "kills": 1,
+            "shots": 9,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 16
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 4,
+            "health": 477.286375,
+            "shield": 0,
+            "kills": 5,
+            "shots": 8,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-556": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-780": {
+            "type": "firewall",
+            "x": 510,
+            "y": 330,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-910": {
+            "type": "firewall",
+            "x": 510,
+            "y": 210,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 13,
+        "killed": 7,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 14,
+      "durationMs": 15866.666666657431,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 139,
+        "bandwidth": 1020,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 721,
+        "bandwidth": 1263,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 444,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 341,
+          "bandwidth": 172,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 241,
+          "bandwidth": 71,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 4,
+            "health": 1313.76415,
+            "shield": 0,
+            "kills": 2,
+            "shots": 16,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 4,
+            "health": 477.28,
+            "shield": 0,
+            "kills": 0,
+            "shots": 17,
+            "slowHits": 14,
+            "vulnerabilityHits": 14,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 4,
+            "health": 1222.8636500000002,
+            "shield": 0,
+            "kills": 7,
+            "shots": 15,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 32
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 4,
+            "health": 695.2922000000004,
+            "shield": 0,
+            "kills": 6,
+            "shots": 16,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-556": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-780": {
+            "type": "firewall",
+            "x": 510,
+            "y": 330,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-910": {
+            "type": "firewall",
+            "x": 510,
+            "y": 210,
+            "level": 3,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 14,
+        "killed": 15,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 15,
+      "durationMs": 18816.666666655714,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 74,
+        "bandwidth": 1263,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 939,
+        "bandwidth": 1644,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 647,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 579,
+          "bandwidth": 297,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 286,
+          "bandwidth": 84,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 4,
+            "health": 1170.8615000000002,
+            "shield": 53.02499999999999,
+            "kills": 1,
+            "shots": 18,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 4,
+            "health": 340.48080000000004,
+            "shield": 29.605199999999996,
+            "kills": 0,
+            "shots": 21,
+            "slowHits": 15,
+            "vulnerabilityHits": 15,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 4,
+            "health": 1097.9933250000004,
+            "shield": 230.71092499997525,
+            "kills": 3,
+            "shots": 18,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 36
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 4,
+            "health": 982.5165,
+            "shield": 53.02499999999999,
+            "kills": 0,
+            "shots": 18,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-556": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-780": {
+            "type": "firewall",
+            "x": 510,
+            "y": 330,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-910": {
+            "type": "firewall",
+            "x": 510,
+            "y": 210,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-1032": {
+            "type": "firewall",
+            "x": 210,
+            "y": 150,
+            "level": 4,
+            "health": 937.3978750000005,
+            "shield": 79.17787499999999,
+            "kills": 8,
+            "shots": 17,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 15,
+        "killed": 12,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 16,
+      "durationMs": 18716.666666678677,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 71,
+        "bandwidth": 1644,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 837,
+        "bandwidth": 1987,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 868,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 500,
+          "bandwidth": 265,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 266,
+          "bandwidth": 78,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 5,
+            "health": 1066.4795250000004,
+            "shield": 0,
+            "kills": 4,
+            "shots": 21,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 4,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 4,
+            "health": 449.2016,
+            "shield": 0,
+            "kills": 1,
+            "shots": 20,
+            "slowHits": 14,
+            "vulnerabilityHits": 14,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 4,
+            "health": 820.393275,
+            "shield": 0,
+            "kills": 2,
+            "shots": 18,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 55
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 4,
+            "health": 945.81275,
+            "shield": 0,
+            "kills": 2,
+            "shots": 17,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 4,
+            "health": 291.8228750000001,
+            "shield": 0,
+            "kills": 2,
+            "shots": 6,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-556": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 3,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-780": {
+            "type": "firewall",
+            "x": 510,
+            "y": 330,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-910": {
+            "type": "firewall",
+            "x": 510,
+            "y": 210,
+            "level": 4,
+            "health": 322.635,
+            "shield": 0,
+            "kills": 0,
+            "shots": 4,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-1032": {
+            "type": "firewall",
+            "x": 210,
+            "y": 150,
+            "level": 5,
+            "health": 1196.6549750000006,
+            "shield": 0,
+            "kills": 4,
+            "shots": 19,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 16,
+        "killed": 15,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 17,
+      "durationMs": 21550.000000025088,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 412,
+        "bandwidth": 1987,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 1389,
+        "bandwidth": 2431,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 425,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 696,
+          "bandwidth": 361,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 281,
+          "bandwidth": 83,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 5,
+            "health": 1529.282250000001,
+            "shield": 0,
+            "kills": 7,
+            "shots": 25,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 4,
+            "health": 65.22000000000006,
+            "shield": 0,
+            "kills": 1,
+            "shots": 5,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 4,
+            "health": 443.1499999999999,
+            "shield": 0,
+            "kills": 1,
+            "shots": 24,
+            "slowHits": 13,
+            "vulnerabilityHits": 13,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 4,
+            "health": 747.4447250000003,
+            "shield": 0,
+            "kills": 8,
+            "shots": 20,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 76
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 4,
+            "health": 1577.5292749999999,
+            "shield": 0,
+            "kills": 1,
+            "shots": 23,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 4,
+            "health": 388.6128749999999,
+            "shield": 0,
+            "kills": 1,
+            "shots": 10,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-556": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 4,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-780": {
+            "type": "firewall",
+            "x": 510,
+            "y": 330,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-910": {
+            "type": "firewall",
+            "x": 510,
+            "y": 210,
+            "level": 4,
+            "health": 175.55500000000006,
+            "shield": 0,
+            "kills": 2,
+            "shots": 9,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-1032": {
+            "type": "firewall",
+            "x": 210,
+            "y": 150,
+            "level": 5,
+            "health": 1885.2410000000002,
+            "shield": 0,
+            "kills": 2,
+            "shots": 22,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-1264": {
+            "type": "firewall",
+            "x": 270,
+            "y": 150,
+            "level": 4,
+            "health": 1056.814875,
+            "shield": 0,
+            "kills": 2,
+            "shots": 20,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 17,
+        "killed": 25,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 18,
+      "durationMs": 19650.000000022876,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 87,
+        "bandwidth": 2431,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 1118,
+        "bandwidth": 2892,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 1302,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 735,
+          "bandwidth": 374,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 296,
+          "bandwidth": 87,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 5,
+            "health": 1403.245325,
+            "shield": 206.81799999999998,
+            "kills": 3,
+            "shots": 22,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 5,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 4,
+            "health": 383.2356,
+            "shield": 6.079999999999998,
+            "kills": 0,
+            "shots": 21,
+            "slowHits": 14,
+            "vulnerabilityHits": 14,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 5,
+            "health": 1086.804,
+            "shield": 97.81799999999998,
+            "kills": 2,
+            "shots": 21,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 42
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 4,
+            "health": 1253.7222500000003,
+            "shield": 147.65499999999997,
+            "kills": 1,
+            "shots": 19,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 1,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-556": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-780": {
+            "type": "firewall",
+            "x": 510,
+            "y": 330,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-910": {
+            "type": "firewall",
+            "x": 510,
+            "y": 210,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-1032": {
+            "type": "firewall",
+            "x": 210,
+            "y": 150,
+            "level": 5,
+            "health": 1147.5946000000006,
+            "shield": 86.44100000000009,
+            "kills": 6,
+            "shots": 21,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-1264": {
+            "type": "firewall",
+            "x": 270,
+            "y": 150,
+            "level": 5,
+            "health": 1496.9982250000005,
+            "shield": 112.18799999999999,
+            "kills": 5,
+            "shots": 19,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 18,
+        "killed": 17,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 19,
+      "durationMs": 29083.33333336719,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 259,
+        "bandwidth": 2892,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 1478,
+        "bandwidth": 3451,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 859,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 908,
+          "bandwidth": 467,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 311,
+          "bandwidth": 92,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 5,
+            "health": 1990.346000000001,
+            "shield": 0,
+            "kills": 7,
+            "shots": 34,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 5,
+            "health": 97.34500000000006,
+            "shield": 0,
+            "kills": 1,
+            "shots": 10,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 4,
+            "health": 380.71999999999997,
+            "shield": 0,
+            "kills": 1,
+            "shots": 32,
+            "slowHits": 12,
+            "vulnerabilityHits": 12,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 5,
+            "health": 1536.3430000000005,
+            "shield": 0,
+            "kills": 4,
+            "shots": 30,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 114
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 4,
+            "health": 2004.7668750000003,
+            "shield": 0,
+            "kills": 3,
+            "shots": 31,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 4,
+            "health": 430.60140000000007,
+            "shield": 0,
+            "kills": 2,
+            "shots": 14,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-556": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 4,
+            "health": 279.35,
+            "shield": 0,
+            "kills": 1,
+            "shots": 7,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-780": {
+            "type": "firewall",
+            "x": 510,
+            "y": 330,
+            "level": 4,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 5,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-910": {
+            "type": "firewall",
+            "x": 510,
+            "y": 210,
+            "level": 4,
+            "health": 102.56860000000003,
+            "shield": 0,
+            "kills": 1,
+            "shots": 10,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-1032": {
+            "type": "firewall",
+            "x": 210,
+            "y": 150,
+            "level": 5,
+            "health": 1572.8300000000004,
+            "shield": 0,
+            "kills": 6,
+            "shots": 30,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-1264": {
+            "type": "firewall",
+            "x": 270,
+            "y": 150,
+            "level": 5,
+            "health": 2465.429125,
+            "shield": 0,
+            "kills": 7,
+            "shots": 30,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-1593": {
+            "type": "firewall",
+            "x": 570,
+            "y": 330,
+            "level": 5,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 3,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 19,
+        "killed": 33,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    },
+    {
+      "wave": 20,
+      "durationMs": 40200.0000000468,
+      "livesBefore": 18,
+      "livesAfter": 18,
+      "atStart": {
+        "dharma": 321,
+        "bandwidth": 2945,
+        "anonymity": 0
+      },
+      "after": {
+        "dharma": 2227,
+        "bandwidth": 3828,
+        "anonymity": 0
+      },
+      "report": {
+        "partial": false,
+        "passiveDharma": 6,
+        "spent": {
+          "dharma": 1157,
+          "bandwidth": 506,
+          "anonymity": 0
+        },
+        "refunds": {
+          "dharma": 0,
+          "bandwidth": 0,
+          "anonymity": 0
+        },
+        "bounty": {
+          "dharma": 1510,
+          "bandwidth": 766,
+          "anonymity": 0
+        },
+        "clear": {
+          "dharma": 396,
+          "bandwidth": 117,
+          "anonymity": 0
+        },
+        "towers": {
+          "defense-1": {
+            "type": "firewall",
+            "x": 270,
+            "y": 270,
+            "level": 5,
+            "health": 2166.1712,
+            "shield": 379.56960000000004,
+            "kills": 0,
+            "shots": 43,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-2": {
+            "type": "firewall",
+            "x": 510,
+            "y": 270,
+            "level": 5,
+            "health": 549.7887999999999,
+            "shield": 0,
+            "kills": 0,
+            "shots": 21,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-3": {
+            "type": "encryption",
+            "x": 210,
+            "y": 210,
+            "level": 5,
+            "health": 1030.5164000000002,
+            "shield": 64.16640000000001,
+            "kills": 1,
+            "shots": 45,
+            "slowHits": 31,
+            "vulnerabilityHits": 31,
+            "auraShots": 0
+          },
+          "defense-147": {
+            "type": "firewall",
+            "x": 210,
+            "y": 270,
+            "level": 5,
+            "health": 1530.6546,
+            "shield": 338.78399999999993,
+            "kills": 9,
+            "shots": 40,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-148": {
+            "type": "distributor",
+            "x": 450,
+            "y": 270,
+            "level": 1,
+            "health": 0,
+            "shield": 0,
+            "kills": 0,
+            "shots": 0,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 195
+          },
+          "defense-218": {
+            "type": "firewall",
+            "x": 270,
+            "y": 210,
+            "level": 5,
+            "health": 2160.1058,
+            "shield": 138.76,
+            "kills": 6,
+            "shots": 43,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-410": {
+            "type": "firewall",
+            "x": 450,
+            "y": 210,
+            "level": 4,
+            "health": 958.6596,
+            "shield": 135.93899999999996,
+            "kills": 4,
+            "shots": 27,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-556": {
+            "type": "firewall",
+            "x": 450,
+            "y": 330,
+            "level": 4,
+            "health": 740.7973999999999,
+            "shield": 22.718000000000103,
+            "kills": 2,
+            "shots": 15,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-780": {
+            "type": "firewall",
+            "x": 510,
+            "y": 330,
+            "level": 4,
+            "health": 514.0420000000004,
+            "shield": 0,
+            "kills": 1,
+            "shots": 14,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-910": {
+            "type": "firewall",
+            "x": 510,
+            "y": 210,
+            "level": 4,
+            "health": 619.4606,
+            "shield": 53.02499999999999,
+            "kills": 1,
+            "shots": 19,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-1032": {
+            "type": "firewall",
+            "x": 210,
+            "y": 150,
+            "level": 5,
+            "health": 1767.9032000000004,
+            "shield": 450.4239999999999,
+            "kills": 7,
+            "shots": 40,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-1264": {
+            "type": "firewall",
+            "x": 270,
+            "y": 150,
+            "level": 5,
+            "health": 2875.2763999999997,
+            "shield": 296.254,
+            "kills": 5,
+            "shots": 36,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          },
+          "defense-1593": {
+            "type": "firewall",
+            "x": 570,
+            "y": 330,
+            "level": 5,
+            "health": 766.0240000000001,
+            "shield": 0,
+            "kills": 1,
+            "shots": 13,
+            "slowHits": 0,
+            "vulnerabilityHits": 0,
+            "auraShots": 0
+          }
+        },
+        "leaks": [],
+        "coverage": {},
+        "waveNumber": 20,
+        "killed": 37,
+        "leaked": 0,
+        "outcome": "cleared"
+      }
+    }
+  ],
+  "bosses": [
+    {
+      "id": "enemy-219",
+      "wave": 5,
+      "type": "raidTeam",
+      "outcome": "killed",
+      "phases": [
+        1
+      ]
+    },
+    {
+      "id": "enemy-652",
+      "wave": 10,
+      "type": "raidTeam",
+      "outcome": "killed",
+      "phases": [
+        1
+      ]
+    },
+    {
+      "id": "enemy-1033",
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "outcome": "killed",
+      "phases": []
+    },
+    {
+      "id": "enemy-1506",
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "outcome": "killed",
+      "phases": []
+    },
+    {
+      "id": "enemy-1863",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "outcome": "killed",
+      "phases": []
+    },
+    {
+      "id": "enemy-1910",
+      "wave": 20,
+      "type": "raidTeam",
+      "outcome": "killed",
+      "phases": [
+        1
+      ]
+    },
+    {
+      "id": "enemy-1971",
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "outcome": "killed",
+      "phases": []
+    }
+  ],
+  "spawns": [
+    {
+      "wave": 1,
+      "type": "scriptKiddie",
+      "time": 16.666666666666668
+    },
+    {
+      "wave": 1,
+      "type": "scriptKiddie",
+      "time": 1016.6666666666657
+    },
+    {
+      "wave": 1,
+      "type": "scriptKiddie",
+      "time": 2000.0000000000034
+    },
+    {
+      "wave": 1,
+      "type": "scriptKiddie",
+      "time": 3016.6666666666615
+    },
+    {
+      "wave": 1,
+      "type": "scriptKiddie",
+      "time": 6500.000000000029
+    },
+    {
+      "wave": 1,
+      "type": "scriptKiddie",
+      "time": 7200.000000000042
+    },
+    {
+      "wave": 1,
+      "type": "scriptKiddie",
+      "time": 7900.000000000055
+    },
+    {
+      "wave": 1,
+      "type": "scriptKiddie",
+      "time": 8600.000000000045
+    },
+    {
+      "wave": 2,
+      "type": "scriptKiddie",
+      "time": 16316.666666666431
+    },
+    {
+      "wave": 2,
+      "type": "scriptKiddie",
+      "time": 17016.666666666475
+    },
+    {
+      "wave": 2,
+      "type": "scriptKiddie",
+      "time": 17699.999999999858
+    },
+    {
+      "wave": 2,
+      "type": "scriptKiddie",
+      "time": 18399.99999999991
+    },
+    {
+      "wave": 2,
+      "type": "scriptKiddie",
+      "time": 21300.00000000012
+    },
+    {
+      "wave": 2,
+      "type": "scriptKiddie",
+      "time": 21650.000000000146
+    },
+    {
+      "wave": 2,
+      "type": "scriptKiddie",
+      "time": 22000.00000000017
+    },
+    {
+      "wave": 2,
+      "type": "scriptKiddie",
+      "time": 22350.000000000196
+    },
+    {
+      "wave": 2,
+      "type": "scriptKiddie",
+      "time": 22700.000000000222
+    },
+    {
+      "wave": 2,
+      "type": "scriptKiddie",
+      "time": 23050.000000000247
+    },
+    {
+      "wave": 3,
+      "type": "federalAgent",
+      "time": 35700.00000000053
+    },
+    {
+      "wave": 3,
+      "type": "scriptKiddie",
+      "time": 36400.00000000043
+    },
+    {
+      "wave": 3,
+      "type": "scriptKiddie",
+      "time": 36900.00000000036
+    },
+    {
+      "wave": 3,
+      "type": "federalAgent",
+      "time": 37083.33333333366
+    },
+    {
+      "wave": 3,
+      "type": "scriptKiddie",
+      "time": 37383.33333333362
+    },
+    {
+      "wave": 3,
+      "type": "scriptKiddie",
+      "time": 37883.33333333355
+    },
+    {
+      "wave": 3,
+      "type": "federalAgent",
+      "time": 38500.000000000124
+    },
+    {
+      "wave": 3,
+      "type": "scriptKiddie",
+      "time": 42183.33333333292
+    },
+    {
+      "wave": 3,
+      "type": "scriptKiddie",
+      "time": 42583.33333333286
+    },
+    {
+      "wave": 3,
+      "type": "scriptKiddie",
+      "time": 42983.333333332805
+    },
+    {
+      "wave": 3,
+      "type": "scriptKiddie",
+      "time": 43383.33333333275
+    },
+    {
+      "wave": 4,
+      "type": "federalAgent",
+      "time": 62533.33333332996
+    },
+    {
+      "wave": 4,
+      "type": "federalAgent",
+      "time": 63433.33333332983
+    },
+    {
+      "wave": 4,
+      "type": "scriptKiddie",
+      "time": 63433.33333332983
+    },
+    {
+      "wave": 4,
+      "type": "scriptKiddie",
+      "time": 63733.333333329785
+    },
+    {
+      "wave": 4,
+      "type": "scriptKiddie",
+      "time": 64016.66666666308
+    },
+    {
+      "wave": 4,
+      "type": "federalAgent",
+      "time": 64316.66666666303
+    },
+    {
+      "wave": 4,
+      "type": "federalAgent",
+      "time": 68516.66666666372
+    },
+    {
+      "wave": 4,
+      "type": "scriptKiddie",
+      "time": 69116.66666666389
+    },
+    {
+      "wave": 4,
+      "type": "federalAgent",
+      "time": 69416.66666666398
+    },
+    {
+      "wave": 4,
+      "type": "scriptKiddie",
+      "time": 69416.66666666398
+    },
+    {
+      "wave": 4,
+      "type": "scriptKiddie",
+      "time": 69716.66666666407
+    },
+    {
+      "wave": 5,
+      "type": "raidTeam",
+      "time": 79366.66666666688
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 79950.00000000038
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 80366.66666666717
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 80750.00000000061
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 81150.00000000073
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 81550.00000000084
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 81966.66666666763
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 85850.0000000021
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 86150.00000000218
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 86450.00000000227
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 86750.00000000236
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 87050.00000000244
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 87350.00000000253
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 88833.3333333363
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 89083.33333333637
+    },
+    {
+      "wave": 5,
+      "type": "federalAgent",
+      "time": 89333.33333333644
+    },
+    {
+      "wave": 5,
+      "type": "scriptKiddie",
+      "time": 89583.33333333652
+    },
+    {
+      "wave": 6,
+      "type": "federalAgent",
+      "time": 103866.666666674
+    },
+    {
+      "wave": 6,
+      "type": "federalAgent",
+      "time": 104966.66666667433
+    },
+    {
+      "wave": 6,
+      "type": "federalAgent",
+      "time": 106050.00000000797
+    },
+    {
+      "wave": 6,
+      "type": "federalAgent",
+      "time": 107166.66666667497
+    },
+    {
+      "wave": 6,
+      "type": "federalAgent",
+      "time": 108266.66666667529
+    },
+    {
+      "wave": 6,
+      "type": "corporateSaboteur",
+      "time": 108850.00000000879
+    },
+    {
+      "wave": 6,
+      "type": "federalAgent",
+      "time": 109350.00000000893
+    },
+    {
+      "wave": 6,
+      "type": "corporateSaboteur",
+      "time": 110150.00000000917
+    },
+    {
+      "wave": 6,
+      "type": "federalAgent",
+      "time": 110450.00000000926
+    },
+    {
+      "wave": 6,
+      "type": "corporateSaboteur",
+      "time": 111450.00000000955
+    },
+    {
+      "wave": 7,
+      "type": "scriptKiddie",
+      "time": 116116.66666667757
+    },
+    {
+      "wave": 7,
+      "type": "scriptKiddie",
+      "time": 116550.00000001103
+    },
+    {
+      "wave": 7,
+      "type": "scriptKiddie",
+      "time": 117016.66666667783
+    },
+    {
+      "wave": 7,
+      "type": "federalAgent",
+      "time": 117016.66666667783
+    },
+    {
+      "wave": 7,
+      "type": "scriptKiddie",
+      "time": 117450.00000001129
+    },
+    {
+      "wave": 7,
+      "type": "scriptKiddie",
+      "time": 117900.00000001142
+    },
+    {
+      "wave": 7,
+      "type": "federalAgent",
+      "time": 118100.00000001148
+    },
+    {
+      "wave": 7,
+      "type": "federalAgent",
+      "time": 119216.66666667847
+    },
+    {
+      "wave": 7,
+      "type": "federalAgent",
+      "time": 120316.6666666788
+    },
+    {
+      "wave": 7,
+      "type": "federalAgent",
+      "time": 121400.00000001244
+    },
+    {
+      "wave": 7,
+      "type": "corporateSaboteur",
+      "time": 121700.00000001253
+    },
+    {
+      "wave": 7,
+      "type": "scriptKiddie",
+      "time": 122200.00000001267
+    },
+    {
+      "wave": 7,
+      "type": "scriptKiddie",
+      "time": 122650.0000000128
+    },
+    {
+      "wave": 7,
+      "type": "corporateSaboteur",
+      "time": 122800.00000001285
+    },
+    {
+      "wave": 7,
+      "type": "scriptKiddie",
+      "time": 123100.00000001294
+    },
+    {
+      "wave": 7,
+      "type": "scriptKiddie",
+      "time": 123550.00000001307
+    },
+    {
+      "wave": 7,
+      "type": "corporateSaboteur",
+      "time": 123900.00000001317
+    },
+    {
+      "wave": 7,
+      "type": "scriptKiddie",
+      "time": 124000.0000000132
+    },
+    {
+      "wave": 7,
+      "type": "corporateSaboteur",
+      "time": 125000.00000001349
+    },
+    {
+      "wave": 8,
+      "type": "corporateSaboteur",
+      "time": 133466.66666668054
+    },
+    {
+      "wave": 8,
+      "type": "corporateSaboteur",
+      "time": 134366.66666668002
+    },
+    {
+      "wave": 8,
+      "type": "corporateSaboteur",
+      "time": 135250.00000001283
+    },
+    {
+      "wave": 8,
+      "type": "aiSurveillance",
+      "time": 135650.0000000126
+    },
+    {
+      "wave": 8,
+      "type": "corporateSaboteur",
+      "time": 136166.66666667897
+    },
+    {
+      "wave": 8,
+      "type": "aiSurveillance",
+      "time": 137666.6666666781
+    },
+    {
+      "wave": 8,
+      "type": "corporateSaboteur",
+      "time": 140450.0000000098
+    },
+    {
+      "wave": 8,
+      "type": "corporateSaboteur",
+      "time": 141350.00000000928
+    },
+    {
+      "wave": 8,
+      "type": "corporateSaboteur",
+      "time": 142250.00000000876
+    },
+    {
+      "wave": 8,
+      "type": "corporateSaboteur",
+      "time": 143150.00000000824
+    },
+    {
+      "wave": 9,
+      "type": "federalAgent",
+      "time": 144966.66666667385
+    },
+    {
+      "wave": 9,
+      "type": "federalAgent",
+      "time": 145866.66666667332
+    },
+    {
+      "wave": 9,
+      "type": "federalAgent",
+      "time": 146750.00000000614
+    },
+    {
+      "wave": 9,
+      "type": "federalAgent",
+      "time": 147666.66666667227
+    },
+    {
+      "wave": 9,
+      "type": "aiSurveillance",
+      "time": 148466.6666666718
+    },
+    {
+      "wave": 9,
+      "type": "federalAgent",
+      "time": 148566.66666667175
+    },
+    {
+      "wave": 9,
+      "type": "federalAgent",
+      "time": 149466.66666667123
+    },
+    {
+      "wave": 9,
+      "type": "corporateSaboteur",
+      "time": 149950.00000000428
+    },
+    {
+      "wave": 9,
+      "type": "federalAgent",
+      "time": 150350.00000000405
+    },
+    {
+      "wave": 9,
+      "type": "aiSurveillance",
+      "time": 150450.000000004
+    },
+    {
+      "wave": 9,
+      "type": "corporateSaboteur",
+      "time": 150950.0000000037
+    },
+    {
+      "wave": 9,
+      "type": "federalAgent",
+      "time": 151250.00000000352
+    },
+    {
+      "wave": 9,
+      "type": "corporateSaboteur",
+      "time": 151950.0000000031
+    },
+    {
+      "wave": 9,
+      "type": "aiSurveillance",
+      "time": 152450.00000000282
+    },
+    {
+      "wave": 9,
+      "type": "corporateSaboteur",
+      "time": 152950.00000000253
+    },
+    {
+      "wave": 9,
+      "type": "corporateSaboteur",
+      "time": 153950.00000000195
+    },
+    {
+      "wave": 9,
+      "type": "corporateSaboteur",
+      "time": 154966.66666666802
+    },
+    {
+      "wave": 10,
+      "type": "raidTeam",
+      "time": 163166.66666666325
+    },
+    {
+      "wave": 10,
+      "type": "corporateSaboteur",
+      "time": 164366.66666666255
+    },
+    {
+      "wave": 10,
+      "type": "corporateSaboteur",
+      "time": 165149.99999999543
+    },
+    {
+      "wave": 10,
+      "type": "corporateSaboteur",
+      "time": 165966.66666666162
+    },
+    {
+      "wave": 10,
+      "type": "aiSurveillance",
+      "time": 166166.6666666615
+    },
+    {
+      "wave": 10,
+      "type": "corporateSaboteur",
+      "time": 166766.66666666116
+    },
+    {
+      "wave": 10,
+      "type": "corporateSaboteur",
+      "time": 167566.6666666607
+    },
+    {
+      "wave": 10,
+      "type": "aiSurveillance",
+      "time": 167666.66666666063
+    },
+    {
+      "wave": 10,
+      "type": "aiSurveillance",
+      "time": 169149.9999999931
+    },
+    {
+      "wave": 10,
+      "type": "aiSurveillance",
+      "time": 170649.99999999223
+    },
+    {
+      "wave": 10,
+      "type": "aiSurveillance",
+      "time": 172149.99999999136
+    },
+    {
+      "wave": 10,
+      "type": "scriptKiddie",
+      "time": 172949.9999999909
+    },
+    {
+      "wave": 10,
+      "type": "scriptKiddie",
+      "time": 173199.99999999074
+    },
+    {
+      "wave": 10,
+      "type": "federalAgent",
+      "time": 173449.9999999906
+    },
+    {
+      "wave": 10,
+      "type": "corporateSaboteur",
+      "time": 173666.66666665714
+    },
+    {
+      "wave": 10,
+      "type": "scriptKiddie",
+      "time": 173699.99999999045
+    },
+    {
+      "wave": 10,
+      "type": "corporateSaboteur",
+      "time": 174466.66666665667
+    },
+    {
+      "wave": 10,
+      "type": "corporateSaboteur",
+      "time": 175266.6666666562
+    },
+    {
+      "wave": 10,
+      "type": "corporateSaboteur",
+      "time": 176066.66666665574
+    },
+    {
+      "wave": 10,
+      "type": "corporateSaboteur",
+      "time": 176866.66666665528
+    },
+    {
+      "wave": 11,
+      "type": "aiSurveillance",
+      "time": 187266.66666664922
+    },
+    {
+      "wave": 11,
+      "type": "aiSurveillance",
+      "time": 188466.66666664853
+    },
+    {
+      "wave": 11,
+      "type": "aiSurveillance",
+      "time": 189649.99999998117
+    },
+    {
+      "wave": 11,
+      "type": "aiSurveillance",
+      "time": 190866.66666664713
+    },
+    {
+      "wave": 11,
+      "type": "quantumHacker",
+      "time": 191766.6666666466
+    },
+    {
+      "wave": 11,
+      "type": "aiSurveillance",
+      "time": 192066.66666664643
+    },
+    {
+      "wave": 11,
+      "type": "aiSurveillance",
+      "time": 193249.99999997907
+    },
+    {
+      "wave": 11,
+      "type": "quantumHacker",
+      "time": 193749.99999997878
+    },
+    {
+      "wave": 12,
+      "type": "corporateSaboteur",
+      "time": 196249.99999997733
+    },
+    {
+      "wave": 12,
+      "type": "corporateSaboteur",
+      "time": 197049.99999997686
+    },
+    {
+      "wave": 12,
+      "type": "corporateSaboteur",
+      "time": 197833.33333330974
+    },
+    {
+      "wave": 12,
+      "type": "corporateSaboteur",
+      "time": 198633.33333330927
+    },
+    {
+      "wave": 12,
+      "type": "aiSurveillance",
+      "time": 199049.9999999757
+    },
+    {
+      "wave": 12,
+      "type": "corporateSaboteur",
+      "time": 199449.99999997547
+    },
+    {
+      "wave": 12,
+      "type": "corporateSaboteur",
+      "time": 200249.999999975
+    },
+    {
+      "wave": 12,
+      "type": "aiSurveillance",
+      "time": 200349.99999997494
+    },
+    {
+      "wave": 12,
+      "type": "corporateSaboteur",
+      "time": 201049.99999997453
+    },
+    {
+      "wave": 12,
+      "type": "aiSurveillance",
+      "time": 201633.33333330753
+    },
+    {
+      "wave": 12,
+      "type": "corporateSaboteur",
+      "time": 201833.3333333074
+    },
+    {
+      "wave": 12,
+      "type": "corporateSaboteur",
+      "time": 202633.33333330695
+    },
+    {
+      "wave": 12,
+      "type": "aiSurveillance",
+      "time": 202933.33333330677
+    },
+    {
+      "wave": 12,
+      "type": "quantumHacker",
+      "time": 203233.3333333066
+    },
+    {
+      "wave": 12,
+      "type": "corporateSaboteur",
+      "time": 203433.33333330648
+    },
+    {
+      "wave": 12,
+      "type": "aiSurveillance",
+      "time": 204233.333333306
+    },
+    {
+      "wave": 12,
+      "type": "quantumHacker",
+      "time": 205033.33333330555
+    },
+    {
+      "wave": 12,
+      "type": "quantumHacker",
+      "time": 206849.99999997116
+    },
+    {
+      "wave": 13,
+      "type": "quantumHacker",
+      "time": 212633.33333330113
+    },
+    {
+      "wave": 13,
+      "type": "quantumHacker",
+      "time": 214016.66666663365
+    },
+    {
+      "wave": 13,
+      "type": "quantumHacker",
+      "time": 215433.3333332995
+    },
+    {
+      "wave": 13,
+      "type": "quantumHacker",
+      "time": 216833.33333329868
+    },
+    {
+      "wave": 13,
+      "type": "corruptedMonk",
+      "time": 216833.33333329868
+    },
+    {
+      "wave": 13,
+      "type": "quantumHacker",
+      "time": 218216.6666666312
+    },
+    {
+      "wave": 13,
+      "type": "corruptedMonk",
+      "time": 219316.66666663057
+    },
+    {
+      "wave": 14,
+      "type": "federalAgent",
+      "time": 221866.66666662908
+    },
+    {
+      "wave": 14,
+      "type": "federalAgent",
+      "time": 222966.66666662844
+    },
+    {
+      "wave": 14,
+      "type": "aiSurveillance",
+      "time": 223649.99999996138
+    },
+    {
+      "wave": 14,
+      "type": "federalAgent",
+      "time": 224049.99999996115
+    },
+    {
+      "wave": 14,
+      "type": "aiSurveillance",
+      "time": 224766.6666666274
+    },
+    {
+      "wave": 14,
+      "type": "aiSurveillance",
+      "time": 225866.66666662676
+    },
+    {
+      "wave": 14,
+      "type": "quantumHacker",
+      "time": 225866.66666662676
+    },
+    {
+      "wave": 14,
+      "type": "aiSurveillance",
+      "time": 226949.99999995946
+    },
+    {
+      "wave": 14,
+      "type": "quantumHacker",
+      "time": 227349.99999995923
+    },
+    {
+      "wave": 14,
+      "type": "aiSurveillance",
+      "time": 228049.99999995882
+    },
+    {
+      "wave": 14,
+      "type": "quantumHacker",
+      "time": 228849.99999995835
+    },
+    {
+      "wave": 14,
+      "type": "corruptedMonk",
+      "time": 228849.99999995835
+    },
+    {
+      "wave": 14,
+      "type": "aiSurveillance",
+      "time": 229149.99999995818
+    },
+    {
+      "wave": 14,
+      "type": "quantumHacker",
+      "time": 230349.99999995748
+    },
+    {
+      "wave": 14,
+      "type": "corruptedMonk",
+      "time": 231049.99999995707
+    },
+    {
+      "wave": 15,
+      "type": "megaCorpTitan",
+      "time": 237733.33333328651
+    },
+    {
+      "wave": 15,
+      "type": "quantumHacker",
+      "time": 239316.66666661893
+    },
+    {
+      "wave": 15,
+      "type": "quantumHacker",
+      "time": 240333.333333285
+    },
+    {
+      "wave": 15,
+      "type": "quantumHacker",
+      "time": 241333.33333328442
+    },
+    {
+      "wave": 15,
+      "type": "quantumHacker",
+      "time": 242333.33333328384
+    },
+    {
+      "wave": 15,
+      "type": "corruptedMonk",
+      "time": 243116.66666661671
+    },
+    {
+      "wave": 15,
+      "type": "quantumHacker",
+      "time": 243316.6666666166
+    },
+    {
+      "wave": 15,
+      "type": "quantumHacker",
+      "time": 244316.66666661602
+    },
+    {
+      "wave": 15,
+      "type": "corruptedMonk",
+      "time": 245116.66666661555
+    },
+    {
+      "wave": 15,
+      "type": "quantumHacker",
+      "time": 245316.66666661543
+    },
+    {
+      "wave": 15,
+      "type": "quantumHacker",
+      "time": 246316.66666661485
+    },
+    {
+      "wave": 15,
+      "type": "corruptedMonk",
+      "time": 247116.6666666144
+    },
+    {
+      "wave": 16,
+      "type": "corruptedMonk",
+      "time": 256549.99999994223
+    },
+    {
+      "wave": 16,
+      "type": "corruptedMonk",
+      "time": 258333.33333327452
+    },
+    {
+      "wave": 16,
+      "type": "corruptedMonk",
+      "time": 260149.99999994013
+    },
+    {
+      "wave": 16,
+      "type": "quantumHacker",
+      "time": 260549.9999999399
+    },
+    {
+      "wave": 16,
+      "type": "quantumHacker",
+      "time": 261433.33333327272
+    },
+    {
+      "wave": 16,
+      "type": "corruptedMonk",
+      "time": 261933.33333327243
+    },
+    {
+      "wave": 16,
+      "type": "quantumHacker",
+      "time": 262333.33333327255
+    },
+    {
+      "wave": 16,
+      "type": "quantumHacker",
+      "time": 263233.3333332736
+    },
+    {
+      "wave": 16,
+      "type": "corruptedMonk",
+      "time": 263733.3333332742
+    },
+    {
+      "wave": 16,
+      "type": "quantumHacker",
+      "time": 264133.33333327464
+    },
+    {
+      "wave": 16,
+      "type": "quantumHacker",
+      "time": 265033.3333332757
+    },
+    {
+      "wave": 16,
+      "type": "quantumHacker",
+      "time": 265933.33333327674
+    },
+    {
+      "wave": 16,
+      "type": "quantumHacker",
+      "time": 266849.99999994447
+    },
+    {
+      "wave": 16,
+      "type": "quantumHacker",
+      "time": 267749.9999999455
+    },
+    {
+      "wave": 16,
+      "type": "quantumHacker",
+      "time": 268649.99999994657
+    },
+    {
+      "wave": 17,
+      "type": "quantumHacker",
+      "time": 275266.66666662093
+    },
+    {
+      "wave": 17,
+      "type": "quantumHacker",
+      "time": 276066.66666662187
+    },
+    {
+      "wave": 17,
+      "type": "quantumHacker",
+      "time": 276849.9999999561
+    },
+    {
+      "wave": 17,
+      "type": "quantumHacker",
+      "time": 277649.99999995704
+    },
+    {
+      "wave": 17,
+      "type": "corruptedMonk",
+      "time": 278066.6666666242
+    },
+    {
+      "wave": 17,
+      "type": "quantumHacker",
+      "time": 278466.66666662466
+    },
+    {
+      "wave": 17,
+      "type": "quantumHacker",
+      "time": 279266.6666666256
+    },
+    {
+      "wave": 17,
+      "type": "corruptedMonk",
+      "time": 279666.66666662606
+    },
+    {
+      "wave": 17,
+      "type": "quantumHacker",
+      "time": 280066.6666666265
+    },
+    {
+      "wave": 17,
+      "type": "aiSurveillance",
+      "time": 280749.99999996065
+    },
+    {
+      "wave": 17,
+      "type": "quantumHacker",
+      "time": 280849.99999996077
+    },
+    {
+      "wave": 17,
+      "type": "corruptedMonk",
+      "time": 281249.99999996123
+    },
+    {
+      "wave": 17,
+      "type": "quantumHacker",
+      "time": 281649.9999999617
+    },
+    {
+      "wave": 17,
+      "type": "aiSurveillance",
+      "time": 281749.9999999618
+    },
+    {
+      "wave": 17,
+      "type": "quantumHacker",
+      "time": 282449.99999996263
+    },
+    {
+      "wave": 17,
+      "type": "aiSurveillance",
+      "time": 282749.999999963
+    },
+    {
+      "wave": 17,
+      "type": "corruptedMonk",
+      "time": 282849.9999999631
+    },
+    {
+      "wave": 17,
+      "type": "quantumHacker",
+      "time": 283249.99999996356
+    },
+    {
+      "wave": 17,
+      "type": "corporateSaboteur",
+      "time": 283249.99999996356
+    },
+    {
+      "wave": 17,
+      "type": "aiSurveillance",
+      "time": 283749.99999996414
+    },
+    {
+      "wave": 17,
+      "type": "quantumHacker",
+      "time": 284049.9999999645
+    },
+    {
+      "wave": 17,
+      "type": "corruptedMonk",
+      "time": 284449.99999996496
+    },
+    {
+      "wave": 17,
+      "type": "corporateSaboteur",
+      "time": 284449.99999996496
+    },
+    {
+      "wave": 17,
+      "type": "aiSurveillance",
+      "time": 284749.9999999653
+    },
+    {
+      "wave": 17,
+      "type": "aiSurveillance",
+      "time": 285766.66666663316
+    },
+    {
+      "wave": 18,
+      "type": "corruptedMonk",
+      "time": 296816.666666646
+    },
+    {
+      "wave": 18,
+      "type": "corruptedMonk",
+      "time": 298299.9999999811
+    },
+    {
+      "wave": 18,
+      "type": "quantumHacker",
+      "time": 299316.66666664893
+    },
+    {
+      "wave": 18,
+      "type": "corruptedMonk",
+      "time": 299816.6666666495
+    },
+    {
+      "wave": 18,
+      "type": "quantumHacker",
+      "time": 300216.66666665
+    },
+    {
+      "wave": 18,
+      "type": "quantumHacker",
+      "time": 301116.666666651
+    },
+    {
+      "wave": 18,
+      "type": "corruptedMonk",
+      "time": 301316.66666665126
+    },
+    {
+      "wave": 18,
+      "type": "quantumHacker",
+      "time": 301999.9999999854
+    },
+    {
+      "wave": 18,
+      "type": "federalAgent",
+      "time": 301999.9999999854
+    },
+    {
+      "wave": 18,
+      "type": "corruptedMonk",
+      "time": 302799.9999999863
+    },
+    {
+      "wave": 18,
+      "type": "quantumHacker",
+      "time": 302899.99999998644
+    },
+    {
+      "wave": 18,
+      "type": "federalAgent",
+      "time": 303299.9999999869
+    },
+    {
+      "wave": 18,
+      "type": "quantumHacker",
+      "time": 303799.9999999875
+    },
+    {
+      "wave": 18,
+      "type": "megaCorpTitan",
+      "time": 303799.9999999875
+    },
+    {
+      "wave": 18,
+      "type": "corruptedMonk",
+      "time": 304299.99999998807
+    },
+    {
+      "wave": 18,
+      "type": "quantumHacker",
+      "time": 304699.99999998853
+    },
+    {
+      "wave": 18,
+      "type": "quantumHacker",
+      "time": 305599.9999999896
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 316466.6666666689
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 317366.66666666995
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 318250.0000000043
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 319166.66666667204
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 320066.6666666731
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 320966.66666667414
+    },
+    {
+      "wave": 19,
+      "type": "corruptedMonk",
+      "time": 320966.66666667414
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 321850.0000000085
+    },
+    {
+      "wave": 19,
+      "type": "corruptedMonk",
+      "time": 322650.00000000943
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 322750.00000000955
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 323650.0000000106
+    },
+    {
+      "wave": 19,
+      "type": "corruptedMonk",
+      "time": 324350.0000000114
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 324550.00000001164
+    },
+    {
+      "wave": 19,
+      "type": "aiSurveillance",
+      "time": 324950.0000000121
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 325450.0000000127
+    },
+    {
+      "wave": 19,
+      "type": "corruptedMonk",
+      "time": 326050.0000000134
+    },
+    {
+      "wave": 19,
+      "type": "aiSurveillance",
+      "time": 326150.0000000135
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 326366.6666666804
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 327266.66666668147
+    },
+    {
+      "wave": 19,
+      "type": "aiSurveillance",
+      "time": 327366.6666666816
+    },
+    {
+      "wave": 19,
+      "type": "corruptedMonk",
+      "time": 327766.66666668205
+    },
+    {
+      "wave": 19,
+      "type": "quantumHacker",
+      "time": 328166.6666666825
+    },
+    {
+      "wave": 19,
+      "type": "aiSurveillance",
+      "time": 328566.666666683
+    },
+    {
+      "wave": 19,
+      "type": "corruptedMonk",
+      "time": 329466.66666668403
+    },
+    {
+      "wave": 19,
+      "type": "aiSurveillance",
+      "time": 329766.6666666844
+    },
+    {
+      "wave": 19,
+      "type": "aiSurveillance",
+      "time": 330966.6666666858
+    },
+    {
+      "wave": 19,
+      "type": "corruptedMonk",
+      "time": 331166.666666686
+    },
+    {
+      "wave": 19,
+      "type": "aiSurveillance",
+      "time": 332166.6666666872
+    },
+    {
+      "wave": 19,
+      "type": "corporateSaboteur",
+      "time": 332466.6666666875
+    },
+    {
+      "wave": 19,
+      "type": "aiSurveillance",
+      "time": 333366.6666666886
+    },
+    {
+      "wave": 19,
+      "type": "corporateSaboteur",
+      "time": 333366.6666666886
+    },
+    {
+      "wave": 19,
+      "type": "corporateSaboteur",
+      "time": 334266.6666666896
+    },
+    {
+      "wave": 19,
+      "type": "corporateSaboteur",
+      "time": 335166.66666669067
+    },
+    {
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "time": 345550.0000000361
+    },
+    {
+      "wave": 20,
+      "type": "corruptedMonk",
+      "time": 348550.0000000396
+    },
+    {
+      "wave": 20,
+      "type": "corruptedMonk",
+      "time": 349750.000000041
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 350050.0000000413
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 350633.33333337534
+    },
+    {
+      "wave": 20,
+      "type": "corruptedMonk",
+      "time": 350933.3333333757
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 351233.33333337604
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 351833.33333337674
+    },
+    {
+      "wave": 20,
+      "type": "corruptedMonk",
+      "time": 352133.3333333771
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 352433.33333337744
+    },
+    {
+      "wave": 20,
+      "type": "raidTeam",
+      "time": 352533.33333337755
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 353033.33333337813
+    },
+    {
+      "wave": 20,
+      "type": "corruptedMonk",
+      "time": 353333.3333333785
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 353633.33333337883
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 354233.33333337953
+    },
+    {
+      "wave": 20,
+      "type": "corruptedMonk",
+      "time": 354533.3333333799
+    },
+    {
+      "wave": 20,
+      "type": "corruptedMonk",
+      "time": 355750.00000004796
+    },
+    {
+      "wave": 20,
+      "type": "federalAgent",
+      "time": 356050.0000000483
+    },
+    {
+      "wave": 20,
+      "type": "corruptedMonk",
+      "time": 356950.00000004936
+    },
+    {
+      "wave": 20,
+      "type": "federalAgent",
+      "time": 357050.0000000495
+    },
+    {
+      "wave": 20,
+      "type": "federalAgent",
+      "time": 358050.00000005064
+    },
+    {
+      "wave": 20,
+      "type": "corruptedMonk",
+      "time": 358150.00000005076
+    },
+    {
+      "wave": 20,
+      "type": "federalAgent",
+      "time": 359050.0000000518
+    },
+    {
+      "wave": 20,
+      "type": "corruptedMonk",
+      "time": 359350.00000005215
+    },
+    {
+      "wave": 20,
+      "type": "megaCorpTitan",
+      "time": 359550.0000000524
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 360050.00000005297
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 360650.00000005367
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 361250.00000005437
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 361850.00000005506
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 362450.00000005576
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 363050.00000005646
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 363650.00000005716
+    },
+    {
+      "wave": 20,
+      "type": "quantumHacker",
+      "time": 364250.00000005786
+    },
+    {
+      "wave": 20,
+      "type": "scriptKiddie",
+      "time": 376566.66666673886
+    },
+    {
+      "wave": 20,
+      "type": "scriptKiddie",
+      "time": 376800.00000007247
+    },
+    {
+      "wave": 20,
+      "type": "federalAgent",
+      "time": 377050.00000007276
+    },
+    {
+      "wave": 20,
+      "type": "scriptKiddie",
+      "time": 377300.00000007305
+    }
+  ],
+  "phase": "VICTORY",
+  "lives": 18,
+  "resources": {
+    "dharma": 2227,
+    "bandwidth": 3828,
+    "anonymity": 0
+  },
+  "combatMs": 385733.3333334162,
+  "errors": []
+}

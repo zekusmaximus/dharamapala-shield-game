@@ -1,0 +1,2891 @@
++ git rev-parse HEAD
+5846a6318ece035081dfaaa9fbaaf180f6cc1deb
+exit=0
++ node --version
+v24.22.1
+exit=0
++ npm --version
+11.9.0
+exit=0
++ test ! -d node_modules
+exit=0
++ test ! -d dist
+exit=0
++ npm ci --cache /tmp/dharamapala-m45-touch-npm-cache
+
+added 5 packages in 384ms
+exit=0
++ npx playwright install chromium
+exit=0
++ npm run build
+
+> dharmapala-shield-game@1.0.0 build
+> node scripts/build.mjs
+
+Built client application in /tmp/dharamapala-m45-touch-final/dist
+exit=0
++ npm run test:unit
+
+> dharmapala-shield-game@1.0.0 test:unit
+> node --test "tests/unit/*.test.js"
+
+✔ brace has exact one-use boundaries, finite capacity, no refill and large-step expiry (0.79155ms)
+✔ brace content rejects b=>delete b.enemies.federalAgent.brace (1.955414ms)
+✔ brace content rejects b=>b.enemies.federalAgent.brace.windupMs=0 (0.366677ms)
+✔ brace content rejects b=>b.enemies.federalAgent.brace.durationMs=Infinity (0.3754ms)
+✔ brace content rejects b=>b.enemies.federalAgent.brace.healthRatio=1.1 (0.335931ms)
+✔ brace content rejects b=>b.enemies.federalAgent.brace.radius=50 (0.259086ms)
+✔ brace content rejects b=>b.enemies.scriptKiddie.brace=b.enemies.federalAgent.brace (0.320197ms)
+✔ brace content rejects b=>delete b.towers.firewall.specializations (0.218756ms)
+✔ brace content rejects b=>delete b.economy.activeResources (0.421428ms)
+✔ static cue labels and semantic equivalents follow warning, active, broken and spent with both motion preferences (0.942465ms)
+✔ broken brace glyph and text remain distinct from active capacity and never refill (0.171846ms)
+✔ wave speed scales clamped wall time, never the fixed combat step (1.138888ms)
+✔ a speed change retains fractional simulated time and a stopped step clears it (0.142863ms)
+✔ status text obeys expiry and actual speed cap without mutating combat state (1.062644ms)
+✔ single warned EMP fires once at threshold, including an over-threshold hit (3.90427ms)
+✔ Titan reports shield behavior rather than unused phase metadata (0.153639ms)
+✔ canvas draws distinct static markers, shield fill, and pending EMP range from live state (2.060001ms)
+✔ a non-piercing projectile resolves exactly one collision (3.462702ms)
+✔ piercing hit IDs prevent repeat damage and splash is applied once per target (1.391444ms)
+✔ MegaCorp Titan shield recovery waits three seconds after the latest shield or health hit (4.604063ms)
+✔ shipped content satisfies the explicit runtime schema (6.650553ms)
+✔ reject content fixture: unused top-level balance metadata (1.135142ms)
+✔ reject content fixture: unused special label (1.346006ms)
+✔ reject content fixture: unused boss phase count (0.533085ms)
+✔ reject content fixture: unused burn damage (0.61739ms)
+✔ reject content fixture: unused interest rate (0.735867ms)
+✔ reject content fixture: missing display label (0.479565ms)
+✔ reject content fixture: invalid icon (0.625682ms)
+✔ reject content fixture: invalid color (0.711931ms)
+✔ reject content fixture: noninteger bounty (0.904428ms)
+✔ reject content fixture: unknown status property (0.800403ms)
+✔ reject content fixture: inactive slow metadata (1.132137ms)
+✔ reject content fixture: incomplete vulnerability (0.458693ms)
+✔ reject content fixture: slow beyond tower cap (0.756147ms)
+✔ reject content fixture: missing boss ability (0.62373ms)
+✔ reject content fixture: extra EMP threshold (0.473806ms)
+✔ reject content fixture: invalid EMP radius (0.838591ms)
+✔ reject content fixture: unknown reinforcement type (0.481648ms)
+✔ reject content fixture: invalid shield ratio (0.645913ms)
+✔ reject content fixture: invalid chain radius (0.478052ms)
+✔ reject content fixture: unreachable chain level (0.413637ms)
+✔ reject content fixture: unknown spawn property (0.812981ms)
+✔ reject content fixture: noninteger wave reward (0.620344ms)
+✔ presentation and derived tower stats read the same validated tunables (0.949295ms)
+✔ retired currency retains ledger shape; current supply, costs and earned rewards are zero (1.191516ms)
+✔ active-resource contract rejects ambiguous currencies, retired supply/cost, and missing specialization (3.392998ms)
+✔ matching historical content retains its original three-resource rewards (2.773896ms)
+✔ unplaced blueprints use the same level, cost and refund rules (1.318536ms)
+✔ attacker comparison uses combat stats, active aura, upgrade cost and refund rules (0.369531ms)
+✔ max-level direct attacker has no invented status or next upgrade (0.136704ms)
+✔ Distributor shows actual marginal support, EMP expiry and passive capped income (1.132548ms)
+✔ enemy intel uses active damage types and only implemented abilities (0.740473ms)
+✔ periodic live inspector retains selected tower metadata across support changes (0.885099ms)
+✔ three active towers have distinct tested roles (0.613414ms)
+✔ upgrades never invent status effects without an application duration (0.192958ms)
+✔ only enabled nearby Distributors supply aura, including at the expiry boundary (0.187639ms)
+✔ upgrade and sell values share economy rules (0.52286ms)
+✔ wave schedules are deterministic and zero intervals stay finite (0.265696ms)
+✔ reject malformed save: resource (6.352199ms)
+✔ reject malformed save: lives (1.343913ms)
+✔ reject malformed save: wave (1.200119ms)
+✔ reject malformed save: level (1.171857ms)
+✔ reject malformed save: position (1.06006ms)
+✔ reject malformed save: overlap (1.102704ms)
+✔ reject malformed save: enemyPosition (1.072419ms)
+✔ reject malformed save: health (0.942264ms)
+✔ reject malformed save: phases (1.098648ms)
+✔ reject malformed save: projectileId (1.071588ms)
+✔ reject malformed save: source (0.829076ms)
+✔ reject malformed save: target (0.89246ms)
+✔ reject malformed save: hitIds (0.954803ms)
+✔ reject malformed save: enemyType (0.875936ms)
+✔ reject malformed save: schedule (0.901644ms)
+✔ reject malformed save: cursor (0.977407ms)
+✔ reject malformed save: waveCursor (0.906432ms)
+✔ reject malformed save: count (1.201461ms)
+✔ reject malformed save: gameOver (1.029164ms)
+✔ reject malformed save: victory (0.642548ms)
+✔ reject malformed save: phase (0.903046ms)
+✔ reject malformed save: resume (0.627115ms)
+✔ reject malformed save: clock (0.941754ms)
+✔ reject malformed save: generation (0.778551ms)
+✔ reject malformed save: random (0.831109ms)
+✔ reject malformed save: sequence (0.668446ms)
+✔ reject malformed save: settings (0.749637ms)
+✔ reject malformed save: result (1.023135ms)
+✔ reject malformed save: balanceVersion (0.622158ms)
+✔ reject malformed balance: cost (0.299597ms)
+✔ reject malformed balance: damage (0.154871ms)
+✔ reject malformed balance: resistance (0.272717ms)
+✔ reject malformed balance: wave (0.479044ms)
+✔ reject malformed balance: group (0.520706ms)
+✔ reject malformed balance: difficulty (0.282931ms)
+✔ reject malformed balance: economy (0.215942ms)
+✔ reject malformed balance: upgrades (0.128952ms)
+✔ denied storage never throws, including acquisition/read/write/reset (0.77149ms)
+✔ invalid payload cannot be overwritten before explicit reset (1.21383ms)
+✔ v2 repository round-trips paused state and runtime cursors (11.004073ms)
+✔ corrupt saves are preserved without mutating a live session (0.983646ms)
+✔ old 1.4.0/v4 wave bytes remain exportable until explicit reset; preferences survive (12.909554ms)
+✔ M4.1 1.5.0/v4 Raid phase bytes remain exportable until explicit reset (6.106842ms)
+✔ M4.2 1.6.0/v4 Hard mid-wave bytes remain exact until export and explicit reset (3.827445ms)
+✔ historical legacy removed towers are refunded and active towers are reconstructed (2.214742ms)
+✔ scheduler preserves stable ordering and accepts zero intervals (0.969005ms)
+✔ scheduler rejects stale generations and clear invalidates pending work (0.186868ms)
+✔ phase transitions are explicit and rejected commands do not mutate state (4.03154ms)
+✔ pause freezes game time and spawning (1.560345ms)
+✔ restart invalidates a partially released schedule (1.057006ms)
+✔ leaks never grant kill rewards and kills reward exactly once (1.228942ms)
+✔ placement, upgrades, and selling use one authoritative defense Map (1.011178ms)
+✔ wave inspection can select a tower without opening build commands (0.479094ms)
+✔ focus and coverage trade hit size, cadence and range under production armor rules (0.809707ms)
+✔ control branches override late chain; caps and branch multipliers persist through level 5 (0.149233ms)
+✔ level-3 choice is explicit, atomic, affordable and irrevocable through later upgrades (4.003338ms)
+✔ reject malformed specialization b=>b.towers.firewall.specializations.focus.rateMultiplier=0 (0.388299ms)
+✔ reject malformed specialization b=>b.towers.firewall.specializations.focus.rangeMultiplier=Infinity (0.308761ms)
+✔ reject malformed specialization b=>b.towers.firewall.specializations.coverage.extraEffect=1 (0.408319ms)
+✔ reject malformed specialization b=>delete b.towers.firewall.specializations.focus (0.244324ms)
+✔ reject malformed specialization b=>b.towers.encryption.specializations.reach.chainTargets=1.5 (0.284874ms)
+✔ reject malformed specialization b=>b.towers.distributor.specializations=b.towers.firewall.specializations (0.615988ms)
+✔ reject malformed specialization b=>b.towers.encryption.specializations.sustain.description='' (0.296652ms)
+✔ specialization inspection includes the actual capped aura rate for each alternative (0.762817ms)
+✔ wave keyboard inspection cursor is drawn at its world position (1.212076ms)
+✔ catalog covers every active tower, enemy, and boss exactly once (0.234409ms)
+✔ catalog normalizes human and file-style entity IDs (0.256983ms)
+✔ asset loader makes ready sheets available without loading in draw calls (0.310252ms)
+✔ asset loader resolves failures and leaves entities on fallback rendering (0.192487ms)
+✔ renderer uses catalog frames when a sprite is ready (0.393817ms)
+✔ renderer falls back to shapes for missing and undrawable sprites (0.46933ms)
+✔ wave 1 has exact deterministic pressure, preview windows and serializable release order (2.393107ms)
+✔ wave 2 has exact deterministic pressure, preview windows and serializable release order (0.61734ms)
+✔ wave 3 has exact deterministic pressure, preview windows and serializable release order (0.446055ms)
+✔ wave 4 has exact deterministic pressure, preview windows and serializable release order (5.026644ms)
+✔ wave 5 has exact deterministic pressure, preview windows and serializable release order (0.310823ms)
+✔ overlapping, zero and fractional offsets use stable authored ties; omitted offsets retain trailing intervals (2.131567ms)
+✔ invalid spawn offset -1 rejects (0.857038ms)
+✔ invalid spawn offset null rejects (0.65762ms)
+✔ invalid spawn offset 100 rejects (0.425163ms)
+✔ invalid spawn offset NaN rejects (0.413005ms)
+✔ invalid spawn offset Infinity rejects (0.402681ms)
+✔ overflowing derived times reject before session construction (0.464492ms)
+✔ M4.1 act packets have exact count/end, cross-type overlap and preview parity (0.994783ms)
+✔ established first act remains exactly the M3.4 schedule (16.152778ms)
+ℹ tests 143
+ℹ suites 0
+ℹ pass 143
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 805.737001
+exit=0
++ npm run test:integration
+
+> dharmapala-shield-game@1.0.0 test:integration
+> node --test "tests/integration/*.test.js"
+
+✔ 1× brace activation/expiry, paused JSON and production impact boundary (skipped-wave fixture) (13.251583ms)
+✔ 2× brace activation/expiry, paused JSON and production impact boundary (skipped-wave fixture) (6.320272ms)
+✔ shield absorbs after armor, overflows, permits statuses and accounts capped shield/health without Titan cooldown (1.240459ms)
+✔ pending brace saves reject malformed deadlines, phases, capacities and foreign state before replacement (6.440129ms)
+✔ 1× earned wave-3 responses reconcile combat ledgers and continuation (174.852088ms)
+✔ 2× earned wave-3 responses reconcile combat ledgers and continuation (95.939764ms)
+✔ M3.3 v3 run bytes recover explicitly in all phases and preferences survive reset (15.874613ms)
+✔ terminal freezes pending behavior, restart clears it, and expiry is not credited as shield damage (1.460437ms)
+✔ production projectile collision sees activation and expiry before impacts on the boundary tick (1.299087ms)
+✔ a lethal hit is fully resolved before an enemy-hit listener can enter results (9.92899ms)
+✔ configured slow and vulnerability reach actual projectiles and enemy movement (4.407149ms)
+✔ configured Raid Team threshold, radius, duration and minions drive production phase handling and a valid save (5.938331ms)
+✔ configured Titan shield ratio, recovery delay and rate drive production hit and recovery (0.760774ms)
+✔ configured chain radius and secondary multiplier drive the production impact path (0.703088ms)
+✔ earned five-wave economies at 1× reconcile ledgers and paused JSON continuation (277.486345ms)
+✔ earned five-wave economies at 2× reconcile ledgers and paused JSON continuation (187.386047ms)
+✔ earned wave-2 choices expose a Bandwidth constraint independently of Dharma; failure is atomic (16.679553ms)
+✔ earned-checkpoint marginal comparisons retain production status, aura activity and passive accounting (148.506852ms)
+✔ M3.2 v3 and pre-v2 runs use retained-byte recovery, never a silent economy conversion (9.018212ms)
+✔ Raid Team EMP suspends the support aura in actual tower fire and restores it at expiry (4.723932ms)
+✔ EMP-disabled support and its recovery continue identically after save/restore (48.307709ms)
+✔ a Distributor disabled at wave clear still earns its passive income (8.2578ms)
+✔ continued combat parity through wave 1, including nested isolation (23.229436ms)
+✔ continued combat parity through wave 5, including nested isolation (31.196934ms)
+✔ continued combat parity through wave 15, including nested isolation (39.158051ms)
+✔ a new session remains in building until start wave is commanded (2.48222ms)
+✔ Raid Team single EMP dispatches four deterministic minions and survives round-trip saves (4.451846ms)
+✔ twenty waves reach victory exactly once and never schedule wave 21 (3.024348ms)
+✔ game over is immediate and subsequent ticks are inert (0.81198ms)
+✔ focus 1× production Raid combat survives JSON pause/continue through clearance (31.581618ms)
+✔ focus 2× production Raid combat survives JSON pause/continue through clearance (14.750308ms)
+✔ coverage 1× production Raid combat survives JSON pause/continue through clearance (15.508448ms)
+✔ coverage 2× production Raid combat survives JSON pause/continue through clearance (14.733202ms)
+✔ sustain 1× production Raid combat survives JSON pause/continue through clearance (25.355837ms)
+✔ sustain 2× production Raid combat survives JSON pause/continue through clearance (27.038265ms)
+✔ reach 1× production Raid combat survives JSON pause/continue through clearance (20.157087ms)
+✔ reach 2× production Raid combat survives JSON pause/continue through clearance (15.065297ms)
+✔ controlled comparisons show scenario-dependent damage/control choices and aura activity (30.862496ms)
+✔ save validator rejects absent, foreign, early, support and malformed branches before restoration (11.767701ms)
+✔ M3.1 v2 exact bytes survive version rejection, export and reset; preferences stay compatible (10.684197ms)
+✔ legacy level-3 attacker is rejected rather than assigned an invented branch (0.383031ms)
+✔ same-tick exits stop at game over and live, captured, persisted results agree (15.807303ms)
+✔ restored continuing combat reaches the same terminal result (7.187505ms)
+✔ a resolution listener can enter terminal and save before resolution returns (3.811421ms)
+✔ terminal saves reject any disagreement in captured statistics (2.301491ms)
+✔ old 1.0.0 game-over saves with extra same-tick leaks are recovered on load (3.635799ms)
+✔ a terminal transition during an achievement stops later resolution events (1.528378ms)
+✔ a saved Titan fight retains health-hit cooldown and identical later recovery (7.983511ms)
+✔ fresh five-wave production slice at 1× preserves schedules, overlap, recovery, accounting and continuation (441.130246ms)
+✔ fresh five-wave production slice at 2× preserves schedules, overlap, recovery, accounting and continuation (406.315444ms)
+✔ old production 1.0.0 v2 save is retained for export/reset; preferences remain compatible (9.897193ms)
+✔ modified overlapping base due times reject before restore (1.437913ms)
+✔ reordered simultaneous escorts reject instead of changing deterministic tie order (1.111547ms)
+✔ real wave combat accounts spending, refunds, bounties, clear income and tower work; reports survive starts and restore (35.107673ms)
+✔ natural leaks record enemy types, no coverage and sampled last coverage, including defeat (19.491741ms)
+✔ production impact path records shield absorption, capped health, and control applications without inventing assistance damage (2.702508ms)
+✔ production firing records overlapping capped aura presence but excludes EMP-disabled support (0.926141ms)
+✔ legacy v2 reports are optional and explicitly partial; malformed tracking is rejected (9.744766ms)
+✔ a disabled Distributor reports passive clear income independently of active aura (4.799745ms)
+✔ invalid report counts, types, coverage and resource payloads fail before restoration (7.699197ms)
+✔ 1× and 2× reach identical production combat and reports on wave 5 (53.115036ms)
+✔ 1× and 2× reach identical production combat and reports on wave 15 (51.181013ms)
+✔ switching during a Raid Team fight and while paused preserves fractional time across save/continue (51.652746ms)
+✔ natural defeat and victory stop further 2× advancement and lock speed changes (83.462093ms)
+✔ old v2 saves default to 1×, reject invalid speeds, and restart resets speed (3.382552ms)
+✔ 2× selection persists across a real clear, while the next wave waits for Start Wave (2.141853ms)
+ℹ tests 66
+ℹ suites 0
+ℹ pass 66
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3197.612407
+exit=0
++ npm run test:sim
+
+> dharmapala-shield-game@1.0.0 test:sim
+> node --test "tests/sim/*.test.js"
+
+✔ scenarios use three distinct production difficulties and full authored campaigns (0.876867ms)
+✔ policy restrictions and ordering apply through production purchase commands (21.245399ms)
+✔ counter heuristic responds to incoming armor/resistance rather than a fixed purchase sequence (0.882535ms)
+✔ actual full campaigns reconcile M2.3 ledgers, natural bosses/leaks and deterministic repeats (1625.162915ms)
+✔ fresh production scenarios and repeat hashes match M4.3 evidence; content hash matches current bytes (4312.702228ms)
+✔ earned-resource policy and marginal evidence regenerates deterministically with shared production rules (1235.804173ms)
+✔ M4.3 first-five counterplay repeats; preserved M4.2 and M3.4 evidence remains separate (1183.586706ms)
+M4.4 Easy/existing: VICTORY, waves=20, commands=59, checkpoints=build-3,raid-5, speedChanges=81, pauses=3, creditedMs=344421, consumedMs=342850.00000003295, kills=320, leaks=0, shield=2838.052666666672, slowHits=191, auraShots=712
+M4.4 checkpoints Easy/existing: [{"id":"build-3","wave":3,"resumePhase":"BUILDING","gameTimeMs":27100.000000000542,"lives":20,"resources":{"dharma":166,"bandwidth":96,"anonymity":0},"reports":2,"spawned":10,"resolved":10,"bosses":[]},{"id":"raid-5","wave":5,"resumePhase":"WAVE","gameTimeMs":64499.99999999634,"lives":20,"resources":{"dharma":122,"bandwidth":93,"anonymity":0},"reports":4,"spawned":14,"resolved":6,"bosses":[{"type":"raidTeam","health":287.42325000000017,"shield":0,"shieldMax":0,"firedPhases":[1]}]}]
+M4.4 Normal/existing: VICTORY, waves=20, commands=57, checkpoints=raid-10,titan-15,build-16, speedChanges=81, pauses=4, creditedMs=383412, consumedMs=381100.0000000775, kills=320, leaks=0, shield=3781.023999999949, slowHits=261, auraShots=1002
+M4.4 checkpoints Normal/existing: [{"id":"raid-10","wave":10,"resumePhase":"WAVE","gameTimeMs":160049.9999999984,"lives":20,"resources":{"dharma":300,"bandwidth":303,"anonymity":0},"reports":9,"spawned":13,"resolved":7,"bosses":[{"type":"raidTeam","health":550.7292000000002,"shield":0,"shieldMax":0,"firedPhases":[1]}]},{"id":"titan-15","wave":15,"resumePhase":"WAVE","gameTimeMs":231116.6666666237,"lives":20,"resources":{"dharma":84,"bandwidth":1267,"anonymity":0},"reports":14,"spawned":1,"resolved":0,"bosses":[{"type":"megaCorpTitan","health":1045,"shield":312.975,"shieldMax":366,"firedPhases":[]}]},{"id":"build-16","wave":16,"resumePhase":"BUILDING","gameTimeMs":249966.66666661273,"lives":20,"resources":{"dharma":949,"bandwidth":1648,"anonymity":0},"reports":15,"spawned":12,"resolved":12,"bosses":[]}]
+M4.4 Hard/existing: VICTORY, waves=20, commands=55, checkpoints=titan-20, speedChanges=81, pauses=2, creditedMs=414700, consumedMs=413133.3333334481, kills=320, leaks=0, shield=4551.112000000086, slowHits=309, auraShots=1328
+M4.4 checkpoints Hard/existing: [{"id":"titan-20","wave":20,"resumePhase":"WAVE","gameTimeMs":372883.33333340124,"lives":20,"resources":{"dharma":266,"bandwidth":2556,"anonymity":0},"reports":19,"spawned":1,"resolved":0,"bosses":[{"type":"megaCorpTitan","health":1835.3999999999999,"shield":574.8,"shieldMax":642,"firedPhases":[]}]}]
+M4.4 Hard/weak-placement: GAME_OVER, waves=3, commands=5, checkpoints=build-3,weak-3, speedChanges=13, pauses=3, creditedMs=67556, consumedMs=67466.66666666341, kills=0, leaks=20, shield=0, slowHits=0, auraShots=0
+M4.4 checkpoints Hard/weak-placement: [{"id":"build-3","wave":3,"resumePhase":"BUILDING","gameTimeMs":49283.33333333189,"lives":2,"resources":{"dharma":76,"bandwidth":60,"anonymity":0},"reports":2,"spawned":10,"resolved":10,"bosses":[]},{"id":"weak-3","wave":3,"resumePhase":"WAVE","gameTimeMs":50099.999999998436,"lives":2,"resources":{"dharma":46,"bandwidth":60,"anonymity":0},"reports":2,"spawned":2,"resolved":0,"bosses":[]}]
+✔ M4.4 Easy existing: full clock and JSON continuation (637.911157ms)
+✔ M4.4 Normal existing: full clock and JSON continuation (616.856201ms)
+✔ M4.4 Hard existing: full clock and JSON continuation (640.434258ms)
+✔ M4.4 Hard weak-placement: full clock and JSON continuation (92.668708ms)
+✔ runtime and simulator consume the same balance and pure rules (6.20551ms)
+✔ headless policy executes the real GameSession deterministically (63.322617ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10624.838528
+exit=0
++ npm run test:e2e
+
+> dharmapala-shield-game@1.0.0 test:e2e
+> playwright test --project=e2e
+
+[WebServer] (node:3184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 107 tests using 1 worker
+
+(node:3196) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    1 [e2e] › tests/e2e/campaign.spec.js:372:1 › earned Normal UI mistake recovers through all twenty combat waves (1.6m)
+  ✓    2 [e2e] › tests/e2e/campaign.spec.js:378:3 › portrait touch campaign › earned Normal recovery uses taps, scrolling and rotation through twenty waves (1.7m)
+  ✓    3 [e2e] › tests/e2e/campaign.spec.js:388:1 › natural Normal UI defeat explains coverage and permits a concrete retry (18.2s)
+  ✓    4 [e2e] › tests/e2e/game.spec.js:4:1 › loads the real game without console errors and keeps wave 1 idle (582ms)
+  ✓    5 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 360×640 (577ms)
+  ✓    6 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 390×844 (625ms)
+  ✓    7 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 640×360 (636ms)
+  ✓    8 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 844×390 (550ms)
+  ✓    9 [e2e] › tests/e2e/game.spec.js:31:3 › wave speed and Start Wave remain usable at 1280×720 (583ms)
+  ✓   10 [e2e] › tests/e2e/game.spec.js:65:1 › keyboard speed choice, pause, settings and Continue retain the chosen wave speed (1.0s)
+  ✓   11 [e2e] › tests/e2e/game.spec.js:110:1 › loads the sprite sheet and maps every active rendered entity (317ms)
+  ✓   12 [e2e] › tests/e2e/game.spec.js:158:1 › keeps the sprite canvas sharp at device scale factor 2 (409ms)
+  ✓   13 [e2e] › tests/e2e/game.spec.js:194:1 › places, selects, upgrades, sells, and restores a tower save (646ms)
+  ✓   14 [e2e] › tests/e2e/game.spec.js:224:1 › upgraded Firewall inspector describes only its applied combat status (550ms)
+  ✓   15 [e2e] › tests/e2e/game.spec.js:238:1 › Distributor inspector explains support and EMP without a targeting claim (570ms)
+  ✓   16 [e2e] › tests/e2e/game.spec.js:254:1 › pause freezes simulation and restart removes all old state (905ms)
+  ✓   17 [e2e] › tests/e2e/game.spec.js:289:1 › keyboard-only build flow can place a tower and start a wave (414ms)
+  ✓   18 [e2e] › tests/e2e/game.spec.js:316:3 › desktop layout keeps battlefield and primary controls in the viewport (389ms)
+  ✓   19 [e2e] › tests/e2e/game.spec.js:316:3 › small portrait layout keeps battlefield and primary controls in the viewport (326ms)
+  ✓   20 [e2e] › tests/e2e/game.spec.js:316:3 › portrait layout keeps battlefield and primary controls in the viewport (346ms)
+  ✓   21 [e2e] › tests/e2e/game.spec.js:316:3 › small landscape layout keeps battlefield and primary controls in the viewport (327ms)
+  ✓   22 [e2e] › tests/e2e/game.spec.js:316:3 › landscape layout keeps battlefield and primary controls in the viewport (328ms)
+  ✓   23 [e2e] › tests/e2e/game.spec.js:355:1 › terminal dialogs block play and expose final results (459ms)
+  ✓   24 [e2e] › tests/e2e/game.spec.js:363:1 › same-tick game over persists matching live and final results (502ms)
+  ✓   25 [e2e] › tests/e2e/game.spec.js:398:1 › zoom is not disabled and interactive elements have accessible names (289ms)
+  ✓   26 [e2e] › tests/e2e/game.spec.js:414:1 › portrait preview does not intercept palette selection (502ms)
+  ✓   27 [e2e] › tests/e2e/game.spec.js:463:5 › 360x640 click: open panels allow building and waves (1.2s)
+  ✓   28 [e2e] › tests/e2e/game.spec.js:463:5 › 360x640 tap: open panels allow building and waves (1.3s)
+  ✓   29 [e2e] › tests/e2e/game.spec.js:463:5 › 390x844 click: open panels allow building and waves (1.1s)
+  ✓   30 [e2e] › tests/e2e/game.spec.js:463:5 › 390x844 tap: open panels allow building and waves (1.3s)
+  ✓   31 [e2e] › tests/e2e/game.spec.js:463:5 › 640x360 click: open panels allow building and waves (1.1s)
+  ✓   32 [e2e] › tests/e2e/game.spec.js:463:5 › 640x360 tap: open panels allow building and waves (1.2s)
+  ✓   33 [e2e] › tests/e2e/game.spec.js:463:5 › 844x390 click: open panels allow building and waves (1.2s)
+  ✓   34 [e2e] › tests/e2e/game.spec.js:463:5 › 844x390 tap: open panels allow building and waves (1.4s)
+  ✓   35 [e2e] › tests/e2e/game.spec.js:463:5 › 1280x720 click: open panels allow building and waves (1.3s)
+  ✓   36 [e2e] › tests/e2e/game.spec.js:463:5 › 1280x720 tap: open panels allow building and waves (1.8s)
+  ✓   37 [e2e] › tests/e2e/game.spec.js:514:3 › touch rotation from 360x640 preserves open panel access (796ms)
+  ✓   38 [e2e] › tests/e2e/game.spec.js:514:3 › touch rotation from 390x844 preserves open panel access (959ms)
+  ✓   39 [e2e] › tests/e2e/game.spec.js:547:1 › portrait disclosures and building work with real Tab navigation (857ms)
+  ✓   40 [e2e] › tests/e2e/game.spec.js:582:1 › Escape skips tutorial without stranding TUTORIAL (R03) (405ms)
+  ✓   41 [e2e] › tests/e2e/game.spec.js:609:3 › 1280 keyboard tutorial skip, replay and guided exit (1.4s)
+  ✓   42 [e2e] › tests/e2e/game.spec.js:640:3 › 1280 keyboard settings, pause and sale cancellation preserve play (4.0s)
+  ✓   43 [e2e] › tests/e2e/game.spec.js:609:3 › 360 keyboard tutorial skip, replay and guided exit (1.3s)
+  ✓   44 [e2e] › tests/e2e/game.spec.js:640:3 › 360 keyboard settings, pause and sale cancellation preserve play (3.3s)
+  ✓   45 [e2e] › tests/e2e/game.spec.js:706:3 › GAME_OVER keyboard terminal navigation and menu settings cancellation (1.3s)
+  ✓   46 [e2e] › tests/e2e/game.spec.js:706:3 › VICTORY keyboard terminal navigation and menu settings cancellation (1.3s)
+  ✓   47 [e2e] › tests/e2e/game.spec.js:731:1 › Escape closes settings and restores build phase (R03) (687ms)
+  ✓   48 [e2e] › tests/e2e/game.spec.js:743:1 › restart, new run and terminal results are durable and preferences survive navigation (2.0s)
+  ✓   49 [e2e] › tests/e2e/game.spec.js:772:1 › unreadable saves reject without swapping live play and export/reset through real controls (813ms)
+  ✓   50 [e2e] › tests/e2e/game.spec.js:799:1 › storage denial leaves menu and play usable with visible recovery status (356ms)
+  ✓   51 [e2e] › tests/e2e/game.spec.js:812:1 › completed wave persists a finished clock frame and reloads into deliberate building (632ms)
+  ✓   52 [e2e] › tests/e2e/game.spec.js:831:1 › menu preferences and an uncompleted tutorial survive reload before first placement (767ms)
+  ✓   53 [e2e] › tests/e2e/game.spec.js:846:1 › tower comparison shows rule-derived status, chain, investment and refund (447ms)
+  ✓   54 [e2e] › tests/e2e/game.spec.js:865:1 › Distributor support inspector shows actual benefit and passive income (580ms)
+  ✓   55 [e2e] › tests/e2e/game.spec.js:886:1 › keyboard can inspect towers and enemy roster in build and wave phases (788ms)
+  ✓   56 [e2e] › tests/e2e/game.spec.js:918:1 › pointer inspects live wave enemies and towers without building or selling (1.5s)
+  ✓   57 [e2e] › tests/e2e/game.spec.js:948:1 › enemy details state implemented abilities without unused phase metadata (604ms)
+  ✓   58 [e2e] › tests/e2e/game.spec.js:980:1 › unaffordable and wave-locked tower blueprints remain inspectable without build actions (661ms)
+  ✓   59 [e2e] › tests/e2e/game.spec.js:1007:1 › wave keyboard cursor visibly moves to and selects another placed tower (608ms)
+  ✓   60 [e2e] › tests/e2e/game.spec.js:1026:1 › wave support benefit refreshes when EMP suppression expires (2.4s)
+  ✓   61 [e2e] › tests/e2e/game.spec.js:1047:3 › combat cues and text stay accessible during waves at 360x640 (895ms)
+  ✓   62 [e2e] › tests/e2e/game.spec.js:1047:3 › combat cues and text stay accessible during waves at 390x844 (827ms)
+  ✓   63 [e2e] › tests/e2e/game.spec.js:1047:3 › combat cues and text stay accessible during waves at 640x360 (792ms)
+  ✓   64 [e2e] › tests/e2e/game.spec.js:1047:3 › combat cues and text stay accessible during waves at 844x390 (898ms)
+  ✓   65 [e2e] › tests/e2e/game.spec.js:1047:3 › combat cues and text stay accessible during waves at 1280x720 (973ms)
+  ✓   66 [e2e] › tests/e2e/game.spec.js:1078:1 › combat text follows boss phase, shield damage and status expiry without live-region spam (456ms)
+  ✓   67 [e2e] › tests/e2e/game.spec.js:1098:3 › wave reports persist and allow pointer and keyboard dismissal at 360x640 (944ms)
+  ✓   68 [e2e] › tests/e2e/game.spec.js:1098:3 › wave reports persist and allow pointer and keyboard dismissal at 390x844 (1.1s)
+  ✓   69 [e2e] › tests/e2e/game.spec.js:1098:3 › wave reports persist and allow pointer and keyboard dismissal at 640x360 (929ms)
+  ✓   70 [e2e] › tests/e2e/game.spec.js:1098:3 › wave reports persist and allow pointer and keyboard dismissal at 844x390 (1.0s)
+  ✓   71 [e2e] › tests/e2e/game.spec.js:1098:3 › wave reports persist and allow pointer and keyboard dismissal at 1280x720 (1.1s)
+  ✓   72 [e2e] › tests/e2e/game.spec.js:1130:1 › defeat reports remain accessible inside the terminal dialog (521ms)
+  ✓   73 [e2e] › tests/e2e/game.spec.js:1143:4 › authored overlap timing remains inspectable with deliberate starts at 360×640 (663ms)
+  ✓   74 [e2e] › tests/e2e/game.spec.js:1143:4 › authored overlap timing remains inspectable with deliberate starts at 390×844 (597ms)
+  ✓   75 [e2e] › tests/e2e/game.spec.js:1143:4 › authored overlap timing remains inspectable with deliberate starts at 640×360 (562ms)
+  ✓   76 [e2e] › tests/e2e/game.spec.js:1143:4 › authored overlap timing remains inspectable with deliberate starts at 844×390 (556ms)
+  ✓   77 [e2e] › tests/e2e/game.spec.js:1143:4 › authored overlap timing remains inspectable with deliberate starts at 1280×720 (707ms)
+  ✓   78 [e2e] › tests/e2e/game.spec.js:1173:1 › keyboard reads Raid timing and warning, inspects, dismisses and deliberately starts (582ms)
+  ✓   79 [e2e] › tests/e2e/game.spec.js:1191:1 › later act previews expose mixed packets and final boss timing before Start Wave (490ms)
+  ✓   80 [e2e] › tests/e2e/game.spec.js:1208:1 › new schedule pause/reload/Continue retains pending arrivals, 2× and preferences (682ms)
+  ✓   81 [e2e] › tests/e2e/game.spec.js:1229:1 › prior balance save exports exact original and reset preserves independent preferences (459ms)
+  ✓   82 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice firewall at 360×640 is visible, permanent and saved (765ms)
+  ✓   83 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice encryption at 360×640 is visible, permanent and saved (806ms)
+  ✓   84 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice firewall at 390×844 is visible, permanent and saved (832ms)
+  ✓   85 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice encryption at 390×844 is visible, permanent and saved (771ms)
+  ✓   86 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice firewall at 640×360 is visible, permanent and saved (888ms)
+  ✓   87 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice encryption at 640×360 is visible, permanent and saved (773ms)
+  ✓   88 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice firewall at 844×390 is visible, permanent and saved (846ms)
+  ✓   89 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice encryption at 844×390 is visible, permanent and saved (813ms)
+  ✓   90 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice firewall at 1280×720 is visible, permanent and saved (957ms)
+  ✓   91 [e2e] › tests/e2e/game.spec.js:1251:5 › specialization choice encryption at 1280×720 is visible, permanent and saved (852ms)
+  ✓   92 [e2e] › tests/e2e/game.spec.js:1277:78 › firewall specialization uses actual Tab/Enter with useful focus after choice (448ms)
+  ✓   93 [e2e] › tests/e2e/game.spec.js:1277:78 › encryption specialization uses actual Tab/Enter with useful focus after choice (464ms)
+  ✓   94 [e2e] › tests/e2e/game.spec.js:1285:1 › unaffordable and wave-locked level-3 choices explain costs without permitting purchases (692ms)
+  ✓   95 [e2e] › tests/e2e/game.spec.js:1293:1 › M3.1 save version rejection exports exact bytes and preserves independent preferences (371ms)
+  ✓   96 [e2e] › tests/e2e/game.spec.js:1305:72 › two-resource economy, saving guidance and exact Bandwidth deficit at 360 (578ms)
+  ✓   97 [e2e] › tests/e2e/game.spec.js:1305:72 › two-resource economy, saving guidance and exact Bandwidth deficit at 1280 (727ms)
+  ✓   98 [e2e] › tests/e2e/game.spec.js:1318:1 › retired-economy v3 bytes export unchanged and reset preserves preferences (439ms)
+  ✓   99 [e2e] › tests/e2e/game.spec.js:1329:26 › Agent brace cue/text, pause/reload and explicit v4 state at 1× (1.6s)
+  ✓  100 [e2e] › tests/e2e/game.spec.js:1329:26 › Agent brace cue/text, pause/reload and explicit v4 state at 2× (1.5s)
+  ✓  101 [e2e] › tests/e2e/game.spec.js:1353:1 › M3.3 v3 recovery exports exact bytes before explicit reset and creates v4 with preferences (585ms)
+  ✓  102 [e2e] › tests/e2e/game.spec.js:1362:1 › M4.1 old 1.4.0/v4 wave bytes export exactly before reset and retain preferences (446ms)
+  ✓  103 [e2e] › tests/e2e/game.spec.js:1380:1 › M4.2 old 1.5.0/v4 Raid bytes export exactly before explicit reset (424ms)
+  ✓  104 [e2e] › tests/e2e/game.spec.js:1398:1 › M4.3 old 1.6.0/v4 Hard wave bytes export exactly before explicit reset (447ms)
+  ✓  105 [e2e] › tests/e2e/game.spec.js:1415:1 › M4.2 warning names the reinforcements and clears after the single EMP (378ms)
+  ✓  106 [e2e] › tests/e2e/game.spec.js:1428:1 › M4.2 live Titan text gives recovery countdown and active regeneration (363ms)
+  ✓  107 [e2e] › tests/e2e/inspector.spec.js:6:1 › identical tower stats do not reuse another tower specialization handler (702ms)
+
+  107 passed (5.1m)
+exit=0
++ cmp /tmp/m45-touch-clean-ui/recovery.json design/reviews/2026-11-14-m4.5-ui-audit/recovery.json
+exit=0
++ cmp /tmp/m45-touch-clean-ui/defeat-retry.json design/reviews/2026-11-14-m4.5-ui-audit/defeat-retry.json
+exit=0
++ node design/reviews/2026-11-14-m4.5-touch-audit/compare-evidence.mjs /tmp/m45-touch-clean-ui/touch-recovery.json
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+... Skipped lines
+
+  {
+    balanceVersion: '1.7.0',
+    bosses: [
+      {
+        id: 'enemy-219',
+...
+      {
++       combatMs: 173749.99999999042,
+-       combatMs: 173733.33333332377,
+        enemies: [
+          {
+            firedPhases: [
+              1
+            ],
+...
+      {
++       combatMs: 238716.66666661928,
+-       combatMs: 238699.99999995262,
+        enemies: [
+          {
+            firedPhases: [],
+            health: 1045,
+            shield: 359.92,
+...
+      {
++       combatMsBefore: 173366.66666665731,
+-       combatMsBefore: 173349.99999999066,
+        label: 'active wave 10 spent Raid EMP',
+        views: [
+          {
+            combatMs: 173549.99999999054,
+            phase: 'WAVE',
+...
+          {
++           combatMs: 173749.99999999042,
+-           combatMs: 173733.33333332377,
+            phase: 'WAVE',
+            viewport: {
+              height: 844,
+              width: 390
+            }
+
+    at file:///tmp/dharamapala-m45-touch-final/design/reviews/2026-11-14-m4.5-touch-audit/compare-evidence.mjs:10:8 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: {
+    viewport: { width: 390, height: 844 },
+    hasTouch: true,
+    rotations: [
+      {
+        label: 'earned build before wave 4',
+        wave: 4,
+        combatMsBefore: 62516.666666663295,
+        views: [
+          {
+            viewport: [Object],
+            combatMs: 62516.666666663295,
+            phase: 'BUILDING'
+          },
+          {
+            viewport: [Object],
+            combatMs: 62516.666666663295,
+            phase: 'BUILDING'
+          }
+        ]
+      },
+      {
+        label: 'active wave 10 spent Raid EMP',
+        wave: 10,
+        combatMsBefore: 173366.66666665731,
+        views: [
+          {
+            viewport: [Object],
+            combatMs: 173549.99999999054,
+            phase: 'WAVE'
+          },
+          {
+            viewport: [Object],
+            combatMs: 173749.99999999042,
+            phase: 'WAVE'
+          }
+        ]
+      }
+    ],
+    balanceVersion: '1.7.0',
+    schemaVersion: 4,
+    commands: [
+      {
+        wave: 1,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 270, y: 270, coverage: 18 } ]
+      },
+      {
+        wave: 1,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 510, y: 270, coverage: 18 } ]
+      },
+      {
+        wave: 1,
+        name: 'placeDefense',
+        args: [ 'encryption', { x: 210, y: 210, coverage: 17 } ]
+      },
+      {
+        wave: 4,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 210, y: 270, coverage: 17 } ]
+      },
+      {
+        wave: 4,
+        name: 'placeDefense',
+        args: [ 'distributor', { x: 450, y: 270, coverage: 17 } ]
+      },
+      { wave: 4, name: 'upgradeDefense', args: [ 'defense-1', null ] },
+      {
+        wave: 4,
+        name: 'upgradeDefense',
+        args: [ 'defense-147', null ]
+      },
+      { wave: 4, name: 'upgradeDefense', args: [ 'defense-2', null ] },
+      {
+        wave: 5,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 270, y: 210, coverage: 16 } ]
+      },
+      {
+        wave: 5,
+        name: 'upgradeDefense',
+        args: [ 'defense-218', null ]
+      },
+      { wave: 5, name: 'upgradeDefense', args: [ 'defense-3', null ] },
+      {
+        wave: 6,
+        name: 'upgradeDefense',
+        args: [ 'defense-1', 'focus' ]
+      },
+      {
+        wave: 6,
+        name: 'upgradeDefense',
+        args: [ 'defense-147', 'focus' ]
+      },
+      {
+        wave: 6,
+        name: 'upgradeDefense',
+        args: [ 'defense-2', 'focus' ]
+      },
+      {
+        wave: 7,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 450, y: 210, coverage: 16 } ]
+      },
+      {
+        wave: 7,
+        name: 'upgradeDefense',
+        args: [ 'defense-410', null ]
+      },
+      {
+        wave: 7,
+        name: 'upgradeDefense',
+        args: [ 'defense-218', 'focus' ]
+      },
+      {
+        wave: 8,
+        name: 'upgradeDefense',
+        args: [ 'defense-3', 'sustain' ]
+      },
+      {
+        wave: 8,
+        name: 'upgradeDefense',
+        args: [ 'defense-410', 'focus' ]
+      },
+      {
+        wave: 9,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 450, y: 330, coverage: 16 } ]
+      },
+      {
+        wave: 9,
+        name: 'upgradeDefense',
+        args: [ 'defense-556', null ]
+      },
+      {
+        wave: 9,
+        name: 'upgradeDefense',
+        args: [ 'defense-556', 'focus' ]
+      },
+      { wave: 10, name: 'upgradeDefense', args: [ 'defense-1', null ] },
+      {
+        wave: 10,
+        name: 'upgradeDefense',
+        args: [ 'defense-147', null ]
+      },
+      {
+        wave: 11,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 510, y: 330, coverage: 16 } ]
+      },
+      {
+        wave: 11,
+        name: 'upgradeDefense',
+        args: [ 'defense-780', null ]
+      },
+      {
+        wave: 11,
+        name: 'upgradeDefense',
+        args: [ 'defense-780', 'focus' ]
+      },
+      { wave: 11, name: 'upgradeDefense', args: [ 'defense-2', null ] },
+      {
+        wave: 11,
+        name: 'upgradeDefense',
+        args: [ 'defense-218', null ]
+      },
+      { wave: 12, name: 'upgradeDefense', args: [ 'defense-3', null ] },
+      {
+        wave: 13,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 510, y: 210, coverage: 15 } ]
+      },
+      {
+        wave: 13,
+        name: 'upgradeDefense',
+        args: [ 'defense-910', null ]
+      },
+      {
+        wave: 13,
+        name: 'upgradeDefense',
+        args: [ 'defense-910', 'focus' ]
+      },
+      {
+        wave: 13,
+        name: 'upgradeDefense',
+        args: [ 'defense-410', null ]
+      },
+      {
+        wave: 14,
+        name: 'upgradeDefense',
+        args: [ 'defense-556', null ]
+      },
+      {
+        wave: 14,
+        name: 'upgradeDefense',
+        args: [ 'defense-780', null ]
+      },
+      {
+        wave: 15,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 210, y: 150, coverage: 14 } ]
+      },
+      {
+        wave: 15,
+        name: 'upgradeDefense',
+        args: [ 'defense-1032', null ]
+      },
+      {
+        wave: 15,
+        name: 'upgradeDefense',
+        args: [ 'defense-1032', 'focus' ]
+      },
+      {
+        wave: 15,
+        name: 'upgradeDefense',
+        args: [ 'defense-1032', null ]
+      },
+      {
+        wave: 15,
+        name: 'upgradeDefense',
+        args: [ 'defense-910', null ]
+      },
+      { wave: 16, name: 'upgradeDefense', args: [ 'defense-1', null ] },
+      {
+        wave: 16,
+        name: 'upgradeDefense',
+        args: [ 'defense-1032', null ]
+      },
+      {
+        wave: 17,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 270, y: 150, coverage: 14 } ]
+      },
+      {
+        wave: 17,
+        name: 'upgradeDefense',
+        args: [ 'defense-1264', null ]
+      },
+      {
+        wave: 17,
+        name: 'upgradeDefense',
+        args: [ 'defense-1264', 'focus' ]
+      },
+      {
+        wave: 17,
+        name: 'upgradeDefense',
+        args: [ 'defense-1264', null ]
+      },
+      {
+        wave: 18,
+        name: 'upgradeDefense',
+        args: [ 'defense-1264', null ]
+      },
+      {
+        wave: 18,
+        name: 'upgradeDefense',
+        args: [ 'defense-147', null ]
+      },
+      { wave: 18, name: 'upgradeDefense', args: [ 'defense-2', null ] },
+      {
+        wave: 19,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 570, y: 330, coverage: 13 } ]
+      },
+      {
+        wave: 19,
+        name: 'upgradeDefense',
+        args: [ 'defense-1593', null ]
+      },
+      {
+        wave: 19,
+        name: 'upgradeDefense',
+        args: [ 'defense-1593', 'focus' ]
+      },
+      {
+        wave: 19,
+        name: 'upgradeDefense',
+        args: [ 'defense-1593', null ]
+      },
+      {
+        wave: 19,
+        name: 'upgradeDefense',
+        args: [ 'defense-1593', null ]
+      },
+      {
+        wave: 20,
+        name: 'upgradeDefense',
+        args: [ 'defense-218', null ]
+      },
+      { wave: 20, name: 'upgradeDefense', args: [ 'defense-3', null ] }
+    ],
+    checkpoints: [
+      {
+        label: 'earned build',
+        wave: 4,
+        resume: 'BUILDING',
+        combatMs: 62516.666666663295,
+        speed: 2,
+        reports: 3,
+        resources: { dharma: 85, bandwidth: 84, anonymity: 0 },
+        enemies: []
+      },
+      {
+        label: 'spent Raid EMP',
+        wave: 10,
+        resume: 'WAVE',
+        combatMs: 173749.99999999042,
+        speed: 2,
+        reports: 9,
+        resources: { dharma: 217, bandwidth: 559, anonymity: 0 },
+        enemies: [
+          {
+            type: 'raidTeam',
+            health: 400.8276000000003,
+            shield: 0,
+            firedPhases: [Array]
+          },
+          {
+            type: 'aiSurveillance',
+            health: 211.20000000000002,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'aiSurveillance',
+            health: 211.20000000000002,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'aiSurveillance',
+            health: 211.20000000000002,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'scriptKiddie',
+            health: 79.2,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'scriptKiddie',
+            health: 79.2,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'federalAgent',
+            health: 145.20000000000002,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'corporateSaboteur',
+            health: 135.85000000000002,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'scriptKiddie',
+            health: 79.2,
+            shield: 0,
+            firedPhases: []
+          }
+        ]
+      },
+      {
+        label: 'damaged Titan shield',
+        wave: 15,
+        resume: 'WAVE',
+        combatMs: 238716.66666661928,
+        speed: 2,
+        reports: 14,
+        resources: { dharma: 74, bandwidth: 1263, anonymity: 0 },
+        enemies: [
+          {
+            type: 'megaCorpTitan',
+            health: 1045,
+            shield: 359.92,
+            firedPhases: []
+          }
+        ]
+      },
+      {
+        label: 'earned build',
+        wave: 16,
+        resume: 'BUILDING',
+        combatMs: 256533.33333327557,
+        speed: 2,
+        reports: 15,
+        resources: { dharma: 71, bandwidth: 1644, anonymity: 0 },
+        enemies: []
+      }
+    ],
+    waves: [
+      {
+        wave: 1,
+        durationMs: 16299.999999999765,
+        livesBefore: 20,
+        livesAfter: 20,
+        atStart: { dharma: 20, bandwidth: 25, anonymity: 0 },
+        after: { dharma: 110, bandwidth: 56, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 0,
+          spent: { dharma: 110, bandwidth: 35, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 40, bandwidth: 16, anonymity: 0 },
+          clear: { dharma: 50, bandwidth: 15, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 1,
+          killed: 8,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 2,
+        durationMs: 19383.3333333341,
+        livesBefore: 20,
+        livesAfter: 20,
+        atStart: { dharma: 110, bandwidth: 56, anonymity: 0 },
+        after: { dharma: 225, bandwidth: 96, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 0,
+          spent: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 50, bandwidth: 20, anonymity: 0 },
+          clear: { dharma: 65, bandwidth: 20, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 2,
+          killed: 10,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 3,
+        durationMs: 26833.33333332943,
+        livesBefore: 20,
+        livesAfter: 18,
+        atStart: { dharma: 225, bandwidth: 96, anonymity: 0 },
+        after: { dharma: 362, bandwidth: 144, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 0,
+          spent: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 57, bandwidth: 24, anonymity: 0 },
+          clear: { dharma: 80, bandwidth: 24, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object]
+          },
+          leaks: [ [Object], [Object] ],
+          coverage: {},
+          waveNumber: 3,
+          killed: 9,
+          leaked: 2,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 4,
+        durationMs: 16833.33333333691,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 85, bandwidth: 84, anonymity: 0 },
+        after: { dharma: 261, bandwidth: 145, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 277, bandwidth: 60, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 75, bandwidth: 32, anonymity: 0 },
+          clear: { dharma: 101, bandwidth: 29, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 4,
+          killed: 11,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 5,
+        durationMs: 24500.00000000713,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 74, bandwidth: 77, anonymity: 0 },
+        after: { dharma: 392, bandwidth: 201, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 187, bandwidth: 68, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 192, bandwidth: 88, anonymity: 0 },
+          clear: { dharma: 126, bandwidth: 36, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 5,
+          killed: 17,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 6,
+        durationMs: 12250.000000003565,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 50, bandwidth: 201, anonymity: 0 },
+        after: { dharma: 281, bandwidth: 283, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 342, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 105, bandwidth: 46, anonymity: 0 },
+          clear: { dharma: 126, bandwidth: 36, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 6,
+          killed: 10,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 7,
+        durationMs: 17350.000000002983,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 78, bandwidth: 283, anonymity: 0 },
+        after: { dharma: 370, bandwidth: 388, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 203, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 151, bandwidth: 64, anonymity: 0 },
+          clear: { dharma: 141, bandwidth: 41, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 7,
+          killed: 19,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 8,
+        durationMs: 11499.999999993306,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 66, bandwidth: 255, anonymity: 0 },
+        after: { dharma: 372, bandwidth: 366, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 304, bandwidth: 133, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 150, bandwidth: 66, anonymity: 0 },
+          clear: { dharma: 156, bandwidth: 45, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 8,
+          killed: 10,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 9,
+        durationMs: 18199.999999989406,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 169, bandwidth: 366, anonymity: 0 },
+        after: { dharma: 553, bandwidth: 511, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 203, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 213, bandwidth: 95, anonymity: 0 },
+          clear: { dharma: 171, bandwidth: 50, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 9,
+          killed: 17,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 10,
+        durationMs: 24099.999999985972,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 109, bandwidth: 511, anonymity: 0 },
+        after: { dharma: 682, bandwidth: 740, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 444, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 367, bandwidth: 169, anonymity: 0 },
+          clear: { dharma: 206, bandwidth: 60, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 10,
+          killed: 20,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 11,
+        durationMs: 8983.333333328104,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 35, bandwidth: 740, anonymity: 0 },
+        after: { dharma: 399, bandwidth: 881, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 647, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 168, bandwidth: 84, anonymity: 0 },
+          clear: { dharma: 196, bandwidth: 57, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 11,
+          killed: 8,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 12,
+        durationMs: 16383.333333323797,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 28, bandwidth: 621, anonymity: 0 },
+        after: { dharma: 555, bandwidth: 833, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 371, bandwidth: 260, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 316, bandwidth: 150, anonymity: 0 },
+          clear: { dharma: 211, bandwidth: 62, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 12,
+          killed: 18,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 13,
+        durationMs: 9233.333333327959,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 130, bandwidth: 833, anonymity: 0 },
+        after: { dharma: 583, bandwidth: 1020, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 425, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 227, bandwidth: 121, anonymity: 0 },
+          clear: { dharma: 226, bandwidth: 66, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 13,
+          killed: 7,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 14,
+        durationMs: 15866.666666657431,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 139, bandwidth: 1020, anonymity: 0 },
+        after: { dharma: 721, bandwidth: 1263, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 444, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 341, bandwidth: 172, anonymity: 0 },
+          clear: { dharma: 241, bandwidth: 71, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 14,
+          killed: 15,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 15,
+        durationMs: 18816.666666655714,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 74, bandwidth: 1263, anonymity: 0 },
+        after: { dharma: 939, bandwidth: 1644, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 647, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 579, bandwidth: 297, anonymity: 0 },
+          clear: { dharma: 286, bandwidth: 84, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object],
+            'defense-1032': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 15,
+          killed: 12,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 16,
+        durationMs: 18716.666666678677,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 71, bandwidth: 1644, anonymity: 0 },
+        after: { dharma: 837, bandwidth: 1987, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 868, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 500, bandwidth: 265, anonymity: 0 },
+          clear: { dharma: 266, bandwidth: 78, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object],
+            'defense-1032': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 16,
+          killed: 15,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 17,
+        durationMs: 21550.000000025088,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 412, bandwidth: 1987, anonymity: 0 },
+        after: { dharma: 1389, bandwidth: 2431, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 425, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 696, bandwidth: 361, anonymity: 0 },
+          clear: { dharma: 281, bandwidth: 83, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object],
+            'defense-1032': [Object],
+            'defense-1264': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 17,
+          killed: 25,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 18,
+        durationMs: 19650.000000022876,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 87, bandwidth: 2431, anonymity: 0 },
+        after: { dharma: 1118, bandwidth: 2892, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 1302, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 735, bandwidth: 374, anonymity: 0 },
+          clear: { dharma: 296, bandwidth: 87, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object],
+            'defense-1032': [Object],
+            'defense-1264': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 18,
+          killed: 17,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 19,
+        durationMs: 29083.33333336719,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 259, bandwidth: 2892, anonymity: 0 },
+        after: { dharma: 1478, bandwidth: 3451, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 859, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 908, bandwidth: 467, anonymity: 0 },
+          clear: { dharma: 311, bandwidth: 92, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object],
+            'defense-1032': [Object],
+            'defense-1264': [Object],
+            'defense-1593': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 19,
+          killed: 33,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 20,
+        durationMs: 40200.0000000468,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 321, bandwidth: 2945, anonymity: 0 },
+        after: { dharma: 2227, bandwidth: 3828, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 1157, bandwidth: 506, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 1510, bandwidth: 766, anonymity: 0 },
+          clear: { dharma: 396, bandwidth: 117, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object],
+            'defense-1032': [Object],
+            'defense-1264': [Object],
+            'defense-1593': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 20,
+          killed: 37,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      }
+    ],
+    bosses: [
+      {
+        id: 'enemy-219',
+        wave: 5,
+        type: 'raidTeam',
+        outcome: 'killed',
+        phases: [ 1 ]
+      },
+      {
+        id: 'enemy-652',
+        wave: 10,
+        type: 'raidTeam',
+        outcome: 'killed',
+        phases: [ 1 ]
+      },
+      {
+        id: 'enemy-1033',
+        wave: 15,
+        type: 'megaCorpTitan',
+        outcome: 'killed',
+        phases: []
+      },
+      {
+        id: 'enemy-1506',
+        wave: 18,
+        type: 'megaCorpTitan',
+        outcome: 'killed',
+        phases: []
+      },
+      {
+        id: 'enemy-1863',
+        wave: 20,
+        type: 'megaCorpTitan',
+        outcome: 'killed',
+        phases: []
+      },
+      {
+        id: 'enemy-1910',
+        wave: 20,
+        type: 'raidTeam',
+        outcome: 'killed',
+        phases: [ 1 ]
+      },
+      {
+        id: 'enemy-1971',
+        wave: 20,
+        type: 'megaCorpTitan',
+        outcome: 'killed',
+        phases: []
+      }
+    ],
+    spawns: [
+      { wave: 1, type: 'scriptKiddie', time: 16.666666666666668 },
+      { wave: 1, type: 'scriptKiddie', time: 1016.6666666666657 },
+      { wave: 1, type: 'scriptKiddie', time: 2000.0000000000034 },
+      { wave: 1, type: 'scriptKiddie', time: 3016.6666666666615 },
+      { wave: 1, type: 'scriptKiddie', time: 6500.000000000029 },
+      { wave: 1, type: 'scriptKiddie', time: 7200.000000000042 },
+      { wave: 1, type: 'scriptKiddie', time: 7900.000000000055 },
+      { wave: 1, type: 'scriptKiddie', time: 8600.000000000045 },
+      { wave: 2, type: 'scriptKiddie', time: 16316.666666666431 },
+      { wave: 2, type: 'scriptKiddie', time: 17016.666666666475 },
+      { wave: 2, type: 'scriptKiddie', time: 17699.999999999858 },
+      { wave: 2, type: 'scriptKiddie', time: 18399.99999999991 },
+      { wave: 2, type: 'scriptKiddie', time: 21300.00000000012 },
+      { wave: 2, type: 'scriptKiddie', time: 21650.000000000146 },
+      { wave: 2, type: 'scriptKiddie', time: 22000.00000000017 },
+      { wave: 2, type: 'scriptKiddie', time: 22350.000000000196 },
+      { wave: 2, type: 'scriptKiddie', time: 22700.000000000222 },
+      { wave: 2, type: 'scriptKiddie', time: 23050.000000000247 },
+      { wave: 3, type: 'federalAgent', time: 35700.00000000053 },
+      { wave: 3, type: 'scriptKiddie', time: 36400.00000000043 },
+      { wave: 3, type: 'scriptKiddie', time: 36900.00000000036 },
+      { wave: 3, type: 'federalAgent', time: 37083.33333333366 },
+      { wave: 3, type: 'scriptKiddie', time: 37383.33333333362 },
+      { wave: 3, type: 'scriptKiddie', time: 37883.33333333355 },
+      { wave: 3, type: 'federalAgent', time: 38500.000000000124 },
+      { wave: 3, type: 'scriptKiddie', time: 42183.33333333292 },
+      { wave: 3, type: 'scriptKiddie', time: 42583.33333333286 },
+      { wave: 3, type: 'scriptKiddie', time: 42983.333333332805 },
+      { wave: 3, type: 'scriptKiddie', time: 43383.33333333275 },
+      { wave: 4, type: 'federalAgent', time: 62533.33333332996 },
+      { wave: 4, type: 'federalAgent', time: 63433.33333332983 },
+      { wave: 4, type: 'scriptKiddie', time: 63433.33333332983 },
+      { wave: 4, type: 'scriptKiddie', time: 63733.333333329785 },
+      { wave: 4, type: 'scriptKiddie', time: 64016.66666666308 },
+      { wave: 4, type: 'federalAgent', time: 64316.66666666303 },
+      { wave: 4, type: 'federalAgent', time: 68516.66666666372 },
+      { wave: 4, type: 'scriptKiddie', time: 69116.66666666389 },
+      { wave: 4, type: 'federalAgent', time: 69416.66666666398 },
+      { wave: 4, type: 'scriptKiddie', time: 69416.66666666398 },
+      { wave: 4, type: 'scriptKiddie', time: 69716.66666666407 },
+      { wave: 5, type: 'raidTeam', time: 79366.66666666688 },
+      { wave: 5, type: 'scriptKiddie', time: 79950.00000000038 },
+      { wave: 5, type: 'scriptKiddie', time: 80366.66666666717 },
+      { wave: 5, type: 'scriptKiddie', time: 80750.00000000061 },
+      { wave: 5, type: 'scriptKiddie', time: 81150.00000000073 },
+      { wave: 5, type: 'scriptKiddie', time: 81550.00000000084 },
+      { wave: 5, type: 'scriptKiddie', time: 81966.66666666763 },
+      { wave: 5, type: 'scriptKiddie', time: 85850.0000000021 },
+      { wave: 5, type: 'scriptKiddie', time: 86150.00000000218 },
+      { wave: 5, type: 'scriptKiddie', time: 86450.00000000227 },
+      { wave: 5, type: 'scriptKiddie', time: 86750.00000000236 },
+      { wave: 5, type: 'scriptKiddie', time: 87050.00000000244 },
+      { wave: 5, type: 'scriptKiddie', time: 87350.00000000253 },
+      { wave: 5, type: 'scriptKiddie', time: 88833.3333333363 },
+      { wave: 5, type: 'scriptKiddie', time: 89083.33333333637 },
+      { wave: 5, type: 'federalAgent', time: 89333.33333333644 },
+      { wave: 5, type: 'scriptKiddie', time: 89583.33333333652 },
+      { wave: 6, type: 'federalAgent', time: 103866.666666674 },
+      { wave: 6, type: 'federalAgent', time: 104966.66666667433 },
+      { wave: 6, type: 'federalAgent', time: 106050.00000000797 },
+      { wave: 6, type: 'federalAgent', time: 107166.66666667497 },
+      { wave: 6, type: 'federalAgent', time: 108266.66666667529 },
+      { wave: 6, type: 'corporateSaboteur', time: 108850.00000000879 },
+      { wave: 6, type: 'federalAgent', time: 109350.00000000893 },
+      { wave: 6, type: 'corporateSaboteur', time: 110150.00000000917 },
+      { wave: 6, type: 'federalAgent', time: 110450.00000000926 },
+      { wave: 6, type: 'corporateSaboteur', time: 111450.00000000955 },
+      { wave: 7, type: 'scriptKiddie', time: 116116.66666667757 },
+      { wave: 7, type: 'scriptKiddie', time: 116550.00000001103 },
+      { wave: 7, type: 'scriptKiddie', time: 117016.66666667783 },
+      { wave: 7, type: 'federalAgent', time: 117016.66666667783 },
+      { wave: 7, type: 'scriptKiddie', time: 117450.00000001129 },
+      { wave: 7, type: 'scriptKiddie', time: 117900.00000001142 },
+      { wave: 7, type: 'federalAgent', time: 118100.00000001148 },
+      { wave: 7, type: 'federalAgent', time: 119216.66666667847 },
+      { wave: 7, type: 'federalAgent', time: 120316.6666666788 },
+      { wave: 7, type: 'federalAgent', time: 121400.00000001244 },
+      { wave: 7, type: 'corporateSaboteur', time: 121700.00000001253 },
+      { wave: 7, type: 'scriptKiddie', time: 122200.00000001267 },
+      { wave: 7, type: 'scriptKiddie', time: 122650.0000000128 },
+      { wave: 7, type: 'corporateSaboteur', time: 122800.00000001285 },
+      { wave: 7, type: 'scriptKiddie', time: 123100.00000001294 },
+      { wave: 7, type: 'scriptKiddie', time: 123550.00000001307 },
+      { wave: 7, type: 'corporateSaboteur', time: 123900.00000001317 },
+      { wave: 7, type: 'scriptKiddie', time: 124000.0000000132 },
+      { wave: 7, type: 'corporateSaboteur', time: 125000.00000001349 },
+      { wave: 8, type: 'corporateSaboteur', time: 133466.66666668054 },
+      { wave: 8, type: 'corporateSaboteur', time: 134366.66666668002 },
+      { wave: 8, type: 'corporateSaboteur', time: 135250.00000001283 },
+      { wave: 8, type: 'aiSurveillance', time: 135650.0000000126 },
+      { wave: 8, type: 'corporateSaboteur', time: 136166.66666667897 },
+      { wave: 8, type: 'aiSurveillance', time: 137666.6666666781 },
+      { wave: 8, type: 'corporateSaboteur', time: 140450.0000000098 },
+      { wave: 8, type: 'corporateSaboteur', time: 141350.00000000928 },
+      { wave: 8, type: 'corporateSaboteur', time: 142250.00000000876 },
+      { wave: 8, type: 'corporateSaboteur', time: 143150.00000000824 },
+      { wave: 9, type: 'federalAgent', time: 144966.66666667385 },
+      { wave: 9, type: 'federalAgent', time: 145866.66666667332 },
+      { wave: 9, type: 'federalAgent', time: 146750.00000000614 },
+      { wave: 9, type: 'federalAgent', time: 147666.66666667227 },
+      ... 220 more items
+    ],
+    phase: 'VICTORY',
+    lives: 18,
+    resources: { dharma: 2227, bandwidth: 3828, anonymity: 0 },
+    combatMs: 385733.3333334162,
+    errors: []
+  },
+  expected: {
+    viewport: { width: 390, height: 844 },
+    hasTouch: true,
+    rotations: [
+      {
+        label: 'earned build before wave 4',
+        wave: 4,
+        combatMsBefore: 62516.666666663295,
+        views: [
+          {
+            viewport: [Object],
+            combatMs: 62516.666666663295,
+            phase: 'BUILDING'
+          },
+          {
+            viewport: [Object],
+            combatMs: 62516.666666663295,
+            phase: 'BUILDING'
+          }
+        ]
+      },
+      {
+        label: 'active wave 10 spent Raid EMP',
+        wave: 10,
+        combatMsBefore: 173349.99999999066,
+        views: [
+          {
+            viewport: [Object],
+            combatMs: 173549.99999999054,
+            phase: 'WAVE'
+          },
+          {
+            viewport: [Object],
+            combatMs: 173733.33333332377,
+            phase: 'WAVE'
+          }
+        ]
+      }
+    ],
+    balanceVersion: '1.7.0',
+    schemaVersion: 4,
+    commands: [
+      {
+        wave: 1,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 270, y: 270, coverage: 18 } ]
+      },
+      {
+        wave: 1,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 510, y: 270, coverage: 18 } ]
+      },
+      {
+        wave: 1,
+        name: 'placeDefense',
+        args: [ 'encryption', { x: 210, y: 210, coverage: 17 } ]
+      },
+      {
+        wave: 4,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 210, y: 270, coverage: 17 } ]
+      },
+      {
+        wave: 4,
+        name: 'placeDefense',
+        args: [ 'distributor', { x: 450, y: 270, coverage: 17 } ]
+      },
+      { wave: 4, name: 'upgradeDefense', args: [ 'defense-1', null ] },
+      {
+        wave: 4,
+        name: 'upgradeDefense',
+        args: [ 'defense-147', null ]
+      },
+      { wave: 4, name: 'upgradeDefense', args: [ 'defense-2', null ] },
+      {
+        wave: 5,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 270, y: 210, coverage: 16 } ]
+      },
+      {
+        wave: 5,
+        name: 'upgradeDefense',
+        args: [ 'defense-218', null ]
+      },
+      { wave: 5, name: 'upgradeDefense', args: [ 'defense-3', null ] },
+      {
+        wave: 6,
+        name: 'upgradeDefense',
+        args: [ 'defense-1', 'focus' ]
+      },
+      {
+        wave: 6,
+        name: 'upgradeDefense',
+        args: [ 'defense-147', 'focus' ]
+      },
+      {
+        wave: 6,
+        name: 'upgradeDefense',
+        args: [ 'defense-2', 'focus' ]
+      },
+      {
+        wave: 7,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 450, y: 210, coverage: 16 } ]
+      },
+      {
+        wave: 7,
+        name: 'upgradeDefense',
+        args: [ 'defense-410', null ]
+      },
+      {
+        wave: 7,
+        name: 'upgradeDefense',
+        args: [ 'defense-218', 'focus' ]
+      },
+      {
+        wave: 8,
+        name: 'upgradeDefense',
+        args: [ 'defense-3', 'sustain' ]
+      },
+      {
+        wave: 8,
+        name: 'upgradeDefense',
+        args: [ 'defense-410', 'focus' ]
+      },
+      {
+        wave: 9,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 450, y: 330, coverage: 16 } ]
+      },
+      {
+        wave: 9,
+        name: 'upgradeDefense',
+        args: [ 'defense-556', null ]
+      },
+      {
+        wave: 9,
+        name: 'upgradeDefense',
+        args: [ 'defense-556', 'focus' ]
+      },
+      { wave: 10, name: 'upgradeDefense', args: [ 'defense-1', null ] },
+      {
+        wave: 10,
+        name: 'upgradeDefense',
+        args: [ 'defense-147', null ]
+      },
+      {
+        wave: 11,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 510, y: 330, coverage: 16 } ]
+      },
+      {
+        wave: 11,
+        name: 'upgradeDefense',
+        args: [ 'defense-780', null ]
+      },
+      {
+        wave: 11,
+        name: 'upgradeDefense',
+        args: [ 'defense-780', 'focus' ]
+      },
+      { wave: 11, name: 'upgradeDefense', args: [ 'defense-2', null ] },
+      {
+        wave: 11,
+        name: 'upgradeDefense',
+        args: [ 'defense-218', null ]
+      },
+      { wave: 12, name: 'upgradeDefense', args: [ 'defense-3', null ] },
+      {
+        wave: 13,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 510, y: 210, coverage: 15 } ]
+      },
+      {
+        wave: 13,
+        name: 'upgradeDefense',
+        args: [ 'defense-910', null ]
+      },
+      {
+        wave: 13,
+        name: 'upgradeDefense',
+        args: [ 'defense-910', 'focus' ]
+      },
+      {
+        wave: 13,
+        name: 'upgradeDefense',
+        args: [ 'defense-410', null ]
+      },
+      {
+        wave: 14,
+        name: 'upgradeDefense',
+        args: [ 'defense-556', null ]
+      },
+      {
+        wave: 14,
+        name: 'upgradeDefense',
+        args: [ 'defense-780', null ]
+      },
+      {
+        wave: 15,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 210, y: 150, coverage: 14 } ]
+      },
+      {
+        wave: 15,
+        name: 'upgradeDefense',
+        args: [ 'defense-1032', null ]
+      },
+      {
+        wave: 15,
+        name: 'upgradeDefense',
+        args: [ 'defense-1032', 'focus' ]
+      },
+      {
+        wave: 15,
+        name: 'upgradeDefense',
+        args: [ 'defense-1032', null ]
+      },
+      {
+        wave: 15,
+        name: 'upgradeDefense',
+        args: [ 'defense-910', null ]
+      },
+      { wave: 16, name: 'upgradeDefense', args: [ 'defense-1', null ] },
+      {
+        wave: 16,
+        name: 'upgradeDefense',
+        args: [ 'defense-1032', null ]
+      },
+      {
+        wave: 17,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 270, y: 150, coverage: 14 } ]
+      },
+      {
+        wave: 17,
+        name: 'upgradeDefense',
+        args: [ 'defense-1264', null ]
+      },
+      {
+        wave: 17,
+        name: 'upgradeDefense',
+        args: [ 'defense-1264', 'focus' ]
+      },
+      {
+        wave: 17,
+        name: 'upgradeDefense',
+        args: [ 'defense-1264', null ]
+      },
+      {
+        wave: 18,
+        name: 'upgradeDefense',
+        args: [ 'defense-1264', null ]
+      },
+      {
+        wave: 18,
+        name: 'upgradeDefense',
+        args: [ 'defense-147', null ]
+      },
+      { wave: 18, name: 'upgradeDefense', args: [ 'defense-2', null ] },
+      {
+        wave: 19,
+        name: 'placeDefense',
+        args: [ 'firewall', { x: 570, y: 330, coverage: 13 } ]
+      },
+      {
+        wave: 19,
+        name: 'upgradeDefense',
+        args: [ 'defense-1593', null ]
+      },
+      {
+        wave: 19,
+        name: 'upgradeDefense',
+        args: [ 'defense-1593', 'focus' ]
+      },
+      {
+        wave: 19,
+        name: 'upgradeDefense',
+        args: [ 'defense-1593', null ]
+      },
+      {
+        wave: 19,
+        name: 'upgradeDefense',
+        args: [ 'defense-1593', null ]
+      },
+      {
+        wave: 20,
+        name: 'upgradeDefense',
+        args: [ 'defense-218', null ]
+      },
+      { wave: 20, name: 'upgradeDefense', args: [ 'defense-3', null ] }
+    ],
+    checkpoints: [
+      {
+        label: 'earned build',
+        wave: 4,
+        resume: 'BUILDING',
+        combatMs: 62516.666666663295,
+        speed: 2,
+        reports: 3,
+        resources: { dharma: 85, bandwidth: 84, anonymity: 0 },
+        enemies: []
+      },
+      {
+        label: 'spent Raid EMP',
+        wave: 10,
+        resume: 'WAVE',
+        combatMs: 173733.33333332377,
+        speed: 2,
+        reports: 9,
+        resources: { dharma: 217, bandwidth: 559, anonymity: 0 },
+        enemies: [
+          {
+            type: 'raidTeam',
+            health: 400.8276000000003,
+            shield: 0,
+            firedPhases: [Array]
+          },
+          {
+            type: 'aiSurveillance',
+            health: 211.20000000000002,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'aiSurveillance',
+            health: 211.20000000000002,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'aiSurveillance',
+            health: 211.20000000000002,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'scriptKiddie',
+            health: 79.2,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'scriptKiddie',
+            health: 79.2,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'federalAgent',
+            health: 145.20000000000002,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'corporateSaboteur',
+            health: 135.85000000000002,
+            shield: 0,
+            firedPhases: []
+          },
+          {
+            type: 'scriptKiddie',
+            health: 79.2,
+            shield: 0,
+            firedPhases: []
+          }
+        ]
+      },
+      {
+        label: 'damaged Titan shield',
+        wave: 15,
+        resume: 'WAVE',
+        combatMs: 238699.99999995262,
+        speed: 2,
+        reports: 14,
+        resources: { dharma: 74, bandwidth: 1263, anonymity: 0 },
+        enemies: [
+          {
+            type: 'megaCorpTitan',
+            health: 1045,
+            shield: 359.92,
+            firedPhases: []
+          }
+        ]
+      },
+      {
+        label: 'earned build',
+        wave: 16,
+        resume: 'BUILDING',
+        combatMs: 256533.33333327557,
+        speed: 2,
+        reports: 15,
+        resources: { dharma: 71, bandwidth: 1644, anonymity: 0 },
+        enemies: []
+      }
+    ],
+    waves: [
+      {
+        wave: 1,
+        durationMs: 16299.999999999765,
+        livesBefore: 20,
+        livesAfter: 20,
+        atStart: { dharma: 20, bandwidth: 25, anonymity: 0 },
+        after: { dharma: 110, bandwidth: 56, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 0,
+          spent: { dharma: 110, bandwidth: 35, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 40, bandwidth: 16, anonymity: 0 },
+          clear: { dharma: 50, bandwidth: 15, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 1,
+          killed: 8,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 2,
+        durationMs: 19383.3333333341,
+        livesBefore: 20,
+        livesAfter: 20,
+        atStart: { dharma: 110, bandwidth: 56, anonymity: 0 },
+        after: { dharma: 225, bandwidth: 96, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 0,
+          spent: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 50, bandwidth: 20, anonymity: 0 },
+          clear: { dharma: 65, bandwidth: 20, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 2,
+          killed: 10,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 3,
+        durationMs: 26833.33333332943,
+        livesBefore: 20,
+        livesAfter: 18,
+        atStart: { dharma: 225, bandwidth: 96, anonymity: 0 },
+        after: { dharma: 362, bandwidth: 144, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 0,
+          spent: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 57, bandwidth: 24, anonymity: 0 },
+          clear: { dharma: 80, bandwidth: 24, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object]
+          },
+          leaks: [ [Object], [Object] ],
+          coverage: {},
+          waveNumber: 3,
+          killed: 9,
+          leaked: 2,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 4,
+        durationMs: 16833.33333333691,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 85, bandwidth: 84, anonymity: 0 },
+        after: { dharma: 261, bandwidth: 145, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 277, bandwidth: 60, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 75, bandwidth: 32, anonymity: 0 },
+          clear: { dharma: 101, bandwidth: 29, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 4,
+          killed: 11,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 5,
+        durationMs: 24500.00000000713,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 74, bandwidth: 77, anonymity: 0 },
+        after: { dharma: 392, bandwidth: 201, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 187, bandwidth: 68, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 192, bandwidth: 88, anonymity: 0 },
+          clear: { dharma: 126, bandwidth: 36, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 5,
+          killed: 17,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 6,
+        durationMs: 12250.000000003565,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 50, bandwidth: 201, anonymity: 0 },
+        after: { dharma: 281, bandwidth: 283, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 342, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 105, bandwidth: 46, anonymity: 0 },
+          clear: { dharma: 126, bandwidth: 36, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 6,
+          killed: 10,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 7,
+        durationMs: 17350.000000002983,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 78, bandwidth: 283, anonymity: 0 },
+        after: { dharma: 370, bandwidth: 388, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 203, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 151, bandwidth: 64, anonymity: 0 },
+          clear: { dharma: 141, bandwidth: 41, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 7,
+          killed: 19,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 8,
+        durationMs: 11499.999999993306,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 66, bandwidth: 255, anonymity: 0 },
+        after: { dharma: 372, bandwidth: 366, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 304, bandwidth: 133, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 150, bandwidth: 66, anonymity: 0 },
+          clear: { dharma: 156, bandwidth: 45, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 8,
+          killed: 10,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 9,
+        durationMs: 18199.999999989406,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 169, bandwidth: 366, anonymity: 0 },
+        after: { dharma: 553, bandwidth: 511, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 203, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 213, bandwidth: 95, anonymity: 0 },
+          clear: { dharma: 171, bandwidth: 50, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 9,
+          killed: 17,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 10,
+        durationMs: 24099.999999985972,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 109, bandwidth: 511, anonymity: 0 },
+        after: { dharma: 682, bandwidth: 740, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 444, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 367, bandwidth: 169, anonymity: 0 },
+          clear: { dharma: 206, bandwidth: 60, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 10,
+          killed: 20,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 11,
+        durationMs: 8983.333333328104,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 35, bandwidth: 740, anonymity: 0 },
+        after: { dharma: 399, bandwidth: 881, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 647, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 168, bandwidth: 84, anonymity: 0 },
+          clear: { dharma: 196, bandwidth: 57, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 11,
+          killed: 8,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 12,
+        durationMs: 16383.333333323797,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 28, bandwidth: 621, anonymity: 0 },
+        after: { dharma: 555, bandwidth: 833, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 371, bandwidth: 260, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 316, bandwidth: 150, anonymity: 0 },
+          clear: { dharma: 211, bandwidth: 62, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 12,
+          killed: 18,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 13,
+        durationMs: 9233.333333327959,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 130, bandwidth: 833, anonymity: 0 },
+        after: { dharma: 583, bandwidth: 1020, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 425, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 227, bandwidth: 121, anonymity: 0 },
+          clear: { dharma: 226, bandwidth: 66, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 13,
+          killed: 7,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 14,
+        durationMs: 15866.666666657431,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 139, bandwidth: 1020, anonymity: 0 },
+        after: { dharma: 721, bandwidth: 1263, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 444, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 341, bandwidth: 172, anonymity: 0 },
+          clear: { dharma: 241, bandwidth: 71, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 14,
+          killed: 15,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 15,
+        durationMs: 18816.666666655714,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 74, bandwidth: 1263, anonymity: 0 },
+        after: { dharma: 939, bandwidth: 1644, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 647, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 579, bandwidth: 297, anonymity: 0 },
+          clear: { dharma: 286, bandwidth: 84, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object],
+            'defense-1032': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 15,
+          killed: 12,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 16,
+        durationMs: 18716.666666678677,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 71, bandwidth: 1644, anonymity: 0 },
+        after: { dharma: 837, bandwidth: 1987, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 868, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 500, bandwidth: 265, anonymity: 0 },
+          clear: { dharma: 266, bandwidth: 78, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object],
+            'defense-1032': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 16,
+          killed: 15,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 17,
+        durationMs: 21550.000000025088,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 412, bandwidth: 1987, anonymity: 0 },
+        after: { dharma: 1389, bandwidth: 2431, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 425, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 696, bandwidth: 361, anonymity: 0 },
+          clear: { dharma: 281, bandwidth: 83, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object],
+            'defense-1032': [Object],
+            'defense-1264': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 17,
+          killed: 25,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 18,
+        durationMs: 19650.000000022876,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 87, bandwidth: 2431, anonymity: 0 },
+        after: { dharma: 1118, bandwidth: 2892, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 1302, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 735, bandwidth: 374, anonymity: 0 },
+          clear: { dharma: 296, bandwidth: 87, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object],
+            'defense-1032': [Object],
+            'defense-1264': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 18,
+          killed: 17,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 19,
+        durationMs: 29083.33333336719,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 259, bandwidth: 2892, anonymity: 0 },
+        after: { dharma: 1478, bandwidth: 3451, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 859, bandwidth: 0, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 908, bandwidth: 467, anonymity: 0 },
+          clear: { dharma: 311, bandwidth: 92, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object],
+            'defense-1032': [Object],
+            'defense-1264': [Object],
+            'defense-1593': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 19,
+          killed: 33,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      },
+      {
+        wave: 20,
+        durationMs: 40200.0000000468,
+        livesBefore: 18,
+        livesAfter: 18,
+        atStart: { dharma: 321, bandwidth: 2945, anonymity: 0 },
+        after: { dharma: 2227, bandwidth: 3828, anonymity: 0 },
+        report: {
+          partial: false,
+          passiveDharma: 6,
+          spent: { dharma: 1157, bandwidth: 506, anonymity: 0 },
+          refunds: { dharma: 0, bandwidth: 0, anonymity: 0 },
+          bounty: { dharma: 1510, bandwidth: 766, anonymity: 0 },
+          clear: { dharma: 396, bandwidth: 117, anonymity: 0 },
+          towers: {
+            'defense-1': [Object],
+            'defense-2': [Object],
+            'defense-3': [Object],
+            'defense-147': [Object],
+            'defense-148': [Object],
+            'defense-218': [Object],
+            'defense-410': [Object],
+            'defense-556': [Object],
+            'defense-780': [Object],
+            'defense-910': [Object],
+            'defense-1032': [Object],
+            'defense-1264': [Object],
+            'defense-1593': [Object]
+          },
+          leaks: [],
+          coverage: {},
+          waveNumber: 20,
+          killed: 37,
+          leaked: 0,
+          outcome: 'cleared'
+        }
+      }
+    ],
+    bosses: [
+      {
+        id: 'enemy-219',
+        wave: 5,
+        type: 'raidTeam',
+        outcome: 'killed',
+        phases: [ 1 ]
+      },
+      {
+        id: 'enemy-652',
+        wave: 10,
+        type: 'raidTeam',
+        outcome: 'killed',
+        phases: [ 1 ]
+      },
+      {
+        id: 'enemy-1033',
+        wave: 15,
+        type: 'megaCorpTitan',
+        outcome: 'killed',
+        phases: []
+      },
+      {
+        id: 'enemy-1506',
+        wave: 18,
+        type: 'megaCorpTitan',
+        outcome: 'killed',
+        phases: []
+      },
+      {
+        id: 'enemy-1863',
+        wave: 20,
+        type: 'megaCorpTitan',
+        outcome: 'killed',
+        phases: []
+      },
+      {
+        id: 'enemy-1910',
+        wave: 20,
+        type: 'raidTeam',
+        outcome: 'killed',
+        phases: [ 1 ]
+      },
+      {
+        id: 'enemy-1971',
+        wave: 20,
+        type: 'megaCorpTitan',
+        outcome: 'killed',
+        phases: []
+      }
+    ],
+    spawns: [
+      { wave: 1, type: 'scriptKiddie', time: 16.666666666666668 },
+      { wave: 1, type: 'scriptKiddie', time: 1016.6666666666657 },
+      { wave: 1, type: 'scriptKiddie', time: 2000.0000000000034 },
+      { wave: 1, type: 'scriptKiddie', time: 3016.6666666666615 },
+      { wave: 1, type: 'scriptKiddie', time: 6500.000000000029 },
+      { wave: 1, type: 'scriptKiddie', time: 7200.000000000042 },
+      { wave: 1, type: 'scriptKiddie', time: 7900.000000000055 },
+      { wave: 1, type: 'scriptKiddie', time: 8600.000000000045 },
+      { wave: 2, type: 'scriptKiddie', time: 16316.666666666431 },
+      { wave: 2, type: 'scriptKiddie', time: 17016.666666666475 },
+      { wave: 2, type: 'scriptKiddie', time: 17699.999999999858 },
+      { wave: 2, type: 'scriptKiddie', time: 18399.99999999991 },
+      { wave: 2, type: 'scriptKiddie', time: 21300.00000000012 },
+      { wave: 2, type: 'scriptKiddie', time: 21650.000000000146 },
+      { wave: 2, type: 'scriptKiddie', time: 22000.00000000017 },
+      { wave: 2, type: 'scriptKiddie', time: 22350.000000000196 },
+      { wave: 2, type: 'scriptKiddie', time: 22700.000000000222 },
+      { wave: 2, type: 'scriptKiddie', time: 23050.000000000247 },
+      { wave: 3, type: 'federalAgent', time: 35700.00000000053 },
+      { wave: 3, type: 'scriptKiddie', time: 36400.00000000043 },
+      { wave: 3, type: 'scriptKiddie', time: 36900.00000000036 },
+      { wave: 3, type: 'federalAgent', time: 37083.33333333366 },
+      { wave: 3, type: 'scriptKiddie', time: 37383.33333333362 },
+      { wave: 3, type: 'scriptKiddie', time: 37883.33333333355 },
+      { wave: 3, type: 'federalAgent', time: 38500.000000000124 },
+      { wave: 3, type: 'scriptKiddie', time: 42183.33333333292 },
+      { wave: 3, type: 'scriptKiddie', time: 42583.33333333286 },
+      { wave: 3, type: 'scriptKiddie', time: 42983.333333332805 },
+      { wave: 3, type: 'scriptKiddie', time: 43383.33333333275 },
+      { wave: 4, type: 'federalAgent', time: 62533.33333332996 },
+      { wave: 4, type: 'federalAgent', time: 63433.33333332983 },
+      { wave: 4, type: 'scriptKiddie', time: 63433.33333332983 },
+      { wave: 4, type: 'scriptKiddie', time: 63733.333333329785 },
+      { wave: 4, type: 'scriptKiddie', time: 64016.66666666308 },
+      { wave: 4, type: 'federalAgent', time: 64316.66666666303 },
+      { wave: 4, type: 'federalAgent', time: 68516.66666666372 },
+      { wave: 4, type: 'scriptKiddie', time: 69116.66666666389 },
+      { wave: 4, type: 'federalAgent', time: 69416.66666666398 },
+      { wave: 4, type: 'scriptKiddie', time: 69416.66666666398 },
+      { wave: 4, type: 'scriptKiddie', time: 69716.66666666407 },
+      { wave: 5, type: 'raidTeam', time: 79366.66666666688 },
+      { wave: 5, type: 'scriptKiddie', time: 79950.00000000038 },
+      { wave: 5, type: 'scriptKiddie', time: 80366.66666666717 },
+      { wave: 5, type: 'scriptKiddie', time: 80750.00000000061 },
+      { wave: 5, type: 'scriptKiddie', time: 81150.00000000073 },
+      { wave: 5, type: 'scriptKiddie', time: 81550.00000000084 },
+      { wave: 5, type: 'scriptKiddie', time: 81966.66666666763 },
+      { wave: 5, type: 'scriptKiddie', time: 85850.0000000021 },
+      { wave: 5, type: 'scriptKiddie', time: 86150.00000000218 },
+      { wave: 5, type: 'scriptKiddie', time: 86450.00000000227 },
+      { wave: 5, type: 'scriptKiddie', time: 86750.00000000236 },
+      { wave: 5, type: 'scriptKiddie', time: 87050.00000000244 },
+      { wave: 5, type: 'scriptKiddie', time: 87350.00000000253 },
+      { wave: 5, type: 'scriptKiddie', time: 88833.3333333363 },
+      { wave: 5, type: 'scriptKiddie', time: 89083.33333333637 },
+      { wave: 5, type: 'federalAgent', time: 89333.33333333644 },
+      { wave: 5, type: 'scriptKiddie', time: 89583.33333333652 },
+      { wave: 6, type: 'federalAgent', time: 103866.666666674 },
+      { wave: 6, type: 'federalAgent', time: 104966.66666667433 },
+      { wave: 6, type: 'federalAgent', time: 106050.00000000797 },
+      { wave: 6, type: 'federalAgent', time: 107166.66666667497 },
+      { wave: 6, type: 'federalAgent', time: 108266.66666667529 },
+      { wave: 6, type: 'corporateSaboteur', time: 108850.00000000879 },
+      { wave: 6, type: 'federalAgent', time: 109350.00000000893 },
+      { wave: 6, type: 'corporateSaboteur', time: 110150.00000000917 },
+      { wave: 6, type: 'federalAgent', time: 110450.00000000926 },
+      { wave: 6, type: 'corporateSaboteur', time: 111450.00000000955 },
+      { wave: 7, type: 'scriptKiddie', time: 116116.66666667757 },
+      { wave: 7, type: 'scriptKiddie', time: 116550.00000001103 },
+      { wave: 7, type: 'scriptKiddie', time: 117016.66666667783 },
+      { wave: 7, type: 'federalAgent', time: 117016.66666667783 },
+      { wave: 7, type: 'scriptKiddie', time: 117450.00000001129 },
+      { wave: 7, type: 'scriptKiddie', time: 117900.00000001142 },
+      { wave: 7, type: 'federalAgent', time: 118100.00000001148 },
+      { wave: 7, type: 'federalAgent', time: 119216.66666667847 },
+      { wave: 7, type: 'federalAgent', time: 120316.6666666788 },
+      { wave: 7, type: 'federalAgent', time: 121400.00000001244 },
+      { wave: 7, type: 'corporateSaboteur', time: 121700.00000001253 },
+      { wave: 7, type: 'scriptKiddie', time: 122200.00000001267 },
+      { wave: 7, type: 'scriptKiddie', time: 122650.0000000128 },
+      { wave: 7, type: 'corporateSaboteur', time: 122800.00000001285 },
+      { wave: 7, type: 'scriptKiddie', time: 123100.00000001294 },
+      { wave: 7, type: 'scriptKiddie', time: 123550.00000001307 },
+      { wave: 7, type: 'corporateSaboteur', time: 123900.00000001317 },
+      { wave: 7, type: 'scriptKiddie', time: 124000.0000000132 },
+      { wave: 7, type: 'corporateSaboteur', time: 125000.00000001349 },
+      { wave: 8, type: 'corporateSaboteur', time: 133466.66666668054 },
+      { wave: 8, type: 'corporateSaboteur', time: 134366.66666668002 },
+      { wave: 8, type: 'corporateSaboteur', time: 135250.00000001283 },
+      { wave: 8, type: 'aiSurveillance', time: 135650.0000000126 },
+      { wave: 8, type: 'corporateSaboteur', time: 136166.66666667897 },
+      { wave: 8, type: 'aiSurveillance', time: 137666.6666666781 },
+      { wave: 8, type: 'corporateSaboteur', time: 140450.0000000098 },
+      { wave: 8, type: 'corporateSaboteur', time: 141350.00000000928 },
+      { wave: 8, type: 'corporateSaboteur', time: 142250.00000000876 },
+      { wave: 8, type: 'corporateSaboteur', time: 143150.00000000824 },
+      { wave: 9, type: 'federalAgent', time: 144966.66666667385 },
+      { wave: 9, type: 'federalAgent', time: 145866.66666667332 },
+      { wave: 9, type: 'federalAgent', time: 146750.00000000614 },
+      { wave: 9, type: 'federalAgent', time: 147666.66666667227 },
+      ... 220 more items
+    ],
+    phase: 'VICTORY',
+    lives: 18,
+    resources: { dharma: 2227, bandwidth: 3828, anonymity: 0 },
+    combatMs: 385733.3333334162,
+    errors: []
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

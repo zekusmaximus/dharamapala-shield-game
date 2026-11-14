@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# Run from a detached clean checkout of the implementation commit; log outside it.
+set -eu
+export CI=1
+export PLAYWRIGHT_BROWSERS_PATH=${PLAYWRIGHT_BROWSERS_PATH:-${HOME}/.cache/ms-playwright}
+run() { echo "+ $*"; "$@"; echo 'exit=0'; }
+run git rev-parse HEAD
+run node --version
+run npm --version
+run test ! -d node_modules
+run test ! -d dist
+run npm ci --cache /tmp/dharamapala-m45-touch-npm-cache
+run npx playwright install chromium
+run npm run build
+run npm run test:unit
+run npm run test:integration
+run npm run test:sim
+export CAMPAIGN_AUDIT_OUTPUT=/tmp/m45-touch-clean-ui
+run npm run test:e2e
+unset CAMPAIGN_AUDIT_OUTPUT
+run cmp /tmp/m45-touch-clean-ui/recovery.json design/reviews/2026-11-14-m4.5-ui-audit/recovery.json
+run cmp /tmp/m45-touch-clean-ui/defeat-retry.json design/reviews/2026-11-14-m4.5-ui-audit/defeat-retry.json
+run node design/reviews/2026-11-14-m4.5-touch-audit/compare-evidence.mjs /tmp/m45-touch-clean-ui/touch-recovery.json
+run npm run test:a11y
+run node --input-type=module -e 'import {chromium} from "@playwright/test";const b=await chromium.launch();console.log(b.version());await b.close();'
+echo '+ node tools/review/baseline.mjs > /tmp/m45-touch-baseline.json'
+node tools/review/baseline.mjs > /tmp/m45-touch-baseline.json
+run cmp /tmp/m45-touch-baseline.json design/reviews/2026-11-13-m4.3/baseline.json
+run npm run balance:report -- --output=/tmp/m45-touch-results.json
+run cmp /tmp/m45-touch-results.json design/reviews/2026-11-13-m4.3/results.json
+run node tools/balance/summary.mjs /tmp/m45-touch-results.json /tmp/m45-touch-summary.md
+run cmp /tmp/m45-touch-summary.md design/reviews/2026-11-13-m4.3/summary.md
+run node tools/balance/counterplay.mjs /tmp/m45-touch-counterplay.json
+run cmp /tmp/m45-touch-counterplay.json design/reviews/2026-11-13-m4.3/counterplay.json
+run node design/reviews/2026-11-13-m4.3/scenarios.mjs --old /tmp/m45-touch-scenarios-before.json
+run cmp /tmp/m45-touch-scenarios-before.json design/reviews/2026-11-13-m4.3/scenarios-before.json
+run node design/reviews/2026-11-13-m4.3/scenarios.mjs --current /tmp/m45-touch-scenarios-after.json
+run cmp /tmp/m45-touch-scenarios-after.json design/reviews/2026-11-13-m4.3/scenarios-after.json
+run node design/reviews/2026-11-13-m4.3/capture-old-save.mjs /tmp/m45-touch-old-save.json
+run cmp /tmp/m45-touch-old-save.json design/reviews/2026-11-13-m4.3/old-1.6.0-v4-save.json
+run node design/reviews/2026-11-13-m4.3/compare.mjs
+run node tools/balance/economy.mjs /tmp/m45-touch-economy.json
+run cmp /tmp/m45-touch-economy.json design/reviews/2026-11-12-m3.3/economy.json
+run node tools/balance/tradeoffs.mjs /tmp/m45-touch-tradeoffs.json
+run cmp /tmp/m45-touch-tradeoffs.json design/reviews/2026-11-12-m3.2/tradeoffs.json
+echo '+ verify baseline copy equals merged 1.6.0 content'
+git show c4f614e:design/balance.json > /tmp/m45-touch-merged-balance.json
+run cmp /tmp/m45-touch-merged-balance.json design/reviews/2026-11-13-m4.3/baseline-1.6.0.json
+run git diff --exit-code f46d2ba -- js index.html tools scripts .github package.json package-lock.json design/balance.json design/CONTENT_SCHEMA.md tests/unit tests/sim tests/integration tests/e2e/game.spec.js tests/e2e/helpers.js tests/e2e/inspector.spec.js tests/e2e/a11y.spec.js playwright.config.js
+mapfile -t prior_dirs < <(find design/reviews -mindepth 1 -maxdepth 1 -type d ! -name 2026-11-14-m4.5-touch-audit -print | sort)
+run git diff --exit-code f46d2ba -- "${prior_dirs[@]}"
+echo '+ verify pinned M3.5 archive SHA-256'
+echo 'c89fd1806dab103d0838be5b3678404c7b984a64e6972e8a6e3544da360f80f5  design/reviews/2026-11-12-m3.5/playtest-build-fc43adf-1.4.0.zip' | sha256sum --check -
+run git diff --check f46d2ba HEAD
+run git diff --exit-code
+run test -z "$(git status --porcelain)"
