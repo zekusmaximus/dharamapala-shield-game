@@ -10,6 +10,10 @@ No applicable `AGENTS.md` was present in the checkout or workspace parents.
 [M4.4](../2026-11-12-m4.4/README.md) evidence were read. There was no new
 participant-record search and no recreation of the pinned M3.5 kit.
 
+A later continuation found this work already open in PR #34 and reused it.
+The [continuation audit](REVALIDATION.md) records the latest-main check,
+scope review and a separate clean-checkout revalidation without further tuning.
+
 ## Diagnosis, decision and exact scope
 
 [The pre-edit diagnosis and proposal](BASELINE_AND_PROPOSAL.md) uses the

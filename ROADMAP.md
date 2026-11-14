@@ -1,6 +1,6 @@
 # Dharmapala Shield roadmap
 
-Updated 2026-11-12. Baseline: commit `58f0853`, balance `1.0.0`.
+Updated 2026-11-14. Baseline: commit `58f0853`, balance `1.0.0`.
 
 The goal is a tower-defense game that rewards observation, planning, and adapting
 after a mistake. The engine is largely in place. The next work should establish
@@ -637,6 +637,10 @@ scopes documented below, with the current design remaining provisional.
   [PR #34 hosted CI run](design/reviews/2026-11-13-m4.3/ci.txt) passed the
   same five suites on Node 22; GitGuardian passed. These are automated checks
   only.
+  A [continuation audit](design/reviews/2026-11-13-m4.3/REVALIDATION.md)
+  found this implementation already open in PR #34 on latest main and retained
+  its calibration. A fresh detached run at `1ddd54c` passed the same five
+  suites and regenerated the evidence exactly; human gates remain open.
 - [x] **M4.4 · Verify complete runs (automated scope).** Existing M2.4/M3.4
   reporting covers seven policies on three fresh difficulty configurations and
   deterministic repeats. Added four bounded four-lane full-run scenarios:
